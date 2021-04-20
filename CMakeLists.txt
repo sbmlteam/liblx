@@ -1284,8 +1284,7 @@ set(DOCUMENTATION_FILES
         FUNDING.txt
         LICENSE.txt
         NEWS.txt
-        OLD_NEWS.txt
-        README.txt
+        README.md
         VERSION.txt
 )
 
