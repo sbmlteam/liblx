@@ -44,7 +44,7 @@
 #include <liblx/xml/XMLConstructorException.h>
 //#include <liblx/xml/SBMLNamespaces.h>
 
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/xml/sbmlMemoryStubs.h>
 #include <liblx/xml/operationReturnValues.h>
 
 

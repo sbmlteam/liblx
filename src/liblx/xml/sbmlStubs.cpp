@@ -1,11 +1,11 @@
 /*
- * sbmlStubs.cpp
+ * sbmlMemoryStubs.cpp
  *
  *  Created on: 23 October 2020
  *      Author: Timothy Spain
  */
 
-#include "sbmlStubs.h"
+#include "sbmlMemoryStubs.h"
 
 #include <cstring>
 #include <cstdlib>
