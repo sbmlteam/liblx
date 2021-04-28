@@ -132,7 +132,7 @@ XMLParser::setErrorLog (XMLErrorLog* log)
   }
   else
   {
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
   }
 }
 

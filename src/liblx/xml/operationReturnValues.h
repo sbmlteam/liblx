@@ -34,23 +34,23 @@
  * also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#ifndef LIBSBXML_OPERATION_RETURN_VALUES_H
-#define LIBSBXML_OPERATION_RETURN_VALUES_H
+#ifndef LIBLX_OPERATION_RETURN_VALUES_H
+#define LIBLX_OPERATION_RETURN_VALUES_H
 
 /**
  * @enum OperationReturnValues_t
- * LibSBML diagnostic return codes.
+ * LibLX diagnostic return codes.
  *
- * Many methods in libSBML return a status code to indicate whether the
+ * Many methods in libLX return a status code to indicate whether the
  * operation requested by the caller succeeded or failed.  This enumeration
- * lists all the possible return codes from any libSBML methods.
+ * lists all the possible return codes from any libLX methods.
  */
 typedef enum
 {
-    LIBSBXML_OPERATION_SUCCESS       = 0
+    LIBLX_OPERATION_SUCCESS       = 0
     /*!< The operation was successful. */
 
-  , LIBSBXML_INDEX_EXCEEDS_SIZE      = -1
+  , LIBLX_INDEX_EXCEEDS_SIZE      = -1
     /*!< An index parameter exceeded the bounds of a data array or other
      * collection used in the operation.  This return value is typically
      * returned by methods that take index numbers to refer to lists
@@ -59,7 +59,7 @@ typedef enum
      * size of list/sequence/collection structures, and callers should
      * verify the sizes before calling methods that take index numbers. */
 
-  , LIBSBXML_UNEXPECTED_ATTRIBUTE    = -2
+  , LIBLX_UNEXPECTED_ATTRIBUTE    = -2
     /*!< The attribute that is the subject of this operation is not valid
      * for the combination of SBML Level and Version for the underlying
      * object.  This can happen because libSBML strives to offer a uniform
@@ -69,40 +69,40 @@ typedef enum
      * are working with, but when errors of this kind occur, they are
      * reported using this return value. */
 
-  , LIBSBXML_OPERATION_FAILED        = -3
+  , LIBLX_OPERATION_FAILED        = -3
     /*!< The requested action could not be performed.  This can occur in
      * a variety of contexts, such as passing a null object as a parameter
      * in a situation where it does not make sense to permit a null object.
      */
 
-  , LIBSBXML_INVALID_ATTRIBUTE_VALUE = -4
+  , LIBLX_INVALID_ATTRIBUTE_VALUE = -4
     /*!< A value passed as an argument to the method is not of a type that
      * is valid for the operation or kind of object involved.  For example,
      * this return code is used when a calling program attempts to set an
      * SBML object identifier to a string whose syntax does not conform to
      * the SBML identifier syntax. */
 
-  , LIBSBXML_INVALID_OBJECT          = -5
+  , LIBLX_INVALID_OBJECT          = -5
     /*!< The object passed as an argument to the method is not of a type
      * that is valid for the operation or kind of object involved.  For
      * example, handing an invalidly-constructed ASTNode to a method
      * expecting an ASTNode will result in this error. */
 
-  , LIBSBXML_DUPLICATE_OBJECT_ID     = -6
+  , LIBLX_DUPLICATE_OBJECT_ID     = -6
     /*!< There already exists an object with this identifier in the
      * context where this operation is being attempted.  This error is
      * typically returned in situations where SBML object identifiers must be
      * unique, such as attempting to add two species with the same identifier
      * to a model. */
 
-  , LIBSBXML_LEVEL_MISMATCH          = -7
+  , LIBLX_LEVEL_MISMATCH          = -7
     /*!< The SBML Level associated with the object does not match the Level
      * of the parent object.  This error can happen when an SBML component
      * such as a species or compartment object is created outside of a model
      * and a calling program then attempts to add the object to a model that
      * has a different SBML Level defined. */
 
-  , LIBSBXML_VERSION_MISMATCH        = -8
+  , LIBLX_VERSION_MISMATCH        = -8
     /*!< The SBML Version within the SBML Level associated with the object
      * does not match the Version of the parent object.  This error can
      * happen when an SBML component such as a species or compartment object
@@ -110,13 +110,13 @@ typedef enum
      * add the object to a model that has a different SBML Level+Version
      * combination. */
 
-  , LIBSBXML_INVALID_XML_OPERATION   = -9
+  , LIBLX_INVALID_XML_OPERATION   = -9
     /*!< The XML operation attempted is not valid for the object or context
      * involved.  This error is typically returned by the XML interface layer
      * of libSBML, when a calling program attempts to construct or manipulate
      * XML in an invalid way.  */
 
-  , LIBSBXML_NAMESPACES_MISMATCH   = -10
+  , LIBLX_NAMESPACES_MISMATCH   = -10
     /*!< The SBML Namespaces associated with the object
      * do not match the SBML Namespaces of the parent object.  This error can
      * happen when an SBML component such as a species or compartment object
@@ -124,14 +124,14 @@ typedef enum
      * add the object to a model that has a different SBML Namespaces
      * combination. */
 
-  , LIBSBXML_DUPLICATE_ANNOTATION_NS   = -11
+  , LIBLX_DUPLICATE_ANNOTATION_NS   = -11
     /*!< There already exists a top level annotation with the same namespace as
      * annotation being appended.  This error is
      * typically returned in situations where the appendAnnotation function
      * is being used to add an annotation that has a namespace that is already
      * present in the existing annotation. */
 
-  , LIBSBXML_ANNOTATION_NAME_NOT_FOUND   = -12
+  , LIBLX_ANNOTATION_NAME_NOT_FOUND   = -12
     /*!< The existing annotation does not have a top-level element with
      * the given name. This error is
      * typically returned in situations where the
@@ -141,7 +141,7 @@ typedef enum
      * not match the name of any top-level element that is already
      * present in the existing annotation. */
 
-   , LIBSBXML_ANNOTATION_NS_NOT_FOUND   = -13
+   , LIBLX_ANNOTATION_NS_NOT_FOUND   = -13
     /*!< The existing annotation does not have a top-level element with
      * the given namespace. This error is
      * typically returned in situations where the
@@ -151,16 +151,16 @@ typedef enum
      * not match the namespace of any top-level element that is already
      * present in the existing annotation. */
 
-     , LIBSBXML_MISSING_METAID   = -14
+     , LIBLX_MISSING_METAID   = -14
     /*!< The requested action cannot be performed as the target object does not have
      * the metaid attribute set. */
 
-     , LIBSBXML_DEPRECATED_ATTRIBUTE   = -15
+     , LIBLX_DEPRECATED_ATTRIBUTE   = -15
     /*!< The attribute that is the subject of this operation has been deprecated
      * for the combination of SBML Level and Version for the underlying
      * object. */
 
-     , LIBSBXML_USE_ID_ATTRIBUTE_FUNCTION   = -16
+     , LIBLX_USE_ID_ATTRIBUTE_FUNCTION   = -16
     /*!< For L3V2 use the IdAttribute functions. */
 
    /* ---------------------------------------------------------------------------
@@ -169,7 +169,7 @@ typedef enum
     *
     * -------------------------------------------------------------------------- */
 
-  , LIBSBXML_PKG_VERSION_MISMATCH  = -20
+  , LIBLX_PKG_VERSION_MISMATCH  = -20
     /*!< The Version of package extension within the SBML Level and version
      * associated with the object does not match the Version of the parent
      * object. This error can happen when an SBML component such as a layout
@@ -177,7 +177,7 @@ typedef enum
      * then attempts to add the object to a model that has a different SBML
      * Level+Version+Package Version combination. */
 
-   , LIBSBXML_PKG_UNKNOWN           = -21
+   , LIBLX_PKG_UNKNOWN           = -21
     /*!< The required package extension is unknown. This error is typically
      * returned when creating an object of SBase derived class with the required
      * package, creating an object of SBMLNamespaces or its derived class with the
@@ -186,7 +186,7 @@ typedef enum
      * linked.
      */
 
-   , LIBSBXML_PKG_UNKNOWN_VERSION    = -22
+   , LIBLX_PKG_UNKNOWN_VERSION    = -22
     /*!< The required version of the package extension is unknown. This error
      * is typically returned when creating an object of SBase derived class with
      * the required package, creating an object of SBMLNamespaces or its derived
@@ -195,7 +195,7 @@ typedef enum
      * required package to be linked.
      */
 
-   , LIBSBXML_PKG_DISABLED            = -23
+   , LIBLX_PKG_DISABLED            = -23
     /*!< The required package extension is disabled. This error is typically
      * returned when creating an object of SBase derived class with the required
      * package, creating an object of SBMLNamespaces or its derived class with the
@@ -203,7 +203,7 @@ typedef enum
      * To avoid this error, the library of the required package needs to be enabled.
      */
 
-   , LIBSBXML_PKG_CONFLICTED_VERSION  = -24
+   , LIBLX_PKG_CONFLICTED_VERSION  = -24
     /*!< Another version of the required package extension has already been enabled
      * in the target SBase object, or enabled in the model to/in which the target
      * object to be added/contained. This error is typically returned  when adding an
@@ -212,7 +212,7 @@ typedef enum
      * To avoid this error, the conflict of versions need to be avoided.
      */
 
-   , LIBSBXML_PKG_CONFLICT            = -25
+   , LIBLX_PKG_CONFLICT            = -25
     /*!< Another SBML package extension for the same URI has already been registered.
      * This error is typically returned when adding a SBML package extension to the
      * SBMLExtensionRegistry. To avoid this error, ensure that SBML package
@@ -225,7 +225,7 @@ typedef enum
     *
     * -------------------------------------------------------------------------- */
 
-  , LIBSBXML_CONV_INVALID_TARGET_NAMESPACE  = -30
+  , LIBLX_CONV_INVALID_TARGET_NAMESPACE  = -30
     /*!< The target namespace is not a valid SBML namespace. while
      * attempting to convert the SBML document using
      * SBMLLevelVersionConverter::convert() or related methods, the target
@@ -234,7 +234,7 @@ typedef enum
      * detecting this situation and preventing the error.)
      */
 
-  , LIBSBXML_CONV_PKG_CONVERSION_NOT_AVAILABLE = -31
+  , LIBLX_CONV_PKG_CONVERSION_NOT_AVAILABLE = -31
     /*!< Conversions involving packages are not available in the specified
      * routine. This error is typically returned when calling a converter
      * that does not have the functionality to deal with SBML Level&nbsp;3
@@ -242,7 +242,7 @@ typedef enum
      * ConversionProperties specifies packages.
      */
 
-  , LIBSBXML_CONV_INVALID_SRC_DOCUMENT = -32
+  , LIBLX_CONV_INVALID_SRC_DOCUMENT = -32
     /*!< The document on which conversion is being requested is invalid and
      * the requested conversion cannot be performed. This error is
      * typically returned when a conversion routine has been given an
@@ -252,11 +252,11 @@ typedef enum
      * resolve errors before passing the document to a conversion method.
      */
 
-  , LIBSBXML_CONV_CONVERSION_NOT_AVAILABLE = -33
+  , LIBLX_CONV_CONVERSION_NOT_AVAILABLE = -33
     /*!< Conversion with the given properties is not yet available.
      */
 
-  , LIBSBXML_CONV_PKG_CONSIDERED_UNKNOWN = -34
+  , LIBLX_CONV_PKG_CONSIDERED_UNKNOWN = -34
     /*!< The package that is being stripped is not an enabled
      * package but considered by libSBML to be an unrecognized
      * package.  This error is typically returned when calling
@@ -270,5 +270,5 @@ typedef enum
 } OperationReturnValues_t;
 
 
-#endif  /*ndef LIBSBXML_OPERATION_RETURN_VALUES_H */
+#endif  /*ndef LIBLX_OPERATION_RETURN_VALUES_H */
 

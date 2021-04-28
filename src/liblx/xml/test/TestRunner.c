@@ -37,7 +37,7 @@
 #include <string.h>
 #include <check.h>
 
-#ifdef LIBSBXML_USE_VLD
+#ifdef LIBLX_USE_VLD
   #include <vld.h>
 #endif
 

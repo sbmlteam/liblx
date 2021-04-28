@@ -1023,7 +1023,7 @@ public:
    * @param line an unsigned int, the line number to set.
    *
    * @copydetails doc_returns_one_success_code
-   * @li @sbmlconstant{LIBSBXML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
    *
    * @see setColumn(unsigned int column)
    */
@@ -1036,7 +1036,7 @@ public:
    * @param column an unsigned int, the column number to set.
    *
    * @copydetails doc_returns_one_success_code
-   * @li @sbmlconstant{LIBSBXML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
    *
    * @see setLine(unsigned int line)
    */

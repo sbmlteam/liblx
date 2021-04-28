@@ -879,13 +879,13 @@ END_TEST
 
 START_TEST(test_XMLToken_accessWithNULL)
 {
-  fail_unless (XMLToken_addAttr(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_addAttrWithNS(NULL, NULL, NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_addAttrWithTriple(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_addNamespace(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_append(NULL, NULL) == LIBSBXML_OPERATION_FAILED);
-  fail_unless (XMLToken_clearAttributes(NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_clearNamespaces(NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless (XMLToken_addAttr(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_addAttrWithNS(NULL, NULL, NULL, NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_addAttrWithTriple(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_addNamespace(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_append(NULL, NULL) == LIBLX_OPERATION_FAILED);
+  fail_unless (XMLToken_clearAttributes(NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_clearNamespaces(NULL) == LIBLX_INVALID_OBJECT);
   fail_unless (XMLToken_clone(NULL) == NULL);
   fail_unless (XMLToken_createWithTriple(NULL) == NULL);
   fail_unless (XMLToken_createWithTripleAttr(NULL, NULL) == NULL);
@@ -935,21 +935,21 @@ START_TEST(test_XMLToken_accessWithNULL)
   fail_unless (XMLToken_isStart(NULL) == 0);
   fail_unless (XMLToken_isText(NULL) == 0);
   
-  fail_unless (XMLToken_removeAttr(NULL, 0) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_removeAttrByName(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_removeAttrByNS(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_removeAttrByTriple(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless (XMLToken_removeAttr(NULL, 0) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_removeAttrByName(NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_removeAttrByNS(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_removeAttrByTriple(NULL, NULL) == LIBLX_INVALID_OBJECT);
   
-  fail_unless (XMLToken_removeNamespace(NULL, 0) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_removeNamespaceByPrefix(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless (XMLToken_removeNamespace(NULL, 0) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_removeNamespaceByPrefix(NULL, NULL) == LIBLX_INVALID_OBJECT);
   
-  fail_unless (XMLToken_setAttributes(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_setEnd(NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_setEOF(NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_setNamespaces(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless (XMLToken_setTriple(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless (XMLToken_setAttributes(NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_setEnd(NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_setEOF(NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_setNamespaces(NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless (XMLToken_setTriple(NULL, NULL) == LIBLX_INVALID_OBJECT);
   
-  fail_unless (XMLToken_unsetEnd(NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless (XMLToken_unsetEnd(NULL) == LIBLX_INVALID_OBJECT);
 }
 END_TEST
 

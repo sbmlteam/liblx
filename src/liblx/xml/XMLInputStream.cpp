@@ -483,7 +483,7 @@ LIBLX_EXTERN
 int
 XMLInputStream_setErrorLog (XMLInputStream_t *stream, XMLErrorLog_t *log)
 {
-  if (stream == NULL ) return LIBSBXML_OPERATION_FAILED;
+  if (stream == NULL ) return LIBLX_OPERATION_FAILED;
   return stream->setErrorLog(log);
 }
 

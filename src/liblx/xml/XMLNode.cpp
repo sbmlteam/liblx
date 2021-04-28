@@ -245,18 +245,18 @@ XMLNode::addChild (const XMLNode& node)
     * an end element
     */
     if (isEnd()) unsetEnd();
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
   else if (isEOF())
   {
     mChildren.push_back(new XMLNode(node));
     // this causes strange things to happen when node is written out
     //   this->mIsStart = true;
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 
 }
@@ -313,7 +313,7 @@ XMLNode::removeChildren()
       ++curIt;
       }
   mChildren.clear(); 
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -778,7 +778,7 @@ LIBLX_EXTERN
 int
 XMLNode_addChild (XMLNode_t *node, const XMLNode_t *child)
 {
-  if (node == NULL || child == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL || child == NULL) return LIBLX_INVALID_OBJECT;
   return node->addChild(*child);
 }
 
@@ -809,7 +809,7 @@ LIBLX_EXTERN
 int
 XMLNode_removeChildren (XMLNode_t *node)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeChildren();
 }
 
@@ -827,7 +827,7 @@ LIBLX_EXTERN
 int 
 XMLNode_setTriple(XMLNode_t *node, const XMLTriple_t *triple)
 {
-  if(node == NULL || triple == NULL) return LIBSBXML_INVALID_OBJECT;
+  if(node == NULL || triple == NULL) return LIBLX_INVALID_OBJECT;
   return node->setTriple(*triple);
 }
 
@@ -939,7 +939,7 @@ LIBLX_EXTERN
 int 
 XMLNode_setAttributes(XMLNode_t *node, const XMLAttributes_t* attributes)
 {
-  if (node == NULL || attributes == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL || attributes == NULL) return LIBLX_INVALID_OBJECT;
   return node->setAttributes(*attributes);
 }
 
@@ -948,7 +948,7 @@ LIBLX_EXTERN
 int 
 XMLNode_addAttr ( XMLNode_t *node,  const char* name, const char* value )
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->addAttr(name, value, "", "");
 }
 
@@ -960,7 +960,7 @@ XMLNode_addAttrWithNS ( XMLNode_t *node,  const char* name
                         , const char* namespaceURI
                         , const char* prefix      )
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->addAttr(name, value, namespaceURI, prefix);
 }
 
@@ -970,7 +970,7 @@ LIBLX_EXTERN
 int 
 XMLNode_addAttrWithTriple (XMLNode_t *node, const XMLTriple_t *triple, const char* value)
 {
-  if (node == NULL || triple == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL || triple == NULL) return LIBLX_INVALID_OBJECT;
   return node->addAttr(*triple, value);
 }
 
@@ -979,7 +979,7 @@ LIBLX_EXTERN
 int 
 XMLNode_removeAttr (XMLNode_t *node, int n)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeAttr(n);
 }
 
@@ -988,7 +988,7 @@ LIBLX_EXTERN
 int 
 XMLNode_removeAttrByName (XMLNode_t *node, const char* name)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeAttr(name, "");
 }
 
@@ -997,7 +997,7 @@ LIBLX_EXTERN
 int 
 XMLNode_removeAttrByNS (XMLNode_t *node, const char* name, const char* uri)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeAttr(name, uri);
 }
 
@@ -1006,7 +1006,7 @@ LIBLX_EXTERN
 int 
 XMLNode_removeAttrByTriple (XMLNode_t *node, const XMLTriple_t *triple)
 {
-  if (node == NULL || triple == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL || triple == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeAttr(*triple);
 }
 
@@ -1015,7 +1015,7 @@ LIBLX_EXTERN
 int 
 XMLNode_clearAttributes(XMLNode_t *node)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->clearAttributes();
 }
 
@@ -1201,7 +1201,7 @@ LIBLX_EXTERN
 int 
 XMLNode_setNamespaces(XMLNode_t *node, const XMLNamespaces_t* namespaces)
 {
-  if (node == NULL || namespaces == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL || namespaces == NULL) return LIBLX_INVALID_OBJECT;
   return node->setNamespaces(*namespaces);
 }
 
@@ -1210,7 +1210,7 @@ LIBLX_EXTERN
 int 
 XMLNode_addNamespace (XMLNode_t *node, const char* uri, const char* prefix)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->addNamespace(uri, prefix);
 }
 
@@ -1219,7 +1219,7 @@ LIBLX_EXTERN
 int 
 XMLNode_removeNamespace (XMLNode_t *node, int index)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeNamespace(index);
 }
 
@@ -1228,7 +1228,7 @@ LIBLX_EXTERN
 int 
 XMLNode_removeNamespaceByPrefix (XMLNode_t *node, const char* prefix)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->removeNamespace(prefix);
 }
 
@@ -1237,7 +1237,7 @@ LIBLX_EXTERN
 int 
 XMLNode_clearNamespaces (XMLNode_t *node)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->clearNamespaces();
 }
 
@@ -1435,7 +1435,7 @@ LIBLX_EXTERN
 int
 XMLNode_setEnd (XMLNode_t *node)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->setEnd();
 }
 
@@ -1444,7 +1444,7 @@ LIBLX_EXTERN
 int
 XMLNode_setEOF (XMLNode_t *node)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->setEOF();
 }
 
@@ -1453,7 +1453,7 @@ LIBLX_EXTERN
 int
 XMLNode_unsetEnd (XMLNode_t *node)
 {
-  if (node == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (node == NULL) return LIBLX_INVALID_OBJECT;
   return node->unsetEnd();
 }
 /** @endcond */

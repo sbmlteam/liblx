@@ -397,18 +397,18 @@ START_TEST(test_XMLAttributes_add1)
 
   int i = XMLAttributes_addWithNamespace(xa, "name1", "val1", "http://name1.org/", "p1");
   
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
 
   i = XMLAttributes_addWithTriple(xa, xt2, "val2");
   
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
 
   fail_unless( XMLAttributes_getLength(xa) == 2 );
   fail_unless( XMLAttributes_isEmpty(xa)   == 0 );
 
   i = XMLAttributes_add(xa, "noprefix", "val3");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) == 3 );
   fail_unless( XMLAttributes_isEmpty(xa)   == 0 );
 
@@ -902,43 +902,43 @@ START_TEST(test_XMLAttributes_remove1)
 
   int i = XMLAttributes_addWithNamespace(xa, "name1", "val1", "http://name1.org/", "p1");
   
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
 
   i = XMLAttributes_addWithTriple(xa, xt2, "val2");
   
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
 
   i = XMLAttributes_add(xa, "noprefix", "val3");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   
   i = XMLAttributes_addWithNamespace(xa, "name4", "val4", "http://name4.org/", "p1");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) == 4 );
 
   i = XMLAttributes_remove(xa, 4);
 
-  fail_unless(i == LIBSBXML_INDEX_EXCEEDS_SIZE);
+  fail_unless(i == LIBLX_INDEX_EXCEEDS_SIZE);
 
   i = XMLAttributes_remove(xa, 3);
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) == 3 );
 
   i = XMLAttributes_removeByName(xa, "noprefix");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) ==  2);
 
   i = XMLAttributes_removeByTriple(xa, xt2);
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) ==  1);
 
   i = XMLAttributes_removeByNS(xa, "name1", "http://name1.org/");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) ==  0);
 
   XMLAttributes_free(xa);
@@ -959,7 +959,7 @@ START_TEST(test_XMLAttributes_clear1)
 
   i = XMLAttributes_clear(xa);
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLAttributes_getLength(xa) == 0 );
   fail_unless( XMLAttributes_isEmpty(xa)   == 1 );
 
@@ -970,12 +970,12 @@ END_TEST
 
 START_TEST(test_XMLAttributes_accessWithNULL)
 {
-  fail_unless ( XMLAttributes_add(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT );  
+  fail_unless ( XMLAttributes_add(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT );  
   fail_unless ( XMLAttributes_addWithNamespace(NULL, NULL, NULL, NULL, NULL) 
-      == LIBSBXML_INVALID_OBJECT );
+      == LIBLX_INVALID_OBJECT );
   fail_unless ( XMLAttributes_addWithTriple(NULL, NULL, NULL) 
-      == LIBSBXML_INVALID_OBJECT );
-  fail_unless ( XMLAttributes_clear(NULL) == LIBSBXML_INVALID_OBJECT );  
+      == LIBLX_INVALID_OBJECT );
+  fail_unless ( XMLAttributes_clear(NULL) == LIBLX_INVALID_OBJECT );  
   fail_unless ( XMLAttributes_clone(NULL) == NULL );  
 
   XMLAttributes_free(NULL);
@@ -1008,11 +1008,11 @@ START_TEST(test_XMLAttributes_accessWithNULL)
   fail_unless ( XMLAttributes_readIntoStringByTriple(NULL, NULL, NULL, NULL, 0) == 0 );  
   fail_unless ( XMLAttributes_readIntoUnsignedInt(NULL, NULL, NULL, NULL, 0) == 0 );  
   fail_unless ( XMLAttributes_readIntoUnsignedIntByTriple(NULL, NULL, NULL, NULL, 0) == 0 );  
-  fail_unless ( XMLAttributes_remove(NULL, 0) == LIBSBXML_INVALID_OBJECT );  
-  fail_unless ( XMLAttributes_removeByName(NULL, NULL) == LIBSBXML_INVALID_OBJECT );  
-  fail_unless ( XMLAttributes_removeByNS(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT );  
-  fail_unless ( XMLAttributes_removeByTriple(NULL, NULL) == LIBSBXML_INVALID_OBJECT );  
-  fail_unless ( XMLAttributes_removeResource(NULL, 0) == LIBSBXML_INVALID_OBJECT );  
+  fail_unless ( XMLAttributes_remove(NULL, 0) == LIBLX_INVALID_OBJECT );  
+  fail_unless ( XMLAttributes_removeByName(NULL, NULL) == LIBLX_INVALID_OBJECT );  
+  fail_unless ( XMLAttributes_removeByNS(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT );  
+  fail_unless ( XMLAttributes_removeByTriple(NULL, NULL) == LIBLX_INVALID_OBJECT );  
+  fail_unless ( XMLAttributes_removeResource(NULL, 0) == LIBLX_INVALID_OBJECT );  
 }
 END_TEST
 

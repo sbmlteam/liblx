@@ -118,12 +118,12 @@ START_TEST (test_XMLError_setters)
 
   int i = error->setLine(23);
 
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless( error->getLine() == 23);
 
   i = error->setColumn(45);
 
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless( error->getColumn() == 45);
 
   delete error;

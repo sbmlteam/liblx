@@ -706,7 +706,7 @@ int
 XMLError::setLine (unsigned int line)
 {
   mLine = line;
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -717,7 +717,7 @@ int
 XMLError::setColumn (unsigned int column)
 {
   mColumn = column;
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
