@@ -186,7 +186,6 @@ set(LIBSBML_SOURCES ${LIBSBML_SOURCES} ${COMPRESS_SOURCES})
 set(XML_SOURCES)
 set(XML_SOURCES ${XML_SOURCES}
 	liblx/xml/sbmlStubs.cpp
-	liblx/xml/sbmlStubs.h
 	)
 
 set(XML_SOURCES ${XML_SOURCES}

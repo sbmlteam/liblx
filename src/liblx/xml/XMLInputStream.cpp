@@ -41,7 +41,7 @@
 
 #include <liblx/xml/XMLInputStream.h>
 
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/xml/sbmlMemoryStubs.h>
 #include <liblx/xml/operationReturnValues.h>
 #include <liblx/xml/XMLNamespaces.h>
 
