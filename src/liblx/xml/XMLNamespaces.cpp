@@ -122,14 +122,14 @@ XMLNamespaces::add (const std::string& uri, const std::string prefix)
   //
   if (getURI(prefix).empty() == false && isURIReserved(getURI(prefix)))
   {
-      return LIBSBXML_OPERATION_FAILED;
+      return LIBLX_OPERATION_FAILED;
   }
 
   if ( prefix.empty()    ) removeDefault();
   if ( hasPrefix(prefix) ) remove(prefix);
 
   mNamespaces.push_back( make_pair(prefix, uri) );
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -140,13 +140,13 @@ int XMLNamespaces::remove (int index)
 {
   if (index < 0 || index >= getLength()) 
   {
-    return LIBSBXML_INDEX_EXCEEDS_SIZE;
+    return LIBLX_INDEX_EXCEEDS_SIZE;
   }
 
   vector<PrefixURIPair>::iterator it = mNamespaces.begin() + index;
   mNamespaces.erase(it);
 
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -159,13 +159,13 @@ int XMLNamespaces::remove (const std::string& prefix)
   int index = getIndexByPrefix(prefix);
   if(index == -1) 
   {
-    return LIBSBXML_INDEX_EXCEEDS_SIZE;
+    return LIBLX_INDEX_EXCEEDS_SIZE;
   }
 
   vector<PrefixURIPair>::iterator it = mNamespaces.begin() + index;
   mNamespaces.erase(it);
 
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -178,11 +178,11 @@ XMLNamespaces::clear ()
   mNamespaces.clear();
   if (mNamespaces.empty())
   {
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
   else
   {
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
   }
 }
 
@@ -484,7 +484,7 @@ int
 XMLNamespaces_add (XMLNamespaces_t *ns, 
 		   const char *uri, const char *prefix)
 {
-  if (ns == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (ns == NULL) return LIBLX_INVALID_OBJECT;
   return ns->add(uri, prefix);
 }
 
@@ -492,7 +492,7 @@ XMLNamespaces_add (XMLNamespaces_t *ns,
 LIBLX_EXTERN
 int XMLNamespaces_remove (XMLNamespaces_t *ns, int index)
 {
-  if (ns == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (ns == NULL) return LIBLX_INVALID_OBJECT;
   return ns->remove(index);
 }
 
@@ -500,7 +500,7 @@ int XMLNamespaces_remove (XMLNamespaces_t *ns, int index)
 LIBLX_EXTERN
 int XMLNamespaces_removeByPrefix (XMLNamespaces_t *ns, const char* prefix)
 {
-  if (ns == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (ns == NULL) return LIBLX_INVALID_OBJECT;
   return ns->remove(prefix);
 }
 
@@ -510,7 +510,7 @@ LIBLX_EXTERN
 int
 XMLNamespaces_clear (XMLNamespaces_t *ns)
 {
-  if (ns == NULL) return LIBSBXML_OPERATION_FAILED;
+  if (ns == NULL) return LIBLX_OPERATION_FAILED;
   return ns->clear();
 }
 

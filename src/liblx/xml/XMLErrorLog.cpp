@@ -299,9 +299,9 @@ XMLErrorLog::setParser (const XMLParser* p)
   mParser = p;
 
   if (mParser != NULL)
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   else
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
 }
 /** @endcond */
 

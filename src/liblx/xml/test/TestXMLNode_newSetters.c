@@ -57,7 +57,7 @@ START_TEST (test_XMLNode_addChild1)
 
   int i = XMLNode_addChild(node, node2);
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLNode_getNumChildren(node) == 1);
 
   XMLNode_free(node);
@@ -75,7 +75,7 @@ START_TEST (test_XMLNode_addChild2)
 
   int i = XMLNode_addChild(node, node2);
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLNode_getNumChildren(node) == 1);
 
   XMLTriple_free(triple);
@@ -94,7 +94,7 @@ START_TEST (test_XMLNode_addChild3)
 
   int i = XMLNode_addChild(node, node2);
 
-  fail_unless( i == LIBSBXML_INVALID_XML_OPERATION);
+  fail_unless( i == LIBLX_INVALID_XML_OPERATION);
   fail_unless(XMLNode_getNumChildren(node) == 0);
 
   XMLTriple_free(triple);
@@ -116,7 +116,7 @@ START_TEST (test_XMLNode_removeChildren)
   fail_unless(XMLNode_getNumChildren(node) == 2);
 
   int i = XMLNode_removeChildren(node);
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLNode_getNumChildren(node) == 0);
 
   XMLNode_free(node);
@@ -140,59 +140,59 @@ START_TEST(test_XMLNode_removeAttributes)
                                              "http://name5.org/", "p5");
   int i = XMLNode_addAttr(node, "name1", "val1");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 1);
 
   i = XMLNode_addAttrWithNS(node, "name2", "val2", 
                                              "http://name1.org/", "p1");
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 2);
 
   i = XMLNode_addAttrWithTriple(node, xt2, "val2");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 3);
 
   i = XMLNode_addAttr(node, "name4", "val4");
 
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 4);
 
   i = XMLNode_removeAttr(node, 7);
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
 
   i = XMLNode_removeAttrByName(node, "name7");
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
 
   i = XMLNode_removeAttrByNS(node, "name7", "namespaces7");
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
 
   i = XMLNode_removeAttrByTriple(node, xt1);
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 4);
 
   i = XMLNode_removeAttr(node, 3);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 3);
 
   i = XMLNode_removeAttrByName(node, "name1");
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 2);
 
   i = XMLNode_removeAttrByNS(node, "name2", "http://name1.org/");
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 1);
 
   i = XMLNode_removeAttrByTriple(node, xt2);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 0);
 
   /*-- teardown --*/
@@ -220,27 +220,27 @@ START_TEST(test_XMLNode_clearAttributes)
                                              "http://name5.org/", "p5");
   int i = XMLNode_addAttr(node, "name1", "val1");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 1);
 
   i = XMLNode_addAttrWithNS(node, "name2", "val2", 
                                              "http://name1.org/", "p1");
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 2);
 
   i = XMLNode_addAttrWithTriple(node, xt2, "val2");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 3);
 
   i = XMLNode_addAttr(node, "name4", "val4");
 
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 4);
 
   i = XMLNode_clearAttributes(node);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLNode_getAttributes(node)) == 0);
 
   /*-- teardown --*/
@@ -265,37 +265,37 @@ START_TEST(test_XMLNode_removeNamespaces)
 
   int i = XMLNode_addNamespace(node, "http://test1.org/", "test1");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 1);
 
   i = XMLNode_addNamespace(node, "http://test2.org/", "test2");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 2);
 
   i = XMLNode_removeNamespace(node, 7);
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 2);
 
   i = XMLNode_removeNamespaceByPrefix(node, "name7");
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 2);
 
   i = XMLNode_removeNamespace(node, 0);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 1);
 
   i = XMLNode_removeNamespaceByPrefix(node, "test2");
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 0);
 
@@ -317,19 +317,19 @@ START_TEST(test_XMLNode_clearNamespaces)
 
   int i = XMLNode_addNamespace(node, "http://test1.org/", "test1");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 1);
 
   i = XMLNode_addNamespace(node, "http://test2.org/", "test2");
   
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 2);
 
   i = XMLNode_clearNamespaces(node);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   nms = XMLNode_getNamespaces(node);
   fail_unless (XMLNamespaces_getLength(nms) == 0);
 
@@ -341,14 +341,14 @@ END_TEST
 
 START_TEST(test_XMLNode_accessWithNULL)
 {
-  fail_unless( XMLNode_addAttr(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT );
+  fail_unless( XMLNode_addAttr(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT );
   fail_unless( XMLNode_addAttrWithNS(NULL, NULL, NULL, NULL, NULL) 
-    == LIBSBXML_INVALID_OBJECT );
-  fail_unless( XMLNode_addAttrWithTriple(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT );
-  fail_unless( XMLNode_addChild(NULL, NULL) == LIBSBXML_INVALID_OBJECT );
-  fail_unless( XMLNode_addNamespace(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT );
-  fail_unless( XMLNode_clearAttributes(NULL) == LIBSBXML_INVALID_OBJECT );
-  fail_unless( XMLNode_clearNamespaces(NULL) == LIBSBXML_INVALID_OBJECT );
+    == LIBLX_INVALID_OBJECT );
+  fail_unless( XMLNode_addAttrWithTriple(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT );
+  fail_unless( XMLNode_addChild(NULL, NULL) == LIBLX_INVALID_OBJECT );
+  fail_unless( XMLNode_addNamespace(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT );
+  fail_unless( XMLNode_clearAttributes(NULL) == LIBLX_INVALID_OBJECT );
+  fail_unless( XMLNode_clearNamespaces(NULL) == LIBLX_INVALID_OBJECT );
   fail_unless( XMLNode_clone(NULL) == NULL);
   fail_unless( XMLNode_convertStringToXMLNode(NULL, NULL) == NULL);
   fail_unless( XMLNode_convertXMLNodeToString(NULL) == NULL);
@@ -420,24 +420,24 @@ START_TEST(test_XMLNode_accessWithNULL)
   fail_unless( XMLNode_isStart(NULL) == 0);
   fail_unless( XMLNode_isText(NULL) == 0);
   
-  fail_unless( XMLNode_removeAttr(NULL, 0) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_removeAttrByName(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_removeAttrByNS(NULL, NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_removeAttrByTriple(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless( XMLNode_removeAttr(NULL, 0) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_removeAttrByName(NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_removeAttrByNS(NULL, NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_removeAttrByTriple(NULL, NULL) == LIBLX_INVALID_OBJECT);
   
   fail_unless( XMLNode_removeChild(NULL, 0) == NULL);
-  fail_unless( XMLNode_removeChildren(NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_removeNamespace(NULL, 0) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_removeNamespaceByPrefix(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless( XMLNode_removeChildren(NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_removeNamespace(NULL, 0) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_removeNamespaceByPrefix(NULL, NULL) == LIBLX_INVALID_OBJECT);
   
-  fail_unless( XMLNode_setAttributes(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_setEnd(NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_setEOF(NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_setNamespaces(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
-  fail_unless( XMLNode_setTriple(NULL, NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless( XMLNode_setAttributes(NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_setEnd(NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_setEOF(NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_setNamespaces(NULL, NULL) == LIBLX_INVALID_OBJECT);
+  fail_unless( XMLNode_setTriple(NULL, NULL) == LIBLX_INVALID_OBJECT);
   
   fail_unless( XMLNode_toXMLString(NULL) == NULL);
-  fail_unless( XMLNode_unsetEnd(NULL) == LIBSBXML_INVALID_OBJECT);
+  fail_unless( XMLNode_unsetEnd(NULL) == LIBLX_INVALID_OBJECT);
   
     
 }

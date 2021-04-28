@@ -228,12 +228,12 @@ XMLToken::append (const std::string& chars)
 {
   if (chars.empty())
   {
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
   }
   else
   {
     mChars.append(chars);
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
 }
 
@@ -254,12 +254,12 @@ XMLToken::setCharacters(const std::string& chars)
 {
   if (chars.empty())
   {
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
   }
   else
   {
     mChars = chars;
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
 }
 
@@ -313,16 +313,16 @@ XMLToken::setAttributes(const XMLAttributes& attributes)
     try
     {
       mAttributes = attributes;
-      return LIBSBXML_OPERATION_SUCCESS;
+      return LIBLX_OPERATION_SUCCESS;
     }
     catch (...)
     {
-      return LIBSBXML_OPERATION_FAILED;
+      return LIBLX_OPERATION_FAILED;
     }
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -364,7 +364,7 @@ XMLToken::addAttr (  const std::string& name
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -389,7 +389,7 @@ XMLToken::addAttr ( const XMLTriple& triple, const std::string& value)
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -410,7 +410,7 @@ XMLToken::removeAttr (int n)
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -432,7 +432,7 @@ XMLToken::removeAttr (const std::string& name, const std::string uri)
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -453,7 +453,7 @@ XMLToken::removeAttr (const XMLTriple& triple)
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -471,7 +471,7 @@ XMLToken::clearAttributes()
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -780,16 +780,16 @@ XMLToken::setNamespaces(const XMLNamespaces& namespaces)
     try
     {
       mNamespaces = namespaces;
-      return LIBSBXML_OPERATION_SUCCESS;
+      return LIBLX_OPERATION_SUCCESS;
     }
     catch (...)
     {
-      return LIBSBXML_OPERATION_FAILED;
+      return LIBLX_OPERATION_FAILED;
     }
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -808,11 +808,11 @@ XMLToken::addNamespace (const std::string& uri, const std::string prefix)
    if (mIsStart)  
    {
      mNamespaces.add(uri, prefix);
-     return LIBSBXML_OPERATION_SUCCESS;
+     return LIBLX_OPERATION_SUCCESS;
    }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -833,7 +833,7 @@ XMLToken::removeNamespace (int index)
    }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -853,7 +853,7 @@ XMLToken::removeNamespace (const std::string& prefix)
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -872,7 +872,7 @@ XMLToken::clearNamespaces ()
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 }
 
@@ -1051,16 +1051,16 @@ XMLToken::setTriple(const XMLTriple& triple)
     try
     {
       mTriple = triple;
-      return LIBSBXML_OPERATION_SUCCESS;
+      return LIBLX_OPERATION_SUCCESS;
     }
     catch (...)
     {
-      return LIBSBXML_OPERATION_FAILED;
+      return LIBLX_OPERATION_FAILED;
     }
   }
   else
   {
-    return LIBSBXML_INVALID_XML_OPERATION;
+    return LIBLX_INVALID_XML_OPERATION;
   }
 
 }
@@ -1175,9 +1175,9 @@ XMLToken::setEnd ()
 {
   mIsEnd = true;
   if (isEnd())
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   else
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
 }
 
 
@@ -1189,9 +1189,9 @@ XMLToken::unsetEnd ()
 {
   mIsEnd = false;
   if (!isEnd())
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   else
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
 }
 
 
@@ -1206,9 +1206,9 @@ XMLToken::setEOF ()
   mIsText  = false;
 
   if (isEOF())
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   else
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
 }
 
 
@@ -1351,7 +1351,7 @@ XMLToken_append (XMLToken_t *token, const char *text)
   }
   else
   {
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
   }
 }
 
@@ -1365,7 +1365,7 @@ XMLToken_setCharacters(XMLToken_t *token, const char *text)
   }
   else
   {
-    return LIBSBXML_OPERATION_FAILED;
+    return LIBLX_OPERATION_FAILED;
   }
 }
 
@@ -1412,7 +1412,7 @@ LIBLX_EXTERN
 int 
 XMLToken_setAttributes(XMLToken_t *token, const XMLAttributes_t* attributes)
 {
-  if (token == NULL || attributes == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL || attributes == NULL) return LIBLX_INVALID_OBJECT;
   return token->setAttributes(*attributes);
 }
 
@@ -1421,7 +1421,7 @@ LIBLX_EXTERN
 int 
 XMLToken_addAttr ( XMLToken_t *token,  const char* name, const char* value )
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->addAttr(name, value, "", "");
 }
 
@@ -1433,7 +1433,7 @@ XMLToken_addAttrWithNS ( XMLToken_t *token,  const char* name
                       , const char* namespaceURI
                   , const char* prefix      )
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->addAttr(name, value, namespaceURI, prefix);
 }
 
@@ -1443,7 +1443,7 @@ LIBLX_EXTERN
 int 
 XMLToken_addAttrWithTriple (XMLToken_t *token, const XMLTriple_t *triple, const char* value)
 {
-  if (token == NULL || triple == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL || triple == NULL) return LIBLX_INVALID_OBJECT;
   return token->addAttr(*triple, value);
 }
 
@@ -1452,7 +1452,7 @@ LIBLX_EXTERN
 int 
 XMLToken_removeAttr (XMLToken_t *token, int n)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->removeAttr(n);
 }
 
@@ -1461,7 +1461,7 @@ LIBLX_EXTERN
 int 
 XMLToken_removeAttrByName (XMLToken_t *token, const char* name)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->removeAttr(name, "");
 }
 
@@ -1470,7 +1470,7 @@ LIBLX_EXTERN
 int 
 XMLToken_removeAttrByNS (XMLToken_t *token, const char* name, const char* uri)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->removeAttr(name, uri);
 }
 
@@ -1479,7 +1479,7 @@ LIBLX_EXTERN
 int 
 XMLToken_removeAttrByTriple (XMLToken_t *token, const XMLTriple_t *triple)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->removeAttr(*triple);
 }
 
@@ -1488,7 +1488,7 @@ LIBLX_EXTERN
 int 
 XMLToken_clearAttributes(XMLToken_t *token)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->clearAttributes();
 }
 
@@ -1668,7 +1668,7 @@ LIBLX_EXTERN
 int 
 XMLToken_setNamespaces(XMLToken_t *token, const XMLNamespaces_t* namespaces)
 {
-  if (token == NULL || namespaces == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL || namespaces == NULL) return LIBLX_INVALID_OBJECT;
   return token->setNamespaces(*namespaces);
 }
 
@@ -1677,7 +1677,7 @@ LIBLX_EXTERN
 int 
 XMLToken_addNamespace (XMLToken_t *token, const char* uri, const char* prefix)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->addNamespace(uri, prefix);
 }
 
@@ -1686,7 +1686,7 @@ LIBLX_EXTERN
 int 
 XMLToken_removeNamespace (XMLToken_t *token, int index)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->removeNamespace(index);
 }
 
@@ -1695,7 +1695,7 @@ LIBLX_EXTERN
 int 
 XMLToken_removeNamespaceByPrefix (XMLToken_t *token, const char* prefix)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->removeNamespace(prefix);
 }
 
@@ -1704,7 +1704,7 @@ LIBLX_EXTERN
 int 
 XMLToken_clearNamespaces (XMLToken_t *token)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->clearNamespaces();
 }
 
@@ -1820,7 +1820,7 @@ LIBLX_EXTERN
 int 
 XMLToken_setTriple(XMLToken_t *token, const XMLTriple_t *triple)
 {
-  if (token == NULL || triple == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL || triple == NULL) return LIBLX_INVALID_OBJECT;
   return token->setTriple(*triple);
 }
 
@@ -1910,7 +1910,7 @@ LIBLX_EXTERN
 int
 XMLToken_setEnd (XMLToken_t *token)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->setEnd();
 }
 
@@ -1919,7 +1919,7 @@ LIBLX_EXTERN
 int
 XMLToken_setEOF (XMLToken_t *token)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->setEOF();
 }
 
@@ -1928,7 +1928,7 @@ LIBLX_EXTERN
 int
 XMLToken_unsetEnd (XMLToken_t *token)
 {
-  if (token == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (token == NULL) return LIBLX_INVALID_OBJECT;
   return token->unsetEnd();
 }
 /** @endcond */

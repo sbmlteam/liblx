@@ -220,8 +220,8 @@ public:
    * @param p XMLParser, the parser to use.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBXML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBXML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    */
   int setParser (const XMLParser* p);
   /** @endcond */

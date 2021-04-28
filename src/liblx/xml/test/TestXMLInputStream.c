@@ -183,11 +183,11 @@ START_TEST (test_XMLInputStream_setErrorLog)
 
   int i = XMLInputStream_setErrorLog(stream, log);
 
-  fail_unless(i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless(i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLInputStream_getErrorLog(stream) == log);
   
   i = XMLInputStream_setErrorLog(stream, NULL);
-  fail_unless(i == LIBSBXML_OPERATION_FAILED);
+  fail_unless(i == LIBLX_OPERATION_FAILED);
 
 
   XMLErrorLog_free(log);
@@ -208,7 +208,7 @@ START_TEST (test_XMLInputStream_accessWithNULL)
   fail_unless (XMLInputStream_isGood(NULL) == 0);
   fail_unless (XMLInputStream_next(NULL) == NULL);
   fail_unless (XMLInputStream_peek(NULL) == NULL);
-  fail_unless (XMLInputStream_setErrorLog(NULL, NULL) == LIBSBXML_OPERATION_FAILED);
+  fail_unless (XMLInputStream_setErrorLog(NULL, NULL) == LIBLX_OPERATION_FAILED);
 
   XMLInputStream_skipPastEnd(NULL, NULL);
   XMLInputStream_skipText(NULL);  

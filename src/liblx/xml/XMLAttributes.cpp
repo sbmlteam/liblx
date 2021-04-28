@@ -156,7 +156,7 @@ XMLAttributes::add (const std::string& name,
     mValues[(size_t)index] = value;
     mNames[(size_t)index]  = XMLTriple(name, namespaceURI, prefix);
   }
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -183,7 +183,7 @@ XMLAttributes::addResource (const std::string& name, const std::string& value)
 {
   mNames .push_back( XMLTriple(name, "", "") );
   mValues.push_back( value );
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 /** @endcond */
 
@@ -198,7 +198,7 @@ XMLAttributes::removeResource (int n)
 {
   if (n < 0 || n >= getLength()) 
   {
-    return LIBSBXML_INDEX_EXCEEDS_SIZE;
+    return LIBLX_INDEX_EXCEEDS_SIZE;
   }
 
   vector<XMLTriple>::iterator   names_iter  = mNames.begin()  + n;
@@ -207,7 +207,7 @@ XMLAttributes::removeResource (int n)
   mNames.erase(names_iter);
   mValues.erase(values_iter);
 
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 /** @endcond */
 
@@ -252,7 +252,7 @@ XMLAttributes::clear()
 {
   mNames.clear();
   mValues.clear();
-  return LIBSBXML_OPERATION_SUCCESS;
+  return LIBLX_OPERATION_SUCCESS;
 }
 
 
@@ -1234,18 +1234,18 @@ XMLAttributes::setErrorLog (XMLErrorLog* log)
 {
   if (mLog == log)
   {
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
   else if (log == NULL)
   {
     delete mLog;
     mLog = NULL;
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
   else
   {
     mLog = log;
-    return LIBSBXML_OPERATION_SUCCESS;
+    return LIBLX_OPERATION_SUCCESS;
   }
 }
 /** @endcond */
@@ -1299,7 +1299,7 @@ XMLAttributes_add (XMLAttributes_t *xa,
                    const char *name,
                    const char *value)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->add(name, value);
 }
 
@@ -1312,7 +1312,7 @@ XMLAttributes_addWithNamespace (XMLAttributes_t *xa,
                                 const char* uri,
                                 const char* prefix)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->add(name, value, uri, prefix);
 }
 
@@ -1323,7 +1323,7 @@ XMLAttributes_addWithTriple ( XMLAttributes_t *xa
 			              , const XMLTriple_t* triple
 			              , const char *value)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->add(*triple, value);
 }
 
@@ -1332,7 +1332,7 @@ LIBLX_EXTERN
 int
 XMLAttributes_removeResource (XMLAttributes_t *xa, int n)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->removeResource(n);
 }
 
@@ -1341,7 +1341,7 @@ LIBLX_EXTERN
 int
 XMLAttributes_remove (XMLAttributes_t *xa, int n)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->remove(n);
 }
 
@@ -1350,7 +1350,7 @@ LIBLX_EXTERN
 int
 XMLAttributes_removeByName (XMLAttributes_t *xa, const char* name)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->remove(name);
 }
 
@@ -1359,7 +1359,7 @@ LIBLX_EXTERN
 int
 XMLAttributes_removeByNS (XMLAttributes_t *xa, const char* name, const char* uri)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->remove(name, uri);
 }
 
@@ -1368,7 +1368,7 @@ LIBLX_EXTERN
 int
 XMLAttributes_removeByTriple (XMLAttributes_t *xa, const XMLTriple_t* triple)
 {
-  if (xa == NULL || triple == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL || triple == NULL) return LIBLX_INVALID_OBJECT;
   return xa->remove(*triple);
 }
 
@@ -1377,7 +1377,7 @@ LIBLX_EXTERN
 int 
 XMLAttributes_clear(XMLAttributes_t *xa)
 {
-  if (xa == NULL) return LIBSBXML_INVALID_OBJECT;
+  if (xa == NULL) return LIBLX_INVALID_OBJECT;
   return xa->clear();
 }
 

@@ -71,7 +71,7 @@ START_TEST(test_XMLToken_newSetters_setAttributes1)
 
   int i = XMLToken_setAttributes(token, nattr);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLToken_isAttributesEmpty(token)   == 0 );
 
   /*-- teardown --*/
@@ -101,13 +101,13 @@ START_TEST(test_XMLToken_newSetters_setAttributes2)
   /*-- test of setting attributes with NULL value -- */
   i = XMLToken_setAttributes(token, NULL);
 
-  fail_unless ( i == LIBSBXML_INVALID_OBJECT);
+  fail_unless ( i == LIBLX_INVALID_OBJECT);
 
   /*-- test of setting attributes -- */
 
   i = XMLToken_setAttributes(token, nattr);
 
-  fail_unless ( i == LIBSBXML_INVALID_XML_OPERATION);
+  fail_unless ( i == LIBLX_INVALID_XML_OPERATION);
   fail_unless(XMLToken_isAttributesEmpty(token)   == 1 );
 
 
@@ -138,12 +138,12 @@ START_TEST(test_XMLToken_newSetters_clearAttributes1)
 
   int i = XMLToken_setAttributes(token, nattr);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLToken_isAttributesEmpty(token)   == 0 );
 
   i = XMLToken_clearAttributes(token);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless(XMLToken_isAttributesEmpty(token)   == 1 );
   /*-- teardown --*/
 
@@ -171,7 +171,7 @@ START_TEST(test_XMLToken_newSetters_addAttributes1)
 
   int i = XMLToken_addAttr(token, "name1", "val1");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless( i == LIBLX_OPERATION_SUCCESS );
   fail_unless( XMLToken_getAttributesLength(token) == 1 );
   fail_unless( XMLToken_isAttributesEmpty(token)   == 0 );
 
@@ -187,7 +187,7 @@ START_TEST(test_XMLToken_newSetters_addAttributes1)
   i = XMLToken_addAttrWithNS(token, "name2", "val2", 
                                              "http://name1.org/", "p1");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless( i == LIBLX_OPERATION_SUCCESS );
   fail_unless( XMLToken_getAttributesLength(token) == 2 );
   fail_unless( XMLToken_isAttributesEmpty(token)   == 0 );
 
@@ -210,7 +210,7 @@ START_TEST(test_XMLToken_newSetters_addAttributes1)
 
   i = XMLToken_addAttrWithTriple(token, xt2, "val2");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless( i == LIBLX_OPERATION_SUCCESS );
   fail_unless( XMLToken_getAttributesLength(token) == 3 );
   fail_unless( XMLToken_isAttributesEmpty(token)   == 0 );
 
@@ -254,20 +254,20 @@ START_TEST(test_XMLToken_newSetters_addAttributes2)
 
   int i = XMLToken_addAttr(token, "name1", "val1");
 
-  fail_unless( i == LIBSBXML_INVALID_XML_OPERATION );
+  fail_unless( i == LIBLX_INVALID_XML_OPERATION );
   fail_unless( XMLToken_getAttributesLength(token) == 0 );
   fail_unless( XMLToken_isAttributesEmpty(token)   == 1 );
 
   i = XMLToken_addAttrWithNS(token, "name2", "val2", 
                                              "http://name1.org/", "p1");
 
-  fail_unless( i == LIBSBXML_INVALID_XML_OPERATION );
+  fail_unless( i == LIBLX_INVALID_XML_OPERATION );
   fail_unless( XMLToken_getAttributesLength(token) == 0 );
   fail_unless( XMLToken_isAttributesEmpty(token)   == 1 );
 
   i = XMLToken_addAttrWithTriple(token, xt2, "val2");
 
-  fail_unless( i == LIBSBXML_INVALID_XML_OPERATION );
+  fail_unless( i == LIBLX_INVALID_XML_OPERATION );
   fail_unless( XMLToken_getAttributesLength(token) == 0 );
   fail_unless( XMLToken_isAttributesEmpty(token)   == 1 );
 
@@ -297,7 +297,7 @@ START_TEST(test_XMLToken_newSetters_setNamespaces1)
 
   int i =   XMLToken_setNamespaces(token, ns);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_getNamespacesLength(token) == 1 );
   fail_unless( XMLToken_isNamespacesEmpty(token)   == 0 );  
 
@@ -330,13 +330,13 @@ START_TEST(test_XMLToken_newSetters_setNamespaces2)
   /*-- test of setting namespaces with NULL value -- */
   i = XMLToken_setNamespaces(token, NULL);
 
-  fail_unless ( i == LIBSBXML_INVALID_OBJECT);
+  fail_unless ( i == LIBLX_INVALID_OBJECT);
 
 
   /*-- test of setting namespaces -- */
   i =   XMLToken_setNamespaces(token, ns);
 
-  fail_unless ( i == LIBSBXML_INVALID_XML_OPERATION);
+  fail_unless ( i == LIBLX_INVALID_XML_OPERATION);
   fail_unless( XMLToken_getNamespacesLength(token) == 0 );
   fail_unless( XMLToken_isNamespacesEmpty(token)   == 1 );  
 
@@ -366,13 +366,13 @@ START_TEST(test_XMLToken_newSetters_clearNamespaces1)
 
   int i =   XMLToken_setNamespaces(token, ns);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_getNamespacesLength(token) == 1 );
   fail_unless( XMLToken_isNamespacesEmpty(token)   == 0 );  
 
   i = XMLToken_clearNamespaces(token);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_getNamespacesLength(token) == 0 );
   fail_unless( XMLToken_isNamespacesEmpty(token)   == 1 );  
 
@@ -400,7 +400,7 @@ START_TEST(test_XMLToken_newSetters_addNamespaces1)
   /*-- test of setting namespaces -- */
   int i =  XMLToken_addNamespace(token, "http://test1.org/", "test1");
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_getNamespacesLength(token) == 1 );
   fail_unless( XMLToken_isNamespacesEmpty(token)   == 0 );  
 
@@ -426,7 +426,7 @@ START_TEST(test_XMLToken_newSetters_addNamespaces2)
   /*-- test of setting namespaces -- */
   int i =   XMLToken_addNamespace(token, "http://test1.org/", "test1");
 
-  fail_unless ( i == LIBSBXML_INVALID_XML_OPERATION);
+  fail_unless ( i == LIBLX_INVALID_XML_OPERATION);
   fail_unless( XMLToken_getNamespacesLength(token) == 0 );
   fail_unless( XMLToken_isNamespacesEmpty(token)   == 1 );  
 
@@ -448,7 +448,7 @@ START_TEST(test_XMLToken_newSetters_setTriple1)
   /*-- test of setting triple -- */
   int i =   XMLToken_setTriple(token, triple);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( !strcmp(XMLToken_getName(token), "test") );
 
   /*-- teardown --*/
@@ -471,13 +471,13 @@ START_TEST(test_XMLToken_newSetters_setTriple2)
   /*-- test of setting triple with NULL value -- */
   i = XMLToken_setTriple(token, NULL);
 
-  fail_unless ( i == LIBSBXML_INVALID_OBJECT);
+  fail_unless ( i == LIBLX_INVALID_OBJECT);
 
   
   /*-- test of setting triple -- */
   i =   XMLToken_setTriple(token, triple);
 
-  fail_unless ( i == LIBSBXML_INVALID_XML_OPERATION);
+  fail_unless ( i == LIBLX_INVALID_XML_OPERATION);
 
   /*-- teardown --*/
 
@@ -497,12 +497,12 @@ START_TEST(test_XMLToken_newSetters_setEnd)
   /*-- test of setting end -- */
   int i =   XMLToken_setEnd(token);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_isEnd(token) == 1 );
 
   i =   XMLToken_unsetEnd(token);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_isEnd(token) == 0 );
   /*-- teardown --*/
 
@@ -521,7 +521,7 @@ START_TEST(test_XMLToken_newSetters_setEOF)
   /*-- test of setting eof -- */
   int i =   XMLToken_setEOF(token);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_isEnd(token) == 0 );
   fail_unless( XMLToken_isStart(token) == 0 );
   fail_unless( XMLToken_isText(token) == 0 );
@@ -555,39 +555,39 @@ START_TEST(test_XMLToken_newSetters_removeAttributes1)
 
   i = XMLToken_removeAttr(token, 7);
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
 
   i = XMLToken_removeAttrByName(token, "name7");
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
 
   i = XMLToken_removeAttrByNS(token, "name7", "namespaces7");
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
 
   i = XMLToken_removeAttrByTriple(token, xt1);
 
-  fail_unless ( i == LIBSBXML_INDEX_EXCEEDS_SIZE );
+  fail_unless ( i == LIBLX_INDEX_EXCEEDS_SIZE );
   fail_unless (XMLAttributes_getLength(XMLToken_getAttributes(token)) == 4);
 
   i = XMLToken_removeAttr(token, 3);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLToken_getAttributes(token)) == 3);
 
   i = XMLToken_removeAttrByName(token, "name1");
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLToken_getAttributes(token)) == 2);
 
   i = XMLToken_removeAttrByNS(token, "name2", "http://name1.org/");
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLToken_getAttributes(token)) == 1);
 
   i = XMLToken_removeAttrByTriple(token, xt2);
 
-  fail_unless ( i == LIBSBXML_OPERATION_SUCCESS );
+  fail_unless ( i == LIBLX_OPERATION_SUCCESS );
   fail_unless (XMLAttributes_getLength(XMLToken_getAttributes(token)) == 0);
 
   /*-- teardown --*/
@@ -613,12 +613,12 @@ START_TEST (test_XMLToken_newSetters_removeNamespaces)
   
   int i = XMLToken_removeNamespace(token, 4);
   
-  fail_unless( i == LIBSBXML_INDEX_EXCEEDS_SIZE);
+  fail_unless( i == LIBLX_INDEX_EXCEEDS_SIZE);
   fail_unless( XMLToken_getNamespacesLength(token) == 1 );
   
   i = XMLToken_removeNamespace(token, 0);
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_getNamespacesLength(token) == 0 );
 
   XMLToken_free(token);
@@ -640,12 +640,12 @@ START_TEST (test_XMLToken_newSetters_removeNamespaces1)
   
   int i = XMLToken_removeNamespaceByPrefix(token, "test2");
   
-  fail_unless( i == LIBSBXML_INDEX_EXCEEDS_SIZE);
+  fail_unless( i == LIBLX_INDEX_EXCEEDS_SIZE);
   fail_unless( XMLToken_getNamespacesLength(token) == 1 );
   
   i = XMLToken_removeNamespaceByPrefix(token, "test1");
 
-  fail_unless( i == LIBSBXML_OPERATION_SUCCESS);
+  fail_unless( i == LIBLX_OPERATION_SUCCESS);
   fail_unless( XMLToken_getNamespacesLength(token) == 0 );
 
   XMLToken_free(token);
