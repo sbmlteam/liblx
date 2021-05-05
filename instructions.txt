@@ -1,0 +1,30 @@
+How to build the liblx libraries.
+
+Tim:
+I’d create a build sub-directory in that directory, and run CMake after cding into there.
+that’s where all the results of the build process will end up. This is called an out-of-source build.
+You could run CMake from the top-level directory, but you would end up with all the build files and final
+binaries mixed in with the source files. This is generally a bad thing
+
+Instructions for building on a Mac.
+==================================
+
+1. install swig e.g. brew install swig
+2. install check (unit testing library for C) - e.g. brew install check
+3. git clone https://github.com/sbmlteam/liblx.git    (in a suitable directory).
+In my case, it creates /Users/matthewgillman/repos/libLX/liblx/ when I do this command in /Users/matthewgillman/repos/libLX/
+4. cd liblx
+5. mkdir build   -  the results of the build will be in here.
+6. cd build
+7. cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
+Note that the directory at the end of the cmake command above is the top-level directory of the cloned repo (i.e.
+it contains the top-level CMakeLists.txt file).
+8. make
+9. invoke test script In my build subdir, it is src/liblx/xml/test/test_sbml_xml
+
+On Mac, this builds build/src/liblx-static.a and build/src/liblx.dylib
+
+
+Then:
+Sarah: get libLX to build and then work as a dependency lib with the toy example I made
+ https://github.com/skeating/testsbxml/branches. Then look at SWIG for libLX.
