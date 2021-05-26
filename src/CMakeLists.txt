@@ -1,10 +1,10 @@
 ###############################################################################
-# Description       : CMake build script for libSBML
+# Description       : CMake build script for libLX
 # Original author(s): Frank Bergmann <fbergman@caltech.edu>
 # Organization      : California Institute of Technology
 #
-# This file is part of libSBML.  Please visit http://sbml.org for more
-# information about SBML, and the latest version of libSBML.
+# This file is part of libLX.  Please visit http://sbml.org for more
+# information about LX, and the latest version of libLX.
 #
 # Copyright (C) 2013-2018 jointly by the following organizations:
 #     1. California Institute of Technology, Pasadena, CA, USA
@@ -37,7 +37,7 @@ endif()
 
 ###############################################################################
 #
-# Initialize SBML sources
+# Initialize LX sources
 #
 set(LIBLX_SOURCES)
 
@@ -54,7 +54,7 @@ endforeach()
 
 ###############################################################################
 #
-# create libsbml-config-common.h
+# create liblx-config-common.h
 #
 include(CheckIncludeFiles)
 check_include_files (check.h HAVE_CHECK_H)
@@ -285,9 +285,9 @@ if(WITH_XERCES)
 
 endif(WITH_XERCES)
 
-# Add SBMLNamespaces until the reserved namespace mechanism is replaced
+# Add LXNamespaces until the reserved namespace mechanism is replaced
 #set(XML_SOURCES ${XML_SOURCES}
-#	liblx/xml/SBMLNamespaces.cpp
+#	liblx/xml/LXNamespaces.cpp
 #	)
 
 source_group(xml FILES ${XML_SOURCES})
@@ -370,7 +370,7 @@ add_library (${LIBLX_LIBRARY}-static STATIC ${LIBLX_SOURCES} )
 
 if (WIN32 AND NOT CYGWIN)
     # don't decorate static library 
-    set_target_properties(${LIBLX_LIBRARY}-static PROPERTIES COMPILE_DEFINITIONS "LIBLAX_STATIC=1;LIBLX_STATIC=1")
+    set_target_properties(${LIBLX_LIBRARY}-static PROPERTIES COMPILE_DEFINITIONS "LIBLX_STATIC=1")
 endif(WIN32 AND NOT CYGWIN)
 
 target_link_libraries(${LIBLX_LIBRARY}-static ${LIBLX_LIBS} ${EXTRA_LIBS})
