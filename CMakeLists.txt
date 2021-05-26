@@ -44,10 +44,10 @@ endif()
 
 
 
-set(LIBSBML_ROOT_SOURCE_DIR "${CMAKE_SOURCE_DIR}" CACHE PATH
-    "Path to the libSBML root source directory")
-set(LIBSBML_ROOT_BINARY_DIR "${CMAKE_BINARY_DIR}" CACHE PATH
-    "Path to the libSBML root build directory")
+set(LIBLX_ROOT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" CACHE PATH
+    "Path to the libLX root source directory")
+set(LIBSLX_ROOT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH
+    "Path to the libLX root build directory")
 
 include (CMakeTestCCompiler)
 include (CheckCSourceCompiles)
