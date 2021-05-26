@@ -43,17 +43,6 @@ set(LIBLX_SOURCES)
 
 ###############################################################################
 #
-# Include all packages
-#
-file(GLOB PACKAGE_OPTIONS "*package.cmake")
-foreach(package ${PACKAGE_OPTIONS})
-
-    include(${package})
-
-endforeach()
-
-###############################################################################
-#
 # create liblx-config-common.h
 #
 include(CheckIncludeFiles)
@@ -102,22 +91,76 @@ configure_file(
 # mark header files for installation
 #
 
-file(GLOB header_files "${CMAKE_CURRENT_SOURCE_DIR}/liblx/xml/*.h")
-install(FILES ${header_files} DESTINATION include/liblx/xml)
+foreach(dir common compress xml)
+	file(GLOB header_files "${CMAKE_CURRENT_SOURCE_DIR}/liblx/xml/${dir}/*.h")
+	install(FILES ${header_files} DESTINATION include/liblx/xml/${dir})
+
+endforeach(dir)
+
+
+file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/sbml/*.h")
+install(FILES ${files} DESTINATION include/sbml)
+
+
+###############################################################################
+#
+# copy build specific header files
+#
+
+file(GLOB additional_common "${CMAKE_CURRENT_BINARY_DIR}/liblx/xml/common/*.h")
+install(FILES ${additional_common} DESTINATION include/liblx/xml/common)
+
 
 ###############################################################################
 #
 # specify include directories
 #
 
-include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src/liblx)
 include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src)
+include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src/liblx)
+include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src/liblx/xml)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src/liblx)
+include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src/liblx/xml)
+if (EXTRA_INCLUDE_DIRS) 
+ include_directories(${EXTRA_INCLUDE_DIRS})
+endif(EXTRA_INCLUDE_DIRS)
 
 ###############################################################################
 #
+# Find all sources
+#
+
+macro(ADD_FUNCTION directory)
+
+    set(prefix "liblx/xml/")
+
+    if ("${directory}" STREQUAL "liblx/xml")
+        set(prefix "")
+    endif()
+
+	
+    file(GLOB temp
+            ${prefix}${directory}/*.cpp
+            ${prefix}${directory}/*.cxx
+            ${prefix}${directory}/*.c
+            ${prefix}${directory}/*.h)
+    # create source group for IDEs
+    source_group(${directory} FILES ${temp})
+
+    # add to liblx sources
+    set(LIBLX_SOURCES ${LIBLX_SOURCES} ${temp})
+
+endmacro(ADD_FUNCTION)
+
+foreach (directory common)
+
+	ADD_FUNCTION(${directory})
+				       
+endforeach()
+
+###############################################################################
 # Find compression sources and adjust include and lib directory
 #
 set (COMPRESS_SOURCES)
@@ -408,3 +451,24 @@ endif (NOT LIBLX_SKIP_STATIC_LIBRARY)
 # add native tests
 #
 add_subdirectory(liblx)
+##############################################################################
+#
+# construct list of all header files to create dependency list for 
+# language bindings
+#
+
+file(GLOB LIBLX_HEADER_FILES "${CMAKE_CURRENT_BINARY_DIR}/liblx/common/*.h")    
+foreach(file ${LIBSBML_SOURCES})
+   
+   if ("${file}" MATCHES "h$" )
+     get_filename_component(full_path ${file} ABSOLUTE)
+     list(APPEND LIBLX_HEADER_FILES ${full_path})     
+   endif()
+
+endforeach()
+
+##############################################################################
+#
+# create language bindings
+#
+add_subdirectory(bindings)
