@@ -28,3 +28,9 @@ On Mac, this builds build/src/liblx-static.a and build/src/liblx.dylib
 Then:
 Sarah: get libLX to build and then work as a dependency lib with the toy example I made
  https://github.com/skeating/testsbxml/branches. Then look at SWIG for libLX.
+
+If you do a build with the extra switch -DWITH_PYTHON=TRUE, you should find Python bindings generated in the build directory,
+in src/bindings/python. Frank: you should find the libsbml.py (or libsbml2.py / libsbml3.py since we still support both
+versions). along with a native library _libsbml.pyd|so|dylib. At that point you can change into the directory, export
+the PYTHONPATH variable to the current path, and you can import libsbml with the configured python interpreter.
+you can run ctest to check all tests pass.
