@@ -1,10 +1,10 @@
 ###############################################################################
-# Description       : CMake build script for libSBML
+# Description       : CMake build script for libLX
 # Original author(s): Frank Bergmann <fbergman@caltech.edu>
 # Organization      : California Institute of Technology
 #
-# This file is part of libSBML.  Please visit http://sbml.org for more
-# information about SBML, and the latest version of libSBML.
+# This file is part of libLX.  Please visit http://sbml.org for more
+# information about LX, and the latest version of libLX.
 #
 # Copyright (C) 2013-2018 jointly by the following organizations:
 #     1. California Institute of Technology, Pasadena, CA, USA
@@ -37,9 +37,9 @@ endif()
 
 ###############################################################################
 #
-# Initialize SBML sources
+# Initialize LX sources
 #
-set(LIBSBML_SOURCES)
+set(LIBLX_SOURCES)
 
 ###############################################################################
 #
@@ -54,7 +54,7 @@ endforeach()
 
 ###############################################################################
 #
-# create libsbml-config-common.h
+# create liblx-config-common.h
 #
 include(CheckIncludeFiles)
 check_include_files (check.h HAVE_CHECK_H)
@@ -110,8 +110,8 @@ install(FILES ${header_files} DESTINATION include/liblx/xml)
 # specify include directories
 #
 
-include_directories(BEFORE ${LIBSBML_ROOT_SOURCE_DIR}/src/liblx)
-include_directories(BEFORE ${LIBSBML_ROOT_SOURCE_DIR}/src)
+include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src/liblx)
+include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src/liblx)
@@ -137,7 +137,7 @@ if(WITH_BZIP2)
         liblx/xml/compress/bzfstream.cpp
         )
   include_directories(${LIBBZ_INCLUDE_DIR})
-  set(LIBSBML_LIBS ${LIBSBML_LIBS} ${LIBBZ_LIBRARY})
+  set(LIBLX_LIBS ${LIBLX_LIBS} ${LIBBZ_LIBRARY})
 
 endif()
 
@@ -171,12 +171,12 @@ set(COMPRESS_SOURCES ${COMPRESS_SOURCES}
     endif()
 
     include_directories(${LIBZ_INCLUDE_DIR})
-    set(LIBSBML_LIBS ${LIBSBML_LIBS} ${LIBZ_LIBRARY})
+    set(LIBLX_LIBS ${LIBLX_LIBS} ${LIBZ_LIBRARY})
 
 endif()
 
 source_group(compress FILES ${COMPRESS_SOURCES})
-set(LIBSBML_SOURCES ${LIBSBML_SOURCES} ${COMPRESS_SOURCES})
+set(LIBLX_SOURCES ${LIBLX_SOURCES} ${COMPRESS_SOURCES})
 
 ###############################################################################
 #
@@ -240,7 +240,7 @@ if(WITH_EXPAT)
         liblx/xml/ExpatHandler.h
         liblx/xml/ExpatParser.h
     )
-    set(LIBSBML_LIBS ${LIBSBML_LIBS} ${LIBEXPAT_LIBRARY})
+    set(LIBLX_LIBS ${LIBLX_LIBS} ${LIBEXPAT_LIBRARY})
     include_directories(${LIBEXPAT_INCLUDE_DIR})
 
 endif(WITH_EXPAT)
@@ -259,7 +259,7 @@ if(WITH_LIBXML)
         liblx/xml/LibXMLParser.h
         liblx/xml/LibXMLTranscode.h
     )
-    set(LIBSBML_LIBS ${LIBSBML_LIBS} ${LIBXML_LIBRARY})
+    set(LIBLX_LIBS ${LIBLX_LIBS} ${LIBXML_LIBRARY})
     include_directories(${LIBXML_INCLUDE_DIR})
 
 endif(WITH_LIBXML)
@@ -279,19 +279,19 @@ if(WITH_XERCES)
         liblx/xml/XercesTranscode.h
     )
 
-    set(LIBSBML_LIBS ${LIBSBML_LIBS} ${XERCES_LIBRARY})
+    set(LIBLX_LIBS ${LIBLX_LIBS} ${XERCES_LIBRARY})
     include_directories(${XERCES_INCLUDE_DIR})
 
 
 endif(WITH_XERCES)
 
-# Add SBMLNamespaces until the reserved namespace mechanism is replaced
+# Add LXNamespaces until the reserved namespace mechanism is replaced
 #set(XML_SOURCES ${XML_SOURCES}
-#	liblx/xml/SBMLNamespaces.cpp
+#	liblx/xml/LXNamespaces.cpp
 #	)
 
 source_group(xml FILES ${XML_SOURCES})
-set(LIBSBML_SOURCES ${LIBSBML_SOURCES} ${XML_SOURCES})
+set(LIBLX_SOURCES ${LIBLX_SOURCES} ${XML_SOURCES})
 
 ###############################################################################
 #
@@ -324,19 +324,19 @@ if (${CMAKE_VERSION} VERSION_GREATER "2.8.11")
   set(INCLUDE_DESTINATION INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 endif()
 
-if (NOT LIBSBML_SKIP_SHARED_LIBRARY)
+if (NOT LIBLX_SKIP_SHARED_LIBRARY)
 
-add_library (${LIBSBML_LIBRARY} SHARED ${LIBSBML_SOURCES} )
+add_library (${LIBLX_LIBRARY} SHARED ${LIBLX_SOURCES} )
 
-if (LIBSBML_SHARED_VERSION)
-  SET_TARGET_PROPERTIES(${LIBSBML_LIBRARY} PROPERTIES
-                        SOVERSION ${LIBSBML_VERSION_MAJOR}
-                        VERSION ${LIBSBML_VERSION_MAJOR}.${LIBSBML_VERSION_MINOR}.${LIBSBML_VERSION_PATCH})
+if (LIBLX_SHARED_VERSION)
+  SET_TARGET_PROPERTIES(${LIBLX_LIBRARY} PROPERTIES
+                        SOVERSION ${LIBLX_VERSION_MAJOR}
+                        VERSION ${LIBLX_VERSION_MAJOR}.${LIBLX_VERSION_MINOR}.${LIBLX_VERSION_PATCH})
 endif()
 
-target_link_libraries(${LIBSBML_LIBRARY} ${LIBSBML_LIBS} ${EXTRA_LIBS})
+target_link_libraries(${LIBLX_LIBRARY} ${LIBLX_LIBS} ${EXTRA_LIBS})
 
-INSTALL(TARGETS ${LIBSBML_LIBRARY} EXPORT ${LIBSBML_LIBRARY}-config
+INSTALL(TARGETS ${LIBLX_LIBRARY} EXPORT ${LIBLX_LIBRARY}-config
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -344,19 +344,19 @@ INSTALL(TARGETS ${LIBSBML_LIBRARY} EXPORT ${LIBSBML_LIBRARY}-config
 )
 
 # and install the exported target configuration
-INSTALL(EXPORT ${LIBSBML_LIBRARY}-config
+INSTALL(EXPORT ${LIBLX_LIBRARY}-config
         DESTINATION ${PACKAGE_CONFIG_DIR}
 )
 
 if (${CMAKE_VERSION} VERSION_GREATER 2.8.7)
 WRITE_BASIC_PACKAGE_VERSION_FILE(
-  ${CMAKE_CURRENT_BINARY_DIR}/${LIBSBML_LIBRARY}-config-version.cmake 
+  ${CMAKE_CURRENT_BINARY_DIR}/${LIBLX_LIBRARY}-config-version.cmake 
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY AnyNewerVersion
 )
   
 INSTALL(
-  FILES ${CMAKE_CURRENT_BINARY_DIR}/${LIBSBML_LIBRARY}-config-version.cmake
+  FILES ${CMAKE_CURRENT_BINARY_DIR}/${LIBLX_LIBRARY}-config-version.cmake
   DESTINATION ${PACKAGE_CONFIG_DIR}
 )
 endif()
@@ -365,18 +365,18 @@ endif()
 endif()
 
 
-if (NOT LIBSBML_SKIP_STATIC_LIBRARY)
-add_library (${LIBSBML_LIBRARY}-static STATIC ${LIBSBML_SOURCES} )
+if (NOT LIBLX_SKIP_STATIC_LIBRARY)
+add_library (${LIBLX_LIBRARY}-static STATIC ${LIBLX_SOURCES} )
 
 if (WIN32 AND NOT CYGWIN)
     # don't decorate static library 
-    set_target_properties(${LIBSBML_LIBRARY}-static PROPERTIES COMPILE_DEFINITIONS "LIBLAX_STATIC=1;LIBSBML_STATIC=1")
+    set_target_properties(${LIBLX_LIBRARY}-static PROPERTIES COMPILE_DEFINITIONS "LIBLX_STATIC=1")
 endif(WIN32 AND NOT CYGWIN)
 
-target_link_libraries(${LIBSBML_LIBRARY}-static ${LIBSBML_LIBS} ${EXTRA_LIBS})
+target_link_libraries(${LIBLX_LIBRARY}-static ${LIBLX_LIBS} ${EXTRA_LIBS})
 
-INSTALL(TARGETS ${LIBSBML_LIBRARY}-static
-        EXPORT  ${LIBSBML_LIBRARY}-static-config
+INSTALL(TARGETS ${LIBLX_LIBRARY}-static
+        EXPORT  ${LIBLX_LIBRARY}-static-config
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -384,24 +384,24 @@ INSTALL(TARGETS ${LIBSBML_LIBRARY}-static
 )
 
 # and install the exported target configuration
-INSTALL(EXPORT ${LIBSBML_LIBRARY}-static-config 
+INSTALL(EXPORT ${LIBLX_LIBRARY}-static-config 
         DESTINATION ${PACKAGE_CONFIG_DIR}
 )
 
 if (${CMAKE_VERSION} VERSION_GREATER 2.8.7)
 WRITE_BASIC_PACKAGE_VERSION_FILE(
-  ${CMAKE_CURRENT_BINARY_DIR}/${LIBSBML_LIBRARY}-static-config-version.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/${LIBLX_LIBRARY}-static-config-version.cmake
   VERSION ${PROJECT_VERSION}
   COMPATIBILITY AnyNewerVersion
 )
 
 INSTALL(FILES 
-  ${CMAKE_CURRENT_BINARY_DIR}/${LIBSBML_LIBRARY}-static-config-version.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/${LIBLX_LIBRARY}-static-config-version.cmake
   DESTINATION ${PACKAGE_CONFIG_DIR}
 )
 endif()
 
-endif (NOT LIBSBML_SKIP_STATIC_LIBRARY)
+endif (NOT LIBLX_SKIP_STATIC_LIBRARY)
 
 ##############################################################################
 #
