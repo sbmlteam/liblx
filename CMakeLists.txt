@@ -113,14 +113,6 @@ set(PACKAGE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake" CACHE PATH
 # src/CMakeLists.txt
 set(PROJECT_VERSION ${PACKAGE_VERSION})
 
-if (WITH_DOXYGEN OR WITH_PYTHON)
-  # configure the version for documentation / bindings
-  configure_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/liblx-version.html.in
-      ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/liblx-version.html
-  )
-endif()
-
 # add make dist and make check target as they are already familiar for
 # everyone using the gnumake build
 add_custom_target(dist COMMAND ${CMAKE_MAKE_PROGRAM} package_source)
