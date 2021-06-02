@@ -1,11 +1,11 @@
 /**
- * \file    libsbml.i
- * \brief   Language-independent SWIG directives for wrapping libSBML
+ * \file    liblx.i
+ * \brief   Language-independent SWIG directives for wrapping libLX
  * \author  Ben Bornstein and Ben Kovitz
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -31,13 +31,13 @@
  * under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation.  A copy of the license agreement is provided
  * in the file named "LICENSE.txt" included with this software distribution
- * and also available online as http://sbml.org/software/libsbml/license.html
+ * and also available online as http://lx.org/software/liblx/license.html
  * ---------------------------------------------------------------------- -->*/
 
-%module(directors="1") libsbml
+%module(directors="1") liblx
 
-%feature("director") SBMLValidator;
-%feature("director") SBMLConverter;
+%feature("director") LXValidator;
+%feature("director") LXConverter;
 %feature("director") ElementFilter;
 %feature("director") MathFilter;
 %feature("director") IdentifierTransformer;
@@ -56,23 +56,23 @@
 %apply SWIGTYPE *DISOWN { XMLNode_t* disownedAnnotation };
 %apply SWIGTYPE *DISOWN { ASTNode* disownedChild };
 %apply SWIGTYPE *DISOWN { ASTNode_t* disownedChild };
-%apply SWIGTYPE *DISOWN { SBMLNamespaces* disownedNs };
+%apply SWIGTYPE *DISOWN { LXNamespaces* disownedNs };
 
 #endif 
 
 %pragma(java) moduleclassmodifiers="
 /**
-  * Wrapper class for global methods and constants defined by libSBML.
+  * Wrapper class for global methods and constants defined by libLX.
   * <p>
   * <em style='color: #555'>
-  * This class of objects is defined by libSBML only and has no direct
-  * equivalent in terms of SBML components.  This class is not prescribed by
-  * the SBML specifications, although it is used to implement features
-  * defined in SBML.
+  * This class of objects is defined by libLX only and has no direct
+  * equivalent in terms of LX components.  This class is not prescribed by
+  * the LX specifications, although it is used to implement features
+  * defined in LX.
   * </em>
   * <p>
-  * In the C++ and C versions of libSBML, there exists a small number of
-  * methods that are global in scope; in addition, libSBML uses a number
+  * In the C++ and C versions of libLX, there exists a small number of
+  * methods that are global in scope; in addition, libLX uses a number
   * of enum's to define such things as error codes in a way that can be
   * used by both C++ and C.  This poses a problem in languages such as
   * Java, where there is no concept of global method or global constant.
@@ -83,19 +83,19 @@ public class"
 
 
 %{
-#include "libsbml.h"
+#include "liblx.h"
 
-LIBSBML_CPP_NAMESPACE_USE
+LIBLX_CPP_NAMESPACE_USE
 
-#include "../swig/libsbml-packages.h"
+#include "../swig/liblx-packages.h"
 	
 #include "local.cpp"
 %}
 
-%import  sbml/common/libsbml-namespace.h
-%import  sbml/common/extern.h
-%import  sbml/common/sbmlfwd.h
-%import  sbml/xml/XMLExtern.h
+%import  lx/common/liblx-namespace.h
+%import  lx/common/extern.h
+%import  lx/common/lxfwd.h
+%import  lx/xml/XMLExtern.h
 
 /**
  * Wraps List class by ListWrapper<TYPENAME> template class.
@@ -112,7 +112,7 @@ LIBSBML_CPP_NAMESPACE_USE
 %template(DateList)           ListWrapper<Date>;
 %template(CVTermList)         ListWrapper<CVTerm>;
 %template(ASTNodeList)        ListWrapper<ASTNode>;
-%template(SBMLNamespacesList) ListWrapper<SBMLNamespaces>;
+%template(LXNamespacesList) ListWrapper<LXNamespaces>;
 %template(SBaseList)          ListWrapper<SBase>;
 
 /**
@@ -125,7 +125,7 @@ LIBSBML_CPP_NAMESPACE_USE
 
 /**
  * Unfortunately, SWIG makes no distinction between const and non-const
- * member functions (SWIG 1.3 Manual, Section 6.25), but in libSBML C++ we
+ * member functions (SWIG 1.3 Manual, Section 6.25), but in libLX C++ we
  * have both const and non-const versions of most getter methods.  To avoid
  * a ton of warning messages about 'const' methods not being wrapped, we
  * disable Warning(516).
@@ -133,7 +133,7 @@ LIBSBML_CPP_NAMESPACE_USE
 #pragma SWIG nowarn=516
 
 /**
- * Ignore the Visitor pattern accept() method (for now) on all SBML
+ * Ignore the Visitor pattern accept() method (for now) on all LX
  * objects.
  */
 %ignore *::accept;
@@ -151,7 +151,7 @@ LIBSBML_CPP_NAMESPACE_USE
 /**
  * Ignore the list that can't be wrapped
  */
-%ignore SBMLExtensionRegistry::getRegisteredPackageNames;
+%ignore LXExtensionRegistry::getRegisteredPackageNames;
 
 /**
  * SWIG makes no distinction between int and long arguments.
@@ -160,7 +160,7 @@ LIBSBML_CPP_NAMESPACE_USE
 %ignore ASTNode::setValue(int);
 
 /**
- * Ignore operator= and operator<< on all SBML objects.
+ * Ignore operator= and operator<< on all LX objects.
  */
 %ignore *::operator=;
 %ignore *::operator<<;
@@ -172,8 +172,8 @@ LIBSBML_CPP_NAMESPACE_USE
  */
 %ignore *::writeElements;
 %ignore *::getElementPosition;
-%ignore *::setSBMLDocument;
-%ignore *::setParentSBMLObject;
+%ignore *::setLXDocument;
+%ignore *::setParentLXObject;
 %ignore *::setInternalId;
 %ignore *::getInternalId;
 
@@ -192,15 +192,15 @@ LIBSBML_CPP_NAMESPACE_USE
  * Ignore methods which receive std::list.
  */
 %ignore XMLErrorLog::add(const std::list<XMLError>& errors);
-%ignore SBMLErrorLog::add(const std::list<SBMLError>& errors);
-%ignore SBMLErrorLog::add(const std::vector<SBMLError>& errors);
+%ignore LXErrorLog::add(const std::list<LXError>& errors);
+%ignore LXErrorLog::add(const std::vector<LXError>& errors);
 
 /**
- * Ignore methods from SBML Validator that can't be wrapped
+ * Ignore methods from LX Validator that can't be wrapped
  */
-%ignore SBMLValidator::getFailures;
-%ignore SBMLExternalValidator::getArguments;
-%ignore SBMLExternalValidator::setArguments;
+%ignore LXValidator::getFailures;
+%ignore LXExternalValidator::getArguments;
+%ignore LXExternalValidator::setArguments;
 
 /**
  * Ignore 'static ParentMap mParent;' in SBO.h
@@ -225,12 +225,12 @@ LIBSBML_CPP_NAMESPACE_USE
  * Ignore internal methods on SBase
  */
 //ignore SBase::removeDuplicateAnnotations;
-%ignore SBase::setSBMLNamespaces;
-//%ignore SBase::getSBMLNamespaces;
+%ignore SBase::setLXNamespaces;
+//%ignore SBase::getLXNamespaces;
 //%ignore SBase::read;
-%catches(SBMLConstructorException,SBMLExtensionException,XMLConstructorException,...) SBase::read;
+%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::read;
 //%ignore SBase::write;
-%catches(SBMLConstructorException,SBMLExtensionException,XMLConstructorException,...) SBase::write;
+%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::write;
 
 /**
  * Ignore internal methods on Model
@@ -290,10 +290,10 @@ LIBSBML_CPP_NAMESPACE_USE
  * With the new Validator API we no longer exclude the following 
  * methods:
  */ 
-//%ignore SBMLErrorLog::logError;
-//%ignore SBMLErrorLog::add;
-//%ignore SBMLErrorLog::remove;
-//%ignore SBMLErrorLog::SBMLErrorLog;
+//%ignore LXErrorLog::logError;
+//%ignore LXErrorLog::add;
+//%ignore LXErrorLog::remove;
+//%ignore LXErrorLog::LXErrorLog;
 //%ignore XMLErrorLog::XMLErrorLog;
 //%ignore XMLErrorLog::add;
 
@@ -332,25 +332,25 @@ LIBSBML_CPP_NAMESPACE_USE
 /** 
  * Ignore some const versions of methods
  */
-%ignore SBMLConverter::setDocument(SBMLDocument const *);
-%ignore SBMLReactionConverter::setDocument(SBMLDocument const *);
+%ignore LXConverter::setDocument(LXDocument const *);
+%ignore LXReactionConverter::setDocument(LXDocument const *);
 
 
 /**
  * Ignore internal implementation methods and some other methods
- * on SBMLNamespces.
+ * on LXNamespces.
  */
-//%ignore SBMLNamespaces::setLevel;
-//%ignore SBMLNamespaces::setVersion;
-//%ignore SBMLNamespaces::setNamespaces;
+//%ignore LXNamespaces::setLevel;
+//%ignore LXNamespaces::setVersion;
+//%ignore LXNamespaces::setNamespaces;
 
 /**
  * Ignore internal implementation methods and some other methods
- * on SBMLTransforms.
+ * on LXTransforms.
  */
-%ignore SBMLTransforms::evaluateASTNode(const ASTNode * node, const IdValueMap& values, const Model * m = NULL);
-%ignore SBMLTransforms::evaluateASTNode(const ASTNode * node, const std::map<std::string, double>& values, const Model * m = NULL);
-%ignore SBMLTransforms::getComponentValuesForModel(const Model * m, IdValueMap& values);
+%ignore LXTransforms::evaluateASTNode(const ASTNode * node, const IdValueMap& values, const Model * m = NULL);
+%ignore LXTransforms::evaluateASTNode(const ASTNode * node, const std::map<std::string, double>& values, const Model * m = NULL);
+%ignore LXTransforms::getComponentValuesForModel(const Model * m, IdValueMap& values);
 
 /**
  * Ignore internal implementation methods in XMLToken
@@ -391,26 +391,26 @@ LIBSBML_CPP_NAMESPACE_USE
 
 %newobject *::clone;
 %newobject removeChildObject;
-%newobject SBase::toSBML;
-%newobject SBMLReader::readSBMLFromString;
-%newobject SBMLReader::readSBMLFromFile;
-%newobject SBMLReader::readSBML;
-%newobject readSBML(const char *);
-%newobject readSBMLFromString(const char *);
-%newobject readSBMLFromFile(const char *);
-%newobject SBMLWriter::writeToString;
-%newobject writeSBMLToString;
+%newobject SBase::toLX;
+%newobject LXReader::readLXFromString;
+%newobject LXReader::readLXFromFile;
+%newobject LXReader::readLX;
+%newobject readLX(const char *);
+%newobject readLXFromString(const char *);
+%newobject readLXFromFile(const char *);
+%newobject LXWriter::writeToString;
+%newobject writeLXToString;
 %newobject readMathMLFromString;
 %newobject writeMathMLToString;
-%newobject SBML_formulaToString;
-%newobject SBML_formulaToL3String;
-%newobject SBML_formulaToL3StringWithSettings;
-%newobject SBML_parseFormula;
-%newobject SBML_parseL3Formula;
-%newobject SBML_parseL3FormulaWithModel;
-%newobject SBML_parseL3FormulaWithSettings;
-%newobject SBML_getDefaultL3ParserSettings;
-%newobject SBML_getLastParseL3Error;
+%newobject LX_formulaToString;
+%newobject LX_formulaToL3String;
+%newobject LX_formulaToL3StringWithSettings;
+%newobject LX_parseFormula;
+%newobject LX_parseL3Formula;
+%newobject LX_parseL3FormulaWithModel;
+%newobject LX_parseL3FormulaWithSettings;
+%newobject LX_getDefaultL3ParserSettings;
+%newobject LX_getLastParseL3Error;
 %newobject ASTNode::deepCopy;
 %newobject ASTNode::getListOfNodes();
 %newobject *::remove;
@@ -456,7 +456,7 @@ LIBSBML_CPP_NAMESPACE_USE
 
 /**
  * We can't currently support attaching arbitrary user data to
- * libSBML objects.
+ * libLX objects.
  */
 %ignore *::setUserData;
 %ignore *::getUserData;
@@ -464,18 +464,18 @@ LIBSBML_CPP_NAMESPACE_USE
 /**
  * In the wrapped languages, these methods will appear as:
  *
- *  - libsbml.formulaToString()
- *  - libsbml.parseFormula()
+ *  - liblx.formulaToString()
+ *  - liblx.parseFormula()
  */
-%rename(formulaToL3String) SBML_formulaToL3String;
-%rename(formulaToL3StringWithSettings) SBML_formulaToL3StringWithSettings;
-%rename(formulaToString) SBML_formulaToString;
-%rename(parseFormula)    SBML_parseFormula;
-%rename(parseL3Formula)    SBML_parseL3Formula;
-%rename(parseL3FormulaWithModel)    SBML_parseL3FormulaWithModel;
-%rename(parseL3FormulaWithSettings)    SBML_parseL3FormulaWithSettings;
-%rename(getDefaultL3ParserSettings)    SBML_getDefaultL3ParserSettings;
-%rename(getLastParseL3Error)    SBML_getLastParseL3Error;
+%rename(formulaToL3String) LX_formulaToL3String;
+%rename(formulaToL3StringWithSettings) LX_formulaToL3StringWithSettings;
+%rename(formulaToString) LX_formulaToString;
+%rename(parseFormula)    LX_parseFormula;
+%rename(parseL3Formula)    LX_parseL3Formula;
+%rename(parseL3FormulaWithModel)    LX_parseL3FormulaWithModel;
+%rename(parseL3FormulaWithSettings)    LX_parseL3FormulaWithSettings;
+%rename(getDefaultL3ParserSettings)    LX_getDefaultL3ParserSettings;
+%rename(getLastParseL3Error)    LX_getLastParseL3Error;
 
 /**
  *
@@ -543,12 +543,12 @@ nested to an arbitrary depth.
 
 #ifndef SWIGRUBY
 %feature("docstring") SBase::getListOfAllElementsFromPlugins "
-Returns a List of all child SBase objects contained in SBML package
+Returns a List of all child SBase objects contained in LX package
 plug-ins.
 
 @copydetails doc_what_are_plugins
 
-This method walks down the list of all SBML Level&nbsp;3 packages used
+This method walks down the list of all LX Level&nbsp;3 packages used
 by this object and returns all child objects defined by those packages.
 
 @return a pointer to a List of pointers to all children objects from
@@ -570,7 +570,7 @@ plug-ins.
 %feature("docstring") ASTNode::getListOfNodes "
 Returns a list of nodes.
 
-Unlike the equivalent method in the libSBML C/C++ interface, this method does
+Unlike the equivalent method in the libLX C/C++ interface, this method does
 not offer the ability to pass a predicate as an argument.  The method always
 returns the list of all ASTNode objects.
 
@@ -609,7 +609,7 @@ itself), and therefore should not be deleted.
 Parses an annotation (given as an XMLNode tree) into a list of
 CVTerm objects.
 
-This is used to take an annotation that has been read into an SBML
+This is used to take an annotation that has been read into an LX
 model, identify the RDF elements within it, and create a list of
 corresponding CVTerm (controlled vocabulary term) objects.
 
@@ -645,7 +645,7 @@ corresponding CVTerm (controlled vocabulary term) objects.
 
 /**
  * For reasons I cannot fathom, SWIG refuses to incorporate the comment for
- * this method into the libsbml_wrap.cpp file, even though there is nothing
+ * this method into the liblx_wrap.cpp file, even though there is nothing
  * special about this method and it looks for all the world like other
  * methods in SBase.h.  So, this next item is simply to duplicate the method
  * comment from SBase.h to here.
@@ -655,27 +655,27 @@ corresponding CVTerm (controlled vocabulary term) objects.
 
 %feature("docstring") SBase::hasValidLevelVersionNamespaceCombination "
 Predicate returning @c true if this object's level/version and namespace
-values correspond to a valid SBML specification.
+values correspond to a valid LX specification.
 
-The valid combinations of SBML Level, Version and Namespace as of this
-release of libSBML are the following:
+The valid combinations of LX Level, Version and Namespace as of this
+release of libLX are the following:
 <ul>
-<li> Level&nbsp;1 Version&nbsp;2: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.sbml.org/sbml/level1</code>
-<li> Level&nbsp;2 Version&nbsp;1: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.sbml.org/sbml/level2</code>
-<li> Level&nbsp;2 Version&nbsp;2: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.sbml.org/sbml/level2/version2</code>
-<li> Level&nbsp;2 Version&nbsp;3: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.sbml.org/sbml/level2/version3</code>
-<li> Level&nbsp;2 Version&nbsp;4: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.sbml.org/sbml/level2/version4</code>
-<li> Level&nbsp;3 Version&nbsp;1 Core: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.sbml.org/sbml/level3/version1/core</code>
+<li> Level&nbsp;1 Version&nbsp;2: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.lx.org/lx/level1</code>
+<li> Level&nbsp;2 Version&nbsp;1: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.lx.org/lx/level2</code>
+<li> Level&nbsp;2 Version&nbsp;2: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.lx.org/lx/level2/version2</code>
+<li> Level&nbsp;2 Version&nbsp;3: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.lx.org/lx/level2/version3</code>
+<li> Level&nbsp;2 Version&nbsp;4: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.lx.org/lx/level2/version4</code>
+<li> Level&nbsp;3 Version&nbsp;1 Core: <code style='margin-right:0; padding-right:0'>http</code><code style='margin-left:0; padding-left:0'>://www.lx.org/lx/level3/version1/core</code>
 </ul>
 
 @return @c true if the level, version and namespace values of this 
-SBML object correspond to a valid set of values, @c false otherwise.
+LX object correspond to a valid set of values, @c false otherwise.
 ";
 
 
 /*
  * If left as-is, the method descriptions for the constructors for
- * XMLInputStream and XMLOutputStream end up on our "Core libSBML" page in
+ * XMLInputStream and XMLOutputStream end up on our "Core libLX" page in
  * the API docs rather than on the pages for the individual classes
  * themselves.  This is another case of unfathomable behavior of either
  * Doxygen or SWIG (not sure which one is to blame for this).  Adding
@@ -703,21 +703,21 @@ string that @em is the content to be read.
 Creates a new XMLOutputStream that wraps the given @p stream.
 
 The functionality associated with the @p programName and @p
-programVersion arguments concerns an optional comment that libSBML can
+programVersion arguments concerns an optional comment that libLX can
 write at the beginning of the output stream.  The comment is intended
 for human readers of the XML file, and has the following form:
 @verbatim
 <!-- Created by <program name> version <program version>
-on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
+on yyyy-MM-dd HH:mm with libLX version <liblx version>. -->
 @endverbatim
 
 This program information comment is a separate item from the XML
 declaration that this method can also write to this output stream.  The
-comment is also not mandated by any SBML specification.  This libSBML
+comment is also not mandated by any LX specification.  This libLX
 functionality is provided for the convenience of calling programs, and to
-help humans trace the origin of SBML files.
+help humans trace the origin of LX files.
 
-LibSBML tries to produce human-readable XML output by automatically
+LibLX tries to produce human-readable XML output by automatically
 indenting the bodies of elements.  Callers can manually control
 indentation further by using the XMLOutputStream::upIndent()
 and XMLOutputStream::downIndent() methods to increase and
@@ -727,7 +727,7 @@ XML output.
 @param stream the input stream to wrap.
 
 @param encoding the XML encoding to declare in the output. This value should
-be <code>&quot;UTF-8&quot;</code> for SBML documents.  The default value is
+be <code>&quot;UTF-8&quot;</code> for LX documents.  The default value is
 <code>&quot;UTF-8&quot;</code> if no value is supplied for this parameter.
 
 @param writeXMLDecl whether to write a standard XML declaration at
@@ -766,105 +766,105 @@ as a comment in the output stream.
 
 %include "std_string.i"
 
-%include sbml/common/libsbml-version.h
-%include sbml/common/operationReturnValues.h
-%include sbml/common/common-documentation.h
-%include sbml/common/common-sbmlerror-codes.h
+%include lx/common/liblx-version.h
+%include lx/common/operationReturnValues.h
+%include lx/common/common-documentation.h
+%include lx/common/common-lxerror-codes.h
 
-%include <sbml/util/IdList.h>
-%include <sbml/util/IdentifierTransformer.h>
-%include <sbml/util/ElementFilter.h>
+%include <lx/util/IdList.h>
+%include <lx/util/IdentifierTransformer.h>
+%include <lx/util/ElementFilter.h>
 
-%include <sbml/SBMLReader.h>
-%include sbml/SBMLWriter.h
-%include sbml/SBMLTypeCodes.h
-%include sbml/SBase.h
-%include sbml/ListOf.h
-%include sbml/Model.h
-%include sbml/SBMLDocument.h
-%include sbml/FunctionDefinition.h
-%include sbml/UnitKind.h
-%include sbml/Unit.h
-%include sbml/UnitDefinition.h
-%include sbml/CompartmentType.h
-%include sbml/SpeciesType.h
-%include sbml/Compartment.h
-%include sbml/Species.h
-%include sbml/Parameter.h
-%include sbml/LocalParameter.h
-%include sbml/InitialAssignment.h
-%include sbml/Rule.h
-%include sbml/AlgebraicRule.h
-%include sbml/AssignmentRule.h
-%include sbml/RateRule.h
-%include sbml/Constraint.h
-%include sbml/Reaction.h
-%include sbml/KineticLaw.h
-%include sbml/SimpleSpeciesReference.h
-%include sbml/SpeciesReference.h
-%include sbml/ModifierSpeciesReference.h
-%include sbml/Event.h
-%include sbml/EventAssignment.h
-%include sbml/Trigger.h
-%include sbml/Delay.h
-%include sbml/Priority.h
-%include sbml/SBO.h
-%include sbml/SyntaxChecker.h
-%include sbml/StoichiometryMath.h
-%include sbml/SBMLNamespaces.h
-%include sbml/SBMLTransforms.h
-%include sbml/SBMLConstructorException.h
+%include <lx/LXReader.h>
+%include lx/LXWriter.h
+%include lx/LXTypeCodes.h
+%include lx/SBase.h
+%include lx/ListOf.h
+%include lx/Model.h
+%include lx/LXDocument.h
+%include lx/FunctionDefinition.h
+%include lx/UnitKind.h
+%include lx/Unit.h
+%include lx/UnitDefinition.h
+%include lx/CompartmentType.h
+%include lx/SpeciesType.h
+%include lx/Compartment.h
+%include lx/Species.h
+%include lx/Parameter.h
+%include lx/LocalParameter.h
+%include lx/InitialAssignment.h
+%include lx/Rule.h
+%include lx/AlgebraicRule.h
+%include lx/AssignmentRule.h
+%include lx/RateRule.h
+%include lx/Constraint.h
+%include lx/Reaction.h
+%include lx/KineticLaw.h
+%include lx/SimpleSpeciesReference.h
+%include lx/SpeciesReference.h
+%include lx/ModifierSpeciesReference.h
+%include lx/Event.h
+%include lx/EventAssignment.h
+%include lx/Trigger.h
+%include lx/Delay.h
+%include lx/Priority.h
+%include lx/SBO.h
+%include lx/SyntaxChecker.h
+%include lx/StoichiometryMath.h
+%include lx/LXNamespaces.h
+%include lx/LXTransforms.h
+%include lx/LXConstructorException.h
 
-%include sbml/conversion/ConversionOption.h
-%include sbml/conversion/ConversionProperties.h
-%include sbml/conversion/SBMLConverter.h
-%include sbml/conversion/SBMLConverterRegistry.h
-%include sbml/conversion/SBMLFunctionDefinitionConverter.h
-%include sbml/conversion/SBMLIdConverter.h
-%include sbml/conversion/SBMLInferUnitsConverter.h
-%include sbml/conversion/SBMLInitialAssignmentConverter.h
-%include sbml/conversion/SBMLLevelVersionConverter.h
-%include sbml/conversion/SBMLLevel1Version1Converter.h
-%include sbml/conversion/SBMLLocalParameterConverter.h
-%include sbml/conversion/SBMLReactionConverter.h
-%include sbml/conversion/SBMLRuleConverter.h
-%include sbml/conversion/SBMLStripPackageConverter.h
-%include sbml/conversion/SBMLUnitsConverter.h
+%include lx/conversion/ConversionOption.h
+%include lx/conversion/ConversionProperties.h
+%include lx/conversion/LXConverter.h
+%include lx/conversion/LXConverterRegistry.h
+%include lx/conversion/LXFunctionDefinitionConverter.h
+%include lx/conversion/LXIdConverter.h
+%include lx/conversion/LXInferUnitsConverter.h
+%include lx/conversion/LXInitialAssignmentConverter.h
+%include lx/conversion/LXLevelVersionConverter.h
+%include lx/conversion/LXLevel1Version1Converter.h
+%include lx/conversion/LXLocalParameterConverter.h
+%include lx/conversion/LXReactionConverter.h
+%include lx/conversion/LXRuleConverter.h
+%include lx/conversion/LXStripPackageConverter.h
+%include lx/conversion/LXUnitsConverter.h
 
-%include sbml/validator/SBMLValidator.h
-%include sbml/validator/SBMLExternalValidator.h
+%include lx/validator/LXValidator.h
+%include lx/validator/LXExternalValidator.h
 
-%include sbml/xml/XMLAttributes.h
-%include sbml/xml/XMLConstructorException.h
-%include sbml/xml/XMLNamespaces.h
-%include sbml/xml/XMLToken.h
-%include sbml/xml/XMLNode.h
-%include sbml/xml/XMLTriple.h
-%include sbml/xml/XMLOutputStream.h
-%include sbml/xml/XMLInputStream.h
-%include sbml/xml/XMLError.h
-%include sbml/xml/XMLErrorLog.h
+%include lx/xml/XMLAttributes.h
+%include lx/xml/XMLConstructorException.h
+%include lx/xml/XMLNamespaces.h
+%include lx/xml/XMLToken.h
+%include lx/xml/XMLNode.h
+%include lx/xml/XMLTriple.h
+%include lx/xml/XMLOutputStream.h
+%include lx/xml/XMLInputStream.h
+%include lx/xml/XMLError.h
+%include lx/xml/XMLErrorLog.h
 
-%include sbml/SBMLErrorLog.h
-%include sbml/SBMLError.h
+%include lx/LXErrorLog.h
+%include lx/LXError.h
 
-%include sbml/annotation/CVTerm.h
-%include sbml/annotation/Date.h
-%include sbml/annotation/ModelCreator.h
-%include sbml/annotation/ModelHistory.h
-%include sbml/annotation/RDFAnnotationParser.h
+%include lx/annotation/CVTerm.h
+%include lx/annotation/Date.h
+%include lx/annotation/ModelCreator.h
+%include lx/annotation/ModelHistory.h
+%include lx/annotation/RDFAnnotationParser.h
 
-%include sbml/extension/ISBMLExtensionNamespaces.h
-%include sbml/extension/SBaseExtensionPoint.h
-%include sbml/extension/SBasePlugin.h
-%include sbml/extension/SBMLDocumentPlugin.h
-%include sbml/extension/SBMLExtension.h
-%include sbml/extension/SBMLExtensionException.h
-%include sbml/extension/SBMLExtensionNamespaces.h
-%include sbml/extension/SBMLExtensionRegistry.h
+%include lx/extension/ILXExtensionNamespaces.h
+%include lx/extension/SBaseExtensionPoint.h
+%include lx/extension/SBasePlugin.h
+%include lx/extension/LXDocumentPlugin.h
+%include lx/extension/LXExtension.h
+%include lx/extension/LXExtensionException.h
+%include lx/extension/LXExtensionNamespaces.h
+%include lx/extension/LXExtensionRegistry.h
 
-%include sbml/util/CallbackRegistry.h
+%include lx/util/CallbackRegistry.h
 
 %include ASTNodes.i
 
-%include "../swig/libsbml-packages.i"
+%include "../swig/liblx-packages.i"

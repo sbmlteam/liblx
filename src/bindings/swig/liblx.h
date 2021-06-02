@@ -1,6 +1,6 @@
 /**
- * \file    libsbml.h
- * \brief   Language-independent SWIG includes for wrapping libSBML
+ * \file    liblx.h
+ * \brief   Language-independent SWIG includes for wrapping libLX
  * \author  Ben Bornstein
  *
  * <!--------------------------------------------------------------------------
@@ -37,10 +37,10 @@
 #include <liblx/common/libsbml-version.h>
 #include <liblx/common/operationReturnValues.h>
 
-#include <liblx/util/IdList.h>
+/*#include <liblx/util/IdList.h>
 #include <liblx/util/IdentifierTransformer.h>
-#include <liblx/util/ElementFilter.h>
-
+#include <liblx/util/ElementFilter.h>*/
+/*
 #include <liblx/SBMLReader.h>
 #include <liblx/SBMLWriter.h>
 #include <liblx/UnitKind.h>
@@ -86,7 +86,8 @@
 #include <liblx/SBMLNamespaces.h>
 #include <liblx/SBMLTransforms.h>
 #include <liblx/SBMLConstructorException.h>
-
+*/
+/*
 #include <liblx/conversion/ConversionOption.h>
 #include <liblx/conversion/ConversionProperties.h>
 #include <liblx/conversion/SBMLConverter.h>
@@ -102,10 +103,11 @@
 #include <liblx/conversion/SBMLRuleConverter.h>
 #include <liblx/conversion/SBMLStripPackageConverter.h>
 #include <liblx/conversion/SBMLUnitsConverter.h>
-
+*/
+/*
 #include <liblx/validator/SBMLValidator.h>
 #include <liblx/validator/SBMLExternalValidator.h>
-
+*/
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLNamespaces.h>
 #include <liblx/xml/XMLConstructorException.h>
@@ -120,12 +122,14 @@
 #include <liblx/xml/XMLHandler.h>
 #include <liblx/xml/XMLTokenizer.h>
 
+/*
 #include <liblx/annotation/CVTerm.h>
 #include <liblx/annotation/Date.h>
 #include <liblx/annotation/ModelCreator.h>
 #include <liblx/annotation/ModelHistory.h>
 #include <liblx/annotation/RDFAnnotationParser.h>
-
+*/
+/*
 #include <liblx/extension/ISBMLExtensionNamespaces.h>
 #include <liblx/extension/SBaseExtensionPoint.h>
 #include <liblx/extension/SBasePlugin.h>
@@ -134,8 +138,9 @@
 #include <liblx/extension/SBMLExtensionException.h>
 #include <liblx/extension/SBMLExtensionNamespaces.h>
 #include <liblx/extension/SBMLExtensionRegistry.h>
-
+*/
+/*
 #include <liblx/util/CallbackRegistry.h>
-
+*/
 #include "ListWrapper.h"
 
