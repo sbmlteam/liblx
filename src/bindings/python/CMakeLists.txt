@@ -535,7 +535,7 @@ if(WITH_CHECK)
         ADJUST_PYTHONPATH(test_python_createSimpleModel)      
     
         add_test(NAME test_python_echoLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/echoSBML.py
+            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/echoLX.py
             ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
             echoLX.out.xml
         )

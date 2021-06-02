@@ -1,5 +1,5 @@
 /**
- * @file    libsbml.i
+ * @file    liblx.i
  * @brief   Ben Bornstein
  * @author  Python-specific SWIG directives for wrapping libLX API
  * 
