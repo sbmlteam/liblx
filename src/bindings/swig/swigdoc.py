@@ -10,8 +10,8 @@
 # @author Brett Olivier
 #
 #<!---------------------------------------------------------------------------
-# This file is part of libSBML.  Please visit http://sbml.org for more
-# information about SBML, and the latest version of libSBML.
+# This file is part of libLX.  Please visit http://sbml.org for more
+# information about LX, and the latest version of libLX.
 #
 # Copyright (C) 2013-2018 jointly by the following organizations:
 #     1. California Institute of Technology, Pasadena, CA, USA
@@ -36,7 +36,7 @@
 # and also available online as http://sbml.org/software/libsbml/license.html
 #----------------------------------------------------------------------- -->*/
 
-import sys, string, os.path, re, argparse, libsbmlutils, pdb
+import sys, string, os.path, re, argparse, liblxutils, pdb
 
 #
 # Hardwired values.  These need to be updated manually.
@@ -72,7 +72,7 @@ overriders = \
 'GroupsExtension'           : [ 'clone', 'getErrorIdOffset' ],
 'FunctionDefinition'        : [ 'clone', 'getId', 'getName', 'isSetId', 'isSetName', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'hasRequiredElements', 'setId', 'setName', 'unsetId', 'unsetName' ],
 'InitialAssignment'         : [ 'clone', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'hasRequiredElements', 'getId' ],
-'ISBMLExtensionNamespaces'  : [ 'getURI', 'getPackageName' ],
+'ILXExtensionNamespaces'  : [ 'getURI', 'getPackageName' ],
 'KineticLaw'                : [ 'clone', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'hasRequiredElements', 'connectToChild', 'enablePackageInternal' ],
 'LayoutExtension'           : [ 'clone', 'getErrorIdOffset' ],
 'ListOf'                    : [ 'clone', 'getTypeCode', 'getElementName', 'connectToChild', 'enablePackageInternal' ],
@@ -102,10 +102,10 @@ overriders = \
 'RateRule'                  : [ 'clone', 'hasRequiredAttributes' ],
 'Reaction'                  : [ 'clone', 'getId', 'getName', 'isSetId', 'isSetName', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'setId', 'setName', 'unsetId', 'unsetName', 'connectToChild', 'enablePackageInternal' ],
 'Rule'                      : [ 'clone', 'getTypeCode', 'getElementName', 'hasRequiredElements', 'hasRequiredAttributes', 'getId' ],
-'SBMLDocument'              : [ 'clone', 'getModel', 'getTypeCode', 'getElementName', 'getNamespaces', 'connectToChild', 'enablePackageInternal' ],
-'SBMLDocumentPlugin'        : [ 'clone' ],
-'SBMLErrorLog'              : [ 'getError' ],
-'SBMLConverter'             : [ 'convert', 'getDefaultProperties', 'matchesProperties' ],
+'LXDocument'              : [ 'clone', 'getModel', 'getTypeCode', 'getElementName', 'getNamespaces', 'connectToChild', 'enablePackageInternal' ],
+'LXDocumentPlugin'        : [ 'clone' ],
+'LXErrorLog'              : [ 'getError' ],
+'LXConverter'             : [ 'convert', 'getDefaultProperties', 'matchesProperties' ],
 'Species'                   : [ 'clone', 'getId', 'getName', 'isSetId', 'isSetName', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'setId', 'setName', 'unsetId', 'unsetName' ],
 'SpeciesReference'          : [ 'clone', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'setAnnotation', 'appendAnnotation' ],
 'SpeciesType'               : [ 'clone', 'getId', 'getName', 'isSetId', 'isSetName', 'getTypeCode', 'getElementName', 'hasRequiredAttributes', 'setId', 'setName', 'unsetId', 'unsetName' ],
@@ -119,8 +119,8 @@ overriders = \
 virtual_functions = \
 {
 'ElementFilter'             : [ 'filter' ],
-'SBMLConverter'             : [ 'getDefaultProperties', 'getTargetNamespaces', 'matchesProperties' , 'setDocument', 'setProperties', 'getProperties', 'convert'  ],
-'SBMLValidator'             : [ 'clone', 'getDocument', 'setDocument' , 'validate', 'clearFailures' ]
+'LXConverter'             : [ 'getDefaultProperties', 'getTargetNamespaces', 'matchesProperties' , 'setDocument', 'setProperties', 'getProperties', 'convert'  ],
+'LXValidator'             : [ 'clone', 'getDocument', 'setDocument' , 'validate', 'clearFailures' ]
 }
 
 #
@@ -129,7 +129,7 @@ virtual_functions = \
 
 language         = ''
 doc_include_path = ''
-libsbml_classes  = []
+liblx_classes  = []
 
 #
 # Global variable for tracking all class docs, so that we can handle
@@ -213,7 +213,7 @@ class CHeader:
     # Things that are marked internal still get emitted in the output, but
     # are flagged with @internal so that downstream tools do the right thing.
 
-    if '@cond doxygenLibsbmlInternal' in stripped: self.isInternal = True
+    if '@cond doxygenLiblxInternal' in stripped: self.isInternal = True
 
     # We track private/protected separately because we have to watch for
     # different things in the input.  (E.g., for internal, we have a start and
@@ -237,7 +237,7 @@ class CHeader:
       if stripped.startswith('* @brief'):
         self.docstring += ' * ' + stripped[9:].strip() + '\n'
         return
-      elif stripped.startswith('* @sbmlbrief{'):
+      elif stripped.startswith('* @lxbrief{'):
         end = stripped.find('}')
         pkg = stripped[13:end]
         rest = stripped[end + 1:].strip()
@@ -249,7 +249,7 @@ class CHeader:
         if self.language == 'java':
           self.docstring += ' * ' + marker + ' ' + rest + '\n'
         else:
-          group = '@sbmlpackage{' + pkg + '}'
+          group = '@lxpackage{' + pkg + '}'
           self.docstring += ' * \n * ' + group + '\n *\n' + marker + ' ' + rest + '\n'
         return
       elif not stripped.endswith('*/') and not stripped.startswith('* @class'):
@@ -842,11 +842,11 @@ def rewriteClassRef (match):
 def translateCrossRefs (str):
   if str is None:
     return ''
-  if re.search('@sbml(global)?function', str) != None:
-    p = re.compile('@sbmlfunction{([^}]+?)}')
-    str = p.sub(translateSBMLFunctionRef, str)
+  if re.search('@lx(global)?function', str) != None:
+    p = re.compile('@lxfunction{([^}]+?)}')
+    str = p.sub(translateLXFunctionRef, str)
   else:
-    p = re.compile(r'([^\w."#])(' + '|'.join(libsbml_classes) + r')\b([^:])')
+    p = re.compile(r'([^\w."#])(' + '|'.join(liblx_classes) + r')\b([^:])')
     str = p.sub(translateClassRef, str)
     p = re.compile('(\W+)(\w+?)::(\w+\s*\([^)]*?\))')
     str = p.sub(translateMethodRef, str)
@@ -854,11 +854,11 @@ def translateCrossRefs (str):
 
 
 
-def translateSBMLFunctionRef (match):
+def translateLXFunctionRef (match):
   if language != 'java':
     return match.group(0)
 
-  # Group 1 is the contents inside @sbmlfunction{...}
+  # Group 1 is the contents inside @lxfunction{...}
   content = match.group(1)
 
   # Take out embedded comment continuation characters ('*') and line breaks.
@@ -882,16 +882,16 @@ def translateSBMLFunctionRef (match):
   p = re.compile(r'\b([\w.]+)\s+(\w+)\b')
   args_no_names = p.sub(r'\1', args_with_names)
 
-  # Convert libSBML and Java plain type names to fully qualified ones.
+  # Convert libLX and Java plain type names to fully qualified ones.
   common_java_classes = ['String', 'Object']
 
-  p = re.compile(r'\b(' + '|'.join(libsbml_classes) + r')\b', re.DOTALL)
-  expanded_args = p.sub(r'org.sbml.libsbml.\1', args_no_names)
+  p = re.compile(r'\b(' + '|'.join(liblx_classes) + r')\b', re.DOTALL)
+  expanded_args = p.sub(r'org.sbml.liblx.\1', args_no_names)
   p = re.compile(r'\b(' + '|'.join(common_java_classes) + r')\b', re.DOTALL)
   expanded_args = p.sub(r'java.lang.\1', expanded_args)
 
-  return '<a href="libsbml.html#' \
-    + function_name + '(' + expanded_args + ')"><code>libsbml.' \
+  return '<a href="liblx.html#' \
+    + function_name + '(' + expanded_args + ')"><code>liblx.' \
     + function_name + '(' + args_with_names + ')</code></a>'
 
 
@@ -965,9 +965,9 @@ def rewriteEnumLink (match):
   print_name = match.group(3)
 
   if language == 'java':
-    return '{@link libsbmlConstants#' + target + ' ' + print_name + '}'
+    return '{@link liblxConstants#' + target + ' ' + print_name + '}'
   elif language == 'python' or language == 'csharp':
-    return '@link libsbml#' + target + ' ' + print_name + '@endlink'
+    return '@link liblx#' + target + ' ' + print_name + '@endlink'
   else:
     return match.group(0)
 
@@ -982,14 +982,14 @@ def rewriteCommonReferences (docstring):
   # For some languages, we don't have separate types like ASTNode_t.
   # They're just values on a single global class.  So, remove the type names.
 
-  enums = [item for item in libsbml_classes if item.endswith('_t')]
+  enums = [item for item in liblx_classes if item.endswith('_t')]
   docstring = re.sub(r'(\b' + r'\b|\b'.join(enums) + r'\b)#', '#', docstring)
 
   # Handle references to enumerations and #define constants.  (Make sure to
   # run rewriteConstantLink before rewriteEnumLink, because the former relies
   # on the latter expanding the links it creates.)
 
-  p = re.compile('@sbmlconstant{([^}]+?)}')
+  p = re.compile('@lxconstant{([^}]+?)}')
   docstring = p.sub(rewriteConstantLink, docstring)
   p = re.compile('@link\s*\*?\s+(\w+)?#(\w+)\s*\*?\s+(\w+)\s*@endlink')
   docstring = p.sub(rewriteEnumLink, docstring)
@@ -1097,7 +1097,7 @@ def sanitizeForHTML (docstring):
   # manually create cross-links just for the Java case, let's automate.
 
   if language == 'java' or language == 'csharp':
-    listOfSegments = re.split('(@sbml(global)?function{[^}]+?})', docstring)
+    listOfSegments = re.split('(@lx(global)?function{[^}]+?})', docstring)
     reconstructed = ''
     for segment in listOfSegments:
       reconstructed += translateCrossRefs(segment)
@@ -1147,10 +1147,10 @@ def sanitizeForHTML (docstring):
 
   docstring = re.sub(r'([\s(>."])%(\w)', r'\1\2', docstring)
 
-  # Currently, we don't handle @ingroup or our pseudo-tag, @sbmlpackage.
+  # Currently, we don't handle @ingroup or our pseudo-tag, @lxpackage.
 
   docstring = re.sub(r'@ingroup \w+', '', docstring)
-  docstring = re.sub(r'@sbmlpackage{\w+}', '', docstring)
+  docstring = re.sub(r'@lxpackage{\w+}', '', docstring)
 
   return docstring
 
@@ -1197,7 +1197,7 @@ def rewriteDocstringForJava (docstring):
 
   # Also use Java syntax instead of "const XMLNode*" etc.
 
-  p = re.compile(r'(const )?(|%)?(' + '|'.join(libsbml_classes) + r')( ?)(\*|&)', re.DOTALL)
+  p = re.compile(r'(const )?(|%)?(' + '|'.join(liblx_classes) + r')( ?)(\*|&)', re.DOTALL)
   docstring = p.sub(rewriteClassRef, docstring)
 
   # Remove other cases of "const", with special attention to trailing "const"
@@ -1310,7 +1310,7 @@ def rewriteDocstringForCSharp (docstring):
 
   # Use C# syntax instead of "const XMLNode*" etc.
 
-  p = re.compile(r'(const )?(|%)?(' + '|'.join(libsbml_classes) + r')( ?)(\*|&)', re.DOTALL)
+  p = re.compile(r'(const )?(|%)?(' + '|'.join(liblx_classes) + r')( ?)(\*|&)', re.DOTALL)
   docstring = p.sub(rewriteClassRef, docstring)
 
   # Remove other cases of "const", with special attention to trailing "const"
@@ -1324,13 +1324,13 @@ def rewriteDocstringForCSharp (docstring):
 
   # Do replacements on some documentation text we sometimes use.
 
-  p = re.compile(r'libsbmlConstants([@.])')
-  docstring = p.sub(r'libsbml.libsbml\1', docstring)
+  p = re.compile(r'liblxConstants([@.])')
+  docstring = p.sub(r'liblx.liblx\1', docstring)
 
   # Fix @link for constants that we forgot conditionalize in the source.
 
   p = re.compile(r'@link +([A-Z_0-9]+?)@endlink', re.DOTALL)
-  docstring = p.sub(r'@link libsbml.\1@endlink', docstring)
+  docstring = p.sub(r'@link liblx.\1@endlink', docstring)
 
   # Can't use math symbols.  Kluge around it.
 
@@ -1340,8 +1340,8 @@ def rewriteDocstringForCSharp (docstring):
 
   # Some additional special cases.
 
-  docstring = docstring.replace(r'SBML_formulaToString()', 'libsbml.formulaToString()')
-  docstring = docstring.replace(r'SBML_parseFormula()', 'libsbml.parseFormula()')
+  docstring = docstring.replace(r'LX_formulaToString()', 'liblx.formulaToString()')
+  docstring = docstring.replace(r'LX_parseFormula()', 'liblx.parseFormula()')
 
   # Need to escape the quotation marks:
 
@@ -1407,7 +1407,7 @@ def rewriteDocstringForPython (docstring):
 
   # Also use Python syntax instead of "const XMLNode*" etc.
 
-  p = re.compile(r'(const )?(|%)?(' + '|'.join(libsbml_classes) + r')( ?)(\*|&)', re.DOTALL)
+  p = re.compile(r'(const )?(|%)?(' + '|'.join(liblx_classes) + r')( ?)(\*|&)', re.DOTALL)
   docstring = p.sub(rewriteClassRef, docstring)
 
   # Remove other cases of "const", with special attention to trailing "const"
@@ -1490,7 +1490,7 @@ def rewriteDocstringForPerl (docstring):
 def defaultParameterValueNote(argstring):
   if re.search(' = ', argstring) != None:
     return "\n\n@note Owing to the way that language interfaces are"\
-      + " created in libSBML, this documentation may show"\
+      + " created in libLX, this documentation may show"\
       + " methods that define default values for parameters"\
       + " with text that has the form"\
       + " <nobr><i><code>parameter</code></i> = <i><code>value</code></i></nobr>."\
@@ -1590,7 +1590,7 @@ def formatMethodDocString (methodname, classname, docstring, isInternal, args=No
     else:
       post = ' public'
     if isInternal:
-      post = ' /* libsbml-internal */' + post
+      post = ' /* liblx-internal */' + post
   elif language == 'perl':
     pre  = '=item'
     post = ''
@@ -1769,8 +1769,8 @@ def postProcessOutput(istream, ostream):
 # Top-level main function and command-line argument parser.
 #
 
-__desc_end = '''This file is part of libSBML.  Please visit http://sbml.org for
-more information about SBML, and the latest version of libSBML.'''
+__desc_end = '''This file is part of libLX.  Please visit http://sbml.org for
+more information about LX, and the latest version of libLX.'''
 
 def parse_cmdline(direct_args = None):
     parser = argparse.ArgumentParser(epilog=__desc_end)
@@ -1785,7 +1785,7 @@ def parse_cmdline(direct_args = None):
     parser.add_argument("-o", "--output", required=True,
                         help="output file to write SWIG docstrings")
     parser.add_argument("-t", "--top", required=True,
-                        help="path to top of libSBML source directory")
+                        help="path to top of libLX source directory")
     return parser.parse_args(direct_args)
 
 
@@ -1832,7 +1832,7 @@ def main (args):
   global doc_include_path
   global header_files
   global language
-  global libsbml_classes
+  global liblx_classes
   global preprocessor_defines
 
   args                  = parse_cmdline()
@@ -1865,13 +1865,13 @@ def main (args):
 
   swig_files       = get_swig_files(main_swig_file)
   header_files     = get_header_files(swig_files, h_include_path)
-  libsbml_classes  = libsbmlutils.find_classes(header_files)
-  libsbml_classes.extend(libsbmlutils.find_classes(swig_files, swig_too=True))
+  liblx_classes  = liblxutils.find_classes(header_files)
+  liblx_classes.extend(liblxutils.find_classes(swig_files, swig_too=True))
 
   try:
-    libsbml_classes = sorted(list(set(libsbml_classes)))
+    liblx_classes = sorted(list(set(liblx_classes)))
   except (NameError,):
-    libsbml_classes.sort()
+    liblx_classes.sort()
   except (Exception,):
     e = sys.exc_info()[1]
     pass
@@ -1879,10 +1879,10 @@ def main (args):
   # Now, do the main processing pass, writing the output as we go along.
 
   if language == 'perl':
-    if (os.path.exists(os.path.abspath('LibSBML.txt'))):
-      infile = open(os.path.abspath('LibSBML.txt'), 'r')
+    if (os.path.exists(os.path.abspath('LibLX.txt'))):
+      infile = open(os.path.abspath('LibLX.txt'), 'r')
     else:
-      infile = open(h_include_path + '/bindings/perl/LibSBML.txt', 'r')
+      infile = open(h_include_path + '/bindings/perl/LibLX.txt', 'r')
     stream.write(infile.read())
     stream.write('=head1 FUNCTION INDEX\n\n=over 8\n\n')
 

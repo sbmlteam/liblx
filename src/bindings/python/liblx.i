@@ -1,11 +1,11 @@
 /**
  * @file    libsbml.i
  * @brief   Ben Bornstein
- * @author  Python-specific SWIG directives for wrapping libSBML API
+ * @author  Python-specific SWIG directives for wrapping libLX API
  * 
  *<!---------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2020 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,5 +39,5 @@
  * and also available online as http://sbml.org/software/libsbml/license.html
  *----------------------------------------------------------------------- -->*/
 
-%include "../swig/libsbml.i"
+%include "../swig/liblx.i"
 
