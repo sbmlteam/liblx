@@ -48,7 +48,8 @@
 %feature("autodoc", "1");
 %include "pydoc.i"
 
-%include "local-contrib.i"
+// There is a copy of the below as libsbml/src/bindings/python/local-contrib.i
+//%include "local-contrib.i"
 
 
 /**
@@ -208,6 +209,7 @@ namespace std
  *
  *   - To be indexed and sliced, e.g. lst[0].
  */
+/*
 %extend ListOf
 {
   int __len__()
@@ -261,7 +263,7 @@ namespace std
       return repr(self)
   }
 }
-
+*/
 
 
 /**
@@ -360,16 +362,16 @@ XMLOutputStream::writeAttribute
 }
 %enddef
 
-SWIGPYTHON__CMP__(SBase)
-SWIGPYTHON__CMP__(SBasePlugin)
+//SWIGPYTHON__CMP__(SBase)
+//SWIGPYTHON__CMP__(SBasePlugin)
 SWIGPYTHON__CMP__(LXExtension)
 SWIGPYTHON__CMP__(LXWriter)
 SWIGPYTHON__CMP__(LXReader)
-SWIGPYTHON__CMP__(ASTNode)
-SWIGPYTHON__CMP__(CVTerm)
-SWIGPYTHON__CMP__(Date)
-SWIGPYTHON__CMP__(ModelHistory)
-SWIGPYTHON__CMP__(ModelCreator)
+//SWIGPYTHON__CMP__(ASTNode)
+//SWIGPYTHON__CMP__(CVTerm)
+//SWIGPYTHON__CMP__(Date)
+//SWIGPYTHON__CMP__(ModelHistory)
+//SWIGPYTHON__CMP__(ModelCreator)
 SWIGPYTHON__CMP__(XMLNamespaces)
 SWIGPYTHON__CMP__(LXNamespaces)
 SWIGPYTHON__CMP__(XMLAttributes)
@@ -866,13 +868,13 @@ def readLX(*args):
 }
 
 %enddef
-
+/*
 WRAP_LISTWRAPPER(LXNamespaces)
 WRAP_LISTWRAPPER(CVTerm)
 WRAP_LISTWRAPPER(Date)
 WRAP_LISTWRAPPER(ModelCreator)
 WRAP_LISTWRAPPER(SBase)
-
+*/
 
 /**
  *  Wraps the following functions by using the corresponding

@@ -34,8 +34,8 @@
  * and also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#include <liblx/common/libsbml-version.h>
-#include <liblx/common/operationReturnValues.h>
+#include <liblx/xml/common/liblx-version.h>
+#include <liblx/xml/operationReturnValues.h>
 
 /*#include <liblx/util/IdList.h>
 #include <liblx/util/IdentifierTransformer.h>
@@ -142,5 +142,5 @@
 /*
 #include <liblx/util/CallbackRegistry.h>
 */
-#include "ListWrapper.h"
+//#include "ListWrapper.h"
 

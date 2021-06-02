@@ -50,13 +50,13 @@
 // apply typemaps for items we manage manually
 %include "typemaps.i"
 
-%apply SWIGTYPE *DISOWN { SBase* disownedItem };
-%apply SWIGTYPE *DISOWN { SBase_t* disownedItem };
+//%apply SWIGTYPE *DISOWN { SBase* disownedItem };
+//%apply SWIGTYPE *DISOWN { SBase_t* disownedItem };
 %apply SWIGTYPE *DISOWN { XMLNode* disownedAnnotation };
 %apply SWIGTYPE *DISOWN { XMLNode_t* disownedAnnotation };
-%apply SWIGTYPE *DISOWN { ASTNode* disownedChild };
-%apply SWIGTYPE *DISOWN { ASTNode_t* disownedChild };
-%apply SWIGTYPE *DISOWN { LXNamespaces* disownedNs };
+//%apply SWIGTYPE *DISOWN { ASTNode* disownedChild };
+//%apply SWIGTYPE *DISOWN { ASTNode_t* disownedChild };
+//%apply SWIGTYPE *DISOWN { LXNamespaces* disownedNs };
 
 #endif 
 
@@ -92,10 +92,10 @@ LIBLX_CPP_NAMESPACE_USE
 #include "local.cpp"
 %}
 
-%import  lx/common/liblx-namespace.h
-%import  lx/common/extern.h
-%import  lx/common/lxfwd.h
-%import  lx/xml/XMLExtern.h
+%import  liblx/xml/common/liblx-namespace.h
+%import  liblx/xml/common/extern.h
+%import  liblx/xml/common/liblxfwd.h
+//%import  lx/xml/XMLExtern.h    // do we still need this? not present in libLX now.
 
 /**
  * Wraps List class by ListWrapper<TYPENAME> template class.
@@ -106,7 +106,7 @@ LIBLX_CPP_NAMESPACE_USE
  * (e.g. ListWrapper<CVTerm> -> CVTermList)
  *
  */
-
+/*
 %include "ListWrapper.h"
 %template(ModelCreatorList)   ListWrapper<ModelCreator>;
 %template(DateList)           ListWrapper<Date>;
@@ -114,6 +114,7 @@ LIBLX_CPP_NAMESPACE_USE
 %template(ASTNodeList)        ListWrapper<ASTNode>;
 %template(LXNamespacesList) ListWrapper<LXNamespaces>;
 %template(SBaseList)          ListWrapper<SBase>;
+*/
 
 /**
  *
@@ -388,7 +389,7 @@ LIBLX_CPP_NAMESPACE_USE
  */
 
 %typemap(newfree) char * "free($1);";
-
+/*
 %newobject *::clone;
 %newobject removeChildObject;
 %newobject SBase::toLX;
@@ -450,10 +451,13 @@ LIBLX_CPP_NAMESPACE_USE
 %newobject RDFAnnotationParser::createCVTerms;
 %newobject XMLNode::removeChild;
 %newobject XMLNode::convertStringToXMLNode;
+*/
+
+/*
 %newobject Unit::convertToSI;
 %newobject UnitDefinition::convertToSI;
 %newobject UnitDefinition::combine;
-
+*/
 /**
  * We can't currently support attaching arbitrary user data to
  * libLX objects.
@@ -490,6 +494,7 @@ LIBLX_CPP_NAMESPACE_USE
 %ignore SBase::getAllElements;
 %ignore Model::renameIDs(List* elements, IdentifierTransformer* idTransformer);
 
+/*
 %extend Model
 {
    void renameIDs(ListWrapper<SBase>* elements, IdentifierTransformer *idTransformer)
@@ -500,6 +505,7 @@ LIBLX_CPP_NAMESPACE_USE
 		$self->renameIDs(list, idTransformer);
    }
 }
+*/
 
 /*
  * Docstring additions using SWIG's %feature("docstring") have to come before
@@ -765,16 +771,18 @@ as a comment in the output stream.
  */
 
 %include "std_string.i"
-
+/*
 %include lx/common/liblx-version.h
 %include lx/common/operationReturnValues.h
 %include lx/common/common-documentation.h
 %include lx/common/common-lxerror-codes.h
-
+*/
+/*
 %include <lx/util/IdList.h>
 %include <lx/util/IdentifierTransformer.h>
 %include <lx/util/ElementFilter.h>
-
+*/
+/*
 %include <lx/LXReader.h>
 %include lx/LXWriter.h
 %include lx/LXTypeCodes.h
@@ -814,7 +822,8 @@ as a comment in the output stream.
 %include lx/LXNamespaces.h
 %include lx/LXTransforms.h
 %include lx/LXConstructorException.h
-
+*/
+/*
 %include lx/conversion/ConversionOption.h
 %include lx/conversion/ConversionProperties.h
 %include lx/conversion/LXConverter.h
@@ -830,30 +839,33 @@ as a comment in the output stream.
 %include lx/conversion/LXRuleConverter.h
 %include lx/conversion/LXStripPackageConverter.h
 %include lx/conversion/LXUnitsConverter.h
-
+*/
+/*
 %include lx/validator/LXValidator.h
 %include lx/validator/LXExternalValidator.h
+*/
+%include liblx/xml/XMLAttributes.h
+%include liblx/xml/XMLConstructorException.h
+%include liblx/xml/XMLNamespaces.h
+%include liblx/xml/XMLToken.h
+%include liblx/xml/XMLNode.h
+%include liblx/xml/XMLTriple.h
+%include liblx/xml/XMLOutputStream.h
+%include liblx/xml/XMLInputStream.h
+%include liblx/xml/XMLError.h
+%include liblx/xml/XMLErrorLog.h
 
-%include lx/xml/XMLAttributes.h
-%include lx/xml/XMLConstructorException.h
-%include lx/xml/XMLNamespaces.h
-%include lx/xml/XMLToken.h
-%include lx/xml/XMLNode.h
-%include lx/xml/XMLTriple.h
-%include lx/xml/XMLOutputStream.h
-%include lx/xml/XMLInputStream.h
-%include lx/xml/XMLError.h
-%include lx/xml/XMLErrorLog.h
+//%include liblx/LXErrorLog.h
+%include liblx/xml/LibLXError.h
 
-%include lx/LXErrorLog.h
-%include lx/LXError.h
-
+/*
 %include lx/annotation/CVTerm.h
 %include lx/annotation/Date.h
 %include lx/annotation/ModelCreator.h
 %include lx/annotation/ModelHistory.h
 %include lx/annotation/RDFAnnotationParser.h
-
+*/
+/*
 %include lx/extension/ILXExtensionNamespaces.h
 %include lx/extension/SBaseExtensionPoint.h
 %include lx/extension/SBasePlugin.h
@@ -862,9 +874,11 @@ as a comment in the output stream.
 %include lx/extension/LXExtensionException.h
 %include lx/extension/LXExtensionNamespaces.h
 %include lx/extension/LXExtensionRegistry.h
-
+*/
+/*
 %include lx/util/CallbackRegistry.h
+*/
 
-%include ASTNodes.i
+//%include ASTNodes.i
 
-%include "../swig/liblx-packages.i"
+//%include "../swig/liblx-packages.i"

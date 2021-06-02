@@ -42,11 +42,12 @@
  * ---------------------------------------------------------------------- -->*/
 
 #include <cstddef>
-#include "liblx/SBase.h"
+//#include "liblx/SBase.h"
 
 /**
  * @return the most specific Swig type for the given LXExtension object.
  */
+ /*
 struct swig_type_info*
 GetDowncastSwigType (LXExtension* se)
 {
@@ -58,10 +59,11 @@ GetDowncastSwigType (LXExtension* se)
 
 	return SWIGTYPE_p_LXExtension;
 }
-
+*/
 /**
  * @return the most specific Swig type for the given LXConverter object.
  */
+ /*
 struct swig_type_info*
 GetDowncastSwigType (LXConverter* con)
 {
@@ -94,10 +96,11 @@ GetDowncastSwigType (LXConverter* con)
 	   
 	return SWIGTYPE_p_LXConverter;
 }
-
+*/
 /**
  * @return the most specific Swig type for the given LXNamespaces object.
  */
+ /*
 struct swig_type_info*
 GetDowncastSwigType (LXNamespaces* se)
 {
@@ -109,10 +112,11 @@ GetDowncastSwigType (LXNamespaces* se)
 
 	return SWIGTYPE_p_LXNamespaces;
 }
-
+*/
 /**
  * @return the most specific Swig type for the given SBasePlugin object.
  */
+ /*
 struct swig_type_info*
 GetDowncastSwigType (SBasePlugin* sbp)
 {
@@ -129,14 +133,15 @@ GetDowncastSwigType (SBasePlugin* sbp)
 
   return SWIGTYPE_p_SBasePlugin;
 }
+*/
 
-
-struct swig_type_info*
-GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName);
+//struct swig_type_info*
+//GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName);
 
 /**
  * @return the most specific Swig type for the given SBase object.
  */
+/*
 struct swig_type_info*
 GetDowncastSwigType (SBase* sb)
 {
@@ -144,9 +149,11 @@ GetDowncastSwigType (SBase* sb)
   const std::string pkgName = sb->getPackageName();
   return GetDowncastSwigTypeForPackage(sb, pkgName);
 }
+*/
 /**
  * @return the most specific Swig type for the given SBase object.
  */
+/*
 struct swig_type_info*
 GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName)
 {
@@ -309,11 +316,12 @@ GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName)
   
   return SWIGTYPE_p_SBase;
 }
-
+*/
 
 /**
  * @return the most specific Swig type for the given ASTBasePlugin object.
  */
+/*
 struct swig_type_info*
 GetDowncastSwigType (ASTBasePlugin* sbp)
 {
@@ -325,7 +333,7 @@ GetDowncastSwigType (ASTBasePlugin* sbp)
 
   return SWIGTYPE_p_ASTBasePlugin;
 }
-
+*/
 
 
 /* Compatibility bug fix for swig 2.0.7 and Python 3. 
