@@ -43,7 +43,7 @@ import os, sys, re
 from os.path import join
 sys.path.append('../../../src/bindings/swig')
 sys.path.append('../../src/bindings/swig')
-from libsbmlutils import find_classes
+from liblxutils import find_classes
 
 
 def main(args):
