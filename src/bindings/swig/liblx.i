@@ -36,13 +36,13 @@
 
 %module(directors="1") liblx
 
-%feature("director") LXValidator;
-%feature("director") LXConverter;
-%feature("director") ElementFilter;
-%feature("director") MathFilter;
-%feature("director") IdentifierTransformer;
-%feature("director") Callback;
-%ignore IdentifierTransformer::transform(const SBase* element);
+//%feature("director") LXValidator;
+//%feature("director") LXConverter;
+//%feature("director") ElementFilter;
+//%feature("director") MathFilter;
+//%feature("director") IdentifierTransformer;
+//%feature("director") Callback;
+//%ignore IdentifierTransformer::transform(const SBase* element);
 
 #pragma SWIG nowarn=473,401,844
 
@@ -91,6 +91,8 @@ LIBLX_CPP_NAMESPACE_USE
 	
 #include "local.cpp"
 %}
+
+%include "liblx.h"
 
 %import  liblx/xml/common/liblx-namespace.h
 %import  liblx/xml/common/extern.h
@@ -142,23 +144,24 @@ LIBLX_CPP_NAMESPACE_USE
 /**
  * Ignore internal implementation methods in ASTNode.h
  */
+ /*
 %ignore ASTNode(Token_t*);
 %ignore ASTNode::getListOfNodes(ASTNodePredicate predicate) const;
 %ignore ASTNode::fillListOfNodes;
 %ignore ASTNode::setSemanticsFlag;
 %ignore ASTNode::unsetSemanticsFlag;
 %ignore ASTNode::getSemanticsFlag;
-
+*/
 /**
  * Ignore the list that can't be wrapped
  */
-%ignore LXExtensionRegistry::getRegisteredPackageNames;
+//%ignore LXExtensionRegistry::getRegisteredPackageNames;
 
 /**
  * SWIG makes no distinction between int and long arguments.
  * (SWIG 1.3 Manual, Section 6.15.2)
  */
-%ignore ASTNode::setValue(int);
+//%ignore ASTNode::setValue(int);
 
 /**
  * Ignore operator= and operator<< on all LX objects.
@@ -181,8 +184,8 @@ LIBLX_CPP_NAMESPACE_USE
 /**
  * Ignore internal implementation methods in MathML.h
  */
-%ignore readMathML;
-%ignore writeMathML;
+//%ignore readMathML;
+//%ignore writeMathML;
 
 /**
  * Ignore methods whose pointer argument serves as both input and output
@@ -193,20 +196,20 @@ LIBLX_CPP_NAMESPACE_USE
  * Ignore methods which receive std::list.
  */
 %ignore XMLErrorLog::add(const std::list<XMLError>& errors);
-%ignore LXErrorLog::add(const std::list<LXError>& errors);
-%ignore LXErrorLog::add(const std::vector<LXError>& errors);
+//%ignore LXErrorLog::add(const std::list<LXError>& errors);
+%ignore XMLErrorLog::add(const std::vector<XMLError>& errors);
 
 /**
  * Ignore methods from LX Validator that can't be wrapped
  */
-%ignore LXValidator::getFailures;
-%ignore LXExternalValidator::getArguments;
-%ignore LXExternalValidator::setArguments;
+//%ignore LXValidator::getFailures;
+//%ignore LXExternalValidator::getArguments;
+//%ignore LXExternalValidator::setArguments;
 
 /**
  * Ignore 'static ParentMap mParent;' in SBO.h
  */
-%ignore mParent;
+//%ignore mParent;
 
 /**
  * Ignore 'struct xmlErrorTableEntry' in XMLError.h.
@@ -220,22 +223,23 @@ LIBLX_CPP_NAMESPACE_USE
  * target language string.
  * So we ignore the non-const version.
  */
-%ignore SBase::getMetaId();
+//%ignore SBase::getMetaId();
 
 /**
  * Ignore internal methods on SBase
  */
 //ignore SBase::removeDuplicateAnnotations;
-%ignore SBase::setLXNamespaces;
+//%ignore SBase::setLXNamespaces;
 //%ignore SBase::getLXNamespaces;
 //%ignore SBase::read;
-%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::read;
+//%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::read;  // ???
 //%ignore SBase::write;
-%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::write;
+//%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::write; // ???
 
 /**
  * Ignore internal methods on Model
  */
+ /*
 %ignore Model::addFormulaUnitsData;
 %ignore Model::createFormulaUnitsData;
 %ignore Model::getFormulaUnitsData;
@@ -252,22 +256,23 @@ LIBLX_CPP_NAMESPACE_USE
 %ignore Model::convertToL2V1;
 %ignore Model::convertToL2V2;
 %ignore Model::convertToL2Strict;
-
+*/
 /**
  * Ignore internal implementation methods in Rule
  */
+/*
 %ignore Rule::setInternalIdOnly;
 %ignore Rule::getInternalIdOnly;
-
+*/
 /**
  * Ignore internal implementation methods in SpeciesReference
  */
-%ignore SpeciesReference::sortMath;
+//%ignore SpeciesReference::sortMath;
 
 /**
  * Ignore internal implementation methods in UnitDefinition
  */
-%ignore UnitDefinition::areIdenticalSIUnits;
+//%ignore UnitDefinition::areIdenticalSIUnits;
 
 /**
  * Ignore internal implementation methods in XMLAttributes
@@ -279,13 +284,13 @@ LIBLX_CPP_NAMESPACE_USE
 /**
  * Ignore internal implementation methods in Event
  */
-%ignore Event::setInternalIdOnly;
+//%ignore Event::setInternalIdOnly;
 
 /**
  * Ignore internal implementation methods in SBO
  */
-%ignore SBO::readTerm;
-%ignore SBO::writeTerm;
+//%ignore SBO::readTerm;
+//%ignore SBO::writeTerm;
 
 /**
  * With the new Validator API we no longer exclude the following 
@@ -308,11 +313,12 @@ LIBLX_CPP_NAMESPACE_USE
 /**
  * Ignore internal implementation methods in ModelCreator
  */
-%ignore ModelCreator::getAdditionalRDF;
+//%ignore ModelCreator::getAdditionalRDF;
 
 /**
  * Ignore internal implementation methods in RDFAnnotationParser
  */
+/*
 %ignore RDFAnnotationParser::hasRDFAnnotation;
 %ignore RDFAnnotationParser::hasAdditionalRDFAnnotation;
 %ignore RDFAnnotationParser::hasCVTermRDFAnnotation;
@@ -322,19 +328,20 @@ LIBLX_CPP_NAMESPACE_USE
 %ignore RDFAnnotationParser::createRDFDescriptionWithHistory;
 %ignore RDFAnnotationParser::deriveCVTermsFromAnnotation;
 %ignore RDFAnnotationParser::deriveHistoryFromAnnotation;
-
+*/
 /**
  * Ignore internal implementation methods in SyntaxChecer
  */
+/*
 %ignore SyntaxChecker::isAllowedElement;
 %ignore SyntaxChecker::hasDeclaredNS;
 %ignore SyntaxChecker::isCorrectHTMLNode;
-
+*/
 /** 
  * Ignore some const versions of methods
  */
-%ignore LXConverter::setDocument(LXDocument const *);
-%ignore LXReactionConverter::setDocument(LXDocument const *);
+//%ignore LXConverter::setDocument(LXDocument const *);
+//%ignore LXReactionConverter::setDocument(LXDocument const *);
 
 
 /**
@@ -349,9 +356,9 @@ LIBLX_CPP_NAMESPACE_USE
  * Ignore internal implementation methods and some other methods
  * on LXTransforms.
  */
-%ignore LXTransforms::evaluateASTNode(const ASTNode * node, const IdValueMap& values, const Model * m = NULL);
-%ignore LXTransforms::evaluateASTNode(const ASTNode * node, const std::map<std::string, double>& values, const Model * m = NULL);
-%ignore LXTransforms::getComponentValuesForModel(const Model * m, IdValueMap& values);
+//%ignore LXTransforms::evaluateASTNode(const ASTNode * node, const IdValueMap& values, const Model * m = NULL);
+//%ignore LXTransforms::evaluateASTNode(const ASTNode * node, const std::map<std::string, double>& values, const Model * m = NULL);
+//%ignore LXTransforms::getComponentValuesForModel(const Model * m, IdValueMap& values);
 
 /**
  * Ignore internal implementation methods in XMLToken
@@ -361,7 +368,7 @@ LIBLX_CPP_NAMESPACE_USE
 /**
  * Ignore internal implementation methods in XMLNode
  */
-//%ignore XMLNode::XMLNode(XMLInputStream&);
+%ignore XMLNode::XMLNode(XMLInputStream&);  // ???
 %ignore XMLNode::write;
 
 /**
@@ -449,9 +456,10 @@ LIBLX_CPP_NAMESPACE_USE
 %newobject RDFAnnotationParser::createAnnotation;
 %newobject RDFAnnotationParser::createRDFDescription;
 %newobject RDFAnnotationParser::createCVTerms;
+*/
 %newobject XMLNode::removeChild;
 %newobject XMLNode::convertStringToXMLNode;
-*/
+
 
 /*
 %newobject Unit::convertToSI;
@@ -471,6 +479,7 @@ LIBLX_CPP_NAMESPACE_USE
  *  - liblx.formulaToString()
  *  - liblx.parseFormula()
  */
+/*
 %rename(formulaToL3String) LX_formulaToL3String;
 %rename(formulaToL3StringWithSettings) LX_formulaToL3StringWithSettings;
 %rename(formulaToString) LX_formulaToString;
@@ -480,7 +489,7 @@ LIBLX_CPP_NAMESPACE_USE
 %rename(parseL3FormulaWithSettings)    LX_parseL3FormulaWithSettings;
 %rename(getDefaultL3ParserSettings)    LX_getDefaultL3ParserSettings;
 %rename(getLastParseL3Error)    LX_getLastParseL3Error;
-
+*/
 /**
  *
  * wraps "List* ASTNode::getListOfNodes(ASTNodePredicate)" function
@@ -488,12 +497,12 @@ LIBLX_CPP_NAMESPACE_USE
  * which returns a list of all ASTNodes.
  *
  */
-
+/*
 %ignore SBase::getAllElementsFromPlugins;
 %ignore SBasePlugin::getAllElements;
 %ignore SBase::getAllElements;
 %ignore Model::renameIDs(List* elements, IdentifierTransformer* idTransformer);
-
+*/
 /*
 %extend Model
 {
@@ -515,13 +524,16 @@ LIBLX_CPP_NAMESPACE_USE
  * GitHub where they had problems with missing doc strings.
  */
 #ifndef SWIGRUBY
+/*
 %feature("docstring") SBasePlugin::getListOfAllElements "
 Returns an SBaseList of all child SBase objects, including those
 nested to an arbitrary depth.
 
 @return a list of all objects that are children of this object.
 ";
+*/
 #endif
+/*
 %extend SBasePlugin
 {
 	ListWrapper<SBase>* getListOfAllElements(ElementFilter* filter=NULL)
@@ -530,14 +542,18 @@ nested to an arbitrary depth.
 		return new ListWrapper<SBase>(list);
 	}
 }
+*/
 #ifndef SWIGRUBY
+/*
 %feature("docstring") SBase::getListOfAllElements "
 Returns an SBaseList of all child SBase objects, including those
 nested to an arbitrary depth.
 
 @return a list of all objects that are children of this object.
 ";
+*/
 #endif
+/*
 %extend SBase
 {
 	ListWrapper<SBase>* getListOfAllElements(ElementFilter* filter=NULL)
@@ -546,8 +562,10 @@ nested to an arbitrary depth.
 		return new ListWrapper<SBase>(list);
 	}
 }
+*/
 
 #ifndef SWIGRUBY
+/*
 %feature("docstring") SBase::getListOfAllElementsFromPlugins "
 Returns a List of all child SBase objects contained in LX package
 plug-ins.
@@ -562,7 +580,9 @@ plug-ins.
 
 @ifnot hasDefaultArgs @htmlinclude warn-default-args-in-docs.html @endif@~
 ";
+*/
 #endif
+/*
 %extend SBase
 {
 	ListWrapper<SBase>* getListOfAllElementsFromPlugins(ElementFilter* filter=NULL)
@@ -571,8 +591,9 @@ plug-ins.
 		return new ListWrapper<SBase>(list);
 	}
 }
+*/
 #ifndef SWIGRUBY
-
+/*
 %feature("docstring") ASTNode::getListOfNodes "
 Returns a list of nodes.
 
@@ -587,7 +608,9 @@ the caller is done using it.  The ASTNode objects in the list; however, are
 <strong>not</strong> owned by the caller (as they still belong to the tree
 itself), and therefore should not be deleted.
 ";
+*/
 #endif
+/*
 %extend ASTNode
 {
   ListWrapper<ASTNode>* getListOfNodes()
@@ -596,7 +619,7 @@ itself), and therefore should not be deleted.
     return new ListWrapper<ASTNode>(list);
   }
 }
-
+*/
 
 /*
  * Wraps "static void RDFAnnotationParser::parseRDFAnnotation(const XMLNode *annotation, 
@@ -606,11 +629,11 @@ itself), and therefore should not be deleted.
  *
  */
 
-%ignore RDFAnnotationParser::parseRDFAnnotation(const XMLNode * annotation, List * CVTerms);
-%ignore RDFAnnotationParser::parseRDFAnnotation(const XMLNode * annotation, List * CVTerms, const char* metaId = NULL, XMLInputStream* stream = NULL);
+//%ignore RDFAnnotationParser::parseRDFAnnotation(const XMLNode * annotation, List * CVTerms);
+//%ignore RDFAnnotationParser::parseRDFAnnotation(const XMLNode * annotation, List * CVTerms, const char* metaId = NULL, XMLInputStream* stream = NULL);
 
 #ifndef SWIGRUBY
-
+/*
 %feature("docstring") RDFAnnotationParser::parseRDFAnnotation "
 Parses an annotation (given as an XMLNode tree) into a list of
 CVTerm objects.
@@ -628,7 +651,10 @@ corresponding CVTerm (controlled vocabulary term) objects.
 
 @htmlinclude warn-default-args-in-docs.html
 ";
+*/
 #endif
+
+/*
 %extend RDFAnnotationParser
 {
   static void parseRDFAnnotation(const XMLNode *annotation, ListWrapper<CVTerm> *CVTerms)
@@ -647,7 +673,7 @@ corresponding CVTerm (controlled vocabulary term) objects.
     RDFAnnotationParser::parseRDFAnnotation(annotation,list, metaId, stream);
   }
 }
-
+*/
 
 /**
  * For reasons I cannot fathom, SWIG refuses to incorporate the comment for
@@ -658,7 +684,7 @@ corresponding CVTerm (controlled vocabulary term) objects.
  */
 
 #ifndef SWIGRUBY
-
+/*
 %feature("docstring") SBase::hasValidLevelVersionNamespaceCombination "
 Predicate returning @c true if this object's level/version and namespace
 values correspond to a valid LX specification.
@@ -677,7 +703,7 @@ release of libLX are the following:
 @return @c true if the level, version and namespace values of this 
 LX object correspond to a valid set of values, @c false otherwise.
 ";
-
+*/
 
 /*
  * If left as-is, the method descriptions for the constructors for
@@ -770,13 +796,13 @@ as a comment in the output stream.
  * Wrap these files.
  */
 
-%include "std_string.i"
-/*
-%include lx/common/liblx-version.h
-%include lx/common/operationReturnValues.h
-%include lx/common/common-documentation.h
-%include lx/common/common-lxerror-codes.h
-*/
+%include "std_string.i"     // ???
+
+%include liblx/xml/common/liblx-version.h
+//%include lx/common/operationReturnValues.h
+//%include lx/common/common-documentation.h
+//%include lx/common/common-lxerror-codes.h
+
 /*
 %include <lx/util/IdList.h>
 %include <lx/util/IdentifierTransformer.h>
@@ -819,10 +845,11 @@ as a comment in the output stream.
 %include lx/SBO.h
 %include lx/SyntaxChecker.h
 %include lx/StoichiometryMath.h
-%include lx/LXNamespaces.h
-%include lx/LXTransforms.h
-%include lx/LXConstructorException.h
 */
+%include liblx/xml/LibXMLNamespaces.h
+//%include lx/LXTransforms.h
+%include liblx/xml/XMLConstructorException.h
+
 /*
 %include lx/conversion/ConversionOption.h
 %include lx/conversion/ConversionProperties.h

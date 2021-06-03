@@ -34,113 +34,77 @@
  * and also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
+#include <liblx/xml/common/common.h>
+#include <liblx/xml/common/extern.h>
+#include <liblx/xml/common/liblx-config.h>
+#include <liblx/xml/common/liblx-namespace.h>
 #include <liblx/xml/common/liblx-version.h>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/xml/common/liblxfwd.h>
 
-/*#include <liblx/util/IdList.h>
-#include <liblx/util/IdentifierTransformer.h>
-#include <liblx/util/ElementFilter.h>*/
-/*
-#include <liblx/SBMLReader.h>
-#include <liblx/SBMLWriter.h>
-#include <liblx/UnitKind.h>
-#include <liblx/SBMLTypeCodes.h>
-#include <liblx/SBase.h>
-#include <liblx/ListOf.h>
-#include <liblx/Model.h>
-#include <liblx/SBMLDocument.h>
-#include <liblx/SBMLError.h>
-#include <liblx/SBMLErrorLog.h>
-#include <liblx/SBMLNamespaces.h>
-#include <liblx/FunctionDefinition.h>
-#include <liblx/Unit.h>
-#include <liblx/UnitDefinition.h>
-#include <liblx/CompartmentType.h>
-#include <liblx/SpeciesType.h>
-#include <liblx/Compartment.h>
-#include <liblx/Species.h>
-#include <liblx/Parameter.h>
-#include <liblx/LocalParameter.h>
-#include <liblx/InitialAssignment.h>
-#include <liblx/Rule.h>
-#include <liblx/AlgebraicRule.h>
-#include <liblx/AssignmentRule.h>
-#include <liblx/RateRule.h>
-#include <liblx/Constraint.h>
-#include <liblx/Reaction.h>
-#include <liblx/KineticLaw.h>
-#include <liblx/SimpleSpeciesReference.h>
-#include <liblx/SpeciesReference.h>
-#include <liblx/ModifierSpeciesReference.h>
-#include <liblx/Event.h>
-#include <liblx/EventAssignment.h>
-#include <liblx/Trigger.h>
-#include <liblx/Delay.h>
-#include <liblx/CompartmentType.h>
-#include <liblx/Constraint.h>
-#include <liblx/InitialAssignment.h>
-#include <liblx/SpeciesType.h>
-#include <liblx/SBO.h>
-#include <liblx/SyntaxChecker.h>
-#include <liblx/StoichiometryMath.h>
-#include <liblx/SBMLNamespaces.h>
-#include <liblx/SBMLTransforms.h>
-#include <liblx/SBMLConstructorException.h>
-*/
-/*
-#include <liblx/conversion/ConversionOption.h>
-#include <liblx/conversion/ConversionProperties.h>
-#include <liblx/conversion/SBMLConverter.h>
-#include <liblx/conversion/SBMLConverterRegistry.h>
-#include <liblx/conversion/SBMLFunctionDefinitionConverter.h>
-#include <liblx/conversion/SBMLIdConverter.h>
-#include <liblx/conversion/SBMLInferUnitsConverter.h>
-#include <liblx/conversion/SBMLInitialAssignmentConverter.h>
-#include <liblx/conversion/SBMLLevelVersionConverter.h>
-#include <liblx/conversion/SBMLLevel1Version1Converter.h>
-#include <liblx/conversion/SBMLLocalParameterConverter.h>
-#include <liblx/conversion/SBMLReactionConverter.h>
-#include <liblx/conversion/SBMLRuleConverter.h>
-#include <liblx/conversion/SBMLStripPackageConverter.h>
-#include <liblx/conversion/SBMLUnitsConverter.h>
-*/
-/*
-#include <liblx/validator/SBMLValidator.h>
-#include <liblx/validator/SBMLExternalValidator.h>
-*/
+#include <liblx/xml/compress/CompressCommon.h>
+#include <liblx/xml/compress/InputDecompressor.h>
+#include <liblx/xml/compress/OutputCompressor.h>
+#include <liblx/xml/compress/bzfstream.h>
+#include <liblx/xml/compress/crypt.h>
+#include <liblx/xml/compress/ioapi.h>
+#include <liblx/xml/compress/ioapi_mem.h>
+
+#ifdef WIN32
+    #include <liblx/xml/compress/iowin32.h>   // I guess we need this for Windows builds - it includes <windows.h>
+#endif
+
+#include <liblx/xml/compress/unzip.h>
+#include <liblx/xml/compress/zfstream.h>
+#include <liblx/xml/compress/zip.h>
+#include <liblx/xml/compress/zipfstream.h>
+
+#include <liblx/xml/LibLXError.h>
+
+#include <liblx/xml/operationReturnValues.h>
+#include <liblx/xml/sbmlMemoryStubs.h>
+
 #include <liblx/xml/XMLAttributes.h>
-#include <liblx/xml/XMLNamespaces.h>
+#include <liblx/xml/XMLBuffer.h>
 #include <liblx/xml/XMLConstructorException.h>
-#include <liblx/xml/XMLToken.h>
-#include <liblx/xml/XMLNode.h>
-#include <liblx/xml/XMLTriple.h>
-#include <liblx/xml/XMLInputStream.h>
-#include <liblx/xml/XMLOutputStream.h>
 #include <liblx/xml/XMLError.h>
 #include <liblx/xml/XMLErrorLog.h>
-#include <liblx/xml/XMLParser.h>
+#include <liblx/xml/XMLFileBuffer.h>
 #include <liblx/xml/XMLHandler.h>
+#include <liblx/xml/XMLInputStream.h>
+#include <liblx/xml/XMLLogOverride.h>
+#include <liblx/xml/XMLMemoryBuffer.h>
+#include <liblx/xml/XMLNamespaces.h>
+#include <liblx/xml/XMLNode.h>
+#include <liblx/xml/XMLOutputStream.h>
+#include <liblx/xml/XMLParser.h>
+#include <liblx/xml/XMLToken.h>
 #include <liblx/xml/XMLTokenizer.h>
+#include <liblx/xml/XMLTriple.h>
 
 /*
-#include <liblx/annotation/CVTerm.h>
-#include <liblx/annotation/Date.h>
-#include <liblx/annotation/ModelCreator.h>
-#include <liblx/annotation/ModelHistory.h>
-#include <liblx/annotation/RDFAnnotationParser.h>
+The default XML library used is WITH_LIBXML
+Want conditional compilation
 */
-/*
-#include <liblx/extension/ISBMLExtensionNamespaces.h>
-#include <liblx/extension/SBaseExtensionPoint.h>
-#include <liblx/extension/SBasePlugin.h>
-#include <liblx/extension/SBMLDocumentPlugin.h>
-#include <liblx/extension/SBMLExtension.h>
-#include <liblx/extension/SBMLExtensionException.h>
-#include <liblx/extension/SBMLExtensionNamespaces.h>
-#include <liblx/extension/SBMLExtensionRegistry.h>
-*/
-/*
-#include <liblx/util/CallbackRegistry.h>
-*/
-//#include "ListWrapper.h"
+#ifdef WITH_LIBXML
+    #include <liblx/xml/LibXMLAttributes.h>
+    #include <liblx/xml/LibXMLHandler.h>
+    #include <liblx/xml/LibXMLNamespaces.h>
+    #include <liblx/xml/LibXMLParser.h>
+    #include <liblx/xml/LibXMLTranscode.h>
+#endif
+#ifdef WITH_XERCES
+    #include <liblx/xml/XercesAttributes.h>
+    #include <liblx/xml/XercesHandler.h>
+    #include <liblx/xml/XercesNamespaces.h>
+    #include <liblx/xml/XercesParser.h>
+    #include <liblx/xml/XercesTranscode.h>
+#endif
+#ifdef WITH_EXPAT
+    #include <liblx/xml/ExpatAttributes.h>
+    #include <liblx/xml/ExpatHandler.h>
+    #include <liblx/xml/ExpatParser.h>
+#endif
+
+
+
 
