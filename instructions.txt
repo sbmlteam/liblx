@@ -77,3 +77,36 @@ Wed Jun  2 11:09:07 2021
 >>> print(example.fact(4))
 24
 >>>
+
+To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
+Because various Xerces files in src/liblx/xml #include files from there.
+LibXML appears to be fully present already
+Instructions at http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html
+> cd ~
+> mkdir xerces && cd xerces
+http://xml.apache.org/xerces-c/download.cgi
+e.g.:
+> wget https://www.mirrorservice.org/sites/ftp.apache.org//xerces/c/3/sources/xerces-c-3.2.3.tar.gz
+> shasum *.gz   # check the output is the same as on the xerces website download page
+> tar -xzf xerces-c-3.2.3.tar.gz
+> cd xerces-c-3.2.3
+> ./configure --prefix=/opt
+> make
+> sudo make install
+The include files are now in  /opt/include/xercesc, new applications in /opt/bin, and libraries in /opt/lib
+This will install development files such as include header files and libraries in "/opt" so compiler flags and linker flags are required:
+
+    Compiler flags: -I/opt/include         CXXFLAGS
+    Linker flags: -L/opt/lib -lxerces-c    LDFLAGS
+try: cmake command as above but with -I/opt/include -L/opt/lib -lxerces-c
+should be able to do this:
+cmake ... -DWITH_XERCES=TRUE  (or -DWITH_EXPAT or -DWITH_LIBXML)
+actually WITH_LIBXML is ON by default, so would need cmake ... -DWITH_XERCES=TRUE -DWITH_LIBXML=FALSE
+example of variables:
+${CMAKE_CURRENT_SOURCE_DIR} = /Users/matthewgillman/repos/libLX/liblx/src
+${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src
+
+Traceback (most recent call last):
+  File "/Users/matthewgillman/repos/libLX/liblx/build/src/bindings/python/generate-class-name-list.py", line 46, in <module>
+    from libsbmlutils import find_classes
+ModuleNotFoundError: No module named 'libsbmlutils'    should be liblxutils
