@@ -34,6 +34,8 @@
  * and also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
+#include <sstream>
+
 #include <liblx/xml/common/common.h>
 #include <liblx/xml/common/extern.h>
 #include <liblx/xml/common/liblx-config.h>
@@ -85,13 +87,13 @@
 The default XML library used is WITH_LIBXML
 Want conditional compilation
 */
-#ifdef WITH_LIBXML
+//#ifdef WITH_LIBXML <-- not getting picked up for some reason (with cmake -DWITH_LIBXML=TRUE)
     #include <liblx/xml/LibXMLAttributes.h>
     #include <liblx/xml/LibXMLHandler.h>
     #include <liblx/xml/LibXMLNamespaces.h>
     #include <liblx/xml/LibXMLParser.h>
     #include <liblx/xml/LibXMLTranscode.h>
-#endif
+//#endif
 #ifdef WITH_XERCES
     #include <liblx/xml/XercesAttributes.h>
     #include <liblx/xml/XercesHandler.h>

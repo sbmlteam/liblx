@@ -31,7 +31,7 @@
  * under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation.  A copy of the license agreement is provided
  * in the file named "LICENSE.txt" included with this software distribution
- * and also available online as http://lx.org/software/liblx/license.html
+ * and also available online as http://libsbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
 %module(directors="1") liblx
@@ -56,7 +56,7 @@
 %apply SWIGTYPE *DISOWN { XMLNode_t* disownedAnnotation };
 //%apply SWIGTYPE *DISOWN { ASTNode* disownedChild };
 //%apply SWIGTYPE *DISOWN { ASTNode_t* disownedChild };
-//%apply SWIGTYPE *DISOWN { LXNamespaces* disownedNs };
+%apply SWIGTYPE *DISOWN { XMLNamespaces* disownedNs };   // ???
 
 #endif 
 
@@ -84,10 +84,10 @@ public class"
 
 %{
 #include "liblx.h"
-
+#define SWIG_FILE_WITH_INIT
 LIBLX_CPP_NAMESPACE_USE
 
-#include "../swig/liblx-packages.h"
+// #include "../swig/liblx-packages.h"
 	
 #include "local.cpp"
 %}
@@ -108,13 +108,16 @@ LIBLX_CPP_NAMESPACE_USE
  * (e.g. ListWrapper<CVTerm> -> CVTermList)
  *
  */
+
+//%include "ListWrapper.h"
 /*
-%include "ListWrapper.h"
 %template(ModelCreatorList)   ListWrapper<ModelCreator>;
 %template(DateList)           ListWrapper<Date>;
 %template(CVTermList)         ListWrapper<CVTerm>;
 %template(ASTNodeList)        ListWrapper<ASTNode>;
-%template(LXNamespacesList) ListWrapper<LXNamespaces>;
+*/
+//%template(XMLNamespacesList) ListWrapper<XMLNamespaces>;
+/*
 %template(SBaseList)          ListWrapper<SBase>;
 */
 
@@ -232,9 +235,9 @@ LIBLX_CPP_NAMESPACE_USE
 //%ignore SBase::setLXNamespaces;
 //%ignore SBase::getLXNamespaces;
 //%ignore SBase::read;
-//%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::read;  // ???
+%catches(XMLConstructorException) XMLInputStream::XMLInputStream;  // ???
 //%ignore SBase::write;
-//%catches(LXConstructorException,LXExtensionException,XMLConstructorException,...) SBase::write; // ???
+//%catches(XMLConstructorException) SBase::write; // ???
 
 /**
  * Ignore internal methods on Model
@@ -330,7 +333,7 @@ LIBLX_CPP_NAMESPACE_USE
 %ignore RDFAnnotationParser::deriveHistoryFromAnnotation;
 */
 /**
- * Ignore internal implementation methods in SyntaxChecer
+ * Ignore internal implementation methods in SyntaxChecker
  */
 /*
 %ignore SyntaxChecker::isAllowedElement;

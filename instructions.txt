@@ -102,6 +102,9 @@ try: cmake command as above but with -I/opt/include -L/opt/lib -lxerces-c
 should be able to do this:
 cmake ... -DWITH_XERCES=TRUE  (or -DWITH_EXPAT or -DWITH_LIBXML)
 actually WITH_LIBXML is ON by default, so would need cmake ... -DWITH_XERCES=TRUE -DWITH_LIBXML=FALSE
+
+NB at the moment Expat and Xerces builds are failing as they still have some SBML stuff e.g. LIBSBML_CPP_NAMESPACE_END
+
 example of variables:
 ${CMAKE_CURRENT_SOURCE_DIR} = /Users/matthewgillman/repos/libLX/liblx/src
 ${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src

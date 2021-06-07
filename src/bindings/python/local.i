@@ -269,12 +269,13 @@ namespace std
 /**
  * Convert SBase, SimpleSpeciesReference and Rule objects into the most specific type possible.
  */
+ /*
 %typemap(out) SBase*, SimpleSpeciesReference*, Rule*, SBasePlugin*, LXExtension*, LXNamespaces*, LXConverter*, Reaction*
 {
   $result = SWIG_NewPointerObj(SWIG_as_voidptr($1), GetDowncastSwigType($1),
                                $owner | %newpointer_flags);
 }
-
+*/
 %typemap(out) ASTBasePlugin*
 {
   $result = SWIG_NewPointerObj(SWIG_as_voidptr($1), GetDowncastSwigType($1),
@@ -364,16 +365,18 @@ XMLOutputStream::writeAttribute
 
 //SWIGPYTHON__CMP__(SBase)
 //SWIGPYTHON__CMP__(SBasePlugin)
+/*
 SWIGPYTHON__CMP__(LXExtension)
 SWIGPYTHON__CMP__(LXWriter)
 SWIGPYTHON__CMP__(LXReader)
+*/
 //SWIGPYTHON__CMP__(ASTNode)
 //SWIGPYTHON__CMP__(CVTerm)
 //SWIGPYTHON__CMP__(Date)
 //SWIGPYTHON__CMP__(ModelHistory)
 //SWIGPYTHON__CMP__(ModelCreator)
 SWIGPYTHON__CMP__(XMLNamespaces)
-SWIGPYTHON__CMP__(LXNamespaces)
+//SWIGPYTHON__CMP__(LXNamespaces)
 SWIGPYTHON__CMP__(XMLAttributes)
 SWIGPYTHON__CMP__(XMLToken)
 SWIGPYTHON__CMP__(XMLTriple)
@@ -399,22 +402,24 @@ SWIGPYTHON__CMP__(XMLOutputStream)
 
 %ignore LXConstructorException;
 
+
 %define LXCONSTRUCTOR_EXCEPTION(SBASE_CLASS_NAME)
 %exception SBASE_CLASS_NAME {
   try {
     $action
   }
-  catch (LXConstructorException &e) {
+  catch (XMLConstructorException &e) {
     PyErr_SetString(PyExc_ValueError, const_cast<char*>(e.what()));
     return NULL;
   }
-  catch (LXExtensionException &e) {
-    PyErr_SetString(PyExc_ValueError, const_cast<char*>(e.what()));
-    return NULL;
-  }
+  //catch (XMLExtensionException &e) {
+  //  PyErr_SetString(PyExc_ValueError, const_cast<char*>(e.what()));
+  //  return NULL;
+  //}
 }
 %enddef
 
+/*
 LXCONSTRUCTOR_EXCEPTION(Compartment)
 LXCONSTRUCTOR_EXCEPTION(CompartmentType)
 LXCONSTRUCTOR_EXCEPTION(Constraint)
@@ -441,9 +446,10 @@ LXCONSTRUCTOR_EXCEPTION(Trigger)
 LXCONSTRUCTOR_EXCEPTION(Unit)
 LXCONSTRUCTOR_EXCEPTION(UnitDefinition)
 LXCONSTRUCTOR_EXCEPTION(LXDocument)
-LXCONSTRUCTOR_EXCEPTION(LXNamespaces)
-LXCONSTRUCTOR_EXCEPTION(LXExtensionNamespaces)
-
+*/
+LXCONSTRUCTOR_EXCEPTION(XMLNamespaces)
+LXCONSTRUCTOR_EXCEPTION(XMLExtensionNamespaces)
+/*
 LXCONSTRUCTOR_EXCEPTION(ListOf)
 LXCONSTRUCTOR_EXCEPTION(ListOfCompartments)
 LXCONSTRUCTOR_EXCEPTION(ListOfCompartmentTypes)
@@ -461,7 +467,7 @@ LXCONSTRUCTOR_EXCEPTION(ListOfSpeciesReferences)
 LXCONSTRUCTOR_EXCEPTION(ListOfSpeciesTypes)
 LXCONSTRUCTOR_EXCEPTION(ListOfUnitDefinitions)
 LXCONSTRUCTOR_EXCEPTION(ListOfUnits)
-
+*/
 /**
  *
  * Wraps the XMLConstructorException class (C++ exception defined by libLX)
@@ -659,7 +665,7 @@ LXReader::readLXFromFile(const std::string&)
     appear first.  The error code  can provide a clue about what happened.
     For example, a file might be unreadable (either because it does not
     actually exist or because the user does not have the necessary access
-    priviledges to read it) or some sort of file operation error may have
+    privileges to read it) or some sort of file operation error may have
     been reported by the underlying operating system.  Callers can check
     for these situations using a program fragment such as the following:
 
