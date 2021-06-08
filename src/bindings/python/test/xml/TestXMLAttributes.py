@@ -31,7 +31,7 @@
 
 import sys
 import unittest
-import libsbml
+import liblx
 
 def util_NaN():
   z = 1e300
@@ -60,7 +60,7 @@ class TestXMLAttributes(unittest.TestCase):
 
 
   def test_XMLAttributes_add_get(self):
-    attrs = libsbml.XMLAttributes()
+    attrs = liblx.XMLAttributes()
     self.assert_( attrs.getLength() == 0 )
     self.assertEqual( True, attrs.isEmpty() )
     attrs.add("xmlns", "http://foo.org/")
@@ -81,14 +81,14 @@ class TestXMLAttributes(unittest.TestCase):
     pass  
 
   def test_XMLAttributes_assignment(self):
-    att1 = libsbml.XMLAttributes()
+    att1 = liblx.XMLAttributes()
     att1.add("xmlns", "http://foo.org/")
     self.assert_( att1.getLength() == 1 )
     self.assert_( att1.isEmpty() == False )
     self.assert_( att1.getIndex("xmlns") == 0 )
     self.assert_( att1.getName(0) ==   "xmlns"  )
     self.assert_( att1.getValue("xmlns") ==  "http://foo.org/"  )
-    att2 = libsbml.XMLAttributes()
+    att2 = liblx.XMLAttributes()
     att2 = att1
     self.assert_( att2.getLength() == 1 )
     self.assert_( att2.isEmpty() == False )
@@ -100,7 +100,7 @@ class TestXMLAttributes(unittest.TestCase):
     pass  
 
   def test_XMLAttributes_clone(self):
-    att1 = libsbml.XMLAttributes()
+    att1 = liblx.XMLAttributes()
     att1.add("xmlns", "http://foo.org/")
     self.assert_( att1.getLength() == 1 )
     self.assert_( att1.isEmpty() == False )
@@ -118,14 +118,14 @@ class TestXMLAttributes(unittest.TestCase):
     pass  
 
   def test_XMLAttributes_copy(self):
-    att1 = libsbml.XMLAttributes()
+    att1 = liblx.XMLAttributes()
     att1.add("xmlns", "http://foo.org/")
     self.assert_( att1.getLength() == 1 )
     self.assert_( att1.isEmpty() == False )
     self.assert_( att1.getIndex("xmlns") == 0 )
     self.assert_( att1.getName(0) ==   "xmlns"  )
     self.assert_( att1.getValue("xmlns") ==  "http://foo.org/"  )
-    att2 = libsbml.XMLAttributes(att1)
+    att2 = liblx.XMLAttributes(att1)
     self.assert_( att2.getLength() == 1 )
     self.assert_( att2.isEmpty() == False )
     self.assert_( att2.getIndex("xmlns") == 0 )

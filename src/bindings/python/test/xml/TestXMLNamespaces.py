@@ -31,7 +31,7 @@
 
 import sys
 import unittest
-import libsbml
+import liblx
 
 
 class TestXMLNamespaces(unittest.TestCase):
@@ -40,7 +40,7 @@ class TestXMLNamespaces(unittest.TestCase):
   NS = None
 
   def setUp(self):
-    self.NS = libsbml.XMLNamespaces()
+    self.NS = liblx.XMLNamespaces()
     if (self.NS == None):
       pass    
     pass  
@@ -71,7 +71,7 @@ class TestXMLNamespaces(unittest.TestCase):
     self.assert_( self.NS.getLength() == 0 )
     self.assert_( self.NS.isEmpty() == True )
     i = self.NS.add( "http://test1.org/", "test1")
-    self.assert_( i == libsbml.LIBSBML_OPERATION_SUCCESS )
+    self.assert_( i == liblx.LIBLX_OPERATION_SUCCESS )
     self.assert_( self.NS.getLength() == 1 )
     self.assert_( self.NS.isEmpty() == False )
     pass  
@@ -89,7 +89,7 @@ class TestXMLNamespaces(unittest.TestCase):
     self.NS.add( "http://test5.org/", "test5")
     self.assert_( self.NS.getLength() == 5 )
     i = self.NS.clear()
-    self.assert_( i == libsbml.LIBSBML_OPERATION_SUCCESS )
+    self.assert_( i == liblx.LIBLX_OPERATION_SUCCESS )
     self.assert_( self.NS.getLength() == 0 )
     pass  
 
@@ -173,16 +173,16 @@ class TestXMLNamespaces(unittest.TestCase):
     self.NS.add( "http://test2.org/", "test2")
     self.assert_( self.NS.getLength() == 2 )
     i = self.NS.remove(4)
-    self.assert_( i == libsbml.LIBSBML_INDEX_EXCEEDS_SIZE )
+    self.assert_( i == liblx.LIBLX_INDEX_EXCEEDS_SIZE )
     self.assert_( self.NS.getLength() == 2 )
     i = self.NS.remove( "test4")
-    self.assert_( i == libsbml.LIBSBML_INDEX_EXCEEDS_SIZE )
+    self.assert_( i == liblx.LIBLX_INDEX_EXCEEDS_SIZE )
     self.assert_( self.NS.getLength() == 2 )
     i = self.NS.remove(1)
-    self.assert_( i == libsbml.LIBSBML_OPERATION_SUCCESS )
+    self.assert_( i == liblx.LIBLX_OPERATION_SUCCESS )
     self.assert_( self.NS.getLength() == 1 )
     i = self.NS.remove( "test1")
-    self.assert_( i == libsbml.LIBSBML_OPERATION_SUCCESS )
+    self.assert_( i == liblx.LIBLX_OPERATION_SUCCESS )
     self.assert_( self.NS.getLength() == 0 )
     pass  
 
