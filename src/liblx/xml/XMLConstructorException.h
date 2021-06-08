@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -35,11 +35,11 @@
  * ------------------------------------------------------------------------ -->
  *
  * @class XMLConstructorException
- * @sbmlbrief{core} Exceptions thrown by some libSBML constructors.
+ * @sbmlbrief{core} Exceptions thrown by some libLX constructors.
  *
  * @htmlinclude not-sbml-warning.html
  *
- * In some situations, constructors for SBML objects may need to indicate
+ * In some situations, constructors for LX objects may need to indicate
  * to callers that the creation of the object failed.  The failure may be
  * for different reasons, such as an attempt to use invalid parameters or a
  * system condition such as a memory error.  To communicate this to
@@ -52,7 +52,7 @@
  * constructors generally try to return an error code instead of throwing
  * an exception.
  *
- * @see SBMLConstructorException
+ * @see LXConstructorException
  */
 
 

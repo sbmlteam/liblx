@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,11 +39,11 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * A "triple" in the libSBML XML layer encapsulates the notion of qualified
+ * A "triple" in the libLX XML layer encapsulates the notion of qualified
  * name, meaning an element name or an attribute name with an optional
  * namespace qualifier.  Triples by themselves are not entities in an XML
  * stream&mdash;they are not, for example, elements or attributes; rather,
- * XMLTriple is used in libSBML to construct these other kinds of objects.
+ * XMLTriple is used in libLX to construct these other kinds of objects.
  *
  * An XMLTriple instance carries up to three data items:
  * <ol>
@@ -63,7 +63,7 @@
  * </ol>
  *
  * XMLTriple objects are the lowest-level data item in the XML layer
- * of libSBML.  Other objects such as XMLToken make use of XMLTriple
+ * of libLX.  Other objects such as XMLToken make use of XMLTriple
  * objects.
  *
  * @see XMLToken

@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -783,7 +783,7 @@ std::string XMLError::stringForCategory(unsigned int code) const
  * The following code was originally written before the implementation of
  * xmlSeverityStringTable[] and getSeverityAsString().  It previously used
  * hard-code strings, and for LIBLX_SEV_INFO, it printed "Advisory"
- * instead of "Information".  However, an inspection of the libSBML code
+ * instead of "Information".  However, an inspection of the libLX code
  * showed that nothing ever used LIBLX_SEV_INFO!  Therefore, changing the
  * severity string used here to be the same as what getSeverityAsString()
  * returns should not break any caller code.
@@ -800,7 +800,7 @@ XMLError::print(std::ostream& s) const
 
 
 /*
- * Outputs the given XMLError (or the derived class (e.g. SBMLError) ) to stream
+ * Outputs the given XMLError (or the derived class (e.g. LXError) ) to stream
  * by invoking the print function which is implemented as a virtual function in
  * the class.
  *
@@ -871,7 +871,7 @@ LIBLX_EXTERN
 unsigned int
 XMLError_getErrorId (const XMLError_t *error)
 {
-  if (error == NULL) return SBML_INT_MAX;
+  if (error == NULL) return LX_INT_MAX;
   return error->getErrorId();
 }
 
@@ -916,7 +916,7 @@ LIBLX_EXTERN
 unsigned int
 XMLError_getSeverity (const XMLError_t *error)
 {
-  if (error == NULL) return SBML_INT_MAX;
+  if (error == NULL) return LX_INT_MAX;
   return error->getSeverity();
 }
 
@@ -935,7 +935,7 @@ LIBLX_EXTERN
 unsigned int
 XMLError_getCategory (const XMLError_t *error)
 {
-  if (error == NULL) return SBML_INT_MAX;
+  if (error == NULL) return LX_INT_MAX;
   return error->getCategory();
 }
 

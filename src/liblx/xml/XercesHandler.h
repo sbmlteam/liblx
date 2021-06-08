@@ -6,8 +6,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -47,7 +47,7 @@
 #include <liblx/xml/XercesTranscode.h>
 #include <xercesc/sax2/DefaultHandler.hpp>
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 class XercesHandler : public xercesc::DefaultHandler
 {
@@ -156,7 +156,7 @@ protected:
 };
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* XercesHandler_h */

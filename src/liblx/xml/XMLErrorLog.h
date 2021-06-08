@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,7 +39,7 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * The error log is a list.  The XML layer of libSBML maintains an error
+ * The error log is a list.  The XML layer of libLX maintains an error
  * log associated with a given XML document or data stream.  When an
  * operation results in an error, or when there is something wrong with the
  * XML content, the problem is reported as an XMLError object stored in the
@@ -53,11 +53,11 @@
  * iterate over the list of objects one at a time using
  * getError(unsigned int n) const.  Indexing in the list begins at 0.
  *
- * In normal circumstances, programs using libSBML will actually obtain an
- * SBMLErrorLog rather than an XMLErrorLog.  The former is subclassed from
- * XMLErrorLog and simply wraps commands for working with SBMLError objects
+ * In normal circumstances, programs using libLX will actually obtain an
+ * LXErrorLog rather than an XMLErrorLog.  The former is subclassed from
+ * XMLErrorLog and simply wraps commands for working with LXError objects
  * rather than the low-level XMLError objects.  Classes such as
- * SBMLDocument use the higher-level SBMLErrorLog.
+ * LXDocument use the higher-level LXErrorLog.
  */
 
 /**
@@ -74,7 +74,7 @@
  * The <em>severity override</em> mechanism in XMLErrorLog is intended to help
  * applications handle error conditions in ways that may be more convenient
  * for those applications.  It is possible to use the mechanism to override
- * the severity code of errors logged by libSBML, and even to disable error
+ * the severity code of errors logged by libLX, and even to disable error
  * logging completely.  An override stays in effect until the override is
  * changed again by the calling application.
  */
@@ -213,7 +213,7 @@ public:
    *
    * The XMLParser will be used to obtain the current line and column
    * number for XMLError objects that lack line and column numbers when
-   * they are logged.  This method is used by libSBML's internal XML
+   * they are logged.  This method is used by libLX's internal XML
    * parsing code and probably has no useful reason to be called from
    * application programs.
    *
@@ -372,7 +372,7 @@ public:
    *
    * @param targetSeverity the severity code to use as the new severity.
    *
-   * @param package a string, the name of an SBML Level&nbsp;3 package
+   * @param package a string, the name of an LX Level&nbsp;3 package
    * extension to use to narrow the search for errors.  A value of @c "all"
    * signifies to match against errors logged from any package; a value of a
    * package nickname such as @c "comp" signifies to limit consideration to
