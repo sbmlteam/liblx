@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -120,7 +120,7 @@ typedef CLASS_OR_STRUCT XMLOutputStream           XMLOutputStream_t;
 typedef CLASS_OR_STRUCT XMLTriple                 XMLTriple_t;
 
 /* FIXME Remove when no longer needed */
-typedef CLASS_OR_STRUCT SBMLNamespaces            SBMLNamespaces_t;
+typedef CLASS_OR_STRUCT LXNamespaces            LXNamespaces_t;
 
 LIBLX_CPP_NAMESPACE_END
 
