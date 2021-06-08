@@ -87,13 +87,14 @@
 The default XML library used is WITH_LIBXML
 Want conditional compilation
 */
-//#ifdef WITH_LIBXML <-- not getting picked up for some reason (with cmake -DWITH_LIBXML=TRUE)
+//#ifdef WITH_LIBXML // <-- not getting picked up for some reason (with cmake -DWITH_LIBXML=TRUE)
+#if !defined(WITH_XERCES) && !defined(WITH_EXPAT)
     #include <liblx/xml/LibXMLAttributes.h>
     #include <liblx/xml/LibXMLHandler.h>
     #include <liblx/xml/LibXMLNamespaces.h>
     #include <liblx/xml/LibXMLParser.h>
     #include <liblx/xml/LibXMLTranscode.h>
-//#endif
+#endif
 #ifdef WITH_XERCES
     #include <liblx/xml/XercesAttributes.h>
     #include <liblx/xml/XercesHandler.h>
