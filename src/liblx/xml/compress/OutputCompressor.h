@@ -8,8 +8,8 @@
  *
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -57,7 +57,7 @@ public:
   *
   * @param filename a string, the gzip file name to be written.
   *
-  * @note ZlibNotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note ZlibNotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a ostream* object bound to the given gzip file or @c NULL if the initialization
   * for the object failed.
@@ -71,7 +71,7 @@ public:
   *
   * @param filename a string, the bzip2 file name to be written.
   *
-  * @note Bzip2NotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note Bzip2NotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a ostream* object bound to the given bzip2 file or @c NULL if the initialization
   * for the object failed.
@@ -87,7 +87,7 @@ public:
   * @param filenameinzip a string, the file name to be archived in the above zip archive file.
   * ('filenameinzip' will be extracted when the 'filename' is unzipped)
   *
-  * @note ZlibNotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note ZlibNotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a ostream* object bound to the given zip file or @c NULL if the initialization
   * for the object failed.
