@@ -70,7 +70,7 @@ START_TEST (test_XMLError_variablesAsStrings)
   fail_unless( XMLError_getErrorId(error)  == 1003 );
   fail_unless( XMLError_getSeverity(error) == LIBLX_SEV_ERROR );
   fail_unless( !strcmp(XMLError_getSeverityAsString(error), "Error") );
-  fail_unless( XMLError_getCategory(error) == LIBSBXML_CAT_XML );
+  fail_unless( XMLError_getCategory(error) == LIBLX_CAT_XML );
   fail_unless( !strcmp(XMLError_getCategoryAsString(error), "XML content"));
 
   XMLError_free(error);
