@@ -83,13 +83,13 @@ START_TEST (test_XMLError_accessWithNULL)
   XMLError_free(NULL);
 
   fail_unless( XMLError_createWithIdAndMessage(0, NULL) == NULL);
-  fail_unless( XMLError_getCategory(NULL) == LX_INT_MAX);
+  fail_unless( XMLError_getCategory(NULL) == LIBLX_INT_MAX);
   fail_unless( XMLError_getCategoryAsString(NULL) == NULL);
   fail_unless( XMLError_getColumn(NULL) == 0);
-  fail_unless( XMLError_getErrorId(NULL) == LX_INT_MAX);
+  fail_unless( XMLError_getErrorId(NULL) == LIBLX_INT_MAX);
   fail_unless( XMLError_getLine(NULL) == 0);
   fail_unless( XMLError_getMessage(NULL) == NULL);
-  fail_unless( XMLError_getSeverity(NULL) == LX_INT_MAX);
+  fail_unless( XMLError_getSeverity(NULL) == LIBLX_INT_MAX);
   fail_unless( XMLError_getSeverityAsString(NULL) == NULL);
   fail_unless( XMLError_getShortMessage(NULL) == NULL);
   fail_unless( XMLError_isError(NULL) == 0);

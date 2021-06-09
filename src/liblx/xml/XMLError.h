@@ -76,7 +76,7 @@
  * Each XMLError object also contains a category code; its value may be
  * retrieved using the method XMLError::getCategory().  Category values
  * are drawn from @if clike the enumeration <a class="el" href="#XMLErrorCategory_t">XMLErrorCategory_t</a> described below.@else a
- * set of constants whose names begin with the characters @c LIBSBXML_CAT_, described below.@endif@~&nbsp;Categories
+ * set of constants whose names begin with the characters @c LIBLX_CAT_, described below.@endif@~&nbsp;Categories
  * are used by libLX to provide more information to calling programs about
  * the nature of a given error.  
  *
@@ -142,7 +142,7 @@
  * or as integer constants.
  * To make this table more compact, we have shortened the identifiers for
  * the category and severity codes to their essential parts.  To get the
- * actual names of the constants, prepend <code>LIBSBXML_CAT_</code> to the
+ * actual names of the constants, prepend <code>LIBLX_CAT_</code> to the
  * category names and <code>LIBLX_SEV_</code> to the severity names
  * shown in the two right-hand columns.
  * </caption>
@@ -245,17 +245,17 @@
  *      <th style="text-align: left">Enumerator</th>
  *      <th>Meaning</th>
  *  </tr>
- * <tr><td>@sbmlconstant{LIBSBXML_CAT_INTERNAL, XMLErrorCategory_t}</td>
+ * <tr><td>@sbmlconstant{LIBLX_CAT_INTERNAL, XMLErrorCategory_t}</td>
  * <td>A problem involving the libLX
  * software itself or the underlying XML parser.  This almost certainly
  * indicates a software defect (i.e., bug) in libLX.  Please report
  * instances of this to the libLX developers.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBXML_CAT_SYSTEM, XMLErrorCategory_t}</td>
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SYSTEM, XMLErrorCategory_t}</td>
  * <td>A problem reported by the operating
  * system, such as an inability to read or write a file.  This indicates
  * something that is not a program error but is outside of the control of
  * libLX.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBXML_CAT_XML, XMLErrorCategory_t}</td>
+ * <tr><td>@sbmlconstant{LIBLX_CAT_XML, XMLErrorCategory_t}</td>
  * <td>A problem in the XML content itself.  This
  * usually arises from malformed XML or the use of
  * constructs not permitted in LX.</td></tr>
@@ -490,18 +490,18 @@ typedef enum {
  */
 typedef enum
 {
-    LIBSBXML_CAT_INTERNAL = 0 /*!< A problem involving the libLX software itself
+    LIBLX_CAT_INTERNAL = 0 /*!< A problem involving the libLX software itself
                            * or the underlying XML parser.  This almost 
                            * certainly indicates a software defect (i.e., bug)
                            * in libLX.  Please report instances of this to
                            * the libLX developers. */
 
-  , LIBSBXML_CAT_SYSTEM       /*!< A problem reported by the operating system, such
+  , LIBLX_CAT_SYSTEM       /*!< A problem reported by the operating system, such
                            * as an inability to read or write a file.  This
                            * indicates something that is not a program error
                            * but is outside of the control of libLX. */
 
-  , LIBSBXML_CAT_XML          /*!< A problem in the XML content itself.  This
+  , LIBLX_CAT_XML          /*!< A problem in the XML content itself.  This
                            * usually arises from malformed XML or the use of
                            * constructs not permitted in LX. */
 } XMLErrorCategory_t;
@@ -546,11 +546,11 @@ typedef enum
  */
 typedef enum
 {
-    LIBSBXML_OVERRIDE_DISABLED = 0 /*!< All errors will be issued as
+    LIBLX_OVERRIDE_DISABLED = 0 /*!< All errors will be issued as
                                        specified in the error log. */
-  , LIBSBXML_OVERRIDE_DONT_LOG     /*!< All error logging is disabled. */
-  , LIBSBXML_OVERRIDE_WARNING      /*!< All errors will be logged as warnings */
-  , LIBSBXML_OVERRIDE_ERROR        /*!< All warnings will be logged as errors */
+  , LIBLX_OVERRIDE_DONT_LOG     /*!< All error logging is disabled. */
+  , LIBLX_OVERRIDE_WARNING      /*!< All errors will be logged as warnings */
+  , LIBLX_OVERRIDE_ERROR        /*!< All warnings will be logged as errors */
 
 } XMLErrorSeverityOverride_t;
 
@@ -636,7 +636,7 @@ public:
    * href="#error-categories">standard category</a> codes, and every predefined 
    * error in libLX has an associated value for severity and category taken
    * from these predefined sets.  These constants have symbol names
-   * prefixed with <code>LIBLX_SEV_</code> and <code>LIBSBXML_CAT_</code>,
+   * prefixed with <code>LIBLX_SEV_</code> and <code>LIBLX_CAT_</code>,
    * respectively.  If the value of @p errorId is one of the standard error
    * codes, callers do not need to fill in @p severity and @p category in a
    * call to this constructor.  Conversely, if @p errorId is not an existing
@@ -669,7 +669,7 @@ public:
     , const unsigned int line     = 0
     , const unsigned int column   = 0
     , const unsigned int severity = LIBLX_SEV_FATAL
-    , const unsigned int category = LIBSBXML_CAT_INTERNAL
+    , const unsigned int category = LIBLX_CAT_INTERNAL
   );
 
 
@@ -955,7 +955,7 @@ public:
    *
    * This is equivalent to obtaining the category identifier from an
    * XMLError object (via XMLError::getCategory()) and then comparing it to
-   * the value @sbmlconstant{LIBSBXML_CAT_INTERNAL, XMLErrorCategory_t} from the
+   * the value @sbmlconstant{LIBLX_CAT_INTERNAL, XMLErrorCategory_t} from the
    * @if clike enumeration #XMLErrorCategory_t. @else set of predefined category codes.@endif@~
    *
    * @return a boolean indicating whether the error is an internal error.
@@ -972,7 +972,7 @@ public:
    *
    * This is equivalent to obtaining the category identifier from an
    * XMLError object (via XMLError::getCategory()) and then comparing it to
-   * the value @sbmlconstant{LIBSBXML_CAT_SYSTEM, XMLErrorCategory_t} from the
+   * the value @sbmlconstant{LIBLX_CAT_SYSTEM, XMLErrorCategory_t} from the
    * @if clike enumeration #XMLErrorCategory_t. @else set of predefined category codes.@endif@~
    *
    * @return boolean indicating whether the error is a system error.
@@ -990,7 +990,7 @@ public:
    *
    * This is equivalent to obtaining the category identifier from an
    * XMLError object (via XMLError::getCategory()) and then comparing it to
-   * the value @sbmlconstant{LIBSBXML_CAT_XML, XMLErrorCategory_t} from the
+   * the value @sbmlconstant{LIBLX_CAT_XML, XMLErrorCategory_t} from the
    * @if clike enumeration #XMLErrorCategory_t. @else set of predefined category codes.@endif@~
    *
    * @return a boolean indicating whether the error is an XML catetory error.

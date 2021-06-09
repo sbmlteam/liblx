@@ -45,19 +45,19 @@
 
 
 #if STDC_HEADERS
-#  include <errno.h>
-#  include <float.h>
-#  include <stdarg.h>
-#  include <stdlib.h>
-#  include <string.h>
+    #include <errno.h>
+    #include <float.h>
+    #include <stdarg.h>
+    #include <stdlib.h>
+    #include <string.h>
 #endif
 
 #if HAVE_MATH_H
-#  include <math.h>
+    #include <math.h>
 #endif
 
 #if HAVE_IEEFP_H
-#  include <ieeefp.h>
+    #include <ieeefp.h>
 #endif
 
 #ifndef errno
@@ -74,8 +74,8 @@
 
 #define LIBLX_DOUBLE_PRECISION 15
 
-static const int LX_INT_MAX = 2147483647;
-static const int LX_INT_MIN = -2147483647 - 1;
+static const int LIBLX_INT_MAX = 2147483647;
+static const int LIBLX_INT_MIN = -2147483647 - 1;
 
 /*
  * Sometimes the line/column numbers reported by the underlying parsers are
@@ -106,8 +106,8 @@ static const int LX_INT_MIN = -2147483647 - 1;
  * number could be provided by the parser.
  */
 
-#define LIBLX_UNKNOWN_LINE	LX_INT_MAX
-#define LIBLX_UNKNOWN_COLUMN	LX_INT_MAX
+#define LIBLX_UNKNOWN_LINE	LIBLX_INT_MAX
+#define LIBLX_UNKNOWN_COLUMN	LIBLX_INT_MAX
 
 #define LIBLX_USE_LEGACY_MATH 1
 
