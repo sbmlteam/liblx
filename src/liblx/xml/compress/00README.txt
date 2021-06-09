@@ -1,4 +1,4 @@
-	Information about the compression library used in libSBML.
+	Information about the compression library used in libLX.
 
 The following files in this directory were borrowed from MiniZip version 1.01e
 (http://www.winimage.com/zLibDll/minizip.html) implemented by Gilles Vollant.
