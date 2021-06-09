@@ -102,11 +102,11 @@ START_TEST (test_XMLInputStream_next_peek)
   
   fail_unless(stream != NULL);
   
-  fail_unless(strcmp(XMLToken_getName(next0), "lx") == 0);
+  fail_unless(strcmp(XMLToken_getName(next0), "sbml" /*"lx"*/) == 0);
   
   XMLToken_t * next1 = XMLInputStream_next(stream);
   
-  fail_unless(strcmp(XMLToken_getName(next1), "lx") == 0);
+  fail_unless(strcmp(XMLToken_getName(next1), "sbml" /*"lx"*/) == 0);
  
   XMLToken_free(next1);
   XMLInputStream_free(stream);
