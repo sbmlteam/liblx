@@ -47,6 +47,42 @@ make
 
 ====================
 
+
+tests
+cd ...
+set PYTHONPATH=
+
+python
+>>> from liblx import *
+>>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
+>>> y = XMLNode(test_str)
+>>> print(y.toString())
+<annotation>
+  <test xmlns="http://test.org/" id="test1">test2</test>
+</annotation>
+>>> z = y.clone()
+>>> print(z)
+<liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
+>>> print(z.toString())
+<annotation>
+  <test xmlns="http://test.org/" id="test1">test2</test>
+</annotation>
+>>> y == z
+False
+>>> y is z
+False
+>>> y.toString() == z.toString()
+True
+>>> y.equals(z)
+True
+>>> z.equals(y)
+True
+>>> print(y.toXMLString())
+&lt;annotation&gt;
+  &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
+&lt;/annotation&gt;
+
+
 From https://github.com/swig/swig/wiki/FAQ#shared-libraries:
 (Mac OS X section)
 swig -python example.i
@@ -109,7 +145,6 @@ example of variables:
 ${CMAKE_CURRENT_SOURCE_DIR} = /Users/matthewgillman/repos/libLX/liblx/src
 ${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src
 
-Traceback (most recent call last):
-  File "/Users/matthewgillman/repos/libLX/liblx/build/src/bindings/python/generate-class-name-list.py", line 46, in <module>
-    from libsbmlutils import find_classes
-ModuleNotFoundError: No module named 'libsbmlutils'    should be liblxutils
+
+
+### have we got all the C++ XML interface exported to Python?  ????
