@@ -457,204 +457,37 @@ if(WITH_CHECK)
 
     # test that the bindings are returning the correct version
 
-    if (CMAKE_VERSION VERSION_GREATER 3.0)
-        add_test(NAME test_python_printversion 
-            COMMAND ${PYTHON_EXECUTABLE} -c "import liblx; assert liblx.getLibLXDottedVersion() == '${PACKAGE_VERSION}'"
-            -p $<TARGET_FILE_DIR:binding_python_lib> -b ${CMAKE_CURRENT_SOURCE_DIR}/test)
-        ADJUST_PYTHONPATH(test_python_printversion)
-    endif()
+    # if (CMAKE_VERSION VERSION_GREATER 3.0)
+    #     add_test(NAME test_python_printversion
+    #         COMMAND ${PYTHON_EXECUTABLE} -c "import liblx; assert liblx.getLibLXDottedVersion() == '${PACKAGE_VERSION}'"
+    #         -p $<TARGET_FILE_DIR:binding_python_lib> -b ${CMAKE_CURRENT_SOURCE_DIR}/test)
+    #     ADJUST_PYTHONPATH(test_python_printversion)
+    # endif()
     
     # run examples as tests
 
     if (CMAKE_VERSION VERSION_LESS 3.0)
         message(STATUS "Python example tests check version: ${CMAKE_VERSION} < 3.0, skipping.")
     else()
-        add_test(NAME test_python_addCVTerms
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/addCVTerms.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            addCVTerms.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_addCVTerms)
-    
-        add_test(NAME test_python_addingEvidenceCodes_1
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/addingEvidenceCodes_1.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            addingEvidenceCodes_1.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_addingEvidenceCodes_1)    
-    
-        add_test(NAME test_python_addingEvidenceCodes_2
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/addingEvidenceCodes_2.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            addingEvidenceCodes_2.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_addingEvidenceCodes_2)
-    
-        add_test(NAME test_python_addModelHistory
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/addModelHistory.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            addModelHistory.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_addModelHistory)     
-    
-        add_test(NAME test_python_append_to_note
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/append_to_note.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekineticext.xml
-            veq
-            "a new note"
-            append_to_note.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_append_to_note)      
-    
-        add_test(NAME test_python_appendAnnotation
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/appendAnnotation.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            appendAnnotation.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_appendAnnotation)      
+        # Example of a test
+        # add_test(NAME test_python_addCVTerms
+        #     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/addCVTerms.py
+        #     ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
+        #     addCVTerms.out.xml
+        # )
+        # ADJUST_PYTHONPATH(test_python_addCVTerms)
 
-        add_test(NAME test_python_convertLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/convertLX.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            convertLX.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_convertLX)
-    
-        add_test(NAME test_python_createExampleLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/createExampleLX.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            createExampleLXy.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_createExampleLX)
-
-        add_test(NAME test_python_createSimpleModel
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/createSimpleModel.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            createSimpleModel.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_createSimpleModel)      
-    
-        add_test(NAME test_python_echoLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/echoLX.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            echoLX.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_echoLX)
-    
-        add_test(NAME test_python_evaluateCustomMath
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/evaluateCustomMath.py
-            "2*3+4"
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_evaluateCustomMath)
-    
-        add_test(NAME test_python_getAllElementsWithNotes
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/getAllElementsWithNotes.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_getAllElementsWithNotes)    
-    
-        add_test(NAME test_python_inlineInitialAssignments
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/inlineInitialAssignments.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            inlineInitialAssignments.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_inlineInitialAssignments)
-    
-        add_test(NAME test_python_printAnnotation
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/printAnnotation.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_printAnnotation)    
-    
-        add_test(NAME test_python_printMath
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/printMath.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_printMath)
-    
-        add_test(NAME test_python_printRegisteredPackages
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/printRegisteredPackages.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            printRegisteredPackages.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_printRegisteredPackages)    
-    
-        add_test(NAME test_python_printLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/printLX.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_printLX)
-    
-        add_test(NAME test_python_printsupported
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/printsupported.py
-        )
-        ADJUST_PYTHONPATH(test_python_printsupported)    
-    
-        add_test(NAME test_python_printUnits
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/printUnits.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_printUnits)
-    
-        add_test(NAME test_python_promoteParameters
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/promoteParameters.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            promoteParameters.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_promoteParameters)    
-    
-        add_test(NAME test_python_readLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/readLX.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_readLX)
-        
-        add_test(NAME test_python_replaceOneFD
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/replaceOneFD.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/functiondef.xml
-            f
-            reaction_1
-            replaceOneFD.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_replaceOneFD)    
-        
-        add_test(NAME test_python_setIdFromNames
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/setIdFromNames.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            setIdFromNames.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_setIdFromNames)    
-        
-        add_test(NAME test_python_unsetAnnotation
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/unsetAnnotation.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            unsetAnnotation.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_unsetAnnotation)    
-        
-        add_test(NAME test_python_unsetNotes
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/unsetNotes.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-            unsetNotes.out.xml
-        )
-        ADJUST_PYTHONPATH(test_python_unsetNotes)    
-        
-        add_test(NAME test_python_validateLX
-            COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/validateLX.py
-            ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-        )
-        ADJUST_PYTHONPATH(test_python_validateLX)
+        message("NO PYTHON TESTS DEFINED YET")
 
         # Enable only when swig is the correct version
 
-        if (SWIG_VERSION VERSION_GREATER "3.0.7")
-         add_test(NAME test_python_stringInput
-             COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/stringInput.py
-             ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
-         )
-         ADJUST_PYTHONPATH(test_python_stringInput)
-        endif()
+        #if (SWIG_VERSION VERSION_GREATER "3.0.7")
+        # add_test(NAME test_python_stringInput
+        #     COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/examples/python/stringInput.py
+        #     ${CMAKE_SOURCE_DIR}/examples/sample-models/from-spec/level-3/enzymekinetics.xml
+        # )
+        # ADJUST_PYTHONPATH(test_python_stringInput)
+        #endif()
 
         # package specific tests
 
@@ -734,7 +567,6 @@ if(WITH_CHECK)
           ADJUST_PYTHONPATH(test_python_qual_qual_example1)    
 
         endif(ENABLE_QUAL)
-
 
     endif(CMAKE_VERSION VERSION_LESS 3.0)
 
