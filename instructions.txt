@@ -1,13 +1,7 @@
-How to build the liblx libraries.
+liblx build instructions
 
-Tim:
-I’d create a build sub-directory in that directory, and run CMake after cding into there.
-that’s where all the results of the build process will end up. This is called an out-of-source build.
-You could run CMake from the top-level directory, but you would end up with all the build files and final
-binaries mixed in with the source files. This is generally a bad thing
-
-Instructions for building on a Mac.
-==================================
+Mac
+===
 
 1. install swig e.g. brew install swig
 2. install check (unit testing library for C) - e.g. brew install check
@@ -17,17 +11,10 @@ In my case, it creates /Users/matthewgillman/repos/libLX/liblx/ when I do this c
 5. mkdir build   -  the results of the build will be in here.
 6. cd build
 7. cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
-Note that the directory at the end of the cmake command above is the top-level directory of the cloned repo (i.e.
-it contains the top-level CMakeLists.txt file).
+Note that the directory at the end of the cmake command above is the top-level directory of the cloned repo (i.e. it contains the top-level CMakeLists.txt file).
 8. make
 9. invoke test script In my build subdir, it is src/liblx/xml/test/test_sbml_xml
-
 On Mac, this builds build/src/liblx-static.a and build/src/liblx.dylib
-
-
-Then:
-Sarah: get libLX to build and then work as a dependency lib with the toy example I made
- https://github.com/skeating/testsbxml/branches. Then look at SWIG for libLX.
 
 If you do a build with the extra switch -DWITH_PYTHON=TRUE, you should find Python bindings generated in the build directory,
 in src/bindings/python. Frank: you should find the libsbml.py (or libsbml2.py / libsbml3.py since we still support both
@@ -44,75 +31,6 @@ mkdir build
 cd build
 cmake -DWITH_PYTHON=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
 make
-
-====================
-
-
-tests
-cd ...
-set PYTHONPATH=
-
-python
->>> from liblx import *
->>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
->>> y = XMLNode(test_str)
->>> print(y.toString())
-<annotation>
-  <test xmlns="http://test.org/" id="test1">test2</test>
-</annotation>
->>> z = y.clone()
->>> print(z)
-<liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
->>> print(z.toString())
-<annotation>
-  <test xmlns="http://test.org/" id="test1">test2</test>
-</annotation>
->>> y == z
-False
->>> y is z
-False
->>> y.toString() == z.toString()
-True
->>> y.equals(z)
-True
->>> z.equals(y)
-True
->>> print(y.toXMLString())
-&lt;annotation&gt;
-  &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
-&lt;/annotation&gt;
-
-
-From https://github.com/swig/swig/wiki/FAQ#shared-libraries:
-(Mac OS X section)
-swig -python example.i
-cc -c `python-config --cflags` example.c example_wrap.c
-cc -bundle `python-config --ldflags` example.o example_wrap.o -o _example.so
-
-http://www.swig.org/Doc1.3/Python.html
- Using setup.py works using Python 3.x virtual envt:
-(example.i, example.c and setup.py already exist)
-> swig -python example.i  # generates example.py and example_wrap.c
-> python setup.py build_ext --inplace  # generates build dir and _example.cpython-36m-darwin.so
-
-(my_virtual_env) Matthews-MacBook-Pro:copy matthewgillman$ python
-Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 05:52:31)
-[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.57)] on darwin
-Type "help", "copyright", "credits" or "license" for more information.
->>> import example
->>> dir()
-['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__'$
->>> dir(example)
-['_SwigNonDynamicMeta', '__builtin__', '__builtins__', '__cached__', '__doc__', '__file__', '__loa$
->>> print(example.get_time())
-Wed Jun  2 11:09:04 2021
-
->>> print(example.get_time())
-Wed Jun  2 11:09:07 2021
-
->>> print(example.fact(4))
-24
->>>
 
 To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
 Because various Xerces files in src/liblx/xml #include files from there.
@@ -147,4 +65,109 @@ ${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src
 
 
 
-### have we got all the C++ XML interface exported to Python?  ????
+====================
+Basic SWIG/Python example
+
+From https://github.com/swig/swig/wiki/FAQ#shared-libraries:
+(Mac OS X section)
+swig -python example.i
+cc -c `python-config --cflags` example.c example_wrap.c
+cc -bundle `python-config --ldflags` example.o example_wrap.o -o _example.so
+
+http://www.swig.org/Doc1.3/Python.html
+ Using setup.py works using Python 3.x virtual envt:
+(example.i, example.c and setup.py already exist)
+> swig -python example.i  # generates example.py and example_wrap.c
+> python setup.py build_ext --inplace  # generates build dir and _example.cpython-36m-darwin.so
+
+(my_virtual_env) Matthews-MacBook-Pro:copy matthewgillman$ python
+Python 3.6.5 (v3.6.5:f59c0932b4, Mar 28 2018, 05:52:31)
+[GCC 4.2.1 Compatible Apple LLVM 6.0 (clang-600.0.57)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import example
+>>> dir()
+['__annotations__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__spec__'$
+>>> dir(example)
+['_SwigNonDynamicMeta', '__builtin__', '__builtins__', '__cached__', '__doc__', '__file__', '__loa$
+>>> print(example.get_time())
+Wed Jun  2 11:09:04 2021
+
+>>> print(example.get_time())
+Wed Jun  2 11:09:07 2021
+
+>>> print(example.fact(4))
+24
+>>>
+
+====================
+
+Example of how to use the SWIG/Python binding
+Still in the `/build` directory
+`export PYTHONPATH=.:src/bindings/python`
+
+python
+>>> from liblx import *
+>>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
+>>> y = XMLNode(test_str)
+>>> print(y.toString())
+<annotation>
+  <test xmlns="http://test.org/" id="test1">test2</test>
+</annotation>
+>>> z = y.clone()
+>>> print(z)
+<liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
+>>> print(z.toString())
+<annotation>
+  <test xmlns="http://test.org/" id="test1">test2</test>
+</annotation>
+>>> y == z
+False
+>>> y is z
+False
+>>> y.toString() == z.toString()
+True
+>>> y.equals(z)
+True
+>>> z.equals(y)
+True
+>>> print(y.toXMLString())
+&lt;annotation&gt;
+  &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
+&lt;/annotation&gt;
+
+
+
+To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
+Because various Xerces files in src/liblx/xml #include files from there.
+LibXML appears to be fully present already
+Instructions at http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html
+> cd ~
+> mkdir xerces && cd xerces
+http://xml.apache.org/xerces-c/download.cgi
+e.g.:
+> wget https://www.mirrorservice.org/sites/ftp.apache.org//xerces/c/3/sources/xerces-c-3.2.3.tar.gz
+> shasum *.gz   # check the output is the same as on the xerces website download page
+> tar -xzf xerces-c-3.2.3.tar.gz
+> cd xerces-c-3.2.3
+> ./configure --prefix=/opt
+> make
+> sudo make install
+The include files are now in  /opt/include/xercesc, new applications in /opt/bin, and libraries in /opt/lib
+This will install development files such as include header files and libraries in "/opt" so compiler flags and linker flags are required:
+
+    Compiler flags: -I/opt/include         CXXFLAGS
+    Linker flags: -L/opt/lib -lxerces-c    LDFLAGS
+try: cmake command as above but with -I/opt/include -L/opt/lib -lxerces-c
+should be able to do this:
+cmake ... -DWITH_XERCES=TRUE  (or -DWITH_EXPAT or -DWITH_LIBXML)
+actually WITH_LIBXML is ON by default, so would need cmake ... -DWITH_XERCES=TRUE -DWITH_LIBXML=FALSE (or ON/OFF)
+
+NB at the moment Expat and Xerces builds are failing as they still have some SBML stuff e.g. LIBSBML_CPP_NAMESPACE_END
+
+example of variables:
+${CMAKE_CURRENT_SOURCE_DIR} = /Users/matthewgillman/repos/libLX/liblx/src
+${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src
+
+
+### NB have we got all the C++ XML interface exported to Python?  ????
+
