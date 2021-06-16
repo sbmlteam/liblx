@@ -849,7 +849,7 @@ as a comment in the output stream.
 %include lx/SyntaxChecker.h
 %include lx/StoichiometryMath.h
 */
-%include liblx/xml/LibXMLNamespaces.h
+/////%include liblx/xml/LibXMLNamespaces.h
 //%include lx/LXTransforms.h
 %include liblx/xml/XMLConstructorException.h
 
