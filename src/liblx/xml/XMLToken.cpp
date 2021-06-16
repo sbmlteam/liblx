@@ -39,7 +39,7 @@
 /** @cond doxygenLibsbmlInternal */
 #include <liblx/xml/XMLOutputStream.h>
 #include <liblx/xml/XMLConstructorException.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 /** @endcond */
 #include <liblx/xml/XMLToken.h>
 

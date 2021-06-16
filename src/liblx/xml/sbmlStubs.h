@@ -1,12 +1,12 @@
 /*
- * sbmlMemoryStubs.h
+ * sbmlStubs.h
  *
  *  Created on: 27 October 2020
  *      Author: Timothy Spain
  */
 
-#ifndef SBMLMEMORYSTUBS_H
-#define SBMLMEMORYSTUBS_H
+#ifndef SBMLSTUBS_H
+#define SBMLSTUBS_H
 
 #include <ctype.h>
 
@@ -18,4 +18,4 @@ extern "C" {
 
 #define safe_free  free
 
-#endif /*ndef SBMLMEMORYSTUBS_H */
+#endif /*ndef SBMLSTUBS_H */

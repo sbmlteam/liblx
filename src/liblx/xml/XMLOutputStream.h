@@ -234,7 +234,7 @@ on yyyy-MM-dd HH:mm with libLX version <liblx version>. -->
 
 #include <liblx/xml/common/extern.h>
 
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 

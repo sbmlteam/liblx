@@ -43,7 +43,7 @@
 /** @endcond */
 
 #include <liblx/xml/XMLNode.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 #include <liblx/xml/operationReturnValues.h>
 
 
