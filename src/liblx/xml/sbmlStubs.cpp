@@ -45,6 +45,19 @@ void* safe_malloc (size_t size)
 
 }
 
+// Copied from libsbml/src/sbml/util/util.cpp
+unsigned int streq (const char *s, const char *t)
+{
+  if (s == NULL)
+    return t == NULL;
+  else if (t == NULL)
+    return 0;
+  else
+    return !strcmp(s, t);
+}
+
+
+
 /*std::list<SBMLNamespaces> SBMLNamespaces::getSupportedNamespaces()
 {
 	return std::list<SBMLNamespaces>();

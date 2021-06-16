@@ -168,6 +168,28 @@ example of variables:
 ${CMAKE_CURRENT_SOURCE_DIR} = /Users/matthewgillman/repos/libLX/liblx/src
 ${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src
 
+Building with the Expat XML library
+===================================
+I don't think one has to install expat, but here are some instructions if one does.
+
+`brew install expat` on Mac.
+
+or
+Download from https://github.com/libexpat/libexpat/releases
+
+Output from brew:
+"
+expat is keg-only, which means it was not symlinked into /usr/local,
+because macOS already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+If you need to have expat first in your PATH, run:
+  echo 'export PATH="/usr/local/opt/expat/bin:$PATH"' >> /Users/matthewgillman/.bash_profile
+
+For compilers to find expat you may need to set:
+  export LDFLAGS="-L/usr/local/opt/expat/lib"
+  export CPPFLAGS="-I/usr/local/opt/expat/include"
+"
 
 ### NB have we got all the C++ XML interface exported to Python?  ????
 
