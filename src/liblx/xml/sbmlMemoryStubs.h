@@ -9,6 +9,7 @@
 #define SBMLMEMORYSTUBS_H
 
 #include <ctype.h>
+#include <cstddef>
 
 extern "C"
 char* safe_strdup(const char* s);
