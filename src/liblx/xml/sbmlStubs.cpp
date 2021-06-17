@@ -45,6 +45,18 @@ void* safe_malloc (size_t size)
 
 }
 
+unsigned int
+streq (const char *s, const char *t)
+{
+  if (s == NULL)
+    return t == NULL;
+  else if (t == NULL)
+    return 0;
+  else
+    return !strcmp(s, t);
+}
+
+
 /*std::list<SBMLNamespaces> SBMLNamespaces::getSupportedNamespaces()
 {
 	return std::list<SBMLNamespaces>();
