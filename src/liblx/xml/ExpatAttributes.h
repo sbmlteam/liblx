@@ -46,7 +46,7 @@
 
 #include <liblx/xml/XMLAttributes.h>
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 class ExpatAttributes : public XMLAttributes
 {
@@ -70,7 +70,7 @@ public:
   virtual ~ExpatAttributes ();
 };
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* ExpatAttributes_h */

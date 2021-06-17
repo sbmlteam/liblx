@@ -44,7 +44,7 @@
 using namespace std;
 using namespace xercesc;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 
 /**
@@ -125,6 +125,6 @@ XercesTranscode::transcodeToUTF8(const XMLCh* src_str)
 }
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 /** @endcond */

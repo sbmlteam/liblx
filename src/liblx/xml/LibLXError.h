@@ -109,9 +109,9 @@
  * Categories are used to partition errors into distinct conceptual groups.
  * This is principally used by the libSBML validation system to group
  * classes of validation checks.  For example,
- * @sbmlconstant{LIBSBML_CAT_IDENTIFIER_CONSISTENCY, SBMLErrorCategory_t}
+ * @sbmlconstant{LIBLX_CAT_IDENTIFIER_CONSISTENCY, SBMLErrorCategory_t}
  * is the category for tests that check identifier consistency;
- * @sbmlconstant{LIBSBML_CAT_MATHML_CONSISTENCY, SBMLErrorCategory_t}
+ * @sbmlconstant{LIBLX_CAT_MATHML_CONSISTENCY, SBMLErrorCategory_t}
  * is the category for MathML consistency checking; and
  * so on.
  * @endif@if java
@@ -120,13 +120,13 @@
  * are drawn from a set of static integer constants
  * defined in <code><a href="libsbmlConstants.html">libsbmlConstants</a></code>,
  * and having names beginning with the characters
- * <code>LIBSBML_CAT_</code>.  The list of possible codes is described in a
+ * <code>LIBLX_CAT_</code>.  The list of possible codes is described in a
  * separate section below.  Categories are used to partition errors into
  * distinct conceptual groups.  This is principally used by the libSBML
  * validation system to group classes of validation checks.  For example,
- * @sbmlconstant{LIBSBML_CAT_IDENTIFIER_CONSISTENCY, SBMLErrorCategory_t}
+ * @sbmlconstant{LIBLX_CAT_IDENTIFIER_CONSISTENCY, SBMLErrorCategory_t}
  * is the category for tests that check identifier consistency;
- * @sbmlconstant{LIBSBML_CAT_MATHML_CONSISTENCY, SBMLErrorCategory_t}
+ * @sbmlconstant{LIBLX_CAT_MATHML_CONSISTENCY, SBMLErrorCategory_t}
  * is the category for MathML consistency checking; and
  * so on.
  * @endif@if python
@@ -134,13 +134,13 @@
  * retrieved using the method SBMLError::getCategory().  Category values
  * are drawn from a set of static integer constants
  * defined in @link libsbml libsbml@endlink and having names beginning with the characters
- * <code>LIBSBML_CAT_</code>.  The list of possible codes is described in a
+ * <code>LIBLX_CAT_</code>.  The list of possible codes is described in a
  * separate section below.  Categories are used to partition errors into
  * distinct conceptual groups.  This is principally used by the libSBML
  * validation system to group classes of validation checks.  For example,
- * @sbmlconstant{LIBSBML_CAT_IDENTIFIER_CONSISTENCY, SBMLErrorCategory_t}
+ * @sbmlconstant{LIBLX_CAT_IDENTIFIER_CONSISTENCY, SBMLErrorCategory_t}
  * is the category for tests that check identifier consistency;
- * @sbmlconstant{LIBSBML_CAT_MATHML_CONSISTENCY, SBMLErrorCategory_t}
+ * @sbmlconstant{LIBLX_CAT_MATHML_CONSISTENCY, SBMLErrorCategory_t}
  * is the category for MathML consistency checking; and
  * so on.
  * @endif@~
@@ -149,9 +149,9 @@
  * retrieved using the method SBMLError::getSeverity().  The possible
  * severity values are the same as those reported by @if clike XMLError.@endif@if python XMLError.@endif@if java <code><a href="XMLError.html">XMLError</a></code>.@endif@~
  * Severity levels currently range from informational
- * (@sbmlconstant{LIBSBML_SEV_INFO, XMLErrorSeverity_t})
+ * (@sbmlconstant{LIBLX_SEV_INFO, XMLErrorSeverity_t})
  * to fatal errors
- * (@sbmlconstant{LIBSBML_SEV_FATAL, XMLErrorSeverity_t}).
+ * (@sbmlconstant{LIBLX_SEV_FATAL, XMLErrorSeverity_t}).
  * They can be
  * used by an application to evaluate how serious a given problem
  * is.
@@ -345,73 +345,73 @@
  *      <th>Enumerator</td>
  *      <th>Meaning</td>
  *  </tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML, XMLErrorCategory_t}</td><td>General error not falling into
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML, XMLErrorCategory_t}</td><td>General error not falling into
  * another category below.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML_L1_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML_L1_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
  * that can only occur during attempted translation from one Level/Version
  * of SBML to another.  This particular category applies to errors
  * encountered while trying to convert a model from SBML Level&nbsp;2 to SBML
  * Level&nbsp;1.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML_L2V1_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML_L2V1_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
  * that can only occur during attempted translation from one Level/Version
  * of SBML to another.  This particular category applies to errors
  * encountered while trying to convert a model to SBML Level&nbsp;2
  * Version&nbsp;1.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML_L2V2_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML_L2V2_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
  * that can only occur during attempted translation from one Level/Version
  * of SBML to another.  This particular category applies to errors
  * encountered while trying to convert a model to SBML Level&nbsp;2
  * Version&nbsp;2.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_GENERAL_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
+ * <tr><td>@sbmlconstant{LIBLX_CAT_GENERAL_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
  * errors that can occur while validating general SBML constructs.  With
  * respect to the SBML specification, these concern failures in applying
  * the validation rules numbered 2xxxx in the Level&nbsp;2 Versions&nbsp;2&ndash;4
  * and Level&nbsp;3 Versions&nbsp;1&ndash;2 specifications.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_IDENTIFIER_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
+ * <tr><td>@sbmlconstant{LIBLX_CAT_IDENTIFIER_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
  * errors that can occur while validating symbol identifiers in a model.
  * With respect to the SBML specification, these concern failures in
  * applying the validation rules numbered 103xx in the Level&nbsp;2 Versions&nbsp;2&ndash;4
  * and Level&nbsp;3 Versions&nbsp;1&ndash;2 specifications.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_UNITS_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
+ * <tr><td>@sbmlconstant{LIBLX_CAT_UNITS_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
  * errors that can occur while validating the units of measurement on
  * quantities in a model.  With respect to the SBML specification, these
  * concern failures in applying the validation rules numbered 105xx in the
  * Level&nbsp;2 Versions&nbsp;2&ndash;4
  * and Level&nbsp;3 Versions&nbsp;1&ndash;2 specifications.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_MATHML_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
+ * <tr><td>@sbmlconstant{LIBLX_CAT_MATHML_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
  * errors that can occur while validating MathML formulas in a model.  With
  * respect to the SBML specification, these concern failures in applying
  * the validation rules numbered 102xx in the Level&nbsp;2 Versions&nbsp;2&ndash;4
  * and Level&nbsp;3 Versions&nbsp;1&ndash;2 specifications.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBO_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBO_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of errors
  * that can occur while validating SBO identifiers in a model.  With
  * respect to the SBML specification, these concern failures in applying
  * the validation rules numbered 107xx in the Level&nbsp;2 Versions&nbsp;2&ndash;4
  * and Level&nbsp;3 Versions&nbsp;1&ndash;2 specifications.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_OVERDETERMINED_MODEL, XMLErrorCategory_t}</td><td>Error in the
+ * <tr><td>@sbmlconstant{LIBLX_CAT_OVERDETERMINED_MODEL, XMLErrorCategory_t}</td><td>Error in the
  * system of equations in the model: the system is overdetermined,
  * therefore violating a tenet of proper SBML.  With respect to the SBML
  * specification, this is validation rule #10601 in the SBML Level&nbsp;2 Versions&nbsp;2&ndash;4
  * and Level&nbsp;3 Versions&nbsp;1&ndash;2 specifications.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML_L2V3_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML_L2V3_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
  * that can only occur during attempted translation from one Level/Version
  * of SBML to another.  This particular category applies to errors
  * encountered while trying to convert a model to SBML Level&nbsp;2
  * Version&nbsp;3.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_MODELING_PRACTICE, XMLErrorCategory_t}</td><td>Category of
+ * <tr><td>@sbmlconstant{LIBLX_CAT_MODELING_PRACTICE, XMLErrorCategory_t}</td><td>Category of
  * warnings about recommended good practices involving SBML and
  * computational modeling.  (These are tests performed by libSBML and do
  * not have equivalent SBML validation rules.)</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_INTERNAL_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
+ * <tr><td>@sbmlconstant{LIBLX_CAT_INTERNAL_CONSISTENCY, XMLErrorCategory_t}</td><td>Category of
  * errors that can occur while validating libSBML's internal representation
  * of SBML constructs. (These are tests performed by libSBML and do
  * not have equivalent SBML validation rules.)</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML_L2V4_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML_L2V4_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
  * that can only occur during attempted translation from one Level/Version
  * of SBML to another.  This particular category applies to errors
  * encountered while trying to convert a model to SBML Level&nbsp;2
  * Version&nbsp;4.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBML_CAT_SBML_L3V1_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SBML_L3V1_COMPAT, XMLErrorCategory_t}</td><td>Category of errors
  * that can only occur during attempted translation from one Level/Version
  * of SBML to another.  This particular category applies to errors
  * encountered while trying to convert a model to SBML Level&nbsp;3
@@ -441,7 +441,7 @@
  * there are no additional severity codes beyond those defined by XMLError.
  * They are implemented as static integer constants defined in the interface
  * class <code><a href="libsbmlConstants.html">libsbmlConstants</a></code>,
- * and have names beginning with <code>LIBSBML_SEV_</code>.
+ * and have names beginning with <code>LIBLX_SEV_</code>.
  * @endif@if python <h3><a class="anchor"
  * name="SBMLErrorSeverity_t">Severity codes associated with SBMLError
  * objects</h3>
@@ -450,7 +450,7 @@
  * there are no additional severity codes beyond those defined by XMLError.
  * They are implemented as static integer constants defined in the
  * interface class @link libsbml libsbml@endlink, and have names beginning
- * with <code>LIBSBML_SEV_</code>.
+ * with <code>LIBLX_SEV_</code>.
  * @endif@~
  */
 

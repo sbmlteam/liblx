@@ -62,7 +62,7 @@
 using namespace std;
 using namespace xercesc;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 
 /*
@@ -250,8 +250,8 @@ public:
     case XMLErrs::NotationAlreadyExists:
     case XMLErrs::AttListAlreadyExists:
     case XMLErrs::XMLException_Warning:
-      line   = LIBSBML_UNKNOWN_LINE;
-      column = LIBSBML_UNKNOWN_COLUMN;
+      line   = LIBLX_UNKNOWN_LINE;
+      column = LIBLX_UNKNOWN_COLUMN;
       break;
 
     default:
@@ -701,7 +701,7 @@ XercesParser::parseReset ()
   mSource = NULL;
 }
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 /** @endcond */
 

@@ -40,7 +40,7 @@
 
 using namespace std;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 /**
  * Creates a new XMLAttributes set from the given "raw" Expat attributes.
@@ -74,5 +74,5 @@ ExpatAttributes::~ExpatAttributes ()
 {
 }
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 /** @endcond */

@@ -49,7 +49,7 @@
 #include <liblx/xml/XMLError.h>
 
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 
 class ExpatHandler
@@ -175,7 +175,7 @@ protected:
 };
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* ExpatHandler_h */

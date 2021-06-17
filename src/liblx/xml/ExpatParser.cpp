@@ -53,7 +53,7 @@
 
 using namespace std;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 static const int BUFFER_SIZE = 8192;
 
@@ -398,5 +398,5 @@ ExpatParser::parseReset ()
   mSource = 0;
 }
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 /** @endcond */

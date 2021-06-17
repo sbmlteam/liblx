@@ -47,7 +47,7 @@
 #include <liblx/xml/XercesTranscode.h>
 #include <xercesc/sax2/DefaultHandler.hpp>
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 class XercesHandler : public xercesc::DefaultHandler
 {
@@ -156,7 +156,7 @@ protected:
 };
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* XercesHandler_h */

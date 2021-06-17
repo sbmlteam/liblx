@@ -895,7 +895,7 @@ XMLOutputStream::writeValue (const double& value)
   }
   else
   {
-    mStream.precision(LIBSBML_DOUBLE_PRECISION);
+    mStream.precision(LIBLX_DOUBLE_PRECISION);
     mStream <<   value;
   }
 

@@ -41,11 +41,11 @@
 
 #if ( defined(WIN32) && !defined(CYGWIN) && !defined(__MINGW32__))
 
-#if ( ! defined LIBSBML_STATIC )
+#if ( ! defined LIBLX_STATIC )
 /**
  * The following ifdef block is the standard way of creating macros which
  * make exporting from a DLL simpler. All files within this DLL are
- * compiled with the LIBSBML_EXPORTS symbol defined on the command line.
+ * compiled with the LIBLX_EXPORTS symbol defined on the command line.
  * This symbol should not be defined on any project that uses this
  * DLL. This way any other project whose source files include this file see
  * LIBLX_EXTERN functions as being imported from a DLL, whereas this DLL
@@ -61,7 +61,7 @@
 
 #else
 #  define LIBLX_EXTERN
-#endif  /* LIBSBML_STATIC */
+#endif  /* LIBLX_STATIC */
 
 /**
  * Disable MSVC++ warning C4800: 'const int' : forcing value to bool 'true'
@@ -89,7 +89,7 @@
 /**
  * LIBLX_EXTERN is used under Windows to simplify exporting functions
  * from a DLL.  When compiling under Windows, all files within this DLL are
- * compiled with the LIBSBML_EXPORTS symbol defined on the command line.
+ * compiled with the LIBLX_EXPORTS symbol defined on the command line.
  * This in turn causes extern.h to define a different version of
  * LIBLX_EXTERN that is appropriate for exporting functions to client
  * code that uses the DLL.

@@ -50,7 +50,7 @@
 using namespace std;
 using namespace xercesc;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 
 /**
@@ -246,6 +246,6 @@ XercesHandler::setDocumentLocator (const xercesc::Locator* const locator)
 }
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 /** @endcond */

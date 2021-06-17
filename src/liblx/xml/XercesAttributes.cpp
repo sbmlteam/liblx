@@ -42,7 +42,7 @@
 using namespace std;
 using namespace xercesc;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 
 /**
@@ -89,7 +89,7 @@ XercesAttributes::~XercesAttributes ()
 }
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 /** @endcond */
 

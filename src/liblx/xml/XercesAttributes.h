@@ -46,7 +46,7 @@
 #include <xercesc/sax2/Attributes.hpp>
 #include <liblx/xml/XMLAttributes.h>
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 class XercesAttributes : public XMLAttributes
 {
@@ -67,7 +67,7 @@ public:
 };
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* XercesAttributes_h */

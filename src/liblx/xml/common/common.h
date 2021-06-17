@@ -34,8 +34,8 @@
  * also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#ifndef LIBSBML_COMMON_H
-#define LIBSBML_COMMON_H 1
+#ifndef LIBLX_COMMON_H
+#define LIBLX_COMMON_H 1
 
 
 #include <liblx/xml/common/liblx-config.h>
@@ -70,9 +70,9 @@
  * into the XML produced by libSBML.  This is used by
  * StringBuffer_appendReal.
  */
-#define LIBSBML_FLOAT_FORMAT "%.15g"
+#define LIBLX_FLOAT_FORMAT "%.15g"
 
-#define LIBSBML_DOUBLE_PRECISION 15
+#define LIBLX_DOUBLE_PRECISION 15
 
 static const int SBML_INT_MAX = 2147483647;
 static const int SBML_INT_MIN = -2147483647 - 1;
@@ -106,12 +106,12 @@ static const int SBML_INT_MIN = -2147483647 - 1;
  * number could be provided by the parser.
  */
 
-#define LIBSBML_UNKNOWN_LINE	SBML_INT_MAX
-#define LIBSBML_UNKNOWN_COLUMN	SBML_INT_MAX
+#define LIBLX_UNKNOWN_LINE	SBML_INT_MAX
+#define LIBLX_UNKNOWN_COLUMN	SBML_INT_MAX
 
-#define LIBSBML_USE_LEGACY_MATH 1
+#define LIBLX_USE_LEGACY_MATH 1
 
 
 #include <liblx/xml/common/extern.h>
 
-#endif  /* LIBSBML_COMMON_H */
+#endif  /* LIBLX_COMMON_H */

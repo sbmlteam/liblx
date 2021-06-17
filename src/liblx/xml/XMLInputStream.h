@@ -267,8 +267,8 @@ public:
    * Sets the XMLErrorLog this stream will use to log errors.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    */
   int setErrorLog (XMLErrorLog* log);
 
@@ -624,8 +624,8 @@ XMLInputStream_skipText (XMLInputStream_t *stream);
  * @param log the XMLErrorLog_t structure to attach to the @p stream.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  *
  * @memberof XMLInputStream_t
  */

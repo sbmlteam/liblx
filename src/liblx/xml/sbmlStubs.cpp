@@ -68,6 +68,6 @@ SBMLNamespaces* SBMLNamespaces::clone() const {
 const char*
 getLibSBMLDottedVersion ()
 {
-	return LIBSBML_DOTTED_VERSION;
+	return LIBLX_DOTTED_VERSION;
 }
 */

@@ -48,7 +48,7 @@
 #include <liblx/xml/XMLError.h>
 #include <liblx/xml/ExpatHandler.h>
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 class XMLBuffer;
 class XMLHandler;
@@ -165,7 +165,7 @@ private:
 };
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* ExpatParser_h */
