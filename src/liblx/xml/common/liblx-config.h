@@ -62,8 +62,8 @@
  * <tt>libsbml-config-win.h</tt> are all installed by @c "make install".
  */
 
-#ifndef LIBSBXML_CONFIG_H
-#define LIBSBXML_CONFIG_H 1
+#ifndef LIBLX_CONFIG_H
+#define LIBLX_CONFIG_H 1
 
 #include <liblx/xml/common/liblx-namespace.h>
 
@@ -72,5 +72,5 @@
 #include <liblx/xml/common/liblx-version.h>
 
 
-#endif  /* LIBSBXML_CONFIG_H */
+#endif  /* LIBLX_CONFIG_H */
 

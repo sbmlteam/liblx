@@ -322,10 +322,10 @@ public:
    * @return a severity override code.  The possible values are drawn
    * from @if clike the enumeration #XMLErrorSeverityOverride_t@else the
    * set of integer constants whose names begin with the prefix
-   * <code>LIBSBXML_OVERRIDE_</code>@endif:
-   * @li @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
-   * @li @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
-   * @li @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
+   * <code>LIBLX_OVERRIDE_</code>@endif:
+   * @li @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+   * @li @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
+   * @li @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
    *
    * @see isSeverityOverridden()
    * @see setSeverityOverride(@if java int@endif)
@@ -341,12 +341,12 @@ public:
    * @copydetails doc_what_are_severity_overrides
    *
    * @param severity an override code indicating what to do.  If the value is
-   * @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+   * @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
    * (the default setting) all errors logged will be given the severity
    * specified in their usual definition.   If the value is
-   * @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
+   * @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
    * then all errors will be logged as warnings.  If the value is 
-   * @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
+   * @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
    * no error will be logged, regardless of their severity.
    *
    * @see isSeverityOverridden()
@@ -513,7 +513,7 @@ XMLErrorLog_toString (XMLErrorLog_t *log);
  * 
  * @param log XMLErrorLog_t structure to be queried.
  *
- * @return @c 1 (true) if the security override is not set to LIBSBXML_OVERRIDE_DISABLED, @c 0 (false) otherwise.
+ * @return @c 1 (true) if the security override is not set to LIBLX_OVERRIDE_DISABLED, @c 0 (false) otherwise.
  *
  * @memberof XMLErrorLog_t
  */
@@ -522,7 +522,7 @@ int
 XMLErrorLog_isSeverityOverridden (XMLErrorLog_t *log);
 
 /**
- * Usets the override of the given XMLErrorLog_t (sets the flag to LIBSBXML_OVERRIDE_DISABLED).
+ * Usets the override of the given XMLErrorLog_t (sets the flag to LIBLX_OVERRIDE_DISABLED).
  * 
  * @param log XMLErrorLog_t structure to be queried.
  *
@@ -537,9 +537,9 @@ XMLErrorLog_unsetSeverityOverride (XMLErrorLog_t *log);
  *
  * @return a severity override code.  The possible values are drawn
  * from the enumeration #XMLErrorSeverityOverride_t:
- * @li @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
- * @li @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
- * @li @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
+ * @li @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+ * @li @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
+ * @li @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
  * 
  * @param log XMLErrorLog_t structure to be queried.
  *
@@ -556,12 +556,12 @@ XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log);
  * 
  * @param log XMLErrorLog_t structure to be queried.
  * @param overridden an override code indicating what to do.  If the value is
- * @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+ * @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
  * (the default setting) all errors logged will be given the severity
  * specified in their usual definition.   If the value is
- * @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
+ * @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
  * then all errors will be logged as warnings.  If the value is 
- * @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
+ * @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
  * no error will be logged, regardless of their severity.
  *
  * @see XMLErrorLog_getSeverityOverride()

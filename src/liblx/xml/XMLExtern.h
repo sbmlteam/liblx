@@ -49,7 +49,7 @@
  * sees symbols defined with this macro as being exported.
  */
 # if (defined(WIN32) && ! defined(CYGWIN) && ! defined(LIBLAX_STATIC) && !defined(__MINGW32__))
-#   if defined(LIBSBXML_EXPORTS)
+#   if defined(LIBLX_EXPORTS)
 #     define LIBLX_EXTERN __declspec(dllexport)
 #   else
 #     define LIBLX_EXTERN __declspec(dllimport)

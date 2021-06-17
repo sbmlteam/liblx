@@ -135,21 +135,21 @@ START_TEST(test_XMLErrorLog_override)
   XMLErrorLog_t* log = XMLErrorLog_create();
   
   fail_unless(XMLErrorLog_isSeverityOverridden(log) == 0);
-  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBSBXML_OVERRIDE_DISABLED);
+  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBLX_OVERRIDE_DISABLED);
   
   /* test that errors are not logged when set */
-  XMLErrorLog_setSeverityOverride(log, LIBSBXML_OVERRIDE_DONT_LOG);  
+  XMLErrorLog_setSeverityOverride(log, LIBLX_OVERRIDE_DONT_LOG);  
   fail_unless(XMLErrorLog_isSeverityOverridden(log) == 1);
-  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBSBXML_OVERRIDE_DONT_LOG);
+  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBLX_OVERRIDE_DONT_LOG);
 
   XMLError_t* error = XMLError_create();
   XMLErrorLog_add( log, error );
   fail_unless(XMLErrorLog_getNumErrors(log) == 0);
 
   /* test that errors are logged as warnings */
-  XMLErrorLog_setSeverityOverride(log, LIBSBXML_OVERRIDE_WARNING);
+  XMLErrorLog_setSeverityOverride(log, LIBLX_OVERRIDE_WARNING);
   fail_unless(XMLErrorLog_isSeverityOverridden(log) == 1);
-  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBSBXML_OVERRIDE_WARNING);
+  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBLX_OVERRIDE_WARNING);
 
   XMLErrorLog_add( log, error );
   fail_unless(XMLErrorLog_getNumErrors(log) == 1);
@@ -158,9 +158,9 @@ START_TEST(test_XMLErrorLog_override)
   /* test that errors are logged normaly otherwise */
 
   XMLErrorLog_clearLog(log);
-  XMLErrorLog_setSeverityOverride(log, LIBSBXML_OVERRIDE_DISABLED);
+  XMLErrorLog_setSeverityOverride(log, LIBLX_OVERRIDE_DISABLED);
   fail_unless(XMLErrorLog_isSeverityOverridden(log) == 0);
-  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBSBXML_OVERRIDE_DISABLED);
+  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBLX_OVERRIDE_DISABLED);
 
   XMLErrorLog_add( log, error );
   fail_unless(XMLErrorLog_getNumErrors(log) == 1);
@@ -168,9 +168,9 @@ START_TEST(test_XMLErrorLog_override)
 
   /* test that warnings are logged as errors */
   XMLErrorLog_clearLog(log);
-  XMLErrorLog_setSeverityOverride(log, LIBSBXML_OVERRIDE_ERROR);
+  XMLErrorLog_setSeverityOverride(log, LIBLX_OVERRIDE_ERROR);
   fail_unless(XMLErrorLog_isSeverityOverridden(log) == 1);
-  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBSBXML_OVERRIDE_ERROR);
+  fail_unless(XMLErrorLog_getSeverityOverride(log) == LIBLX_OVERRIDE_ERROR);
 
 
   XMLError_free(error);

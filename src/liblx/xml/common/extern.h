@@ -53,7 +53,7 @@
  *
  * (From Andrew Finney's sbwdefs.h, with "SBW" replaced by "LIBSBML" :)
  */
-#if defined(LIBSBXML_EXPORTS)
+#if defined(LIBLX_EXPORTS)
 #  define LIBLX_EXTERN __declspec(dllexport)
 #else
 #  define LIBLX_EXTERN __declspec(dllimport)
