@@ -17,7 +17,7 @@ jobs:
       fail-fast: false
       matrix:
         xml_parser_option: ["-DWITH_LIBXML", "-DWITH_EXPAT", "-DWITH_XERCES"]
-        platform: [windows-latest, macos-latest, ubuntu-latest]
+        platform: [windows-latest, macos-latest, ubuntu-16.04]
         with_namespace: ["True", "False"]
         language_bindings:
           ["-DWITH_PYTHON=True"]
@@ -67,7 +67,7 @@ jobs:
           echo RUNTIME_LINKING_OPTION="-DWITH_STATIC_RUNTIME=ON" >> "${GITHUB_ENV}"
       - name: Install Ubuntu dependencies
         # ubuntu already has SWIG and libxml2 by default
-        if: matrix.platform == 'ubuntu-latest'
+        if: matrix.platform == 'ubuntu-16.04'
         shell: bash
         run: |
           sudo apt-get install -y check libxerces-c-dev expat ccache
