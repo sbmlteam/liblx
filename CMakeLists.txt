@@ -32,17 +32,18 @@
 ###############################################################################
 
 cmake_minimum_required(VERSION 2.6)
-project(libsbml)
+project(liblx)
 
 if(POLICY CMP0054)
     cmake_policy(SET CMP0054 NEW)
 endif()
 
-if(POLICY CMP0058)
-    cmake_policy(SET CMP0058 OLD)
-endif()
+#if(POLICY CMP0058)
+#    cmake_policy(SET CMP0058 OLD)
+#endif()
 
 
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules ${CMAKE_MODULE_PATH})
 
 set(LIBSBML_ROOT_SOURCE_DIR "${CMAKE_SOURCE_DIR}" CACHE PATH
     "Path to the libSBML root source directory")
@@ -70,6 +71,18 @@ else ()
 	set (CMAKE_INSTALL_FULL_LIBDIR "${CMAKE_INSTALL_PREFIX}/lib")
 	set (CMAKE_INSTALL_FULL_INCLUDEDIR "${CMAKE_INSTALL_PREFIX}/include")
 endif ()
+
+
+# Temporary - output from within liblx/build:
+message(STATUS "PUBLIC_HEADER_DIR: ${PUBLIC_HEADER_DIR}")
+message(STATUS "PROJECT_SOURCE_DIR: ${PROJECT_SOURCE_DIR}")   #  /Users/matthewgillman/repos/libLX/liblx
+message(STATUS "CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")  # /Users/matthewgillman/repos/libLX/liblx
+message(STATUS "CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")  # /Users/matthewgillman/repos/libLX/liblx/build
+message(STATUS "DOXYGEN_EXECUTABLE: ${DOXYGEN_EXECUTABLE}")  # /usr/local/bin/doxygen
+message(STATUS "SPHINX_EXECUTABLE: ${SPHINX_EXECUTABLE}")   # Found later by liblx/CMakeModules/FindSphinx.cmake
+message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")  # libLX/liblx/CMakeModules, needed to find FindSphinx.cmake script
+
+
 
 ###############################################################################
 #
@@ -116,10 +129,10 @@ set(PROJECT_VERSION ${PACKAGE_VERSION})
 
 if (WITH_DOXYGEN OR WITH_PYTHON)
   # configure the version for documentation / bindings
-  configure_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/libsbml-version.html.in
-      ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/libsbml-version.html
-  )
+  #configure_file(
+  #    ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/libsbml-version.html.in
+  #    ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/libsbml-version.html
+  #)
 endif()
 
 # add make dist and make check target as they are already familiar for
