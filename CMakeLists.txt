@@ -1,11 +1,11 @@
 ###############################################################################
 #
-# Description       : CMake build script for libSBML
+# Description       : CMake build script for libLX
 # Original author(s): Frank Bergmann <fbergman@caltech.edu>
 # Organization      : California Institute of Technology
 #
-# This file is part of libSBML.  Please visit http://sbml.org for more
-# information about SBML, and the latest version of libSBML.
+# This file is part of libLX.  Please visit http://sbml.org for more
+# information about SBML, and the latest version of libLX.
 #
 # Copyright (C) 2013-2017 jointly by the following organizations:
 #     1. California Institute of Technology, Pasadena, CA, USA
@@ -27,12 +27,12 @@
 # under the terms of the GNU Lesser General Public License as published by
 # the Free Software Foundation.  A copy of the license agreement is provided
 # in the file named "LICENSE.txt" included with this software distribution
-# and also available online as http://sbml.org/software/libsbml/license.html
+# and also available online as http://sbml.org/software/liblx/license.html
 #
 ###############################################################################
 
 cmake_minimum_required(VERSION 2.6)
-project(libsbml)
+project(liblx)
 
 if(POLICY CMP0054)
     cmake_policy(SET CMP0054 NEW)
@@ -43,11 +43,10 @@ if(POLICY CMP0058)
 endif()
 
 
-
-set(LIBLX_ROOT_SOURCE_DIR "${CMAKE_SOURCE_DIR}" CACHE PATH
-    "Path to the libSBML root source directory")
-set(LIBLX_ROOT_BINARY_DIR "${CMAKE_BINARY_DIR}" CACHE PATH
-    "Path to the libSBML root build directory")
+set(LIBLX_ROOT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" CACHE PATH
+    "Path to the libLX root source directory")
+set(LIBSLX_ROOT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH
+    "Path to the libLX root build directory")
 
 include (CMakeTestCCompiler)
 include (CheckCSourceCompiles)
@@ -62,7 +61,7 @@ include (CheckTypeSize)
 if (${CMAKE_VERSION} VERSION_GREATER 2.8.4)
 	include(GNUInstallDirs)
 else ()
-	set (CMAKE_INSTALL_DATADIR "share/libsbml/")
+	set (CMAKE_INSTALL_DATADIR "share/liblx/")
 	set (CMAKE_INSTALL_LIBDIR "lib")
 	set (CMAKE_INSTALL_INCLUDEDIR "include")
 	set (CMAKE_INSTALL_BINDIR "bin")
@@ -103,7 +102,7 @@ endif()
 # version number needs to be calculated correctly
 MATH(EXPR LIBLX_VERSION_NUMERIC "${LIBLX_VERSION_MAJOR} * 10000 + ${LIBLX_VERSION_MINOR} * 100 + ${LIBLX_VERSION_PATCH}" )
 set(PACKAGE_VERSION "${LIBLX_VERSION_MAJOR}.${LIBLX_VERSION_MINOR}.${LIBLX_VERSION_PATCH}${LIBLX_VERSION_RELEASE}")
-set(PACKAGE_NAME "libSBML")
+set(PACKAGE_NAME "libLX")
 
 set(PACKAGE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake" CACHE PATH
     "Path into which the cmake config files should be installed")
@@ -113,14 +112,6 @@ set(PACKAGE_CONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/cmake" CACHE PATH
 # the PROJECT_VERSION, which will be used when exporting targets in
 # src/CMakeLists.txt
 set(PROJECT_VERSION ${PACKAGE_VERSION})
-
-if (WITH_DOXYGEN OR WITH_PYTHON)
-  # configure the version for documentation / bindings
-  configure_file(
-      ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/libsbml-version.html.in
-      ${CMAKE_CURRENT_SOURCE_DIR}/docs/src/common-text/libsbml-version.html
-  )
-endif()
 
 # add make dist and make check target as they are already familiar for
 # everyone using the gnumake build
@@ -149,7 +140,7 @@ set(CPACK_RPM_PACKAGE_LICENSE "LGPL")
 set(CPACK_RPM_PACKAGE_GROUP "Libraries/Development")
 set(CPACK_DEBIAN_PACKAGE_SECTION "Libraries")
 
-set(CPACK_SOURCE_IGNORE_FILES "${CMAKE_CURRENT_BINARY_DIR};/.vs/;/.vscode/;/.svn/;/.libs/;/.deps/;/.bzr/;.*.o$;.*.lo$;.*.la$;${CPACK_SOURCE_IGNORE_FILES};/.DS_Store;/.svnignore;blib;libsbml-dist")
+set(CPACK_SOURCE_IGNORE_FILES "${CMAKE_CURRENT_BINARY_DIR};/.vs/;/.vscode/;/.svn/;/.libs/;/.deps/;/.bzr/;.*.o$;.*.lo$;.*.la$;${CPACK_SOURCE_IGNORE_FILES};/.DS_Store;/.svnignore;blib;liblx-dist")
 
 if(UNIX)
     set(CPACK_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
@@ -169,26 +160,26 @@ include(CPack)
 
 ###############################################################################
 #
-# Here we have the main configuration options for libsbml.
+# Here we have the main configuration options for liblx.
 #
 
 # Build static / shared library
 # option(BUILD_SHARED_LIBS  "Build shared library. (Set to OFF to build static libraries.)" OFF)
 
 # Whether to compile examples
-option(WITH_EXAMPLES "Compile the libSBML example programs."  OFF)
+option(WITH_EXAMPLES "Compile the libLX example programs."  OFF)
 
 # Which language bindings should be built
-option(WITH_CSHARP   "Generate the C# language interface for libSBML."     OFF)
-option(WITH_JAVA     "Generate the Java language interface for libSBML."   OFF)
-option(WITH_PYTHON   "Generate the Python language interface for libSBML." OFF)
-option(WITH_PERL     "Generate the Perl language interface for libSBML."   OFF)
-option(WITH_PHP      "Generate the PHP language interface for libSBML."    OFF)
-option(WITH_RUBY     "Generate the Ruby language interface for libSBML"    OFF)
-option(WITH_R        "Generate the R language interface for libSBML"       OFF)
-option(WITH_OCTAVE   "Generate the Octave language interface for libSBML." OFF)
-option(WITH_MATLAB   "Generate the MATLAB language interface for libSBML." OFF)
-option(WITH_JAVASCRIPT   "Generate the experimental Node.js language interface for libSBML." OFF)
+option(WITH_CSHARP   "Generate the C# language interface for libLX."     OFF)
+option(WITH_JAVA     "Generate the Java language interface for libLX."   OFF)
+option(WITH_PYTHON   "Generate the Python language interface for libLX." OFF)
+option(WITH_PERL     "Generate the Perl language interface for libLX."   OFF)
+option(WITH_PHP      "Generate the PHP language interface for libLX."    OFF)
+option(WITH_RUBY     "Generate the Ruby language interface for libLX"    OFF)
+option(WITH_R        "Generate the R language interface for libLX"       OFF)
+option(WITH_OCTAVE   "Generate the Octave language interface for libLX." OFF)
+option(WITH_MATLAB   "Generate the MATLAB language interface for libLX." OFF)
+option(WITH_JAVASCRIPT   "Generate the experimental Node.js language interface for libLX." OFF)
 
 if (WITH_JAVASCRIPT)
 
@@ -217,7 +208,7 @@ if (WITH_JAVASCRIPT)
   # check that we found node-gyp
   if (NOT NODE_GYP_EXECUTABLE)
         message(FATAL_ERROR
-"In oder to build the JavaScript language interface, libSBML needs the
+"In oder to build the JavaScript language interface, libLX needs the
 node-gyp executable. Please set the variable named NODE_GYP_EXECUTABLE.")
   endif()
 
@@ -225,7 +216,7 @@ node-gyp executable. Please set the variable named NODE_GYP_EXECUTABLE.")
   if (SWIG_VERSION AND NOT SWIG_VERSION VERSION_GREATER 3.0.1)
         message(FATAL_ERROR
 "SWIG version 3.0.2 or greater is needed in order to build the JavaScript
-language interface for libSBML, but only version ${SWIG_VERSION} was found.")
+language interface for libLX, but only version ${SWIG_VERSION} was found.")
   endif()
 
 endif()
@@ -244,15 +235,6 @@ if(WITH_WALL)
     endif()
 endif()
 
-# Add an option to instruct libSBML to not include SBMLTypes.h and other files internally.
-option(LIBLX_USE_STRICT_INCLUDES
-"Compile using 'strict includes' rules: libSBML header files won't
-use SBMLTypes.h, among others." OFF)
-if(LIBLX_USE_STRICT_INCLUDES)
-  add_definitions(-DLIBLX_USE_STRICT_INCLUDES)
-endif(LIBLX_USE_STRICT_INCLUDES)
-mark_as_advanced(LIBLX_USE_STRICT_INCLUDES)
-
 set(LIBLX_BUILD_TYPE "native")
 if (CMAKE_SIZEOF_VOID_P EQUAL 4)
   set(LIBLX_BUILD_TYPE "32bit")
@@ -263,8 +245,8 @@ if (APPLE AND ENABLE_UNIVERSAL)
   set(LIBLX_BUILD_TYPE "universal")
 endif()
 
-# When allocation of memory fails or the libSBML C API is unable to open
-# a file, libSBML can exit the current process. By default this behavior
+# When allocation of memory fails or the libLX C API is unable to open
+# a file, libLX can exit the current process. By default this behavior
 # is disabled.
 #
 option (EXIT_ON_ERROR "Call exit(-1) in case of allocation or file error." OFF)
@@ -282,7 +264,7 @@ mark_as_advanced(LIBLX_SHARED_VERSION)
 #
 if(NOT ${CMAKE_GENERATOR} MATCHES "Visual Studio 6" AND NOT ${CMAKE_GENERATOR} MATCHES "Visual Studio 7")
     option(WITH_CHECK
-"Compile the libSBML unit tests. (You can then run the tests with the
+"Compile the libLX unit tests. (You can then run the tests with the
 command 'make test' or 'ctest'.)" OFF)
 endif()
 
@@ -292,16 +274,16 @@ option(WITH_LIBXML   "Use the libxml2 XML parser library."   ON )
 option(WITH_XERCES   "Use the Xerces XML parser library."    OFF)
 
 # Use C++ namespace.
-option(WITH_CPP_NAMESPACE "Use a C++ namespace for libSBML."   OFF)
+option(WITH_CPP_NAMESPACE "Use a C++ namespace for libLX."   OFF)
 
 # Generate documentation.
-option(WITH_DOXYGEN  "Generate documentation for libSBML using Doxygen."  OFF )
+option(WITH_DOXYGEN  "Generate documentation for libLX using Doxygen."  OFF )
 # marks as advanced, so as to hide documentation generation
 mark_as_advanced(WITH_DOXYGEN)
 
 # Re-generate the swig bindings? This really should be on by default
 # otherwise one might have the wrong wrapper code without support for
-# the libsbml packages one wants.
+# the liblx packages one wants.
 option(WITH_SWIG     "Regenerate the programming language interface code
 (for Java, Python, etc.) using SWIG."  ON )
 
@@ -378,7 +360,7 @@ if(WITH_SWIG)
     if (SWIG_FOUND AND SWIG_VERSION VERSION_LESS "2.0.4")
       message(WARNING
 "You are using SWIG version ${SWIG_VERSION}.  We strongly recommend
-using version 2.0.4 or greater. For libSBML JavaScript support, you
+using version 2.0.4 or greater. For libLX JavaScript support, you
 will need version 3.0.1 at minimum.")
     endif()
     set(SWIG_EXTRA_ARGS -DLIBLX_COMPILED_IN_SRC)
@@ -450,7 +432,7 @@ It should contain the file expat.h, but it does not.")
 
             if (EXPAT_VERSION_STRING VERSION_LESS 1.95.9)
                      message(FATAL_ERROR
-"Expat version ${EXPAT_VERSION_STRING} is not compatible with libSBML.
+"Expat version ${EXPAT_VERSION_STRING} is not compatible with libLX.
 Please use a version newer than 1.95.8 or an alternate XML parser.")
             endif()
         endif()
@@ -556,7 +538,7 @@ if(WITH_XERCES)
         if (XercesC_VERSION VERSION_EQUAL 2.6.0)
          message(FATAL_ERROR
 "Xerces version ${XercesC_VERSION} contains known bugs
-and is not compatible with libSBML. Please use a newer version of
+and is not compatible with libLX. Please use a newer version of
 Xerces or an alternate XML parser.")
         endif()
     endif ()
@@ -781,7 +763,7 @@ if(WITH_CSHARP)
             ${windir}/Microsoft.NET/Framework/v3.0/
             /usr/bin
             /usr/local/bin
-        DOC "The file name of the C# compiler for the libsbmlcs assembly."
+        DOC "The file name of the C# compiler for the liblxcs assembly."
         )
     find_program(CSHARP_EXAMPLE_COMPILER
         NAMES gmcs csc mcs
@@ -797,10 +779,10 @@ if(WITH_CSHARP)
     if(UNIX)
     else()
         if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-            # mark libsbml library as x86
+            # mark liblx library as x86
             set(CSHARP_EXTRA_ARGS -platform:x86 )
         elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-            # mark libsbml library as x64
+            # mark liblx library as x64
             set(CSHARP_EXTRA_ARGS -platform:x64 )
         endif()
     endif()
@@ -934,9 +916,9 @@ endif(WITH_CHECK)
 
 ###############################################################################
 #
-# Need some variables set up, such as the name for the libSBML
+# Need some variables set up, such as the name for the libLX
 # library and the Path and file separator characters. The
-# MISC_PREFIX variable will cause libsbml bindings, examples and
+# MISC_PREFIX variable will cause liblx bindings, examples and
 # documentation to be installed in PREFIX/${MISC_PREFIX}.
 #
 
@@ -1006,7 +988,7 @@ if(UNIX)
 other operating systems.)" OFF)
 
         set(CMAKE_OSX_ARCHITECTURES "${CMAKE_OSX_ARCHITECTURES}" CACHE STRING
-           "A semicolon-separated list of architectures for which libSBML should be built.")
+           "A semicolon-separated list of architectures for which libLX should be built.")
         if(ENABLE_UNIVERSAL)
 
             # if universal binaries are requested and none defined so far
@@ -1024,17 +1006,17 @@ other operating systems.)" OFF)
 
                    # OSX Lion no longer supports ppc architecture
                    set(CMAKE_OSX_ARCHITECTURES "i386;x86_64" CACHE STRING
-                      "A semicolon-separated list of architectures for which libSBML should be built." FORCE)
+                      "A semicolon-separated list of architectures for which libLX should be built." FORCE)
 
                 elseif(OSX_SDK_VERSION AND OSX_SDK_VERSION  VERSION_LESS "10.7" )
 
                    set(CMAKE_OSX_ARCHITECTURES "i386;ppc;x86_64" CACHE STRING
-                       "A semicolon-separated list of architectures for which libSBML should be built." FORCE)
+                       "A semicolon-separated list of architectures for which libLX should be built." FORCE)
 
                 else()
 
                    set(CMAKE_OSX_ARCHITECTURES "i386;x86_64" CACHE STRING
-                       "A semicolon-separated list of architectures for which libSBML should be built." FORCE)
+                       "A semicolon-separated list of architectures for which libLX should be built." FORCE)
 
                 endif()
             endif()
@@ -1083,10 +1065,8 @@ other operating systems.)" OFF)
     # set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\"")
 
 else(UNIX)
-    # not needing these defines, and they do cause warnings
-    # add_definitions(-DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
-    add_definitions(-DWIN32 -DLIBLX_EXPORTS -DLIBLAX_EXPORTS)
-    set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DWIN32 -DLIBLX_EXPORTS -DLIBLAX_EXPORTS")
+    add_definitions(-DWIN32 -DLIBLX_EXPORTS)
+    set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DWIN32 -DLIBLX_EXPORTS")
     if(MSVC OR USING_INTEL)
         add_definitions(-D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE)
         set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -D_CRT_SECURE_NO_WARNINGS")
@@ -1235,7 +1215,7 @@ endif()
 
 ###############################################################################
 #
-# Include options for all libSBML packages
+# Include options for all libLX packages
 #
 #set(LIBLX_PACKAGE_INCLUDES)
 #set(LIBLX_PACKAGE_SUMMARY)
@@ -1250,7 +1230,7 @@ endif()
 
 ###############################################################################
 #
-# Build the actual libSBML library
+# Build the actual libLX library
 #
 
 add_subdirectory(src)
@@ -1314,7 +1294,7 @@ endif()
 
 file(WRITE  "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "Name: ${PACKAGE_NAME}\n")
 file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "Description: A library for parsing XML\n")
-file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "URL: http://sbml.org/Software/libLX\n")
+#file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "URL: http://sbml.org/Software/libLX\n")
 file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "Version: ${PACKAGE_VERSION}\n")
 file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "\n")
 file(APPEND "${CMAKE_CURRENT_BINARY_DIR}/liblx.pc" "prefix=${CMAKE_INSTALL_PREFIX}\n")
@@ -1347,14 +1327,14 @@ endif()
 
 message(STATUS "
 ----------------------------------------------------------------------
-libSBML version ${PACKAGE_VERSION}
+libLX version ${PACKAGE_VERSION}
 ----------------------------------------------------------------------
 
    More information and the latest version are available online at
-   http://sbml.org/Software/libLX
+   
 
    Please report problems using the issue tracker at
-   http://sbml.org/Software/liblx/issue-tracker
+   
 
    To contact the developers directly, email libsbml-team@googlegroups.com
 
@@ -1376,7 +1356,7 @@ libSBML version ${PACKAGE_VERSION}
      CPPFLAGS for XML                = -I${LIBLX_XML_LIBRARY_INCLUDE}
      LIBS for XML                    = ${LIBLX_XML_LIBRARY_LIBS}
 
-   Other libSBML configuration settings:
+   Other libLX configuration settings:
      Installation $prefix            = ${CMAKE_INSTALL_PREFIX}")
 
 if(UNIX)
@@ -1442,9 +1422,9 @@ if(WITH_CHECK)
 endif()
 
 if(WITH_CPP_NAMESPACE) # FIXME: change this when the C++ namespace is changed
-    message(STATUS "     Using C++ namespace ('libsbml') = yes")
+    message(STATUS "     Using C++ namespace ('liblx') = yes")
 else()
-    message(STATUS "     Using C++ namespace ('libsbml') = no")
+    message(STATUS "     Using C++ namespace ('liblx') = no")
 endif()
 
 if(APPLE)
@@ -1493,7 +1473,7 @@ if(WITH_ZLIB)
 else()
     message(STATUS "
 Warning: reading/writing compressed SBML in .zip or .gz format in
-this copy of libSBML is not supported or has been disabled.
+this copy of libLX is not supported or has been disabled.
 If this was not your intention, please check the WITH_ZLIB
 option.")
 endif()
@@ -1503,7 +1483,7 @@ if(WITH_BZIP2)
 else()
     message(STATUS "
 Warning: reading/writing compressed SBML in .bz2 format in
-this copy of libSBML is not supported or has been disabled.
+this copy of libLX is not supported or has been disabled.
 If this was not your intention, please check the WITH_BZIP2
 option.")
 endif()
@@ -1537,8 +1517,8 @@ endif()
 #
 #include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 #
-#add_executable(LIBLX_test test.cpp)
-#target_link_libraries(LIBLX_test ${LIBLX_LIBRARY}-static)
+#add_executable(liblx_test test.cpp)
+#target_link_libraries(liblx_test ${LIBLX_LIBRARY}-static)
 #
 #endif()
 #
