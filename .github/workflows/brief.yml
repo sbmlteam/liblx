@@ -19,7 +19,7 @@ jobs:
         xml_parser_option: ["-DWITH_LIBXML", "-DWITH_EXPAT", "-DWITH_XERCES"]
         platform: [windows-latest, macos-latest, ubuntu-16.04]
         with_namespace: ["True", "False"]
-        language_bindings: ["-DWITH_PYTHON=True"]
+        language_bindings: ["", "-DWITH_PYTHON=True"]
         
     runs-on: ${{ matrix.platform }}
 
