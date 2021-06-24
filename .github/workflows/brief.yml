@@ -105,8 +105,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-test-${{ matrix.xml_parser_option }}-${{ matrix.with_namespace }}-${{ matrix.strict }}-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
             ${{ runner.os }}-test-${{ matrix.xml_parser_option }}-${{ matrix.with_namespace }}-${{ matrix.strict }}-
-            ${{ runner.os }}-test-${{ matrix.xml_parser_option }}-${{ matrix.with_namespace }}-${{ matrix.strict }}-
-            ${{ runner.os }}-test-${{ matrix.xml_parser_option }}-${{ matrix.with_namespace }}-${{ matrix.strict }}-
             ${{ runner.os }}-test-${{ matrix.xml_parser_option }}-${{ matrix.with_namespace }}-
             ${{ runner.os }}-test-${{ matrix.xml_parser_option }}-
             ${{ runner.os }}-test-
