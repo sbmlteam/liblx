@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to LibLX API's documentation!
+Welcome to the LibLX API documentation
 ======================================
 
 .. image:: ./_static/liblx_image.png
