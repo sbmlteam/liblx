@@ -20,7 +20,8 @@ import subprocess, os
 
 # breathe must be in this directory:
 # Temporarily hard-coded for now; need to make it configurable.
-sys.path.append( "/Users/matthewgillman/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/" )
+#sys.path.append( "/Users/matthewgillman/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/" )
+# Better: set your PYTHONPATH to include the path to the directory containing your breathe installation.
 
 def configureDoxyfile(input_dir, output_dir):
     with open('Doxyfile.in', 'r') as file :
