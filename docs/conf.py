@@ -19,6 +19,7 @@ import sys
 import subprocess, os
 
 # breathe must be in this directory:
+# Temporarily hard-coded for now; need to make it configurable.
 sys.path.append( "/Users/matthewgillman/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/" )
 
 def configureDoxyfile(input_dir, output_dir):
@@ -34,21 +35,23 @@ def configureDoxyfile(input_dir, output_dir):
 # Check if we're running on Read the Docs' servers
 read_the_docs_build = os.environ.get('READTHEDOCS', None) == 'True'
 
+# This should be a dictionary in which the keys are project names and the values
+# are paths to the folder containing the doxygen output for that project.
 breathe_projects = {}
 
 if read_the_docs_build:
-    input_dir = '../cpsapi'
+    input_dir = '../src'    # ??? not sure if this is correct for libLX build.
     output_dir = 'build'
     configureDoxyfile(input_dir, output_dir)
     subprocess.call('doxygen', shell=True)
-    breathe_projects['liblx'] = output_dir + '/xml'
+    breathe_projects['liblxapi'] = output_dir + '/xml'
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'COPASI API'
-copyright = '2021, COPASI Team'
-author = 'COPASI Team'
+project = 'liblxapi'
+copyright = '2021, LIBLX Team'
+author = 'LIBLX Team'
 
 
 # -- General configuration ---------------------------------------------------
@@ -59,7 +62,7 @@ author = 'COPASI Team'
 extensions = [ "breathe" ]
 
 # Breathe Configuration
-breathe_default_project = "liblx"
+breathe_default_project = "liblxapi"
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

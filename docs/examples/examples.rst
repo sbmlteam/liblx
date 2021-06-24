@@ -1,14 +1,14 @@
 Examples
 ========
 
-Loading a COPASI file
+Example 1
 ---------------------
 
-Saving a COPASI file
+Example 2
 ---------------------
 
-Using Visitors
+Example 3
 --------------
 
-Performing Transactions
+Example 4
 -----------------------

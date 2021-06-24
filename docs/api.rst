@@ -2,7 +2,7 @@
 API Documentation
 =================
 
-Here the full API documentation
+Here is the full API documentation
 
 .. doxygenindex::
-   :project: cpsapi
+   :project: liblxapi

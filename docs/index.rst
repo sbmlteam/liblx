@@ -1,13 +1,13 @@
-.. COPASI API documentation master file, created by
+.. LIBLX API documentation master file, adapted from COPASI one created by
    sphinx-quickstart on Wed Apr 14 10:45:25 2021.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to COPASI API's documentation!
+Welcome to LibLX API's documentation!
 ======================================
 
-.. image:: ./_static/COPASI_Conly_176x176.png
-   :alt: COPASI logo
+.. image:: ./_static/liblx_image.png
+   :alt: libLX logo
 
 .. toctree::
    :maxdepth: 2
