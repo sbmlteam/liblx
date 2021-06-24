@@ -55,71 +55,6 @@ file(GLOB SWIG_DEPENDENCIES
     ${CMAKE_CURRENT_SOURCE_DIR}/../swig/*.h
     )
 
-
-####################################################################
-#
-# generate files that include all packages: 
-#
-
-
-# - local-packages.i
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-*.i")
-list(REMOVE_ITEM DOWNCAST_EXTENSION "local-packages.i")
-# - local-packages.i
-update_ifile(
-    "local-packages.i" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}"
-)
-
-# - local-downcast.cpp
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-downcast-packages-*.cpp")
-update_cfile(
-    "local-downcast.cpp" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}"
-)
-
-# - local-downcast-extension.cpp
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-downcast-extension-*.cpp")
-update_cfile(
-    "local-downcast-extension.cpp" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}" 
-)
-
-# - local-downcast-namespaces.cpp
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-downcast-namespaces-*.cpp")
-update_cfile(
-    "local-downcast-namespaces.cpp" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}"
-)
-
-# - local-downcast-plugins.cpp
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-downcast-plugins-*.cpp")
-update_cfile(
-    "local-downcast-plugins.cpp" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}"
-)
-
-# - local-downcast-plugins.cpp
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-downcast-astplugins-*.cpp")
-update_cfile(
-    "local-downcast-astplugins.cpp" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}"
-)
-
-# - local-downcast-converters.cpp
-file(GLOB DOWNCAST_EXTENSION RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/local-downcast-converters-*.cpp")
-update_cfile(
-    "local-downcast-converters.cpp" 
-    ${CMAKE_CURRENT_BINARY_DIR} 
-    "${DOWNCAST_EXTENSION}"
-)
-
 #
 # Remove SWIG wrappers if requested
 #
@@ -135,34 +70,6 @@ if (LIBSBML_REMOVE_WRAPPERS)
     endforeach()
 endif(LIBSBML_REMOVE_WRAPPERS)
 
-# the Python bindings will only build if some files are generated, 
-# for those files to be generated the following python scripts are 
-# needed
-file(COPY 
-    ${CMAKE_CURRENT_SOURCE_DIR}/../swig/libsbmlutils.py  
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/utilities/generate-class-name-list.py"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/utilities/generate-converters-list.py"
-    DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
-
-# Normally in Python 2 only ascii strings are accepted as input to 
-# libSBML functions SWIG >= 3.0.8 allows one to change this behaviour
-# such that both ascii and utf-8 strings can be input. This enables
-# this behaviour or prints a warning if Swig version is too old.
-if (SWIG_FOUND AND PYTHON_VERSION_STRING VERSION_LESS 3.0)
-  if (SWIG_VERSION VERSION_GREATER "3.0.7")
-    list(APPEND SWIG_EXTRA_ARGS -DUSE_SWIG_PYTHON_2_UNICODE)
-    # message(STATUS SWIG_VERSION "${SWIG_VERSION}")
-  else()
-    message(WARNING 
-"Python ${PYTHON_VERSION_STRING} detected and SWIG version ${SWIG_VERSION}
- < 3.0.8, I cannot enable SWIG_PYTHON_2_UNICODE libSBML Python 
- bindings only accept strings as arugments. Please upgrade Swig to a
- version greater than 3.0.8 to enable unicode input in Python 2. See 
- http://www.swig.org/Doc3.0/Python.html for more details.)")
-  endif()
-endif()
-
 ####################################################################
 #
 # Swig bindings
@@ -175,59 +82,6 @@ add_custom_command(
         ${CMAKE_CURRENT_BINARY_DIR}/class-list.txt
         ${CMAKE_CURRENT_BINARY_DIR}/libsbml-converters.txt
 
-    COMMAND "${PYTHON_EXECUTABLE}"
-    ARGS  "${CMAKE_CURRENT_SOURCE_DIR}/../swig/swigdoc.py"
-        --language python
-        --top "${LIBSBML_ROOT_SOURCE_DIR}"
-        --master "${CMAKE_CURRENT_SOURCE_DIR}/../swig/libsbml.i"
-        --output "${CMAKE_CURRENT_BINARY_DIR}/pydoc-doxygen.i"
-        ${SWIG_SWIGDOCDEFINES}
-
-    COMMAND "${PYTHON_EXECUTABLE}"
-    ARGS  "${CMAKE_CURRENT_BINARY_DIR}/generate-class-name-list.py"
-        "${LIBSBML_ROOT_SOURCE_DIR}/src"
-        >
-        "${CMAKE_CURRENT_BINARY_DIR}/class-list.txt"
-
-    COMMAND "${PYTHON_EXECUTABLE}"
-    ARGS  "${CMAKE_CURRENT_BINARY_DIR}/generate-converters-list.py"  
-        "${CMAKE_CURRENT_BINARY_DIR}/class-list.txt"
-        >
-        "${CMAKE_CURRENT_BINARY_DIR}/libsbml-converters.txt"
-
-    COMMAND "${PYTHON_EXECUTABLE}"
-    ARGS  "${CMAKE_CURRENT_SOURCE_DIR}/doc-converter/rewrite_pydoc.py"
-        -f "${CMAKE_CURRENT_BINARY_DIR}/pydoc-doxygen.i"
-        -o "${CMAKE_CURRENT_BINARY_DIR}/pydoc-normal.i"
-        -i ${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/common-text
-        -g ${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/common-graphics
-
-    COMMAND "${CMAKE_COMMAND}"
-    ARGS  -E rename pydoc-doxygen.i pydoc.i
-
-    COMMAND "${SWIG_EXECUTABLE}"
-    ARGS  -I${CMAKE_CURRENT_SOURCE_DIR}/../swig/
-        -I${CMAKE_CURRENT_SOURCE_DIR} 
-        -I${CMAKE_CURRENT_BINARY_DIR} 
-        -I${LIBSBML_ROOT_BINARY_DIR}/src
-        -I${LIBSBML_ROOT_SOURCE_DIR}/src
-        -I${LIBSBML_ROOT_SOURCE_DIR}/include
-        -DGENERATING_DOCS
-        -c++
-        -python    
-        ${SWIG_EXTRA_ARGS}     
-        -o ${CMAKE_CURRENT_BINARY_DIR}/libsbml_wrap.cpp 
-        ${CMAKE_CURRENT_SOURCE_DIR}/libsbml.i
-
-    COMMAND "${CMAKE_COMMAND}"
-    ARGS  -E rename pydoc.i pydoc-doxygen.i
-
-    COMMAND "${CMAKE_COMMAND}"
-    ARGS  -E rename libsbml.py libsbml-doxygen.py
-
-    COMMAND "${CMAKE_COMMAND}"
-    ARGS  -E rename pydoc-normal.i pydoc.i
-
     COMMAND "${SWIG_EXECUTABLE}"
     ARGS  -I${CMAKE_CURRENT_SOURCE_DIR}/../swig/
         -I${CMAKE_CURRENT_SOURCE_DIR} 
@@ -240,9 +94,6 @@ add_custom_command(
         ${SWIG_EXTRA_ARGS}     
         -o ${CMAKE_CURRENT_BINARY_DIR}/libsbml_wrap.cpp 
         ${CMAKE_CURRENT_SOURCE_DIR}/libsbml.i
-
-    COMMAND "${CMAKE_COMMAND}"
-    ARGS  -E rename pydoc.i pydoc-normal.i 
 
     COMMAND "${CMAKE_COMMAND}"
     ARGS -DCUR_BIN_DIRECTORY=\"${CMAKE_CURRENT_BINARY_DIR}\"
@@ -256,9 +107,8 @@ add_custom_command(
          -P "${CMAKE_CURRENT_SOURCE_DIR}/patch-python.cmake"
 
     MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/libsbml.i
+
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
-        ${CMAKE_CURRENT_SOURCE_DIR}/doc-converter/rewrite_pydoc.py
-        ${CMAKE_CURRENT_SOURCE_DIR}/../swig/swigdoc.py
         ${SWIG_DEPENDENCIES} ${LIBSBML_HEADER_FILES}
 
     COMMENT "Swig Python source") 
