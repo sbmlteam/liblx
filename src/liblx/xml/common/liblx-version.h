@@ -1,11 +1,11 @@
 /**
  * @file    liblx-version.h
- * @brief   Define libSBML version numbers for access from client software.
+ * @brief   Define libLX version numbers for access from client software.
  * @author  Michael Hucka
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -54,7 +54,7 @@
  *
  * The version as an integer: version 1.2.3 becomes 10203.  Since the major
  * number comes first, the overall number will always increase when a new
- * libSBML is released, making it easy to use less-than and greater-than
+ * libLX is released, making it easy to use less-than and greater-than
  * comparisons when testing versions numbers.
  */
 #define LIBLX_VERSION		00001

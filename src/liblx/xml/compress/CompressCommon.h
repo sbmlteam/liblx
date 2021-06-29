@@ -1,5 +1,5 @@
 /**
- *@cond doxygenLibsbmlInternal
+ *@cond doxygenLiblxInternal
  **
  *
  * @file    CompressCommon.h
@@ -8,8 +8,8 @@
  *
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -50,7 +50,7 @@ LIBLX_CPP_NAMESPACE_BEGIN
 /**
  *
  *  This exception will be thrown if a function which depends on
- *  some library invoked and underlying libSBML is not linked with
+ *  some library invoked and underlying libLX is not linked with
  *  the library.
  *
  */
@@ -65,7 +65,7 @@ public:
 /**
  *
  * This exception will be thrown if a function which depends on
- * zlib invoked and underlying libSBML is not linked with zlib.
+ * zlib invoked and underlying libLX is not linked with zlib.
  *
  */
 class LIBLX_EXTERN ZlibNotLinked : public NotLinked
@@ -79,7 +79,7 @@ public:
 /**
  *
  *  This exception will be thrown if a function which depends on
- *  bzip2 library invoked and underlying libSBML is not linked with
+ *  bzip2 library invoked and underlying libLX is not linked with
  *  bzip2.
  *
  */
@@ -93,9 +93,9 @@ public:
 
 /**
  * Predicate returning @c true or @c false depending on whether
- * underlying libSBML is linked with zlib.
+ * underlying libLX is linked with zlib.
  *
- * @return @c true if libSBML is linked with zlib, @c false otherwise.
+ * @return @c true if libLX is linked with zlib, @c false otherwise.
  */
 LIBLX_EXTERN
 bool hasZlib();
@@ -103,9 +103,9 @@ bool hasZlib();
 
 /**
  * Predicate returning @c true or @c false depending on whether
- * underlying libSBML is linked with bzip2.
+ * underlying libLX is linked with bzip2.
  *
- * @return @c true if libSBML is linked with bzip2, @c false otherwise.
+ * @return @c true if libLX is linked with bzip2, @c false otherwise.
  */
 LIBLX_EXTERN
 bool hasBzip2();

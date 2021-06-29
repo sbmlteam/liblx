@@ -4,14 +4,14 @@
 ## INSTEAD.
 ##
 ## @file    setup.py.in
-## @brief   Python distutils code for libSBML Python module
+## @brief   Python distutils code for libLX Python module
 ## @author  Michael Hucka
 ## @author  Ben Bornstein
 ## @author  Ben Kovitz
 ## 
 ## <!--------------------------------------------------------------------------
-## This file is part of libSBML.  Please visit http://sbml.org for more
-## information about SBML, and the latest version of libSBML.
+## This file is part of libLX.  Please visit http://sbml.org for more
+## information about SBML, and the latest version of libLX.
 ##
 ## Copyright (C) 2013-2018 jointly by the following organizations:
 ##     1. California Institute of Technology, Pasadena, CA, USA
@@ -38,10 +38,10 @@
 
 ## Running setup.py currently needs 'make install'  or 'make create-build-dir' 
 ## to be run first. 'make install' or 'make create-build-dir' prepares the 
-## package directory. (and copies libsbml.py into build/libsbml/__init__.py)
+## package directory. (and copies liblx.py into build/liblx/__init__.py)
 
 import os.path, sys
-if not os.path.isfile('build/libsbml/__init__.py'):
+if not os.path.isfile('build/liblx/__init__.py'):
       print("Please run 'make create-build-dir' prior to using this setup script.")
       sys.exit(1)
 
@@ -53,24 +53,24 @@ except ImportError:
 
 
 
-setup(name             = "libsbml", 
+setup(name             = "liblx",
       version          = "@PACKAGE_VERSION@",
-      description      = "LibSBML Python API",
-      long_description = ("LibSBML is a library for reading, writing and "+
+      description      = "LibLX Python API",
+      long_description = ("LibLX is a library for reading, writing and "+
                           "manipulating the Systems Biology Markup Language "+
-                          "(SBML).  It is written in ISO C and C++, supports "+
-                          "SBML Levels 1, 2 and 3, and runs on Linux, Microsoft "+
+                          "(LX).  It is written in ISO C and C++, supports "+
+                          "LX Levels 1, 2 and 3, and runs on Linux, Microsoft "+
                           "Windows, and Apple MacOS X.  For more information "+
-                          "about SBML, please see http://sbml.org."),
+                          "about LX, please see http://sbml.org."),
       license          = "LGPL",
-      author           = "SBML Team",
+      author           = "LX Team",
       author_email     = "@PACKAGE_BUGREPORT@",
       url              = "http://sbml.org",
-      packages         = ["libsbml"],
-      package_dir      = {'libsbml': 'build/libsbml'},
-      ext_package      = "libsbml",
-      ext_modules      = [Extension("_libsbml", 
-                                    ["libsbml.i"],
+      packages         = ["liblx"],
+      package_dir      = {'liblx': 'build/liblx'},
+      ext_package      = "liblx",
+      ext_modules      = [Extension("_liblx",
+                                    ["liblx.i"],
                                     swig_opts=['-c++', '-I../swig', '-I../../../include'], 
                                     include_dirs=["../../../include", ".", "../swig"])]
 )

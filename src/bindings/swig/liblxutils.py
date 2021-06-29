@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 #
-# @file   libsbmlutils.py
+# @file   liblxutils.py
 # @brief  Common utility code used by some of our other Python programs.
 # @author Michael Hucka
 # @date   Created 2014-03-26
 #
 #<!---------------------------------------------------------------------------
-# This file is part of libSBML.  Please visit http://sbml.org for more
-# information about SBML, and the latest version of libSBML.
+# This file is part of libLX.  Please visit http://sbml.org for more
+# information about SBML, and the latest version of libLX.
 #
 # Copyright (C) 2013-2018 jointly by the following organizations:
 #     1. California Institute of Technology, Pasadena, CA, USA
@@ -38,9 +38,9 @@ from os.path import join
 skip_dirs    = ['math-legacy', 'compress', 'test', '.deps', '.libs',
                 'test-data', 'subdir']
 
-skip_files   = ['extensiontypes.h', 'libsbml_wrap.h', 'libsbml_wrap-win.h',
+skip_files   = ['extensiontypes.h', 'liblx_wrap.h', 'liblx_wrap-win.h',
                 'dirent.h', 'CMakeLists.txt', 'README.txt', 'extern.h',
-                'common-documentation.h', 'common-sbmlerror-codes.h']
+                'common-documentation.h', 'common-lxerror-codes.h']
 
 skip_classes = ['is', 'endl', 'flush']
 
@@ -111,7 +111,7 @@ def class_finder(stream, scanner):
     classes = []
     isInternal = False
     for line in stream.readlines():
-        if (line.find('@cond doxygenLibsbmlInternal') >= 0): isInternal = True
+        if (line.find('@cond doxygenLiblxInternal') >= 0): isInternal = True
         if (line.find('@endcond') >= 0):                     isInternal = False
         if isInternal:
             continue

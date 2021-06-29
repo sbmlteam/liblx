@@ -5,8 +5,8 @@
 ## @author  Akiya Jouraku
 ##
 ##<!---------------------------------------------------------------------------
-## This file is part of libSBML.  Please visit http://sbml.org for more
-## information about SBML, and the latest version of libSBML.
+## This file is part of libLX.  Please visit http://sbml.org for more
+## information about SBML, and the latest version of libLX.
 ##
 ## Copyright (C) 2013-2018 jointly by the following organizations:
 ##     1. California Institute of Technology, Pasadena, CA, USA
@@ -38,7 +38,7 @@ import glob
 import unittest
 
 test_basedir = 'test'
-test_subdirs = ['sbml','xml','math','annotation']
+test_subdirs = ['lx','xml','math','annotation']
 test_files   = "/Test*.py"
 
 def suite():

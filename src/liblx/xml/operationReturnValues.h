@@ -1,11 +1,11 @@
 /**
  * @file    operationReturnValues.h
- * @brief   Enumeration of values returned by operations within libSBML.
+ * @brief   Enumeration of values returned by operations within libLX.
  * @author  Sarah Keating
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -55,16 +55,16 @@ typedef enum
      * collection used in the operation.  This return value is typically
      * returned by methods that take index numbers to refer to lists
      * of objects, when the caller has provided an index that exceeds
-     * the bounds of the list.  LibSBML provides methods for checking the
+     * the bounds of the list.  LibLX provides methods for checking the
      * size of list/sequence/collection structures, and callers should
      * verify the sizes before calling methods that take index numbers. */
 
   , LIBLX_UNEXPECTED_ATTRIBUTE    = -2
     /*!< The attribute that is the subject of this operation is not valid
-     * for the combination of SBML Level and Version for the underlying
-     * object.  This can happen because libSBML strives to offer a uniform
-     * API for all SBML Levels and Versions, but some object attributes and
-     * elements are not defined for all SBML Levels and Versions.  Calling
+     * for the combination of LX Level and Version for the underlying
+     * object.  This can happen because libLX strives to offer a uniform
+     * API for all LX Levels and Versions, but some object attributes and
+     * elements are not defined for all LX Levels and Versions.  Calling
      * programs are expected to be aware of which object structures they
      * are working with, but when errors of this kind occur, they are
      * reported using this return value. */
@@ -79,8 +79,8 @@ typedef enum
     /*!< A value passed as an argument to the method is not of a type that
      * is valid for the operation or kind of object involved.  For example,
      * this return code is used when a calling program attempts to set an
-     * SBML object identifier to a string whose syntax does not conform to
-     * the SBML identifier syntax. */
+     * LX object identifier to a string whose syntax does not conform to
+     * the LX identifier syntax. */
 
   , LIBLX_INVALID_OBJECT          = -5
     /*!< The object passed as an argument to the method is not of a type
@@ -91,37 +91,37 @@ typedef enum
   , LIBLX_DUPLICATE_OBJECT_ID     = -6
     /*!< There already exists an object with this identifier in the
      * context where this operation is being attempted.  This error is
-     * typically returned in situations where SBML object identifiers must be
+     * typically returned in situations where LX object identifiers must be
      * unique, such as attempting to add two species with the same identifier
      * to a model. */
 
   , LIBLX_LEVEL_MISMATCH          = -7
-    /*!< The SBML Level associated with the object does not match the Level
-     * of the parent object.  This error can happen when an SBML component
+    /*!< The LX Level associated with the object does not match the Level
+     * of the parent object.  This error can happen when an LX component
      * such as a species or compartment object is created outside of a model
      * and a calling program then attempts to add the object to a model that
-     * has a different SBML Level defined. */
+     * has a different LX Level defined. */
 
   , LIBLX_VERSION_MISMATCH        = -8
-    /*!< The SBML Version within the SBML Level associated with the object
+    /*!< The LX Version within the LX Level associated with the object
      * does not match the Version of the parent object.  This error can
-     * happen when an SBML component such as a species or compartment object
+     * happen when an LX component such as a species or compartment object
      * is created outside of a model and a calling program then attempts to
-     * add the object to a model that has a different SBML Level+Version
+     * add the object to a model that has a different LX Level+Version
      * combination. */
 
   , LIBLX_INVALID_XML_OPERATION   = -9
     /*!< The XML operation attempted is not valid for the object or context
      * involved.  This error is typically returned by the XML interface layer
-     * of libSBML, when a calling program attempts to construct or manipulate
+     * of libLX, when a calling program attempts to construct or manipulate
      * XML in an invalid way.  */
 
   , LIBLX_NAMESPACES_MISMATCH   = -10
-    /*!< The SBML Namespaces associated with the object
-     * do not match the SBML Namespaces of the parent object.  This error can
-     * happen when an SBML component such as a species or compartment object
+    /*!< The LX Namespaces associated with the object
+     * do not match the LX Namespaces of the parent object.  This error can
+     * happen when an LX component such as a species or compartment object
      * is created outside of a model and a calling program then attempts to
-     * add the object to a model that has a different SBML Namespaces
+     * add the object to a model that has a different LX Namespaces
      * combination. */
 
   , LIBLX_DUPLICATE_ANNOTATION_NS   = -11
@@ -157,7 +157,7 @@ typedef enum
 
      , LIBLX_DEPRECATED_ATTRIBUTE   = -15
     /*!< The attribute that is the subject of this operation has been deprecated
-     * for the combination of SBML Level and Version for the underlying
+     * for the combination of LX Level and Version for the underlying
      * object. */
 
      , LIBLX_USE_ID_ATTRIBUTE_FUNCTION   = -16
@@ -170,17 +170,17 @@ typedef enum
     * -------------------------------------------------------------------------- */
 
   , LIBLX_PKG_VERSION_MISMATCH  = -20
-    /*!< The Version of package extension within the SBML Level and version
+    /*!< The Version of package extension within the LX Level and version
      * associated with the object does not match the Version of the parent
-     * object. This error can happen when an SBML component such as a layout
+     * object. This error can happen when an LX component such as a layout
      * or group object is created outside of a model and a calling program
-     * then attempts to add the object to a model that has a different SBML
+     * then attempts to add the object to a model that has a different LX
      * Level+Version+Package Version combination. */
 
    , LIBLX_PKG_UNKNOWN           = -21
     /*!< The required package extension is unknown. This error is typically
      * returned when creating an object of SBase derived class with the required
-     * package, creating an object of SBMLNamespaces or its derived class with the
+     * package, creating an object of LXNamespaces or its derived class with the
      * required package, or invoking functions depending on the required package.
      * To avoid this error, the library of the required package needs to be
      * linked.
@@ -189,7 +189,7 @@ typedef enum
    , LIBLX_PKG_UNKNOWN_VERSION    = -22
     /*!< The required version of the package extension is unknown. This error
      * is typically returned when creating an object of SBase derived class with
-     * the required package, creating an object of SBMLNamespaces or its derived
+     * the required package, creating an object of LXNamespaces or its derived
      * class with the required package, or invoking functions depending on the
      * required package. This error may be avoided by updating the library of the
      * required package to be linked.
@@ -198,7 +198,7 @@ typedef enum
    , LIBLX_PKG_DISABLED            = -23
     /*!< The required package extension is disabled. This error is typically
      * returned when creating an object of SBase derived class with the required
-     * package, creating an object of SBMLNamespaces or its derived class with the
+     * package, creating an object of LXNamespaces or its derived class with the
      * required package, or invoking functions depending on the required  package.
      * To avoid this error, the library of the required package needs to be enabled.
      */
@@ -213,9 +213,9 @@ typedef enum
      */
 
    , LIBLX_PKG_CONFLICT            = -25
-    /*!< Another SBML package extension for the same URI has already been registered.
-     * This error is typically returned when adding a SBML package extension to the
-     * SBMLExtensionRegistry. To avoid this error, ensure that SBML package
+    /*!< Another LX package extension for the same URI has already been registered.
+     * This error is typically returned when adding a LX package extension to the
+     * LXExtensionRegistry. To avoid this error, ensure that LX package
      * extensions are only registered once.
      */
 
@@ -226,18 +226,18 @@ typedef enum
     * -------------------------------------------------------------------------- */
 
   , LIBLX_CONV_INVALID_TARGET_NAMESPACE  = -30
-    /*!< The target namespace is not a valid SBML namespace. while
-     * attempting to convert the SBML document using
-     * SBMLLevelVersionConverter::convert() or related methods, the target
+    /*!< The target namespace is not a valid LX namespace. while
+     * attempting to convert the LX document using
+     * LXLevelVersionConverter::convert() or related methods, the target
      * namespace has been found to be invalid or unset.  (The function
-     * SBMLNamespaces::isValidCombination() may be useful in
+     * LXNamespaces::isValidCombination() may be useful in
      * detecting this situation and preventing the error.)
      */
 
   , LIBLX_CONV_PKG_CONVERSION_NOT_AVAILABLE = -31
     /*!< Conversions involving packages are not available in the specified
      * routine. This error is typically returned when calling a converter
-     * that does not have the functionality to deal with SBML Level&nbsp;3
+     * that does not have the functionality to deal with LX Level&nbsp;3
      * packages. To avoid this error, ensure that the requested
      * ConversionProperties specifies packages.
      */
@@ -248,7 +248,7 @@ typedef enum
      * typically returned when a conversion routine has been given an
      * invalid target document or the conversion requires a certain degree
      * of validity that is not present in the document. To avoid this
-     * error, use the SBMLDocument::checkConsistency() function to find and
+     * error, use the LXDocument::checkConsistency() function to find and
      * resolve errors before passing the document to a conversion method.
      */
 
@@ -258,7 +258,7 @@ typedef enum
 
   , LIBLX_CONV_PKG_CONSIDERED_UNKNOWN = -34
     /*!< The package that is being stripped is not an enabled
-     * package but considered by libSBML to be an unrecognized
+     * package but considered by libLX to be an unrecognized
      * package.  This error is typically returned when calling
      * the StripPackage converter requesting that a package
      * for which code is not available be stripped. Thus the
