@@ -6,8 +6,8 @@
  *
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -41,8 +41,8 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * LibSBML can be configured to use any of a number of XML parsers; at the
- * time of this writing, libSBML supports Xerces versions 2.4 through 3.1,
+ * LibLX can be configured to use any of a number of XML parsers; at the
+ * time of this writing, libLX supports Xerces versions 2.4 through 3.1,
  * Expat version 1.95.x and higher, and libxml2 version 2.6.16 and higher.
  * These parsers each report different status codes for the various
  * exceptions that can occur during XML processing.  The XMLError object
@@ -50,7 +50,7 @@
  * different parsers and presents a single uniform interface and set of
  * status codes, along with operations for manipulating the error objects.
  *
- * When the libSBML XML parser layer encounters an error in the XML content
+ * When the libLX XML parser layer encounters an error in the XML content
  * being processed, or when there is something else wrong (such as an
  * out-of-memory condition), the problems are reported as XMLError objects.
  * Each XMLError object instance has an identification number that
@@ -76,8 +76,8 @@
  * Each XMLError object also contains a category code; its value may be
  * retrieved using the method XMLError::getCategory().  Category values
  * are drawn from @if clike the enumeration <a class="el" href="#XMLErrorCategory_t">XMLErrorCategory_t</a> described below.@else a
- * set of constants whose names begin with the characters @c LIBSBXML_CAT_, described below.@endif@~&nbsp;Categories
- * are used by libSBML to provide more information to calling programs about
+ * set of constants whose names begin with the characters @c LIBLX_CAT_, described below.@endif@~&nbsp;Categories
+ * are used by libLX to provide more information to calling programs about
  * the nature of a given error.  
  *
  * In addition to category codes, each XMLError object also has a severity
@@ -97,39 +97,39 @@
  * underlying XML parsers can only report such information for the parent
  * XML element where an error occurs, and not for the specific point where
  * the problem occurs.  In other situations, some parsers report invalid
- * line and/or column numbers altogether.  If this occurs, libSBML sets the
+ * line and/or column numbers altogether.  If this occurs, libLX sets the
  * line and/or column number in the XMLError object to either
  * <code>0</code> or the value of the maximum unsigned long integer
- * representable on the platform where libSBML is running.  The probability
- * that a true line or column number in an SBML model would equal this
+ * representable on the platform where libLX is running.  The probability
+ * that a true line or column number in an LX model would equal this
  * value is vanishingly small; thus, if an application encounters these
  * values in an XMLError object, it can assume no valid line/column number
- * could be provided by libSBML in that situation.
+ * could be provided by libLX in that situation.
  * 
  * @if clike
  * <h3><a class="anchor" name="error-codes">XMLErrorCode_t</a></h3>
  *
  * This is an enumeration of all the error and warning codes returned by
- * the XML layer in libSBML.  Each code is an integer with a 4-digit value
+ * the XML layer in libLX.  Each code is an integer with a 4-digit value
  * less than 10000.  The following table lists each possible value and a
  * brief description of its meaning.
  * @endif@if java <h3><a class="anchor" 
  * name="error-codes">Error codes associated with XMLError objects</a></h3>
  * 
- * The error and warning codes returned by the XML layer in libSBML are
- * listed in the table below.  In the libSBML Java language interface,
+ * The error and warning codes returned by the XML layer in libLX are
+ * listed in the table below.  In the libLX Java language interface,
  * these error identifiers are currently implemented as static integer
  * constants defined in the interface class <code><a
  * href="libsbmlConstants.html">libsbmlConstants</a></code>.  This is
  * admittedly not an ideal approach from the standpoint of modern Java
  * programming, but it was necessary to work around the lack of
- * enumerations in Java prior to JDK 1.5.  Future versions of libSBML may
+ * enumerations in Java prior to JDK 1.5.  Future versions of libLX may
  * use a proper Java enumeration type to define the error
  * identifiers. @endif@if csharp <h3><a class="anchor" 
  * name="error-codes">Error codes associated with XMLError objects</a></h3>
  * 
- * The error and warning codes returned by the XML layer in libSBML are
- * listed in the table below.  In the libSBML C# language interface,
+ * The error and warning codes returned by the XML layer in libLX are
+ * listed in the table below.  In the libLX C# language interface,
  * these error identifiers are currently implemented as static integer
  * constants defined in the interface class @link libsbmlcs.libsbml@endlink.@endif@~
  *
@@ -142,7 +142,7 @@
  * or as integer constants.
  * To make this table more compact, we have shortened the identifiers for
  * the category and severity codes to their essential parts.  To get the
- * actual names of the constants, prepend <code>LIBSBXML_CAT_</code> to the
+ * actual names of the constants, prepend <code>LIBLX_CAT_</code> to the
  * category names and <code>LIBLX_SEV_</code> to the severity names
  * shown in the two right-hand columns.
  * </caption>
@@ -219,7 +219,7 @@
  * XMLError::getCategory(). The following table lists each possible value
  * and a brief description of its meaning.
  * 
- * As is the case with the error codes, in the libSBML Java language
+ * As is the case with the error codes, in the libLX Java language
  * interface, the category identifiers are currently implemented as static
  * integer constants defined in the interface class
  * <code>libsbmlConstants</code> in the file "<a
@@ -233,7 +233,7 @@
  * XMLError::getCategory(). The following table lists each possible value
  * and a brief description of its meaning.
  * 
- * As is the case with the error codes, in the libSBML C# language
+ * As is the case with the error codes, in the libLX C# language
  * interface, the category identifiers are currently implemented as static
  * integer constants defined in the interface
  * class @link libsbmlcs.libsbml@endlink. @endif@~
@@ -245,20 +245,20 @@
  *      <th style="text-align: left">Enumerator</th>
  *      <th>Meaning</th>
  *  </tr>
- * <tr><td>@sbmlconstant{LIBSBXML_CAT_INTERNAL, XMLErrorCategory_t}</td>
- * <td>A problem involving the libSBML
+ * <tr><td>@sbmlconstant{LIBLX_CAT_INTERNAL, XMLErrorCategory_t}</td>
+ * <td>A problem involving the libLX
  * software itself or the underlying XML parser.  This almost certainly
- * indicates a software defect (i.e., bug) in libSBML.  Please report
- * instances of this to the libSBML developers.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBXML_CAT_SYSTEM, XMLErrorCategory_t}</td>
+ * indicates a software defect (i.e., bug) in libLX.  Please report
+ * instances of this to the libLX developers.</td></tr>
+ * <tr><td>@sbmlconstant{LIBLX_CAT_SYSTEM, XMLErrorCategory_t}</td>
  * <td>A problem reported by the operating
  * system, such as an inability to read or write a file.  This indicates
  * something that is not a program error but is outside of the control of
- * libSBML.</td></tr>
- * <tr><td>@sbmlconstant{LIBSBXML_CAT_XML, XMLErrorCategory_t}</td>
+ * libLX.</td></tr>
+ * <tr><td>@sbmlconstant{LIBLX_CAT_XML, XMLErrorCategory_t}</td>
  * <td>A problem in the XML content itself.  This
  * usually arises from malformed XML or the use of
- * constructs not permitted in SBML.</td></tr>
+ * constructs not permitted in LX.</td></tr>
  * </table>
  * </center>
  *
@@ -282,14 +282,14 @@
  * method XMLError::getSeverity(). The following table lists each possible
  * value and a brief description of its meaning.
  * 
- * As is the case with the category codes, in the libSBML Java language
+ * As is the case with the category codes, in the libLX Java language
  * interface, these severity codes are currently
  * implemented as static integer constants defined in the interface class
  * <code>libsbmlConstants</code> in the file "<a
  * href="libsbmlConstants.html">libsbmlConstants.java</a>".  This
  * is admittedly not an ideal approach from the standpoint of modern Java
  * programming, but it was necessary to work around the lack of
- * enumerations in Java prior to JDK 1.5.  Future versions of libSBML may
+ * enumerations in Java prior to JDK 1.5.  Future versions of libLX may
  * use a proper Java enumeration type to define the severity
  * codes. @endif@if csharp <h3><a class="anchor"
  * name="error-severities">Severity codes associated with XMLError objects</a></h3>
@@ -300,7 +300,7 @@
  * method XMLError::getSeverity(). The following table lists each possible
  * value and a brief description of its meaning.
  * 
- * As is the case with the category codes, in the libSBML C# language
+ * As is the case with the category codes, in the libLX C# language
  * interface, these severity codes are currently
  * implemented as static integer constants defined in the interface class
  * @link libsbmlcs.libsbml@endlink.@endif@~
@@ -350,10 +350,10 @@ BEGIN_C_DECLS
  * @enum XMLErrorCode_t
  * Canonical error codes returned for low-level XML parser errors.
  *
- * These are distinguished from other SBML error codes 
+ * These are distinguished from other LX error codes 
  * by having a number 4 digits long, less than 10000.  The codes are an abstraction
  * of errors from the multiple parsers (Xerces, Expat, libxml2) supported
- * by libSBML.
+ * by libLX.
  * 
  * @copydetails doc_sbml_error_code_ranges
  */
@@ -362,7 +362,7 @@ typedef enum {
 
   /* System diagnostics: numbers below 100 -------------------------------- */
 
-  , XMLOutOfMemory            =    1 /*!< LibSBML unexpected encountered an out
+  , XMLOutOfMemory            =    1 /*!< LibLX unexpected encountered an out
                                       *   of memory condition from the operating
                                       *   system. */
 
@@ -382,7 +382,7 @@ typedef enum {
 
   , UnrecognizedXMLParserCode =  102 /*!< The XML parser returned an error
                                       *   code that is not recognized by
-                                      *   libSBML. */
+                                      *   libLX. */
 
   , XMLTranscoderError        =  103 /*!< The character transcoder reported
                                       *   an error. */
@@ -490,20 +490,20 @@ typedef enum {
  */
 typedef enum
 {
-    LIBSBXML_CAT_INTERNAL = 0 /*!< A problem involving the libSBML software itself
+    LIBLX_CAT_INTERNAL = 0 /*!< A problem involving the libLX software itself
                            * or the underlying XML parser.  This almost 
                            * certainly indicates a software defect (i.e., bug)
-                           * in libSBML.  Please report instances of this to
-                           * the libSBML developers. */
+                           * in libLX.  Please report instances of this to
+                           * the libLX developers. */
 
-  , LIBSBXML_CAT_SYSTEM       /*!< A problem reported by the operating system, such
+  , LIBLX_CAT_SYSTEM       /*!< A problem reported by the operating system, such
                            * as an inability to read or write a file.  This
                            * indicates something that is not a program error
-                           * but is outside of the control of libSBML. */
+                           * but is outside of the control of libLX. */
 
-  , LIBSBXML_CAT_XML          /*!< A problem in the XML content itself.  This
+  , LIBLX_CAT_XML          /*!< A problem in the XML content itself.  This
                            * usually arises from malformed XML or the use of
-                           * constructs not permitted in SBML. */
+                           * constructs not permitted in LX. */
 } XMLErrorCategory_t;
 
 
@@ -546,11 +546,11 @@ typedef enum
  */
 typedef enum
 {
-    LIBSBXML_OVERRIDE_DISABLED = 0 /*!< All errors will be issued as
+    LIBLX_OVERRIDE_DISABLED = 0 /*!< All errors will be issued as
                                        specified in the error log. */
-  , LIBSBXML_OVERRIDE_DONT_LOG     /*!< All error logging is disabled. */
-  , LIBSBXML_OVERRIDE_WARNING      /*!< All errors will be logged as warnings */
-  , LIBSBXML_OVERRIDE_ERROR        /*!< All warnings will be logged as errors */
+  , LIBLX_OVERRIDE_DONT_LOG     /*!< All error logging is disabled. */
+  , LIBLX_OVERRIDE_WARNING      /*!< All errors will be logged as warnings */
+  , LIBLX_OVERRIDE_ERROR        /*!< All warnings will be logged as errors */
 
 } XMLErrorSeverityOverride_t;
 
@@ -611,7 +611,7 @@ public:
    * the software, and does not do additional filling in of values beyond
    * the defaults in the constructor itself.  This allows XMLError to serve
    * as a base class for other errors (and is used in this way elsewhere in
-   * libSBML).  Callers should fill in all the parameters with suitable
+   * libLX).  Callers should fill in all the parameters with suitable
    * values if generating errors with codes greater than 9999 to make
    * maximum use of the XMLError facilities.
    *
@@ -634,9 +634,9 @@ public:
    * there are additional constants defined for <a class="el"
    * href="#error-severities">standard severity</a> and <a class="el"
    * href="#error-categories">standard category</a> codes, and every predefined 
-   * error in libSBML has an associated value for severity and category taken
+   * error in libLX has an associated value for severity and category taken
    * from these predefined sets.  These constants have symbol names
-   * prefixed with <code>LIBLX_SEV_</code> and <code>LIBSBXML_CAT_</code>,
+   * prefixed with <code>LIBLX_SEV_</code> and <code>LIBLX_CAT_</code>,
    * respectively.  If the value of @p errorId is one of the standard error
    * codes, callers do not need to fill in @p severity and @p category in a
    * call to this constructor.  Conversely, if @p errorId is not an existing
@@ -669,7 +669,7 @@ public:
     , const unsigned int line     = 0
     , const unsigned int column   = 0
     , const unsigned int severity = LIBLX_SEV_FATAL
-    , const unsigned int category = LIBSBXML_CAT_INTERNAL
+    , const unsigned int category = LIBLX_CAT_INTERNAL
   );
 
 
@@ -761,13 +761,13 @@ public:
    * for the parent XML element where an error occurs, and not for the
    * specific point where the problem occurs.  In other situations, some
    * parsers report invalid line and/or column numbers altogether.  If this
-   * occurs, libSBML sets the line and/or column number in the XMLError
+   * occurs, libLX sets the line and/or column number in the XMLError
    * object to either <code>0</code> or the value of the maximum unsigned
-   * long integer representable on the platform where libSBML is running.
-   * The probability that a true line or column number in an SBML model
+   * long integer representable on the platform where libLX is running.
+   * The probability that a true line or column number in an LX model
    * would equal this value is vanishingly small; thus, if an application
    * encounters these values in an XMLError object, it can assume no valid
-   * line/column number could be provided by libSBML in that situation.
+   * line/column number could be provided by libLX in that situation.
    *
    * @return the line number.
    *
@@ -786,13 +786,13 @@ public:
    * for the parent XML element where an error occurs, and not for the
    * specific point where the problem occurs.  In other situations, some
    * parsers report invalid line and/or column numbers altogether.  If this
-   * occurs, libSBML sets the line and/or column number in the XMLError
+   * occurs, libLX sets the line and/or column number in the XMLError
    * object to either <code>0</code> or the value of the maximum unsigned
-   * long integer representable on the platform where libSBML is running.
-   * The probability that a true line or column number in an SBML model
+   * long integer representable on the platform where libLX is running.
+   * The probability that a true line or column number in an LX model
    * would equal this value is vanishingly small; thus, if an application
    * encounters these values in an XMLError object, it can assume no valid
-   * line/column number could be provided by libSBML in that situation.
+   * line/column number could be provided by libLX in that situation.
    *
    * @return the column number.
    *
@@ -955,7 +955,7 @@ public:
    *
    * This is equivalent to obtaining the category identifier from an
    * XMLError object (via XMLError::getCategory()) and then comparing it to
-   * the value @sbmlconstant{LIBSBXML_CAT_INTERNAL, XMLErrorCategory_t} from the
+   * the value @sbmlconstant{LIBLX_CAT_INTERNAL, XMLErrorCategory_t} from the
    * @if clike enumeration #XMLErrorCategory_t. @else set of predefined category codes.@endif@~
    *
    * @return a boolean indicating whether the error is an internal error.
@@ -972,7 +972,7 @@ public:
    *
    * This is equivalent to obtaining the category identifier from an
    * XMLError object (via XMLError::getCategory()) and then comparing it to
-   * the value @sbmlconstant{LIBSBXML_CAT_SYSTEM, XMLErrorCategory_t} from the
+   * the value @sbmlconstant{LIBLX_CAT_SYSTEM, XMLErrorCategory_t} from the
    * @if clike enumeration #XMLErrorCategory_t. @else set of predefined category codes.@endif@~
    *
    * @return boolean indicating whether the error is a system error.
@@ -990,7 +990,7 @@ public:
    *
    * This is equivalent to obtaining the category identifier from an
    * XMLError object (via XMLError::getCategory()) and then comparing it to
-   * the value @sbmlconstant{LIBSBXML_CAT_XML, XMLErrorCategory_t} from the
+   * the value @sbmlconstant{LIBLX_CAT_XML, XMLErrorCategory_t} from the
    * @if clike enumeration #XMLErrorCategory_t. @else set of predefined category codes.@endif@~
    *
    * @return a boolean indicating whether the error is an XML catetory error.
@@ -1056,13 +1056,13 @@ public:
 
 
   /**
-   * Returns the SBML Level&nbsp;3 package extension (if any) that logged
+   * Returns the LX Level&nbsp;3 package extension (if any) that logged
    * this error.
    *
-   * Each error logged by an libSBML extension for SBML Level&nbsp;3 packages
+   * Each error logged by an libLX extension for LX Level&nbsp;3 packages
    * includes a record of the package that logged it.  The field is a simple
    * text string.  If the string is empty or has the value @c "core", then
-   * the error came from libSBML core; otherwise, the string will be the
+   * the error came from libLX core; otherwise, the string will be the
    * short-form name of the package (e.g., @c "comp" for the Hierarchical
    * Model Composition package).
    *
@@ -1074,19 +1074,19 @@ public:
 
 
   /**
-   * Returns libSBML's internal numerical offset for the error code
+   * Returns libLX's internal numerical offset for the error code
    * associated with this error.
    *
-   * In the SBML Level&nbsp;3 package specifications, package validation
+   * In the LX Level&nbsp;3 package specifications, package validation
    * rules are identified by 5-digit numbers prefixed with the nickname of
    * the package itself---e.g., &ldquo;comp-10101&rdquo;,
-   * &ldquo;fbc-20301&rdquo;, etc.  Historically, libSBML reported error
+   * &ldquo;fbc-20301&rdquo;, etc.  Historically, libLX reported error
    * codes as pure integers, and some application software systems make
    * decisions based on the numerical values of the error codes.  To permit
-   * these applications to continue to function in this fashion, libSBML
+   * these applications to continue to function in this fashion, libLX
    * internally continues to maintain error identifiers as pure integers.  To
    * handle the possibility that errors may come from package extensions,
-   * libSBML uses numerical offsets added to the internal error codes.  These
+   * libLX uses numerical offsets added to the internal error codes.  These
    * offsets add two leading digits to the regular 5-digit error codes; for
    * example, &ldquo;comp&rdquo; error codes are stored as 1010101, 1020102,
    * etc.  The offset in this case is 1000000.  Another package will have the
@@ -1099,7 +1099,7 @@ public:
    * @verbatim
  getErrorId() - getErrorIdOffset()
  @endverbatim
-   * When libSBML produces error messages, it combines the text string
+   * When libLX produces error messages, it combines the text string
    * returned by getPackage() with the subtracted value of the error code,
    * to produce a text string of the form &ldquo;comp-10101&rdquo;.
    *
@@ -1168,7 +1168,7 @@ protected:
 
 /** @cond doxygenLibsbmlInternal */
 /**
- * Outputs the given XMLError_t (or the derived class (e.g. SBMLError) ) to stream 
+ * Outputs the given XMLError_t (or the derived class (e.g. LXError) ) to stream 
  * by invoking the print function which is implemented as a virtual function in
  * the class.
  *

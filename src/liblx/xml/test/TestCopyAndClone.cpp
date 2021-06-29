@@ -1,11 +1,11 @@
 /**
- * \file    TestReadSBML.cpp
- * \brief   Read SBML unit tests
+ * \file    TestCopyAndClone.cpp
+ * \brief   Read LibLX unit tests
  * \author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about LX, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA

@@ -6,8 +6,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -352,19 +352,19 @@ LibXMLParser::parseFirst (const char* content, bool isFile)
     }
     catch ( ZlibNotLinked& )
     {
-      // libSBML is not linked with zlib.
+      // libLX is not linked with zlib.
       std::ostringstream oss;
       oss << "Tried to read " << content << ". Reading a gzip/zip file is not enabled because "
-          << "underlying libSBML is not linked with zlib."; 
+          << "underlying libLX is not linked with zlib.";
       reportError(XMLFileUnreadable, oss.str(), 0, 0);
       return false;
     } 
     catch ( Bzip2NotLinked& )
     {
-      // libSBML is not linked with bzip2.
+      // libLX is not linked with bzip2.
       std::ostringstream oss;
       oss << "Tried to read " << content << ". Reading a bzip2 file is not enabled because "
-          << "underlying libSBML is not linked with bzip2."; 
+          << "underlying libLX is not linked with bzip2.";
       reportError(XMLFileUnreadable, oss.str(), 0, 0);
       return false;
     } 

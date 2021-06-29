@@ -8,8 +8,8 @@
  * @author  Michael Hucka
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -167,8 +167,8 @@ public:
    * Sets the XMLErrorLog this parser will use to log errors.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    */
   int setErrorLog (XMLErrorLog* log);
 

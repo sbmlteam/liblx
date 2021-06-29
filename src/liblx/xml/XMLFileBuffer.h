@@ -8,8 +8,8 @@
  * to support compressed files)
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -60,8 +60,8 @@ public:
    * for reading.
    *
    * @note ZlibNotLinked will be thrown if .gz or .zip file is given and 
-   * zlib is not linked with libSBML at compile time. Similarly, Bzip2NotLinked
-   * will be thrown if .bz2 file is given and bzip2 is not linked with libSBML 
+   * zlib is not linked with libLX at compile time. Similarly, Bzip2NotLinked
+   * will be thrown if .bz2 file is given and bzip2 is not linked with libLX
    * at compile time.
    */
   XMLFileBuffer (const std::string& filename);

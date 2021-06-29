@@ -3,8 +3,8 @@
 ## @author  Frank T. Bergmann
 ##
 ## <!--------------------------------------------------------------------------
-## This file is part of libSBML.  Please visit http://sbml.org for more
-## information about SBML, and the latest version of libSBML.
+## This file is part of libLX.  Please visit http://sbml.org for more
+## information about LX, and the latest version of libLX.
 ##
 ## Copyright (C) 2013-2018 jointly by the following organizations:
 ##     1. California Institute of Technology, Pasadena, CA, USA
@@ -42,7 +42,7 @@ file(GLOB H_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*.h )
 
 set(TEST_FILES ${CPP_FILES} ${C_FILES} ${H_FILES})
 
-include_directories(${LIBLX_ROOT_SOURCE_DIR}/include/sbml)
+# include_directories(${LIBLX_ROOT_SOURCE_DIR}/include/lx)
 include_directories(BEFORE ${LIBLX_ROOT_BINARY_DIR}/src)
 
 if (EXTRA_INCLUDE_DIRS) 

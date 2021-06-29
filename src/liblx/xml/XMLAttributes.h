@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,10 +39,10 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * In libSBML's XML interface layer, attributes on an element are stored as a
+ * In libLX's XML interface layer, attributes on an element are stored as a
  * list of values kept in an XMLAttributes object.  XMLAttributes has methods
  * for adding and removing individual attributes as well as performing other
- * actions on the list of attributes.  Classes in libSBML that represent nodes
+ * actions on the list of attributes.  Classes in libLX that represent nodes
  * in an XML document (i.e., XMLNode and its parent class, XMLToken) use
  * XMLAttributes objects to manage attributes on XML elements.
  *
@@ -299,8 +299,8 @@ public:
    * @param prefix a string, a prefix for the XML namespace.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
    * &ndash; this value is returned if any of the arguments are @c NULL.  To
    * set an empty @p prefix and/or @p name value, use an empty string rather
    * than @c NULL.
@@ -330,8 +330,8 @@ public:
    * @param value a string, the value of the attribute.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
    * &ndash; this value is returned if any of the arguments are @c NULL.  To
    * set an empty value for the attribute, use an empty string rather than
    * @c NULL.
@@ -362,7 +362,7 @@ public:
    * attributes in CVTerm class, and thus should not be used for other purposes.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
    */
   int addResource (const std::string& name, const std::string& value);
   /** @endcond */
@@ -378,10 +378,10 @@ public:
    * @param n an integer the index of the resource to be deleted.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute at the
    * given index @p n.
    *
@@ -401,10 +401,10 @@ public:
    * @param n an integer the index of the resource to be deleted.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute at the
    * given index @p n.
    *
@@ -426,10 +426,10 @@ public:
    * @param uri a string, the namespace URI of the attribute to be removed.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute with the
    * given @p name (and @p uri if specified).
    *
@@ -445,10 +445,10 @@ public:
    * @param triple an XMLTriple describing the attribute to be removed.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute matching
    * the properties of the given @p triple.
    *
@@ -462,7 +462,7 @@ public:
    * Removes all attributes in this XMLAttributes object.
    *
    * @copydetails doc_returns_one_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
    *
    * @see remove(int n)
    * @see remove(const XMLTriple& triple)
@@ -1025,7 +1025,7 @@ public:
    * href="http://www.w3.org/TR/xmlschema-2/#integer">XML Schema</a>, valid
    * <code>long</code>-type values are zero, all positive whole numbers and
    * all negative whole numbers.  This is unfortunately a larger space of
-   * values than can be represented in a long integer, so libSBML limits the
+   * values than can be represented in a long integer, so libLX limits the
    * possible values to those that can be stored in a <code>long</code> data
    * type.
    *
@@ -1092,7 +1092,7 @@ public:
    * href="http://www.w3.org/TR/xmlschema-2/#integer">XML Schema</a>, valid
    * <code>long</code>-type values are zero, all positive whole numbers and
    * all negative whole numbers.  This is unfortunately a larger space of
-   * values than can be represented in a long, so libSBML limits the possible
+   * values than can be represented in a long, so libLX limits the possible
    * values to those that can be stored in a <code>long</code> data type.
 
    * Errors in attempting to interpret the format are logged to @p log, if an
@@ -1545,7 +1545,7 @@ public:
    * @param log the log to use.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
    */
   int setErrorLog (XMLErrorLog* log);
   /** @endcond */
@@ -1867,8 +1867,8 @@ XMLAttributes_clone (const XMLAttributes_t* att);
  * @param value a string, the value of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @note if local name already exists in this list of attributes, its value
  * will be replaced.
@@ -1891,8 +1891,8 @@ XMLAttributes_add (XMLAttributes_t *xa, const char *name, const char *value);
  * @param prefix a string, the prefix of the namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @note if local name with the same namespace URI already exists in this
  * attribute set, its value will be replaced.
@@ -1915,8 +1915,8 @@ XMLAttributes_addWithNamespace (XMLAttributes_t *xa,
   * @param value a string, the value of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLAttributes_t
  */
@@ -1932,9 +1932,9 @@ XMLAttributes_addWithTriple (XMLAttributes_t *xa, const XMLTriple_t* triple, con
  * @param n an integer the index of the resource to be deleted.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLAttributes_t
  */
@@ -1950,9 +1950,9 @@ XMLAttributes_removeResource (XMLAttributes_t *xa, int n);
  * @param n an integer the index of the resource to be deleted.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLAttributes_t
  */
@@ -1968,9 +1968,9 @@ XMLAttributes_remove (XMLAttributes_t *xa, int n);
  * @param name a string, the local name of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @note A prefix and namespace URI bound to the local name are set to empty
  * in this function.
@@ -1993,9 +1993,9 @@ XMLAttributes_removeByName (XMLAttributes_t *xa, const char* name);
  * @param uri a string, the namespace URI of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLAttributes_t
  */
@@ -2012,9 +2012,9 @@ XMLAttributes_removeByNS (XMLAttributes_t *xa, const char* name, const char* uri
  *        the index is being sought.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLAttributes_t
  */
@@ -2029,8 +2029,8 @@ XMLAttributes_removeByTriple (XMLAttributes_t *xa, const XMLTriple_t* triple);
  * @param xa the XMLAttributes_t structure.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLAttributes_t
  */

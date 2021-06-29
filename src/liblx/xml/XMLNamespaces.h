@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -145,9 +145,9 @@ public:
    * @param prefix a string, the prefix for the namespace.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    *
    * @ifnot hasDefaultArgs @htmlinclude warn-default-args-in-docs.html @endif@~
    */
@@ -160,8 +160,8 @@ public:
    * @param index an integer, position of the namespace to remove.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    */
   int remove (int index);
 
@@ -172,8 +172,8 @@ public:
    * @param prefix a string, prefix of the required namespace.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
    * @see remove(int index)
    */
@@ -185,8 +185,8 @@ public:
    * object.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    *
    * @see remove(int index)
    */
@@ -490,9 +490,9 @@ XMLNamespaces_clone (const XMLNamespaces_t* ns);
  * @param prefix a string, the prefix for the namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  *
  * @memberof XMLNamespaces_t
  */
@@ -509,9 +509,9 @@ XMLNamespaces_add (XMLNamespaces_t *ns,
  * @param index an integer, position of the removed namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLNamespaces_t
  */
@@ -527,9 +527,9 @@ XMLNamespaces_remove (XMLNamespaces_t *ns, int index);
  * @param prefix a string, prefix of the required namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLNamespaces_t
  */
@@ -544,8 +544,8 @@ XMLNamespaces_removeByPrefix (XMLNamespaces_t *ns, const char* prefix);
  * @param ns XMLNamespaces structure.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  **
  * @memberof XMLNamespaces_t
  */

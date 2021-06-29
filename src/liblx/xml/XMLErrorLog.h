@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,7 +39,7 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * The error log is a list.  The XML layer of libSBML maintains an error
+ * The error log is a list.  The XML layer of libLX maintains an error
  * log associated with a given XML document or data stream.  When an
  * operation results in an error, or when there is something wrong with the
  * XML content, the problem is reported as an XMLError object stored in the
@@ -53,11 +53,11 @@
  * iterate over the list of objects one at a time using
  * getError(unsigned int n) const.  Indexing in the list begins at 0.
  *
- * In normal circumstances, programs using libSBML will actually obtain an
- * SBMLErrorLog rather than an XMLErrorLog.  The former is subclassed from
- * XMLErrorLog and simply wraps commands for working with SBMLError objects
+ * In normal circumstances, programs using libLX will actually obtain an
+ * LXErrorLog rather than an XMLErrorLog.  The former is subclassed from
+ * XMLErrorLog and simply wraps commands for working with LXError objects
  * rather than the low-level XMLError objects.  Classes such as
- * SBMLDocument use the higher-level SBMLErrorLog.
+ * LXDocument use the higher-level LXErrorLog.
  */
 
 /**
@@ -74,7 +74,7 @@
  * The <em>severity override</em> mechanism in XMLErrorLog is intended to help
  * applications handle error conditions in ways that may be more convenient
  * for those applications.  It is possible to use the mechanism to override
- * the severity code of errors logged by libSBML, and even to disable error
+ * the severity code of errors logged by libLX, and even to disable error
  * logging completely.  An override stays in effect until the override is
  * changed again by the calling application.
  */
@@ -213,7 +213,7 @@ public:
    *
    * The XMLParser will be used to obtain the current line and column
    * number for XMLError objects that lack line and column numbers when
-   * they are logged.  This method is used by libSBML's internal XML
+   * they are logged.  This method is used by libLX's internal XML
    * parsing code and probably has no useful reason to be called from
    * application programs.
    *
@@ -322,10 +322,10 @@ public:
    * @return a severity override code.  The possible values are drawn
    * from @if clike the enumeration #XMLErrorSeverityOverride_t@else the
    * set of integer constants whose names begin with the prefix
-   * <code>LIBSBXML_OVERRIDE_</code>@endif:
-   * @li @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
-   * @li @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
-   * @li @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
+   * <code>LIBLX_OVERRIDE_</code>@endif:
+   * @li @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+   * @li @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
+   * @li @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
    *
    * @see isSeverityOverridden()
    * @see setSeverityOverride(@if java int@endif)
@@ -341,12 +341,12 @@ public:
    * @copydetails doc_what_are_severity_overrides
    *
    * @param severity an override code indicating what to do.  If the value is
-   * @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+   * @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
    * (the default setting) all errors logged will be given the severity
    * specified in their usual definition.   If the value is
-   * @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
+   * @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
    * then all errors will be logged as warnings.  If the value is 
-   * @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
+   * @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
    * no error will be logged, regardless of their severity.
    *
    * @see isSeverityOverridden()
@@ -372,7 +372,7 @@ public:
    *
    * @param targetSeverity the severity code to use as the new severity.
    *
-   * @param package a string, the name of an SBML Level&nbsp;3 package
+   * @param package a string, the name of an LX Level&nbsp;3 package
    * extension to use to narrow the search for errors.  A value of @c "all"
    * signifies to match against errors logged from any package; a value of a
    * package nickname such as @c "comp" signifies to limit consideration to
@@ -513,7 +513,7 @@ XMLErrorLog_toString (XMLErrorLog_t *log);
  * 
  * @param log XMLErrorLog_t structure to be queried.
  *
- * @return @c 1 (true) if the security override is not set to LIBSBXML_OVERRIDE_DISABLED, @c 0 (false) otherwise.
+ * @return @c 1 (true) if the security override is not set to LIBLX_OVERRIDE_DISABLED, @c 0 (false) otherwise.
  *
  * @memberof XMLErrorLog_t
  */
@@ -522,7 +522,7 @@ int
 XMLErrorLog_isSeverityOverridden (XMLErrorLog_t *log);
 
 /**
- * Usets the override of the given XMLErrorLog_t (sets the flag to LIBSBXML_OVERRIDE_DISABLED).
+ * Usets the override of the given XMLErrorLog_t (sets the flag to LIBLX_OVERRIDE_DISABLED).
  * 
  * @param log XMLErrorLog_t structure to be queried.
  *
@@ -537,9 +537,9 @@ XMLErrorLog_unsetSeverityOverride (XMLErrorLog_t *log);
  *
  * @return a severity override code.  The possible values are drawn
  * from the enumeration #XMLErrorSeverityOverride_t:
- * @li @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
- * @li @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
- * @li @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
+ * @li @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+ * @li @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t}
+ * @li @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t}
  * 
  * @param log XMLErrorLog_t structure to be queried.
  *
@@ -556,12 +556,12 @@ XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log);
  * 
  * @param log XMLErrorLog_t structure to be queried.
  * @param overridden an override code indicating what to do.  If the value is
- * @sbmlconstant{LIBSBXML_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
+ * @sbmlconstant{LIBLX_OVERRIDE_DISABLED, XMLErrorSeverityOverride_t}
  * (the default setting) all errors logged will be given the severity
  * specified in their usual definition.   If the value is
- * @sbmlconstant{LIBSBXML_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
+ * @sbmlconstant{LIBLX_OVERRIDE_WARNING, XMLErrorSeverityOverride_t},
  * then all errors will be logged as warnings.  If the value is 
- * @sbmlconstant{LIBSBXML_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
+ * @sbmlconstant{LIBLX_OVERRIDE_DONT_LOG, XMLErrorSeverityOverride_t},
  * no error will be logged, regardless of their severity.
  *
  * @see XMLErrorLog_getSeverityOverride()
