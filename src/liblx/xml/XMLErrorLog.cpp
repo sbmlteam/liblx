@@ -43,7 +43,7 @@
 
 #include <liblx/xml/XMLErrorLog.h>
 
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 #include <liblx/xml/operationReturnValues.h>
 
 

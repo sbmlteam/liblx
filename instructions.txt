@@ -178,6 +178,14 @@ example of variables:
 ${CMAKE_CURRENT_SOURCE_DIR} = /Users/matthewgillman/repos/libLX/liblx/src
 ${CMAKE_CURRENT_BINARY_DIR} = /Users/matthewgillman/repos/libLX/liblx/build/src
 
+Building with the Expat XML library
+===================================
+I don't think one has to install expat.
+
+Include the following in the `cmake` command:
+
+`-DWITH_EXPAT=TRUE -DWITH_LIBXML=FALSE`
+
 
 ### NB have we got all the C++ XML interface exported to Python?  ????
 

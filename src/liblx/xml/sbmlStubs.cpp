@@ -1,11 +1,11 @@
 /*
- * sbmlMemoryStubs.cpp
+ * sbmlStubs.cpp
  *
  *  Created on: 23 October 2020
  *      Author: Timothy Spain
  */
 
-#include "sbmlMemoryStubs.h"
+#include "sbmlStubs.h"
 
 #include <cstring>
 #include <cstdlib>
@@ -44,6 +44,19 @@ void* safe_malloc (size_t size)
 	  return p;
 
 }
+
+// Copied from libsbml/src/sbml/util/util.cpp
+unsigned int streq (const char *s, const char *t)
+{
+  if (s == NULL)
+    return t == NULL;
+  else if (t == NULL)
+    return 0;
+  else
+    return !strcmp(s, t);
+}
+
+
 
 /*std::list<SBMLNamespaces> SBMLNamespaces::getSupportedNamespaces()
 {

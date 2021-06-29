@@ -63,7 +63,7 @@
 #include <liblx/xml/LibLXError.h>
 
 #include <liblx/xml/operationReturnValues.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLBuffer.h>

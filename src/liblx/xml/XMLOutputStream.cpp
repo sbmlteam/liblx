@@ -46,12 +46,12 @@
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/XMLNamespaces.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 #include <liblx/xml/common/common.h>
 #include <liblx/xml/common/liblx-version.h>
+
 #if defined CYGWIN
-#include <string.h>
+    #include <string.h>
 #endif
 
 using namespace std;
