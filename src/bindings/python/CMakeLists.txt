@@ -199,8 +199,8 @@ add_custom_command(
     ARGS  "${CMAKE_CURRENT_SOURCE_DIR}/doc-converter/rewrite_pydoc.py"
         -f "${CMAKE_CURRENT_BINARY_DIR}/pydoc-doxygen.i"
         -o "${CMAKE_CURRENT_BINARY_DIR}/pydoc-normal.i"
-        -i ${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/common-text
-        -g ${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/common-graphics
+        # -i ${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/common-text
+        # -g ${CMAKE_CURRENT_SOURCE_DIR}/../../../docs/src/common-graphics
 
     COMMAND "${CMAKE_COMMAND}"
     ARGS  -E rename pydoc-doxygen.i pydoc.i
