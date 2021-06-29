@@ -3,33 +3,7 @@ liblx build instructions
 Mac
 ===
 
-1. install swig e.g. brew install swig
-2. install check (unit testing library for C) - e.g. brew install check  -> /usr/local/Cellar/check/0.15.2/
-3. git clone https://github.com/sbmlteam/liblx.git    (in a suitable directory).
-In my case, it creates /Users/matthewgillman/repos/libLX/liblx/ when I do this command in /Users/matthewgillman/repos/libLX/
-4. cd liblx
-5. mkdir build   -  the results of the build will be in here.
-6. cd build
-7. cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
-Note that the directory at the end of the cmake command above is the top-level directory of the cloned repo (i.e. it contains the top-level CMakeLists.txt file).
-8. make
-9. invoke test script In my build subdir, it is src/liblx/xml/test/test_sbml_xml
-On Mac, this builds build/src/liblx-static.a and build/src/liblx.dylib
+
 
 To build the documentation
 ==========================
-add `-DWITH_DOXYGEN=ON` to the `cmake` command.
-Need Sphinx and Doxygen installed.
-??? brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
-??? or pip install -U sphinx   -> sphinx-build --version = "sphinx-build 4.0.2"
-brew install doxygen   # e.g. to /usr/local/bin/doxygen
-pip install breathe # see https://breathe.readthedocs.io/en/latest/quickstart.html
-pip show breathe -> /Users/matthewgillman/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
-
-If you need to have sphinx-doc first in your PATH, run:
-  echo 'export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"' >> /Users/matthewgillman/.bash_profile
-can use copasi cmake module FindSphinx.cmake
-cmake -DWITH_DOXYGEN=ON -DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen ..
-
--- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
-The dot is from graphviz, which can be used by Doxygen to draw inheritance diagrams etc
