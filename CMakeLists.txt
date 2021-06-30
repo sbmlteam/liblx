@@ -1098,8 +1098,6 @@ other operating systems.)" OFF)
     # set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\"")
 
 else(UNIX)
-    # not needing these defines, and they do cause warnings
-    # add_definitions(-DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
     add_definitions(-DWIN32 -DLIBLX_EXPORTS)
     set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DWIN32 -DLIBLX_EXPORTS")
     if(MSVC OR USING_INTEL)

@@ -11,7 +11,12 @@
 #include <cstdlib>
 #include <string>
 
-char* safe_strdup(const char* s)
+LIBLX_CPP_NAMESPACE_BEGIN
+
+
+LIBLX_EXTERN
+char* 
+safe_strdup(const char* s)
 {
 	  size_t  size;
 	  char   *duplicate;
@@ -28,7 +33,11 @@ char* safe_strdup(const char* s)
 
 }
 
-void* safe_malloc (size_t size)
+
+
+LIBLX_EXTERN
+void* 
+safe_malloc (size_t size)
 {
 	  void *p = (void *) malloc(size);
 
@@ -45,8 +54,10 @@ void* safe_malloc (size_t size)
 
 }
 
-// Copied from libsbml/src/sbml/util/util.cpp
-unsigned int streq (const char *s, const char *t)
+
+LIBLX_EXTERN
+unsigned int 
+streq (const char *s, const char *t)
 {
   if (s == NULL)
     return t == NULL;
@@ -57,30 +68,16 @@ unsigned int streq (const char *s, const char *t)
 }
 
 
-
-/*std::list<SBMLNamespaces> SBMLNamespaces::getSupportedNamespaces()
+LIBLX_EXTERN
+void
+safe_free(void * element)
 {
-	return std::list<SBMLNamespaces>();
-}
+  if (!element)
+    return;
 
-void SBMLNamespaces::freeSBMLNamespaces(std::list<SBMLNamespaces> nmsp)
-{
-	// The goggles
-}
-
-std::string SBMLNamespaces::getURI()
-{
-	return std::string("");
+  free(element);
+  element = NULL;
 }
 
-SBMLNamespaces* SBMLNamespaces::clone() const {
-	return new SBMLNamespaces(*this);
-}
-*/
-/*
-const char*
-getLibSBMLDottedVersion ()
-{
-	return LIBSBML_DOTTED_VERSION;
-}
-*/
+LIBLX_CPP_NAMESPACE_END
+
