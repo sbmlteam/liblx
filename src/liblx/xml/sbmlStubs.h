@@ -9,13 +9,38 @@
 #define SBMLSTUBS_H
 
 #include <ctype.h>
+#include <cstddef>
 
-extern "C" {
-    char* safe_strdup(const char* s);
-    void* safe_malloc (size_t size);
-    unsigned int streq (const char *s, const char *t);
-}
+#include <liblx/xml/common/extern.h>
 
-#define safe_free  free
+#include <liblx/xml/common/extern.h>
 
+
+LIBLX_CPP_NAMESPACE_BEGIN
+
+BEGIN_C_DECLS
+
+
+LIBLX_EXTERN
+char* 
+safe_strdup(const char* s);
+
+
+LIBLX_EXTERN
+void* 
+safe_malloc (size_t size);
+
+
+LIBLX_EXTERN
+unsigned int 
+streq (const char *s, const char *t);
+
+
+LIBLX_EXTERN
+void
+safe_free(void * element);
+
+END_C_DECLS
+
+LIBLX_CPP_NAMESPACE_END
 #endif /*ndef SBMLSTUBS_H */
