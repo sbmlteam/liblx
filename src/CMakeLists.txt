@@ -82,8 +82,8 @@ check_library_exists(m sqrt "" HAVE_LIBM)
 
 # generate configuration for this system
 configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/liblx/xml/common/libsbxml-config-common.h.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/liblx/xml/common/libsbxml-config-common.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/liblx/common/libsbxml-config-common.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/liblx/common/libsbxml-config-common.h
 )
 
 ###############################################################################
@@ -107,8 +107,8 @@ endforeach(dir)
 # copy build specific header files
 #
 
-file(GLOB additional_common "${CMAKE_CURRENT_BINARY_DIR}/liblx/xml/common/*.h")
-install(FILES ${additional_common} DESTINATION include/liblx/xml/common)
+file(GLOB additional_common "${CMAKE_CURRENT_BINARY_DIR}/liblx/common/*.h")
+install(FILES ${additional_common} DESTINATION include/liblx/common)
 
 
 ###############################################################################
@@ -165,19 +165,19 @@ endforeach()
 #
 set (COMPRESS_SOURCES)
 set(COMPRESS_SOURCES ${COMPRESS_SOURCES}
-    liblx/xml/compress/CompressCommon.h
-    liblx/xml/compress/CompressCommon.cpp
-    liblx/xml/compress/InputDecompressor.cpp
-    liblx/xml/compress/InputDecompressor.h
-    liblx/xml/compress/OutputCompressor.cpp
-    liblx/xml/compress/OutputCompressor.h
+    liblx/compress/CompressCommon.h
+    liblx/compress/CompressCommon.cpp
+    liblx/compress/InputDecompressor.cpp
+    liblx/compress/InputDecompressor.h
+    liblx/compress/OutputCompressor.cpp
+    liblx/compress/OutputCompressor.h
     )
 
 if(WITH_BZIP2)
 
   set(COMPRESS_SOURCES ${COMPRESS_SOURCES}
-        liblx/xml/compress/bzfstream.h
-        liblx/xml/compress/bzfstream.cpp
+        liblx/compress/bzfstream.h
+        liblx/compress/bzfstream.cpp
         )
   include_directories(${LIBBZ_INCLUDE_DIR})
   set(LIBLX_LIBS ${LIBLX_LIBS} ${LIBBZ_LIBRARY})
@@ -187,18 +187,18 @@ endif()
 if(WITH_ZLIB)
 
 set(COMPRESS_SOURCES ${COMPRESS_SOURCES}
-        liblx/xml/compress/zip.c
-        liblx/xml/compress/zip.h
-        liblx/xml/compress/unzip.h
-        liblx/xml/compress/unzip.c
-        liblx/xml/compress/ioapi.h
-        liblx/xml/compress/ioapi.c
-        liblx/xml/compress/ioapi_mem.h
-        liblx/xml/compress/ioapi_mem.c
-        liblx/xml/compress/zfstream.h
-        liblx/xml/compress/zfstream.cpp
-        liblx/xml/compress/zipfstream.cpp
-        liblx/xml/compress/zipfstream.h
+        liblx/compress/zip.c
+        liblx/compress/zip.h
+        liblx/compress/unzip.h
+        liblx/compress/unzip.c
+        liblx/compress/ioapi.h
+        liblx/compress/ioapi.c
+        liblx/compress/ioapi_mem.h
+        liblx/compress/ioapi_mem.c
+        liblx/compress/zfstream.h
+        liblx/compress/zfstream.cpp
+        liblx/compress/zipfstream.cpp
+        liblx/compress/zipfstream.h
     )
 
     if (WIN32)
@@ -208,8 +208,8 @@ set(COMPRESS_SOURCES ${COMPRESS_SOURCES}
         # no symbols. So it will only be included on windows.
         #
         set(COMPRESS_SOURCES ${COMPRESS_SOURCES}
-            liblx/xml/compress/iowin32.c
-            liblx/xml/compress/iowin32.h
+            liblx/compress/iowin32.c
+            liblx/compress/iowin32.h
         )
     endif()
 
@@ -232,7 +232,7 @@ set(XML_SOURCES ${XML_SOURCES}
 	)
 
 set(XML_SOURCES ${XML_SOURCES}
-	liblx/xml/common/liblx-version.cpp
+	liblx/common/liblx-version.cpp
 	)
 	
 set(XML_SOURCES ${XML_SOURCES}
