@@ -38,7 +38,7 @@
 #ifndef LIBLX_VERSION_H
 #define LIBLX_VERSION_H
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 
 /**

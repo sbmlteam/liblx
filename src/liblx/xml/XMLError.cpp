@@ -38,7 +38,7 @@
 #include <iomanip>
 #include <sstream>
 
-#include <liblx/xml/common/common.h>
+#include <liblx/common/common.h>
 #include <liblx/xml/XMLError.h>
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>

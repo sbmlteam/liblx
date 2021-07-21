@@ -42,8 +42,8 @@
 #define OutputCompressor_h
 
 #include <iostream>
-#include <liblx/xml/common/extern.h>
-#include <liblx/xml/compress/CompressCommon.h>
+#include <liblx/common/extern.h>
+#include <liblx/compress/CompressCommon.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 

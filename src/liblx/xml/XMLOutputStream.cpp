@@ -47,8 +47,8 @@
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/XMLNamespaces.h>
 #include <liblx/xml/sbmlStubs.h>
-#include <liblx/xml/common/common.h>
-#include <liblx/xml/common/liblx-version.h>
+#include <liblx/common/common.h>
+#include <liblx/common/liblx-version.h>
 
 #if defined CYGWIN
     #include <string.h>

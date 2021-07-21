@@ -52,7 +52,7 @@
 //#include <util/util.h>
 #include <check.h>
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 #include <sbmlStubs.h>
 

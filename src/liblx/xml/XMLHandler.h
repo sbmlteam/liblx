@@ -48,7 +48,7 @@
 #ifdef __cplusplus
 
 #include <string>
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 

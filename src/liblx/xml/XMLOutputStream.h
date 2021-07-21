@@ -222,7 +222,7 @@ on yyyy-MM-dd HH:mm with libLX version <liblx version>. -->
 #ifndef XMLOutputStream_h
 #define XMLOutputStream_h
 
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/liblxfwd.h>
 #ifdef __cplusplus
 
 #include <iostream>
@@ -230,9 +230,9 @@ on yyyy-MM-dd HH:mm with libLX version <liblx version>. -->
 #include <locale>
 #include <string>
 #include <time.h>
-#include <liblx/xml/common/liblx-version.h>
+#include <liblx/common/liblx-version.h>
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 #include <liblx/xml/sbmlStubs.h>
 

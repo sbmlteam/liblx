@@ -37,7 +37,7 @@
 #ifndef LIBLX_EXTERN_H
 #define LIBLX_EXTERN_H
 
-#include <liblx/xml/common/liblx-namespace.h>
+#include <liblx/common/liblx-namespace.h>
 
 #if ( defined(WIN32) && !defined(CYGWIN) && !defined(__MINGW32__))
 

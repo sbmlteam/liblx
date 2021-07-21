@@ -59,7 +59,7 @@
 #ifndef XMLConstructorException_h
 #define XMLConstructorException_h
 
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/liblxfwd.h>
 
 #ifdef __cplusplus
 

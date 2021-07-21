@@ -109,9 +109,9 @@
 #ifndef XMLInputStream_h
 #define XMLInputStream_h
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 #include <liblx/xml/XMLToken.h>
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/liblxfwd.h>
 
 
 #ifdef __cplusplus

@@ -34,7 +34,7 @@
  * and also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#include <liblx/xml/common/common.h>
+#include <liblx/common/common.h>
 #include <liblx/xml/XMLError.h>
 #include <liblx/xml/XMLErrorLog.h>
 

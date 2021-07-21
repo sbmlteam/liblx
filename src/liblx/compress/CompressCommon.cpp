@@ -38,7 +38,7 @@
  * and also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#include <liblx/xml/compress/CompressCommon.h>
+#include <liblx/compress/CompressCommon.h>
 
 using namespace std;
 
