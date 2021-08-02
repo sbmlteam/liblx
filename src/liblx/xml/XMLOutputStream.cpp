@@ -46,7 +46,7 @@
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/XMLNamespaces.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/common/util.h>
 #include <liblx/common/common.h>
 #include <liblx/common/liblx-version.h>
 

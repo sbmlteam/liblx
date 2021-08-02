@@ -225,13 +225,6 @@ set(LIBLX_SOURCES ${LIBLX_SOURCES} ${COMPRESS_SOURCES})
 #
 
 set(XML_SOURCES)
-set(XML_SOURCES ${XML_SOURCES}
-	liblx/xml/sbmlStubs.cpp
-	)
-
-#set(XML_SOURCES ${XML_SOURCES}
-#	liblx/common/liblx-version.cpp
-#	)
 	
 set(XML_SOURCES ${XML_SOURCES}
 

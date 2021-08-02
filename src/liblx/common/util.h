@@ -13,30 +13,28 @@
 
 #include <liblx/common/extern.h>
 
-#include <liblx/common/extern.h>
-
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
 BEGIN_C_DECLS
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 safe_strdup(const char* s);
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void* 
 safe_malloc (size_t size);
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int 
 streq (const char *s, const char *t);
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 safe_free(void * element);
 

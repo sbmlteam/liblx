@@ -54,7 +54,7 @@
 
 #include <liblx/common/extern.h>
 
-#include <sbmlStubs.h>
+#include <liblx/common/util.h>
 
 #if defined(__cplusplus)
 LIBLX_CPP_NAMESPACE_USE

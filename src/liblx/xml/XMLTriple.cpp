@@ -37,7 +37,7 @@
 #include <liblx/xml/XMLTriple.h>
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/common/util.h>
 
 /** @cond doxygenIgnored */
 using namespace std;
