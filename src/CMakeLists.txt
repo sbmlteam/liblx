@@ -82,8 +82,8 @@ check_library_exists(m sqrt "" HAVE_LIBM)
 
 # generate configuration for this system
 configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/liblx/common/libsbxml-config-common.h.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/liblx/common/libsbxml-config-common.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/liblx/common/liblx-config-common.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/liblx/common/liblx-config-common.h
 )
 
 ###############################################################################
@@ -92,8 +92,8 @@ configure_file(
 #
 
 foreach(dir common compress xml)
-	file(GLOB header_files "${CMAKE_CURRENT_SOURCE_DIR}/liblx/xml/${dir}/*.h")
-	install(FILES ${header_files} DESTINATION include/liblx/xml/${dir})
+	file(GLOB header_files "${CMAKE_CURRENT_SOURCE_DIR}/liblx/${dir}/*.h")
+	install(FILES ${header_files} DESTINATION include/liblx/${dir})
 
 endforeach(dir)
 
@@ -118,11 +118,9 @@ install(FILES ${additional_common} DESTINATION include/liblx/common)
 
 include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src)
 include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src/liblx)
-include_directories(BEFORE ${LIBLX_ROOT_SOURCE_DIR}/src/liblx/xml)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src)
 include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src/liblx)
-include_directories(BEFORE ${CMAKE_CURRENT_BINARY_DIR}/src/liblx/xml)
 if (EXTRA_INCLUDE_DIRS) 
  include_directories(${EXTRA_INCLUDE_DIRS})
 endif(EXTRA_INCLUDE_DIRS)
@@ -134,9 +132,9 @@ endif(EXTRA_INCLUDE_DIRS)
 
 macro(ADD_FUNCTION directory)
 
-    set(prefix "liblx/xml/")
+    set(prefix "liblx/")
 
-    if ("${directory}" STREQUAL "liblx/xml")
+    if ("${directory}" STREQUAL "liblx")
         set(prefix "")
     endif()
 
@@ -231,9 +229,9 @@ set(XML_SOURCES ${XML_SOURCES}
 	liblx/xml/sbmlStubs.cpp
 	)
 
-set(XML_SOURCES ${XML_SOURCES}
-	liblx/common/liblx-version.cpp
-	)
+#set(XML_SOURCES ${XML_SOURCES}
+#	liblx/common/liblx-version.cpp
+#	)
 	
 set(XML_SOURCES ${XML_SOURCES}
 

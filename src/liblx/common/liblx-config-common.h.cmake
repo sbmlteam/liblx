@@ -1,5 +1,5 @@
 /**
- * @file    libsbml-config-common.h
+ * @file    liblx-config-common.h
  * @brief   Configuration variables 
  * @author  Ben Bornstein
  *
@@ -74,9 +74,4 @@
 /* Define to allow the c-functions in util.c and memory.c exit the 
    application in case of an allocation / file system error. */
 #cmakedefine EXIT_ON_ERROR 1
-
-/* Define to specify that the legacy math implementation ought to be used. */
-/* This is no longer an option but in case other programs compiling against
-   libsbml have used the flag it is always on */
-#cmakedefine LIBLX_USE_LEGACY_MATH 1
 
