@@ -69,7 +69,7 @@
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN XMLConstructorException : public std::invalid_argument
+class LIBLAX_EXTERN XMLConstructorException : public std::invalid_argument
 {
 public:
 

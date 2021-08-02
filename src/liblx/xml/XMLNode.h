@@ -169,7 +169,7 @@ class XMLOutputStream;
 /** @endcond */
 
 
-class LIBLX_EXTERN XMLNode : public XMLToken
+class LIBLAX_EXTERN XMLNode : public XMLToken
 {
 public:
 
@@ -535,7 +535,7 @@ public:
    *
    * @return the stream with the node inserted.
    */
-  LIBLX_EXTERN
+  LIBLAX_EXTERN
   friend
   XMLOutputStream& operator<< (XMLOutputStream& stream, const XMLNode& node);
   /** @endcond */
@@ -568,7 +568,7 @@ BEGIN_C_DECLS
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_create (void);
 
@@ -583,7 +583,7 @@ XMLNode_create (void);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_createFromToken (const XMLToken_t *token);
 
@@ -599,7 +599,7 @@ XMLNode_createFromToken (const XMLToken_t *token);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_createStartElement  (const XMLTriple_t *triple,
 			     const XMLAttributes_t *attr);
@@ -618,7 +618,7 @@ XMLNode_createStartElement  (const XMLTriple_t *triple,
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_createStartElementNS (const XMLTriple_t *triple,
                               const XMLAttributes_t *attr,
@@ -635,7 +635,7 @@ XMLNode_createStartElementNS (const XMLTriple_t *triple,
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_createEndElement (const XMLTriple_t *triple);
 
@@ -646,7 +646,7 @@ XMLNode_createEndElement (const XMLTriple_t *triple);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_createTextNode (const char *text);
 
@@ -660,7 +660,7 @@ XMLNode_createTextNode (const char *text);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_clone (const XMLNode_t* n);
 
@@ -672,7 +672,7 @@ XMLNode_clone (const XMLNode_t* n);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLNode_free (XMLNode_t *node);
 
@@ -690,7 +690,7 @@ XMLNode_free (XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_addChild (XMLNode_t *node, const XMLNode_t *child);
 
@@ -707,7 +707,7 @@ XMLNode_addChild (XMLNode_t *node, const XMLNode_t *child);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t*
 XMLNode_insertChild (XMLNode_t *node, unsigned int n, const XMLNode_t *child);
 
@@ -725,7 +725,7 @@ XMLNode_insertChild (XMLNode_t *node, unsigned int n, const XMLNode_t *child);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t*
 XMLNode_removeChild(XMLNode_t *node, unsigned int n);
 
@@ -741,7 +741,7 @@ XMLNode_removeChild(XMLNode_t *node, unsigned int n);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeChildren (XMLNode_t *node);
 
@@ -755,7 +755,7 @@ XMLNode_removeChildren (XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLNode_getCharacters (const XMLNode_t *node);
 
@@ -774,7 +774,7 @@ XMLNode_getCharacters (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_setTriple(XMLNode_t *node, const XMLTriple_t *triple);
 
@@ -788,7 +788,7 @@ XMLNode_setTriple(XMLNode_t *node, const XMLTriple_t *triple);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLNode_getName (const XMLNode_t *node);
 
@@ -805,7 +805,7 @@ XMLNode_getName (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLNode_getPrefix (const XMLNode_t *node);
 
@@ -819,7 +819,7 @@ XMLNode_getPrefix (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLNode_getURI (const XMLNode_t *node);
 
@@ -835,7 +835,7 @@ XMLNode_getURI (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLNode_t *
 XMLNode_getChild (const XMLNode_t *node, const int n);
 
@@ -850,7 +850,7 @@ XMLNode_getChild (const XMLNode_t *node, const int n);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_getChildNC (XMLNode_t *node, const unsigned int n);
 
@@ -867,7 +867,7 @@ XMLNode_getChildNC (XMLNode_t *node, const unsigned int n);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_getChildForNameNC (XMLNode_t *node, const char*  name);	
 
@@ -884,7 +884,7 @@ XMLNode_getChildForNameNC (XMLNode_t *node, const char*  name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLNode_t *
 XMLNode_getChildForName (const XMLNode_t *node, const char*  name);
 
@@ -899,7 +899,7 @@ XMLNode_getChildForName (const XMLNode_t *node, const char*  name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getIndex (const XMLNode_t *node, const char*  name);
 
@@ -913,7 +913,7 @@ XMLNode_getIndex (const XMLNode_t *node, const char*  name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasChild (const XMLNode_t *node, const char*  name);
 
@@ -930,7 +930,7 @@ XMLNode_hasChild (const XMLNode_t *node, const char*  name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_equals(const XMLNode_t *node, const XMLNode_t* other);
 
@@ -943,7 +943,7 @@ XMLNode_equals(const XMLNode_t *node, const XMLNode_t* other);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLNode_getNumChildren (const XMLNode_t *node);
 
@@ -957,7 +957,7 @@ XMLNode_getNumChildren (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLAttributes_t *
 XMLNode_getAttributes (const XMLNode_t *node);
 
@@ -978,7 +978,7 @@ XMLNode_getAttributes (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_setAttributes (XMLNode_t *node, const XMLAttributes_t* attributes);
 
@@ -1003,7 +1003,7 @@ XMLNode_setAttributes (XMLNode_t *node, const XMLAttributes_t* attributes);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_addAttr ( XMLNode_t *node,  const char* name, const char* value );
 
@@ -1030,7 +1030,7 @@ XMLNode_addAttr ( XMLNode_t *node,  const char* name, const char* value );
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_addAttrWithNS ( XMLNode_t *node,  const char* name
                       , const char* value
@@ -1057,7 +1057,7 @@ XMLNode_addAttrWithNS ( XMLNode_t *node,  const char* name
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_addAttrWithTriple (XMLNode_t *node, const XMLTriple_t *triple, const char* value);
 
@@ -1078,7 +1078,7 @@ XMLNode_addAttrWithTriple (XMLNode_t *node, const XMLTriple_t *triple, const cha
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeAttr (XMLNode_t *node, int n);
 
@@ -1099,7 +1099,7 @@ XMLNode_removeAttr (XMLNode_t *node, int n);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeAttrByName (XMLNode_t *node, const char* name);
 
@@ -1121,7 +1121,7 @@ XMLNode_removeAttrByName (XMLNode_t *node, const char* name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeAttrByNS (XMLNode_t *node, const char* name, const char* uri);
 
@@ -1142,7 +1142,7 @@ XMLNode_removeAttrByNS (XMLNode_t *node, const char* name, const char* uri);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeAttrByTriple (XMLNode_t *node, const XMLTriple_t *triple);
 
@@ -1160,7 +1160,7 @@ XMLNode_removeAttrByTriple (XMLNode_t *node, const XMLTriple_t *triple);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_clearAttributes(XMLNode_t *node);
 
@@ -1178,7 +1178,7 @@ XMLNode_clearAttributes(XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getAttrIndex (const XMLNode_t *node, const char* name, const char* uri);
 
@@ -1194,7 +1194,7 @@ XMLNode_getAttrIndex (const XMLNode_t *node, const char* name, const char* uri);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getAttrIndexByTriple (const XMLNode_t *node, const XMLTriple_t *triple);
 
@@ -1208,7 +1208,7 @@ XMLNode_getAttrIndexByTriple (const XMLNode_t *node, const XMLTriple_t *triple);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getAttributesLength (const XMLNode_t *node);
 
@@ -1229,7 +1229,7 @@ XMLNode_getAttributesLength (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrName (const XMLNode_t *node, int index);
 
@@ -1250,7 +1250,7 @@ XMLNode_getAttrName (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrPrefix (const XMLNode_t *node, int index);
 
@@ -1271,7 +1271,7 @@ XMLNode_getAttrPrefix (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrPrefixedName (const XMLNode_t *node, int index);
 
@@ -1291,7 +1291,7 @@ XMLNode_getAttrPrefixedName (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrURI (const XMLNode_t *node, int index);
 
@@ -1312,7 +1312,7 @@ XMLNode_getAttrURI (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrValue (const XMLNode_t *node, int index);
 
@@ -1331,7 +1331,7 @@ XMLNode_getAttrValue (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrValueByName (const XMLNode_t *node, const char* name);
 
@@ -1352,7 +1352,7 @@ XMLNode_getAttrValueByName (const XMLNode_t *node, const char* name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrValueByNS (const XMLNode_t *node, const char* name, const char* uri);
 
@@ -1372,7 +1372,7 @@ XMLNode_getAttrValueByNS (const XMLNode_t *node, const char* name, const char* u
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getAttrValueByTriple (const XMLNode_t *node, const XMLTriple_t *triple);
 
@@ -1390,7 +1390,7 @@ XMLNode_getAttrValueByTriple (const XMLNode_t *node, const XMLTriple_t *triple);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasAttr (const XMLNode_t *node, int index);
 
@@ -1409,7 +1409,7 @@ XMLNode_hasAttr (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasAttrWithName (const XMLNode_t *node, const char* name);
 
@@ -1428,7 +1428,7 @@ XMLNode_hasAttrWithName (const XMLNode_t *node, const char* name);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasAttrWithNS (const XMLNode_t *node, const char* name, const char* uri);
 
@@ -1447,7 +1447,7 @@ XMLNode_hasAttrWithNS (const XMLNode_t *node, const char* name, const char* uri)
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasAttrWithTriple (const XMLNode_t *node, const XMLTriple_t *triple);
 
@@ -1463,7 +1463,7 @@ XMLNode_hasAttrWithTriple (const XMLNode_t *node, const XMLTriple_t *triple);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isAttributesEmpty (const XMLNode_t *node);
 
@@ -1478,7 +1478,7 @@ XMLNode_isAttributesEmpty (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLNamespaces_t *
 XMLNode_getNamespaces (const XMLNode_t *node);
 
@@ -1499,7 +1499,7 @@ XMLNode_getNamespaces (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_setNamespaces(XMLNode_t *node, const XMLNamespaces_t* namespaces);
 
@@ -1521,7 +1521,7 @@ XMLNode_setNamespaces(XMLNode_t *node, const XMLNamespaces_t* namespaces);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_addNamespace (XMLNode_t *node, const char* uri, const char* prefix);
 
@@ -1542,7 +1542,7 @@ XMLNode_addNamespace (XMLNode_t *node, const char* uri, const char* prefix);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeNamespace (XMLNode_t *node, int index);
 
@@ -1562,7 +1562,7 @@ XMLNode_removeNamespace (XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_removeNamespaceByPrefix (XMLNode_t *node, const char* prefix);
 
@@ -1581,7 +1581,7 @@ XMLNode_removeNamespaceByPrefix (XMLNode_t *node, const char* prefix);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_clearNamespaces (XMLNode_t *node);
 
@@ -1596,7 +1596,7 @@ XMLNode_clearNamespaces (XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getNamespaceIndex (const XMLNode_t *node, const char* uri);
 
@@ -1611,7 +1611,7 @@ XMLNode_getNamespaceIndex (const XMLNode_t *node, const char* uri);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getNamespaceIndexByPrefix (const XMLNode_t *node, const char* prefix);
 
@@ -1626,7 +1626,7 @@ XMLNode_getNamespaceIndexByPrefix (const XMLNode_t *node, const char* prefix);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_getNamespacesLength (const XMLNode_t *node);
 
@@ -1647,7 +1647,7 @@ XMLNode_getNamespacesLength (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getNamespacePrefix (const XMLNode_t *node, int index);
 
@@ -1664,7 +1664,7 @@ XMLNode_getNamespacePrefix (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getNamespacePrefixByURI (const XMLNode_t *node, const char* uri);
 
@@ -1682,7 +1682,7 @@ XMLNode_getNamespacePrefixByURI (const XMLNode_t *node, const char* uri);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getNamespaceURI (const XMLNode_t *node, int index);
 
@@ -1699,7 +1699,7 @@ XMLNode_getNamespaceURI (const XMLNode_t *node, int index);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLNode_getNamespaceURIByPrefix (const XMLNode_t *node, const char* prefix);
 
@@ -1715,7 +1715,7 @@ XMLNode_getNamespaceURIByPrefix (const XMLNode_t *node, const char* prefix);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isNamespacesEmpty (const XMLNode_t *node);
 
@@ -1733,7 +1733,7 @@ XMLNode_isNamespacesEmpty (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasNamespaceURI(const XMLNode_t *node, const char* uri);
 
@@ -1751,7 +1751,7 @@ XMLNode_hasNamespaceURI(const XMLNode_t *node, const char* uri);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasNamespacePrefix(const XMLNode_t *node, const char* prefix);
 
@@ -1770,7 +1770,7 @@ XMLNode_hasNamespacePrefix(const XMLNode_t *node, const char* prefix);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_hasNamespaceNS(const XMLNode_t *node, const char* uri, const char* prefix);
 
@@ -1786,7 +1786,7 @@ XMLNode_hasNamespaceNS(const XMLNode_t *node, const char* uri, const char* prefi
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLNode_toXMLString(const XMLNode_t *node);
 
@@ -1802,7 +1802,7 @@ XMLNode_toXMLString(const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLNode_convertXMLNodeToString(const XMLNode_t *node);
 
@@ -1821,7 +1821,7 @@ XMLNode_convertXMLNodeToString(const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNode_t *
 XMLNode_convertStringToXMLNode(const char * xml, const XMLNamespaces_t* xmlns);
 
@@ -1836,7 +1836,7 @@ XMLNode_convertStringToXMLNode(const char * xml, const XMLNamespaces_t* xmlns);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isElement (const XMLNode_t *node);
 
@@ -1851,7 +1851,7 @@ XMLNode_isElement (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isEnd (const XMLNode_t *node);
 
@@ -1868,7 +1868,7 @@ XMLNode_isEnd (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isEndFor (const XMLNode_t *node, const XMLNode_t *element);
 
@@ -1884,7 +1884,7 @@ XMLNode_isEndFor (const XMLNode_t *node, const XMLNode_t *element);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isEOF (const XMLNode_t *node);
 
@@ -1899,7 +1899,7 @@ XMLNode_isEOF (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isStart (const XMLNode_t *node);
 
@@ -1914,7 +1914,7 @@ XMLNode_isStart (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_isText (const XMLNode_t *node);
 
@@ -1931,7 +1931,7 @@ XMLNode_isText (const XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_setEnd (XMLNode_t *node);
 
@@ -1948,7 +1948,7 @@ XMLNode_setEnd (XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_setEOF (XMLNode_t *node);
 
@@ -1965,7 +1965,7 @@ XMLNode_setEOF (XMLNode_t *node);
  *
  * @memberof XMLNode_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNode_unsetEnd (XMLNode_t *node);
 

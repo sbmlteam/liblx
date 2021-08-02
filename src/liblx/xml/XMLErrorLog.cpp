@@ -398,7 +398,7 @@ XMLErrorLog::contains(const unsigned int errorId) const
 
 #endif /* __cplusplus */
 /** @cond doxygenIgnored */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLErrorLog_t *
 XMLErrorLog_create (void)
 {
@@ -406,7 +406,7 @@ XMLErrorLog_create (void)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_free (XMLErrorLog_t *log)
 {
@@ -415,7 +415,7 @@ XMLErrorLog_free (XMLErrorLog_t *log)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_add (XMLErrorLog_t *log, const XMLError_t *error)
 {
@@ -424,7 +424,7 @@ XMLErrorLog_add (XMLErrorLog_t *log, const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLError_t *
 XMLErrorLog_getError (const XMLErrorLog_t *log, unsigned int n)
 {
@@ -433,7 +433,7 @@ XMLErrorLog_getError (const XMLErrorLog_t *log, unsigned int n)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLErrorLog_getNumErrors (const XMLErrorLog_t *log)
 {
@@ -441,7 +441,7 @@ XMLErrorLog_getNumErrors (const XMLErrorLog_t *log)
   return log->getNumErrors();
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_clearLog (XMLErrorLog_t *log)
 {
@@ -450,7 +450,7 @@ XMLErrorLog_clearLog (XMLErrorLog_t *log)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLErrorLog_toString (XMLErrorLog_t *log)
 {
@@ -459,7 +459,7 @@ XMLErrorLog_toString (XMLErrorLog_t *log)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLErrorLog_isSeverityOverridden (XMLErrorLog_t *log)
 {
@@ -467,14 +467,14 @@ XMLErrorLog_isSeverityOverridden (XMLErrorLog_t *log)
   return static_cast<int>(log->isSeverityOverridden());
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_unsetSeverityOverride (XMLErrorLog_t *log)
 {
   if (log != NULL) log->unsetSeverityOverride();
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLErrorSeverityOverride_t
 XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log)
 {
@@ -482,7 +482,7 @@ XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log)
   return log->getSeverityOverride();
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_setSeverityOverride (XMLErrorLog_t *log, XMLErrorSeverityOverride_t overridden)
 {

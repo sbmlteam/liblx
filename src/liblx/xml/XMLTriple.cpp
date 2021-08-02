@@ -227,7 +227,7 @@ bool operator!=(const XMLTriple& lhs, const XMLTriple& rhs)
 
 #endif /* __cplusplus */
 /** @cond doxygenIgnored */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLTriple_t *
 XMLTriple_create (void)
 {
@@ -235,7 +235,7 @@ XMLTriple_create (void)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLTriple_t *
 XMLTriple_createWith (const char *name, const char *uri, const char *prefix)
 {
@@ -244,7 +244,7 @@ XMLTriple_createWith (const char *name, const char *uri, const char *prefix)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLTriple_free (XMLTriple_t *triple)
 {
@@ -253,7 +253,7 @@ XMLTriple_free (XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLTriple_t *
 XMLTriple_clone (const XMLTriple_t* t)
 {
@@ -262,7 +262,7 @@ XMLTriple_clone (const XMLTriple_t* t)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getName (const XMLTriple_t *triple)
 {
@@ -271,7 +271,7 @@ XMLTriple_getName (const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getPrefix (const XMLTriple_t *triple)
 {
@@ -280,7 +280,7 @@ XMLTriple_getPrefix (const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getURI (const XMLTriple_t *triple)
 {
@@ -289,7 +289,7 @@ XMLTriple_getURI (const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getPrefixedName (const XMLTriple_t *triple)
 {
@@ -298,7 +298,7 @@ XMLTriple_getPrefixedName (const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLTriple_isEmpty (const XMLTriple_t *triple)
 {
@@ -307,7 +307,7 @@ XMLTriple_isEmpty (const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLTriple_equalTo(const XMLTriple_t *lhs, const XMLTriple_t* rhs)
 {
@@ -317,7 +317,7 @@ XMLTriple_equalTo(const XMLTriple_t *lhs, const XMLTriple_t* rhs)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLTriple_notEqualTo(const XMLTriple_t *lhs, const XMLTriple_t* rhs)
 {

@@ -50,7 +50,7 @@ LIBLX_CPP_NAMESPACE_BEGIN
  *
  * @return @c true if zlib is linked, @c false otherwise.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 bool hasZlib() 
 {
 #ifdef USE_ZLIB
@@ -66,7 +66,7 @@ bool hasZlib()
  *
  * @return @c true if bzip2 is linked, @c false otherwise.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 bool hasBzip2() 
 {
 #ifdef USE_BZ2

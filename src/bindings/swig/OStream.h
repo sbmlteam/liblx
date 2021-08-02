@@ -92,7 +92,7 @@
 
 #include <liblx/common/extern.h>
 
-class LIBLX_EXTERN OStream 
+class LIBLAX_EXTERN OStream 
 {
   protected:
     std::ostream* Stream;
@@ -139,7 +139,7 @@ class LIBLX_EXTERN OStream
 };
   
 
-class LIBLX_EXTERN OFStream : public OStream 
+class LIBLAX_EXTERN OFStream : public OStream 
 {
   public:
     /**
@@ -198,7 +198,7 @@ class LIBLX_EXTERN OFStream : public OStream
 };
   
 
-class LIBLX_EXTERN OStringStream : public OStream 
+class LIBLAX_EXTERN OStringStream : public OStream 
 {
   public:
     /**

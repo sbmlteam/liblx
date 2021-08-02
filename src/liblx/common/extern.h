@@ -1,6 +1,6 @@
 /**
  * @file    extern.h
- * @brief   Definitions of LIBLX_EXTERN and related things.
+ * @brief   Definitions of LIBLAX_EXTERN and related things.
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
@@ -34,8 +34,8 @@
  * also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#ifndef LIBLX_EXTERN_H
-#define LIBLX_EXTERN_H
+#ifndef LIBLAX_EXTERN_H
+#define LIBLAX_EXTERN_H
 
 #include <liblx/common/liblx-namespace.h>
 
@@ -45,22 +45,22 @@
 /**
  * The following ifdef block is the standard way of creating macros which
  * make exporting from a DLL simpler. All files within this DLL are
- * compiled with the LIBLX_EXPORTS symbol defined on the command line.
+ * compiled with the LIBLAX_EXPORTS symbol defined on the command line.
  * This symbol should not be defined on any project that uses this
  * DLL. This way any other project whose source files include this file see
- * LIBLX_EXTERN functions as being imported from a DLL, whereas this DLL
+ * LIBLAX_EXTERN functions as being imported from a DLL, whereas this DLL
  * sees symbols defined with this macro as being exported.
  *
  * (From Andrew Finney's sbwdefs.h, with "SBW" replaced by "LIBLX" :)
  */
-#if defined(LIBLX_EXPORTS)
-#  define LIBLX_EXTERN __declspec(dllexport)
+#if defined(LIBLAX_EXPORTS)
+#  define LIBLAX_EXTERN __declspec(dllexport)
 #else
-#  define LIBLX_EXTERN __declspec(dllimport)
+#  define LIBLAX_EXTERN __declspec(dllimport)
 #endif
 
 #else
-#  define LIBLX_EXTERN
+#  define LIBLAX_EXTERN
 #endif  /* LIBLX_STATIC */
 
 /**
@@ -87,14 +87,14 @@
 #else
 
 /**
- * LIBLX_EXTERN is used under Windows to simplify exporting functions
+ * LIBLAX_EXTERN is used under Windows to simplify exporting functions
  * from a DLL.  When compiling under Windows, all files within this DLL are
- * compiled with the LIBLX_EXPORTS symbol defined on the command line.
+ * compiled with the LIBLAX_EXPORTS symbol defined on the command line.
  * This in turn causes extern.h to define a different version of
- * LIBLX_EXTERN that is appropriate for exporting functions to client
+ * LIBLAX_EXTERN that is appropriate for exporting functions to client
  * code that uses the DLL.
  */
-#define LIBLX_EXTERN
+#define LIBLAX_EXTERN
 
 #endif  /* WIN32 */
 
@@ -110,5 +110,5 @@
 #endif
 
 
-#endif  /** LIBLX_EXTERN_H **/
+#endif  /** LIBLAX_EXTERN_H **/
 

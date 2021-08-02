@@ -1255,7 +1255,7 @@ XMLAttributes::setErrorLog (XMLErrorLog* log)
 /*
  * Inserts this XMLAttributes set into stream.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream&
 operator<< (XMLOutputStream& stream, const XMLAttributes& attributes)
 {
@@ -1267,7 +1267,7 @@ operator<< (XMLOutputStream& stream, const XMLAttributes& attributes)
 
 #endif /* __cplusplus */
 /** @cond doxygenIgnored */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLAttributes_t *
 XMLAttributes_create (void)
 {
@@ -1275,7 +1275,7 @@ XMLAttributes_create (void)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLAttributes_free (XMLAttributes_t *xa)
 {
@@ -1284,7 +1284,7 @@ XMLAttributes_free (XMLAttributes_t *xa)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLAttributes_t *
 XMLAttributes_clone (const XMLAttributes_t* att)
 {
@@ -1293,7 +1293,7 @@ XMLAttributes_clone (const XMLAttributes_t* att)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_add (XMLAttributes_t *xa,
                    const char *name,
@@ -1304,7 +1304,7 @@ XMLAttributes_add (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_addWithNamespace (XMLAttributes_t *xa,
                                 const char *name,
@@ -1317,7 +1317,7 @@ XMLAttributes_addWithNamespace (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_addWithTriple ( XMLAttributes_t *xa 
 			              , const XMLTriple_t* triple
@@ -1328,7 +1328,7 @@ XMLAttributes_addWithTriple ( XMLAttributes_t *xa
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_removeResource (XMLAttributes_t *xa, int n)
 {
@@ -1337,7 +1337,7 @@ XMLAttributes_removeResource (XMLAttributes_t *xa, int n)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_remove (XMLAttributes_t *xa, int n)
 {
@@ -1346,7 +1346,7 @@ XMLAttributes_remove (XMLAttributes_t *xa, int n)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_removeByName (XMLAttributes_t *xa, const char* name)
 {
@@ -1355,7 +1355,7 @@ XMLAttributes_removeByName (XMLAttributes_t *xa, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_removeByNS (XMLAttributes_t *xa, const char* name, const char* uri)
 {
@@ -1364,7 +1364,7 @@ XMLAttributes_removeByNS (XMLAttributes_t *xa, const char* name, const char* uri
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_removeByTriple (XMLAttributes_t *xa, const XMLTriple_t* triple)
 {
@@ -1373,7 +1373,7 @@ XMLAttributes_removeByTriple (XMLAttributes_t *xa, const XMLTriple_t* triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLAttributes_clear(XMLAttributes_t *xa)
 {
@@ -1382,7 +1382,7 @@ XMLAttributes_clear(XMLAttributes_t *xa)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_getIndex (const XMLAttributes_t *xa, const char *name)
 {
@@ -1391,7 +1391,7 @@ XMLAttributes_getIndex (const XMLAttributes_t *xa, const char *name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_getIndexByNS (const XMLAttributes_t *xa, const char *name, const char *uri)
 {
@@ -1400,7 +1400,7 @@ XMLAttributes_getIndexByNS (const XMLAttributes_t *xa, const char *name, const c
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLAttributes_getIndexByTriple (const XMLAttributes_t *xa, const XMLTriple_t* triple)
 {
@@ -1409,7 +1409,7 @@ XMLAttributes_getIndexByTriple (const XMLAttributes_t *xa, const XMLTriple_t* tr
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_getLength (const XMLAttributes_t *xa)
 {
@@ -1418,7 +1418,7 @@ XMLAttributes_getLength (const XMLAttributes_t *xa)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_getNumAttributes (const XMLAttributes_t *xa)
 {
@@ -1427,7 +1427,7 @@ XMLAttributes_getNumAttributes (const XMLAttributes_t *xa)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getName (const XMLAttributes_t *xa, int index)
 {
@@ -1436,7 +1436,7 @@ XMLAttributes_getName (const XMLAttributes_t *xa, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getPrefix (const XMLAttributes_t *xa, int index)
 {
@@ -1445,7 +1445,7 @@ XMLAttributes_getPrefix (const XMLAttributes_t *xa, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getURI (const XMLAttributes_t *xa, int index)
 {
@@ -1454,7 +1454,7 @@ XMLAttributes_getURI (const XMLAttributes_t *xa, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getValue (const XMLAttributes_t *xa, int index)
 {
@@ -1463,7 +1463,7 @@ XMLAttributes_getValue (const XMLAttributes_t *xa, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getValueByName (const XMLAttributes_t *xa, const char *name)
 {
@@ -1472,7 +1472,7 @@ XMLAttributes_getValueByName (const XMLAttributes_t *xa, const char *name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getValueByNS (const XMLAttributes_t *xa, const char *name, const char* uri)
 {
@@ -1481,7 +1481,7 @@ XMLAttributes_getValueByNS (const XMLAttributes_t *xa, const char *name, const c
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLAttributes_getValueByTriple (const XMLAttributes_t *xa, const XMLTriple_t* triple)
 {
@@ -1492,7 +1492,7 @@ XMLAttributes_getValueByTriple (const XMLAttributes_t *xa, const XMLTriple_t* tr
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLAttributes_hasAttribute (const XMLAttributes_t *xa, int index)
 {
@@ -1501,7 +1501,7 @@ XMLAttributes_hasAttribute (const XMLAttributes_t *xa, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLAttributes_hasAttributeWithName (const XMLAttributes_t *xa, const char* name)
 {
@@ -1510,7 +1510,7 @@ XMLAttributes_hasAttributeWithName (const XMLAttributes_t *xa, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLAttributes_hasAttributeWithNS (const XMLAttributes_t *xa, 
                                   const char* name, const char* uri)
@@ -1520,7 +1520,7 @@ XMLAttributes_hasAttributeWithNS (const XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLAttributes_hasAttributeWithTriple (const XMLAttributes_t *xa, const XMLTriple_t* triple)
 {
@@ -1529,7 +1529,7 @@ XMLAttributes_hasAttributeWithTriple (const XMLAttributes_t *xa, const XMLTriple
 }  
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_isEmpty (const XMLAttributes_t *xa)
 {
@@ -1538,7 +1538,7 @@ XMLAttributes_isEmpty (const XMLAttributes_t *xa)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoBoolean (XMLAttributes_t *xa,
 			       const char *name,
@@ -1557,7 +1557,7 @@ XMLAttributes_readIntoBoolean (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoBooleanByTriple (XMLAttributes_t *xa,
                                const XMLTriple_t* triple,
@@ -1577,7 +1577,7 @@ XMLAttributes_readIntoBooleanByTriple (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoDouble (XMLAttributes_t *xa,
 			      const char *name,
@@ -1590,7 +1590,7 @@ XMLAttributes_readIntoDouble (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoDoubleByTriple (XMLAttributes_t *xa,
                                const XMLTriple_t* triple,
@@ -1603,7 +1603,7 @@ XMLAttributes_readIntoDoubleByTriple (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoLong (XMLAttributes_t *xa,
 			    const char *name,
@@ -1616,7 +1616,7 @@ XMLAttributes_readIntoLong (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoLongByTriple (XMLAttributes_t *xa,
                                const XMLTriple_t* triple,
@@ -1629,7 +1629,7 @@ XMLAttributes_readIntoLongByTriple (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoInt (XMLAttributes_t *xa,
 			   const char *name,
@@ -1641,7 +1641,7 @@ XMLAttributes_readIntoInt (XMLAttributes_t *xa,
   return static_cast<int>( xa->readInto(name, *(value), log, required) );
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoIntByTriple (XMLAttributes_t *xa,
                                const XMLTriple_t* triple,
@@ -1654,7 +1654,7 @@ XMLAttributes_readIntoIntByTriple (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoUnsignedInt (XMLAttributes_t *xa,
 				   const char *name,
@@ -1667,7 +1667,7 @@ XMLAttributes_readIntoUnsignedInt (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoUnsignedIntByTriple (XMLAttributes_t *xa,
                                const XMLTriple_t* triple,
@@ -1681,7 +1681,7 @@ XMLAttributes_readIntoUnsignedIntByTriple (XMLAttributes_t *xa,
 
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoString (XMLAttributes_t *xa,
 			      const char *name,
@@ -1700,7 +1700,7 @@ XMLAttributes_readIntoString (XMLAttributes_t *xa,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLAttributes_readIntoStringByTriple (XMLAttributes_t *xa,
                                const XMLTriple_t* triple,

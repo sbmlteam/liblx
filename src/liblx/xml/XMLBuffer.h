@@ -43,7 +43,7 @@
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN XMLBuffer
+class LIBLAX_EXTERN XMLBuffer
 {
 public:
 

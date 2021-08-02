@@ -47,7 +47,7 @@
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN OutputCompressor
+class LIBLAX_EXTERN OutputCompressor
 {
 public:
 
