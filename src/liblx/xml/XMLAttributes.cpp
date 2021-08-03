@@ -46,7 +46,7 @@
 /** @cond doxygenLibsbmlInternal */
 #include <liblx/xml/XMLOutputStream.h>
 /** @endcond */
-#include <liblx/common/util.h>
+#include <liblx/util/util.h>
 #include <liblx/common/operationReturnValues.h>
 
 /** @cond doxygenIgnored */

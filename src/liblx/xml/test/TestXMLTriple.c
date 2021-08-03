@@ -36,7 +36,7 @@
 
 #include <liblx/common/common.h>
 #include <liblx/xml/XMLTriple.h>
-#include <liblx/common/util.h>
+#include <liblx/util/memory.h>
 
 #include <check.h>
 

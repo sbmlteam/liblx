@@ -5,8 +5,8 @@
  *      Author: Timothy Spain
  */
 
-#ifndef SBMLSTUBS_H
-#define SBMLSTUBS_H
+#ifndef MEMORY_H
+#define MEMORY_H
 
 #include <ctype.h>
 #include <cstddef>
@@ -20,18 +20,8 @@ BEGIN_C_DECLS
 
 
 LIBLAX_EXTERN
-char* 
-safe_strdup(const char* s);
-
-
-LIBLAX_EXTERN
 void* 
 safe_malloc (size_t size);
-
-
-LIBLAX_EXTERN
-unsigned int 
-streq (const char *s, const char *t);
 
 
 LIBLAX_EXTERN
@@ -41,4 +31,4 @@ safe_free(void * element);
 END_C_DECLS
 
 LIBLX_CPP_NAMESPACE_END
-#endif /*ndef SBMLSTUBS_H */
+#endif /*ndef MEMORY_H */

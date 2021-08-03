@@ -43,7 +43,7 @@
 /** @endcond */
 
 #include <liblx/xml/XMLNode.h>
-#include <liblx/common/util.h>
+#include <liblx/util/memory.h>
 #include <liblx/common/operationReturnValues.h>
 
 

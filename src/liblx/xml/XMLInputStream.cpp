@@ -41,7 +41,7 @@
 
 #include <liblx/xml/XMLInputStream.h>
 
-#include <liblx/common/util.h>
+#include <liblx/util/util.h>
 #include <liblx/common/operationReturnValues.h>
 #include <liblx/xml/XMLNamespaces.h>
 

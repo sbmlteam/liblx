@@ -91,7 +91,7 @@ configure_file(
 # mark header files for installation
 #
 
-foreach(dir common compress xml)
+foreach(dir common compress util xml)
 	file(GLOB header_files "${CMAKE_CURRENT_SOURCE_DIR}/liblx/${dir}/*.h")
 	install(FILES ${header_files} DESTINATION include/liblx/${dir})
 
@@ -152,7 +152,7 @@ macro(ADD_FUNCTION directory)
 
 endmacro(ADD_FUNCTION)
 
-foreach (directory common)
+foreach (directory common util)
 
 	ADD_FUNCTION(${directory})
 				       

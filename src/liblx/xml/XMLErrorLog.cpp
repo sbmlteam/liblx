@@ -42,7 +42,7 @@
 #include <liblx/xml/XMLParser.h>
 
 #include <liblx/xml/XMLErrorLog.h>
-#include <liblx/common/util.h>
+#include <liblx/util/util.h>
 
 /** @cond doxygenIgnored */
 using namespace std;
