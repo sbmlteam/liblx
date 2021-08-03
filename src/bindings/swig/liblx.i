@@ -802,7 +802,7 @@ as a comment in the output stream.
 %include "std_string.i"     // ???
 
 %include liblx/common/liblx-version.h
-%include liblx/xml/operationReturnValues.h
+%include liblx/common/operationReturnValues.h
 //%include lx/common/common-documentation.h
 //%include lx/common/common-lxerror-codes.h
 
