@@ -42,7 +42,7 @@
 #include <liblx/xml/XMLInputStream.h>
 
 #include <liblx/common/util.h>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 #include <liblx/xml/XMLNamespaces.h>
 
 using namespace std;

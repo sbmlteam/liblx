@@ -38,7 +38,7 @@
 #include <liblx/xml/XMLToken.h>
 #include <liblx/xml/XMLTriple.h>
 
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 #include <check.h>
 

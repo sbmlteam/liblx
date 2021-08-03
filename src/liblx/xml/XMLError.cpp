@@ -43,7 +43,7 @@
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/LibLXError.h>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 /** @cond doxygenIgnored */
 using namespace std;

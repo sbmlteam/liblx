@@ -62,7 +62,7 @@
 
 #include <liblx/xml/LibLXError.h>
 
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 #include <liblx/common/util.h>
 
 #include <liblx/xml/XMLAttributes.h>

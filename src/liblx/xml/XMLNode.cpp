@@ -44,7 +44,7 @@
 
 #include <liblx/xml/XMLNode.h>
 #include <liblx/common/util.h>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 
 

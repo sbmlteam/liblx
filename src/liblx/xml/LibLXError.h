@@ -457,8 +457,8 @@
 #ifndef LIBLXERROR_H
 #define LIBLXERROR_H
 
-#include "liblx/xml/XMLError.h"
-#include "liblx/xml/operationReturnValues.h"
+#include <liblx/xml/XMLError.h>
+#include <liblx/common/operationReturnValues.h>
 
 #define SEVERITY_OFFSET 3
 

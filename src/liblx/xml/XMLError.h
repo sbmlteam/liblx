@@ -565,7 +565,7 @@ LIBLX_CPP_NAMESPACE_END
 
 #include <iosfwd>
 #include <string>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 

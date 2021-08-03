@@ -43,7 +43,7 @@
 /** @endcond */
 #include <liblx/xml/XMLToken.h>
 
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 
 /** @cond doxygenIgnored */
