@@ -127,7 +127,7 @@ class XMLParser;
 class XMLNamespaces;
 
 
-class LIBLX_EXTERN XMLInputStream
+class LIBLAX_EXTERN XMLInputStream
 {
 public:
 
@@ -454,7 +454,7 @@ BEGIN_C_DECLS
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLInputStream_t *
 XMLInputStream_create (const char* content, int isFile, const char *library);
 
@@ -466,7 +466,7 @@ XMLInputStream_create (const char* content, int isFile, const char *library);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLInputStream_free (XMLInputStream_t *stream);
 
@@ -482,7 +482,7 @@ XMLInputStream_free (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLInputStream_getEncoding (XMLInputStream_t *stream);
 
@@ -496,7 +496,7 @@ XMLInputStream_getEncoding (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLErrorLog_t *
 XMLInputStream_getErrorLog (XMLInputStream_t *stream);
 
@@ -511,7 +511,7 @@ XMLInputStream_getErrorLog (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLInputStream_isEOF (XMLInputStream_t *stream);
 
@@ -526,7 +526,7 @@ XMLInputStream_isEOF (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLInputStream_isError (XMLInputStream_t *stream);
 
@@ -545,7 +545,7 @@ XMLInputStream_isError (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLInputStream_isGood (XMLInputStream_t *stream);
 
@@ -563,7 +563,7 @@ XMLInputStream_isGood (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLInputStream_next (XMLInputStream_t *stream);
 
@@ -582,7 +582,7 @@ XMLInputStream_next (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLToken_t *
 XMLInputStream_peek (XMLInputStream_t *stream);
 
@@ -597,7 +597,7 @@ XMLInputStream_peek (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLInputStream_skipPastEnd (XMLInputStream_t *stream,
                             const XMLToken_t *element);
@@ -611,7 +611,7 @@ XMLInputStream_skipPastEnd (XMLInputStream_t *stream,
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLInputStream_skipText (XMLInputStream_t *stream);
 
@@ -629,7 +629,7 @@ XMLInputStream_skipText (XMLInputStream_t *stream);
  *
  * @memberof XMLInputStream_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLInputStream_setErrorLog (XMLInputStream_t *stream, XMLErrorLog_t *log);
 

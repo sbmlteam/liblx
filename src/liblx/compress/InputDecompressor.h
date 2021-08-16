@@ -48,7 +48,7 @@
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN InputDecompressor
+class LIBLAX_EXTERN InputDecompressor
 {
 public:
 

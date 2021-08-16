@@ -40,7 +40,7 @@
 #include <liblx/xml/XMLNode.h>
 #include <liblx/xml/XMLNamespaces.h>
 
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 #include <check.h>
 

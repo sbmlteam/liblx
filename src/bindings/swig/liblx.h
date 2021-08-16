@@ -62,8 +62,9 @@
 
 #include <liblx/xml/LibLXError.h>
 
-#include <liblx/xml/operationReturnValues.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/common/operationReturnValues.h>
+#include <liblx/util/util.h>
+#include <liblx/util/memory.h>
 
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLBuffer.h>

@@ -46,7 +46,7 @@
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/XMLNamespaces.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/util/util.h>
 #include <liblx/common/common.h>
 #include <liblx/common/liblx-version.h>
 
@@ -1238,7 +1238,7 @@ XMLOwningOutputFileStream::~XMLOwningOutputFileStream()
 #endif /* __cplusplus */
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream_t *
 XMLOutputStream_createAsStdout (const char * encoding, int writeXMLDecl)
 {
@@ -1247,7 +1247,7 @@ XMLOutputStream_createAsStdout (const char * encoding, int writeXMLDecl)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream_t *
 XMLOutputStream_createAsStdoutWithProgramInfo (const char * encoding,
         int writeXMLDecl, const char * programName, const char * programVersion)
@@ -1258,7 +1258,7 @@ XMLOutputStream_createAsStdoutWithProgramInfo (const char * encoding,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream_t *
 XMLOutputStream_createAsString (const char * encoding, int writeXMLDecl)
 {
@@ -1268,7 +1268,7 @@ XMLOutputStream_createAsString (const char * encoding, int writeXMLDecl)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream_t *
 XMLOutputStream_createAsStringWithProgramInfo (const char * encoding,
         int writeXMLDecl, const char * programName, const char * programVersion)
@@ -1280,7 +1280,7 @@ XMLOutputStream_createAsStringWithProgramInfo (const char * encoding,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream_t *
 XMLOutputStream_createFile (const char * filename, const char * encoding, 
                             int writeXMLDecl)
@@ -1294,7 +1294,7 @@ XMLOutputStream_createFile (const char * filename, const char * encoding,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream_t *
 XMLOutputStream_createFileWithProgramInfo (const char * filename, 
                                            const char * encoding, 
@@ -1310,7 +1310,7 @@ XMLOutputStream_createFileWithProgramInfo (const char * filename,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLOutputStream_free (XMLOutputStream_t *stream)
 {
@@ -1319,7 +1319,7 @@ XMLOutputStream_free (XMLOutputStream_t *stream)
 }  
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeXMLDecl (XMLOutputStream_t *stream)
 {
@@ -1328,7 +1328,7 @@ XMLOutputStream_writeXMLDecl (XMLOutputStream_t *stream)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLOutputStream_upIndent(XMLOutputStream_t *stream)
 {
@@ -1337,7 +1337,7 @@ XMLOutputStream_upIndent(XMLOutputStream_t *stream)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLOutputStream_downIndent(XMLOutputStream_t *stream)
 {
@@ -1346,7 +1346,7 @@ XMLOutputStream_downIndent(XMLOutputStream_t *stream)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_endElement (XMLOutputStream_t *stream, const char* name)
 {
@@ -1355,7 +1355,7 @@ XMLOutputStream_endElement (XMLOutputStream_t *stream, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_endElementTriple (XMLOutputStream_t *stream, 
                                   const XMLTriple_t *triple)
@@ -1365,7 +1365,7 @@ XMLOutputStream_endElementTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_setAutoIndent (XMLOutputStream_t *stream, int indent)
 {
@@ -1374,7 +1374,7 @@ XMLOutputStream_setAutoIndent (XMLOutputStream_t *stream, int indent)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_startElement (XMLOutputStream_t *stream, const char* name)
 {
@@ -1383,7 +1383,7 @@ XMLOutputStream_startElement (XMLOutputStream_t *stream, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_startElementTriple (XMLOutputStream_t *stream, 
                                     const XMLTriple_t *triple)
@@ -1393,7 +1393,7 @@ XMLOutputStream_startElementTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_startEndElement (XMLOutputStream_t *stream, const char* name)
 {
@@ -1402,7 +1402,7 @@ XMLOutputStream_startEndElement (XMLOutputStream_t *stream, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_startEndElementTriple (XMLOutputStream_t *stream, 
                                        const XMLTriple_t *triple)
@@ -1412,7 +1412,7 @@ XMLOutputStream_startEndElementTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeChars (XMLOutputStream_t *stream, 
                                      const char* name, const char* chars)
@@ -1422,7 +1422,7 @@ XMLOutputStream_writeAttributeChars (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeCharsTriple (XMLOutputStream_t *stream, 
                                            const XMLTriple_t *triple,
@@ -1433,7 +1433,7 @@ XMLOutputStream_writeAttributeCharsTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeBool (XMLOutputStream_t *stream, 
                                     const char* name,
@@ -1444,7 +1444,7 @@ XMLOutputStream_writeAttributeBool (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeBoolTriple (XMLOutputStream_t *stream, 
                                           const XMLTriple_t *triple,
@@ -1455,7 +1455,7 @@ XMLOutputStream_writeAttributeBoolTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeDouble (XMLOutputStream_t *stream, 
                                       const char* name,
@@ -1466,7 +1466,7 @@ XMLOutputStream_writeAttributeDouble (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeDoubleTriple (XMLOutputStream_t *stream, 
                                             const XMLTriple_t *triple,
@@ -1477,7 +1477,7 @@ XMLOutputStream_writeAttributeDoubleTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeLong (XMLOutputStream_t *stream, 
                                     const char* name,
@@ -1488,7 +1488,7 @@ XMLOutputStream_writeAttributeLong (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeLongTriple (XMLOutputStream_t *stream, 
                                           const XMLTriple_t *triple,
@@ -1499,7 +1499,7 @@ XMLOutputStream_writeAttributeLongTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeInt (XMLOutputStream_t *stream, 
                                    const char* name,
@@ -1510,7 +1510,7 @@ XMLOutputStream_writeAttributeInt (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeIntTriple (XMLOutputStream_t *stream, 
                                          const XMLTriple_t *triple,
@@ -1521,7 +1521,7 @@ XMLOutputStream_writeAttributeIntTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeUInt (XMLOutputStream_t *stream, 
                                     const char* name,
@@ -1532,7 +1532,7 @@ XMLOutputStream_writeAttributeUInt (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void 
 XMLOutputStream_writeAttributeUIntTriple (XMLOutputStream_t *stream, 
                                           const XMLTriple_t *triple,
@@ -1543,7 +1543,7 @@ XMLOutputStream_writeAttributeUIntTriple (XMLOutputStream_t *stream,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLOutputStream_writeChars (XMLOutputStream_t *stream, const char* chars)
 {
@@ -1552,7 +1552,7 @@ XMLOutputStream_writeChars (XMLOutputStream_t *stream, const char* chars)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLOutputStream_writeDouble (XMLOutputStream_t *stream, const double value)
 {
@@ -1561,7 +1561,7 @@ XMLOutputStream_writeDouble (XMLOutputStream_t *stream, const double value)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLOutputStream_writeLong (XMLOutputStream_t *stream, const long value)
 {
@@ -1570,7 +1570,7 @@ XMLOutputStream_writeLong (XMLOutputStream_t *stream, const long value)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLOutputStream_getString(XMLOutputStream_t* stream)
 {

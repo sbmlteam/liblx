@@ -39,6 +39,7 @@
 #include <liblx/xml/XMLTriple.h>
 #include <liblx/xml/XMLOutputStream.h>
 #include <liblx/xml/XMLErrorLog.h>
+#include <liblx/util/memory.h>
 
 #include <check.h>
 

@@ -99,7 +99,7 @@ LIBLX_CPP_NAMESPACE_BEGIN
 class XMLParser;
 
 
-class LIBLX_EXTERN XMLErrorLog
+class LIBLAX_EXTERN XMLErrorLog
 {
 public:
 
@@ -423,7 +423,7 @@ BEGIN_C_DECLS
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLErrorLog_t *
 XMLErrorLog_create (void);
 
@@ -435,7 +435,7 @@ XMLErrorLog_create (void);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_free (XMLErrorLog_t *log);
 
@@ -448,7 +448,7 @@ XMLErrorLog_free (XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_add (XMLErrorLog_t *log, const XMLError_t *error);
 
@@ -464,7 +464,7 @@ XMLErrorLog_add (XMLErrorLog_t *log, const XMLError_t *error);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLError_t *
 XMLErrorLog_getError (const XMLErrorLog_t *log, unsigned int n);
 
@@ -478,7 +478,7 @@ XMLErrorLog_getError (const XMLErrorLog_t *log, unsigned int n);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLErrorLog_getNumErrors (const XMLErrorLog_t *log);
 
@@ -490,7 +490,7 @@ XMLErrorLog_getNumErrors (const XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_clearLog (XMLErrorLog_t *log);
 
@@ -503,7 +503,7 @@ XMLErrorLog_clearLog (XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char*
 XMLErrorLog_toString (XMLErrorLog_t *log);
 
@@ -517,7 +517,7 @@ XMLErrorLog_toString (XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLErrorLog_isSeverityOverridden (XMLErrorLog_t *log);
 
@@ -528,7 +528,7 @@ XMLErrorLog_isSeverityOverridden (XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_unsetSeverityOverride (XMLErrorLog_t *log);
 
@@ -547,7 +547,7 @@ XMLErrorLog_unsetSeverityOverride (XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLErrorSeverityOverride_t
 XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log);
 
@@ -568,7 +568,7 @@ XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log);
  *
  * @memberof XMLErrorLog_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLErrorLog_setSeverityOverride (XMLErrorLog_t *log, XMLErrorSeverityOverride_t overridden);
 

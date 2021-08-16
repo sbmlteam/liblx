@@ -39,6 +39,7 @@
 #include <liblx/xml/XMLToken.h>
 #include <liblx/xml/XMLNode.h>
 #include <liblx/xml/XMLInputStream.h>
+#include <liblx/util/memory.h>
 
 #include <check.h>
 using namespace std;

@@ -38,7 +38,8 @@
 #include <liblx/xml/XMLToken.h>
 #include <liblx/xml/XMLTriple.h>
 
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
+#include <liblx/util/memory.h>
 
 #include <check.h>
 
