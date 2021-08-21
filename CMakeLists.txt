@@ -194,56 +194,8 @@ include(CPack)
 option(WITH_EXAMPLES "Compile the libLX example programs."  OFF)
 
 # Which language bindings should be built
-option(WITH_CSHARP   "Generate the C# language interface for libLX."     OFF)
-option(WITH_JAVA     "Generate the Java language interface for libLX."   OFF)
 option(WITH_PYTHON   "Generate the Python language interface for libLX." OFF)
-option(WITH_PERL     "Generate the Perl language interface for libLX."   OFF)
-option(WITH_PHP      "Generate the PHP language interface for libLX."    OFF)
-option(WITH_RUBY     "Generate the Ruby language interface for libLX"    OFF)
-option(WITH_R        "Generate the R language interface for libLX"       OFF)
-option(WITH_OCTAVE   "Generate the Octave language interface for libLX." OFF)
-option(WITH_MATLAB   "Generate the MATLAB language interface for libLX." OFF)
-option(WITH_JAVASCRIPT   "Generate the experimental Node.js language interface for libLX." OFF)
 
-if (WITH_JAVASCRIPT)
-
-  set(_PF86 "ProgramFiles(x86)")
-  find_program(NODE_GYP_EXECUTABLE
-        NAMES node-gyp node-gyp.cmd
-        PATHS
-              /usr/local/bin
-              /opt/local/bin
-              /usr/bin
-              "$ENV{ProgramFilesProgramFiles}/nodejs/"
-              "$ENV{ProgramW6432}/nodejs/"
-        DOC "The file name of the node-gyp executable."
-        )
-
-  find_program(NODEJS_EXECUTABLE
-        NAMES node nodeexe
-        PATHS
-              /usr/local/bin
-              /opt/local/bin
-              /usr/bin
-              "$ENV{ProgramFiles}/nodejs/"
-              "$ENV{ProgramW6432}/nodejs/"
-        DOC "The file name of the nodejs executable."
-        )
-  # check that we found node-gyp
-  if (NOT NODE_GYP_EXECUTABLE)
-        message(FATAL_ERROR
-"In oder to build the JavaScript language interface, libLX needs the
-node-gyp executable. Please set the variable named NODE_GYP_EXECUTABLE.")
-  endif()
-
-  # ensure that the swig version is high enough for javascript
-  if (SWIG_VERSION AND NOT SWIG_VERSION VERSION_GREATER 3.0.1)
-        message(FATAL_ERROR
-"SWIG version 3.0.2 or greater is needed in order to build the JavaScript
-language interface for libLX, but only version ${SWIG_VERSION} was found.")
-  endif()
-
-endif()
 
 # Add an option to compile with all warnings shown
 option(WITH_WALL     "Compile with -Wall, so that the compiler will display all warnings." OFF)
@@ -784,47 +736,6 @@ endif(WITH_ZLIB)
 
 ###############################################################################
 #
-# Find the C# compiler to use and set name for resulting library
-#
-
-if(WITH_CSHARP)
-    FILE(TO_CMAKE_PATH "$ENV{WINDIR}" windir)
-    find_program(CSHARP_COMPILER
-        NAMES gmcs csc mcs
-        PATHS
-            ${windir}/Microsoft.NET/Framework/v2.0.50727/
-            ${windir}/Microsoft.NET/Framework/v3.0/
-            /usr/bin
-            /usr/local/bin
-        DOC "The file name of the C# compiler for the liblxcs assembly."
-        )
-    find_program(CSHARP_EXAMPLE_COMPILER
-        NAMES gmcs csc mcs
-        PATHS
-            ${windir}/Microsoft.NET/Framework/v4.0.30319/
-            ${windir}/Microsoft.NET/Framework/v3.5/
-            ${windir}/Microsoft.NET/Framework/v3.0/
-            ${windir}/Microsoft.NET/Framework/v2.0.50727/
-            /usr/bin
-            /usr/local/bin
-        DOC "The file name of the C# compiler to be used for the examples."
-        )
-    if(UNIX)
-    else()
-        if(CMAKE_SIZEOF_VOID_P EQUAL 4)
-            # mark liblx library as x86
-            set(CSHARP_EXTRA_ARGS -platform:x86 )
-        elseif(CMAKE_SIZEOF_VOID_P EQUAL 8)
-            # mark liblx library as x64
-            set(CSHARP_EXTRA_ARGS -platform:x64 )
-        endif()
-    endif()
-
-endif(WITH_CSHARP)
-
-
-###############################################################################
-#
 # Enable support for testing ... can be invoked by running ctest
 # or make test
 #
@@ -1248,21 +1159,6 @@ endif()
 
 ###############################################################################
 #
-# Include options for all libLX packages
-#
-#set(LIBLX_PACKAGE_INCLUDES)
-#set(LIBLX_PACKAGE_SUMMARY)
-#file(GLOB PACKAGE_OPTIONS "*package.cmake")
-#foreach(package ${PACKAGE_OPTIONS})
-#    include(${package})
-#endforeach()
-#
-#if (LIBLX_PACKAGE_INCLUDES)
-#  list(REMOVE_DUPLICATES LIBLX_PACKAGE_INCLUDES)
-#endif()
-
-###############################################################################
-#
 # Build the actual libLX library
 #
 
@@ -1410,44 +1306,8 @@ if(WITH_SWIG)
 endif()
 
 
-if(WITH_CSHARP)
-    message(STATUS "     Using C#                        = ${CSHARP_COMPILER}")
-endif()
-
-if(WITH_JAVA)
-    message(STATUS "     Using Java                      = ${Java_JAVA_EXECUTABLE}")
-endif()
-
-if(WITH_JAVASCRIPT)
-    message(STATUS "     Using Node.js                   = ${NODE_GYP_EXECUTABLE}")
-endif()
-
 if(WITH_PYTHON)
     message(STATUS "     Using Python                    = ${PYTHON_EXECUTABLE}")
-endif()
-
-if(WITH_PERL)
-    message(STATUS "     Using Perl                      = ${PERL_EXECUTABLE}")
-endif()
-
-if(WITH_RUBY)
-    message(STATUS "     Using Ruby                      = ${RUBY_EXECUTABLE}")
-endif()
-
-if(WITH_OCTAVE)
-    message(STATUS "     Using Octave                    = ${MKOCTFILE_EXECUTABLE}")
-endif()
-
-if(WITH_MATLAB)
-    message(STATUS "     Using Matlab                    = ${MATLAB_ROOT_PATH}")
-endif()
-
-if(WITH_R)
-    message(STATUS "     Using R                         = ${R_INTERPRETER}")
-endif()
-
-if(WITH_PHP)
-    message(STATUS "     Using PHP                       = yes")
 endif()
 
 if(WITH_CHECK)
@@ -1490,16 +1350,9 @@ if(PYTHON_USE_API2_WARNINGS)
   message(STATUS "     Using Python API2 warnings      = yes")
 endif(PYTHON_USE_API2_WARNINGS)
 
-if (LIBLX_PACKAGE_SUMMARY)
-  message(STATUS "")
-  message(STATUS "   Support for SBML Level 3 Packages: ")
-  foreach(summary ${LIBLX_PACKAGE_SUMMARY})
-    message(STATUS "     ${summary}")
-  endforeach()
-endif(LIBLX_PACKAGE_SUMMARY)
 
-message(STATUS "
-")
+message(STATUS "")
+
 message(STATUS "Other potentially important settings:")
 if(WITH_ZLIB)
     message(STATUS "  Compression support is enabled for .zip and .gz files")
@@ -1534,14 +1387,6 @@ CONFIGURE_FILE(
 ADD_CUSTOM_TARGET(uninstall
   "${CMAKE_COMMAND}" -P "${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake")
 
-if (EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/dev/utilities/sboTree/updateSBO.cmake")
-# add update_sbo target
-ADD_CUSTOM_TARGET(update_sbo
-  "${CMAKE_COMMAND}"
-      -DSRC_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
-      -DPYTHON_EXECUTABLE="${PYTHON_EXECUTABLE}"
-      -P "${CMAKE_CURRENT_SOURCE_DIR}/dev/utilities/sboTree/updateSBO.cmake")
-endif()
 ## To compile a test program simply comment out the lines below ...
 #
 #OPTION(WITH_TEST_PROGRAM " COMPILE SMALL TEST PROGRAM " ON)
