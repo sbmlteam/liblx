@@ -97,11 +97,6 @@ foreach(dir common compress util xml)
 
 endforeach(dir)
 
-
-# file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/sbml/*.h")
-# install(FILES ${files} DESTINATION include/sbml)
-
-
 ###############################################################################
 #
 # copy build specific header files
