@@ -9,6 +9,14 @@ Add notes here from `instructions.txt`, including how to build with the differen
 how to build with test and check C library, how to build SWIG Python bindings, etc.
 This section must mention a `build/` folder.
 
+
+.. _building_windows:
+
+How to build on Windows
+-----------------------
+You need to install both `Visual Studio <https://visualstudio.microsoft.com/vs/>`_  and 
+`CMake <https://cmake.org/download/>`_..
+
 .. _building_documentation:
 
 Building the documentation
