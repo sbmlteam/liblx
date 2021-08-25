@@ -14,8 +14,33 @@ This section must mention a `build/` folder.
 
 How to build on Windows
 -----------------------
-You need to install both `Visual Studio <https://visualstudio.microsoft.com/vs/>`_  and 
-`CMake <https://cmake.org/download/>`_..
+You need to install:
+
+ -  `Visual Studio <https://visualstudio.microsoft.com/vs/>`_  (I included the Windows 10 SDK; needed??)
+    In my case this was Microsoft Visual Studio Community 2019, Version 16.11.1
+
+
+ -  `CMake <https://cmake.org/download/>`_. I  chose the Windows installer and checked the box to update PATH.
+
+You then need to download the `SBML Windows dependencies <https://sourceforge.net/projects/sbml/files/libsbml/win-dependencies/>`_.
+This contains a number of libraries used by SBML, and by `liblx` too.
+Right now there is no "version 16", so I downloaded the highest available one (15), using the debug
+version as I am working on the core `liblx`. Make sure you check the checksums
+The version i downloaded, when unzipped, created a directory which had a space in the name, and a quote mark
+at each end. For simplicity, I renamed it:
+mv 'libSBML Dependencies-1.0.0-b1-win64' libSBML-Dependencies-1.0.0-b1-win64
+or, in Windows cmd shell window:
+
+  rename "libSBML Dependencies-1.0.0-b1-win64" libSBML-Dependencies-1.0.0-b1-win64
+
+Then create a new build/ directory; I did mine inside the liblx directory cloned from Github.
+Then, from within that new build directory, in a Visual Studio Command Prompt:
+
+  cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=ON ..
+
+The LIBLX_DEPENDENCY_DIR is the absolute path to the unzipped (and renamed) folder.
+
+There are some `detailed instructions <http://sbml.org/Software/libSBML/5.18.0/docs/cpp-api/libsbml-installation.html#detailed-windows>`_ for building libSBML on Windows (which we can adapt for building liblx).
 
 .. _building_documentation:
 
