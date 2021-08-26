@@ -1,9 +1,0 @@
-liblx build instructions
-
-Mac
-===
-
-
-
-To build the documentation
-==========================
