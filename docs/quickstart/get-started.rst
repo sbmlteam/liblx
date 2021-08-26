@@ -16,7 +16,7 @@ How to build on Windows
 -----------------------
 You need to install:
 
- -  `Visual Studio <https://visualstudio.microsoft.com/vs/>`_  (I included the Windows 10 SDK; needed??)
+ -  `Visual Studio <https://visualstudio.microsoft.com/vs/>`_  (I included the Windows 10 SDK)
     In my case this was Microsoft Visual Studio Community 2019, Version 16.11.1
 
 
@@ -26,7 +26,7 @@ You then need to download the `SBML Windows dependencies <https://sourceforge.ne
 This contains a number of libraries used by SBML, and by `liblx` too.
 Right now there is no "version 16", so I downloaded the highest available one (15), using the debug
 version as I am working on the core `liblx`. Make sure you check the checksums
-The version i downloaded, when unzipped, created a directory which had a space in the name, and a quote mark
+The version I downloaded, when unzipped, created a directory which had a space in the name, and a quote mark
 at each end. For simplicity, I renamed it:
 mv 'libSBML Dependencies-1.0.0-b1-win64' libSBML-Dependencies-1.0.0-b1-win64
 or, in Windows cmd shell window:
@@ -38,9 +38,27 @@ Then, from within that new build directory, in a Visual Studio Command Prompt:
 
   cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=ON ..
 
+NB CMake has a GUI you can fire up and use instead, if you want.
+
 The LIBLX_DEPENDENCY_DIR is the absolute path to the unzipped (and renamed) folder.
 
 There are some `detailed instructions <http://sbml.org/Software/libSBML/5.18.0/docs/cpp-api/libsbml-installation.html#detailed-windows>`_ for building libSBML on Windows (which we can adapt for building liblx).
+
+Once `cmake` has finished, and thus configured the project, it is time to run the C++ build itself.
+The easiest way is to locate the "solution" file, liblx.sln, which should have been generated in the `build` directory;
+navigate to it using Windows Explorer, then double-click on it to open this solution in Visual Studio.
+Then, right-click on the desired target (e.g. `ALL_BUILD`) and select the build option.
+All being well, you should find the library file `liblx.dll` has been generated; in my case, in `build/src/Debug/`.
+  
+
+$ ls -lh build/src/Debug
+total 32M
+-rwxr-xr-x 1 mattg 197611 2.7M Aug 26 11:24 liblx.dll*
+-rw-r--r-- 1 mattg 197611 168K Aug 26 11:24 liblx.exp
+-rw-r--r-- 1 mattg 197611 274K Aug 26 11:24 liblx.lib
+-rw-r--r-- 1 mattg 197611  13M Aug 26 11:24 liblx.pdb
+-rw-r--r-- 1 mattg 197611  17M Aug 26 11:24 liblx-static.lib
+
 
 .. _building_documentation:
 
