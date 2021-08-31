@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -43,7 +43,7 @@
 
 #include <liblx/xml/XMLErrorLog.h>
 
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 #include <liblx/xml/operationReturnValues.h>
 
 
@@ -60,7 +60,7 @@ LIBLX_CPP_NAMESPACE_BEGIN
  */
 XMLErrorLog::XMLErrorLog ()
   : mParser(NULL)
-  , mOverriddenSeverity(LIBSBXML_OVERRIDE_DISABLED)
+  , mOverriddenSeverity(LIBLX_OVERRIDE_DISABLED)
 {
 }
 /** @endcond */
@@ -123,7 +123,7 @@ XMLErrorLog::~XMLErrorLog ()
 void
 XMLErrorLog::add (const XMLError& error)
 {
-  if (mOverriddenSeverity == LIBSBXML_OVERRIDE_DONT_LOG) return;
+  if (mOverriddenSeverity == LIBLX_OVERRIDE_DONT_LOG) return;
 
   XMLError* cerror;
 
@@ -138,13 +138,13 @@ XMLErrorLog::add (const XMLError& error)
     return;
   }
 
-  if (mOverriddenSeverity == LIBSBXML_OVERRIDE_WARNING &&
+  if (mOverriddenSeverity == LIBLX_OVERRIDE_WARNING &&
     cerror->getSeverity() > LIBLX_SEV_WARNING)
   {
     cerror->mSeverity = LIBLX_SEV_WARNING;
     cerror->mSeverityString = "Warning";
   }
-  else if (mOverriddenSeverity == LIBSBXML_OVERRIDE_ERROR &&
+  else if (mOverriddenSeverity == LIBLX_OVERRIDE_ERROR &&
     cerror->getSeverity() == LIBLX_SEV_WARNING)
   {
     cerror->mSeverity = LIBLX_SEV_ERROR;
@@ -219,7 +219,7 @@ XMLErrorLog::add (const std::vector<XMLError*>& errors)
 bool 
 XMLErrorLog::isSeverityOverridden() const
 {
-  return mOverriddenSeverity != LIBSBXML_OVERRIDE_DISABLED;
+  return mOverriddenSeverity != LIBLX_OVERRIDE_DISABLED;
 }
 
 /*
@@ -228,7 +228,7 @@ XMLErrorLog::isSeverityOverridden() const
 void 
 XMLErrorLog::unsetSeverityOverride()
 {
-  setSeverityOverride(LIBSBXML_OVERRIDE_DISABLED);
+  setSeverityOverride(LIBLX_OVERRIDE_DISABLED);
 }
 
 /*
@@ -243,9 +243,9 @@ XMLErrorLog::getSeverityOverride() const
 /*
  * Set the severity override. 
  * 
- * If set to LIBSBXML_OVERRIDE_DISABLED (default) all errors will be
- * logged as specified in the error. Set to LIBSBXML_OVERRIDE_DONT_LOG
- * no error will be logged. When set to LIBSBXML_OVERRIDE_WARNING, then
+ * If set to LIBLX_OVERRIDE_DISABLED (default) all errors will be
+ * logged as specified in the error. Set to LIBLX_OVERRIDE_DONT_LOG
+ * no error will be logged. When set to LIBLX_OVERRIDE_WARNING, then
  * all errors will be logged as warnings. 
  *
  */
@@ -478,7 +478,7 @@ LIBLX_EXTERN
 XMLErrorSeverityOverride_t
 XMLErrorLog_getSeverityOverride (XMLErrorLog_t *log)
 {
-  if (log == NULL) return LIBSBXML_OVERRIDE_DISABLED;
+  if (log == NULL) return LIBLX_OVERRIDE_DISABLED;
   return log->getSeverityOverride();
 }
 

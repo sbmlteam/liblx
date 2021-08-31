@@ -4,14 +4,14 @@
 ## INSTEAD.
 ##
 ## @file    setup.py.in
-## @brief   Python distutils code for libSBML Python module
+## @brief   Python distutils code for libLX Python module
 ## @author  Michael Hucka
 ## @author  Ben Bornstein
 ## @author  Ben Kovitz
 ## 
 ## <!--------------------------------------------------------------------------
-## This file is part of libSBML.  Please visit http://sbml.org for more
-## information about SBML, and the latest version of libSBML.
+## This file is part of libLX.  Please visit http://sbml.org for more
+## information about SBML, and the latest version of libLX.
 ##
 ## Copyright (C) 2013-2018 jointly by the following organizations:
 ##     1. California Institute of Technology, Pasadena, CA, USA
@@ -38,10 +38,10 @@
 
 ## Running setup.py currently needs 'make install'  or 'make create-build-dir' 
 ## to be run first. 'make install' or 'make create-build-dir' prepares the 
-## package directory. (and copies libsbml.py into build/libsbml/__init__.py)
+## package directory. (and copies liblx.py into build/liblx/__init__.py)
 
 import os, sys, shutil
-if not os.path.isfile('libsbml.py'):
+if not os.path.isfile('liblx.py'):
       print("Please run the build first before calling this script.")
       sys.exit(1)
 
@@ -54,29 +54,29 @@ except ImportError:
 # as python 3 uses a different syntax for metaclasses
 #if sys.version_info >= (3,0):
 #  # this is python 3.x
-#  if (os.path.exists('./libsbml/__init__.py')):
-#    os.remove('./libsbml/__init__.py')
-#  shutil.copyfile('./script/libsbml3.py', './libsbml/__init__.py')
+#  if (os.path.exists('./liblx/__init__.py')):
+#    os.remove('./liblx/__init__.py')
+#  shutil.copyfile('./script/liblx3.py', './liblx/__init__.py')
 #else:
 #  # this is an older python
-#  if (os.path.exists('./libsbml/__init__.py')):
-#    os.remove('./libsbml/__init__.py')
-#  shutil.copyfile('./script/libsbml2.py', './libsbml/__init__.py')
+#  if (os.path.exists('./liblx/__init__.py')):
+#    os.remove('./liblx/__init__.py')
+#  shutil.copyfile('./script/liblx2.py', './liblx/__init__.py')
 
-setup(name             = "libsbml", 
-      version          = "${LIBSBML_DOTTED_VERSION}",
-      description      = "LibSBML Python API",
-      long_description = ("LibSBML is a library for reading, writing and "+
+setup(name             = "liblx",
+      version          = "${LIBLX_DOTTED_VERSION}",
+      description      = "LibLX Python API",
+      long_description = ("LibLX is a library for reading, writing and "+
                           "manipulating the Systems Biology Markup Language "+
-                          "(SBML).  It is written in ISO C and C++, supports "+
-                          "SBML Levels 1, 2 and 3, and runs on Linux, Microsoft "+
+                          "(LX).  It is written in ISO C and C++, supports "+
+                          "LX Levels 1, 2 and 3, and runs on Linux, Microsoft "+
                           "Windows, and Apple MacOS X.  For more information "+
-                          "about SBML, please see http://sbml.org."),
+                          "about LX, please see http://lx.org."),
       license          = "LGPL",
-      author           = "SBML Team",
+      author           = "LX Team",
       author_email     = "@PACKAGE_BUGREPORT@",
       url              = "http://sbml.org",
-      packages         = ["libsbml"],
-      package_dir      = {'libsbml': 'libsbml'},
-      package_data     = {'libsbml': ['_libsbml*']},
+      packages         = ["liblx"],
+      package_dir      = {'liblx': 'liblx'},
+      package_data     = {'liblx': ['_liblx*']},
 )

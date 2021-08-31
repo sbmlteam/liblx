@@ -6,8 +6,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -49,7 +49,7 @@
 
 using namespace std;
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 /*
  * The functions below are internal to this file.  They simply redirect to
@@ -116,11 +116,11 @@ ExpatHandler::ExpatHandler (XML_Parser parser, XMLHandler& handler) :
    mParser ( parser  )
  , mHandler( handler )
 {
-  XML_SetXmlDeclHandler      ( mParser, LIBSBML_CPP_NAMESPACE ::XMLDeclHandler    );
-  XML_SetElementHandler      ( mParser, LIBSBML_CPP_NAMESPACE ::startElement, 
-                                        LIBSBML_CPP_NAMESPACE ::endElement        );
-  XML_SetCharacterDataHandler( mParser, LIBSBML_CPP_NAMESPACE ::characters        );
-  XML_SetNamespaceDeclHandler( mParser, LIBSBML_CPP_NAMESPACE ::startNamespace, 0 );
+  XML_SetXmlDeclHandler      ( mParser, LIBLX_CPP_NAMESPACE ::XMLDeclHandler    );
+  XML_SetElementHandler      ( mParser, LIBLX_CPP_NAMESPACE ::startElement,
+                                        LIBLX_CPP_NAMESPACE ::endElement        );
+  XML_SetCharacterDataHandler( mParser, LIBLX_CPP_NAMESPACE ::characters        );
+  XML_SetNamespaceDeclHandler( mParser, LIBLX_CPP_NAMESPACE ::startNamespace, 0 );
   XML_SetUserData            ( mParser, static_cast<void*>(this)     );
   XML_SetReturnNSTriplet     ( mParser, 1                            );
   mHandlerError = NULL;
@@ -311,5 +311,5 @@ ExpatHandler::getLine () const
 }
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 /** @endcond */

@@ -1,17 +1,22 @@
 /*
- * sbmlMemoryStubs.cpp
+ * sbmlStubs.cpp
  *
  *  Created on: 23 October 2020
  *      Author: Timothy Spain
  */
 
-#include "sbmlMemoryStubs.h"
+#include "sbmlStubs.h"
 
 #include <cstring>
 #include <cstdlib>
 #include <string>
 
-char* safe_strdup(const char* s)
+LIBLX_CPP_NAMESPACE_BEGIN
+
+
+LIBLX_EXTERN
+char* 
+safe_strdup(const char* s)
 {
 	  size_t  size;
 	  char   *duplicate;
@@ -28,7 +33,11 @@ char* safe_strdup(const char* s)
 
 }
 
-void* safe_malloc (size_t size)
+
+
+LIBLX_EXTERN
+void* 
+safe_malloc (size_t size)
 {
 	  void *p = (void *) malloc(size);
 
@@ -45,29 +54,30 @@ void* safe_malloc (size_t size)
 
 }
 
-/*std::list<SBMLNamespaces> SBMLNamespaces::getSupportedNamespaces()
+
+LIBLX_EXTERN
+unsigned int 
+streq (const char *s, const char *t)
 {
-	return std::list<SBMLNamespaces>();
+  if (s == NULL)
+    return t == NULL;
+  else if (t == NULL)
+    return 0;
+  else
+    return !strcmp(s, t);
 }
 
-void SBMLNamespaces::freeSBMLNamespaces(std::list<SBMLNamespaces> nmsp)
+
+LIBLX_EXTERN
+void
+safe_free(void * element)
 {
-	// The goggles
+  if (!element)
+    return;
+
+  free(element);
+  element = NULL;
 }
 
-std::string SBMLNamespaces::getURI()
-{
-	return std::string("");
-}
+LIBLX_CPP_NAMESPACE_END
 
-SBMLNamespaces* SBMLNamespaces::clone() const {
-	return new SBMLNamespaces(*this);
-}
-*/
-/*
-const char*
-getLibSBMLDottedVersion ()
-{
-	return LIBSBML_DOTTED_VERSION;
-}
-*/

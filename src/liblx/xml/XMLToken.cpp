@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,7 +39,7 @@
 /** @cond doxygenLibsbmlInternal */
 #include <liblx/xml/XMLOutputStream.h>
 #include <liblx/xml/XMLConstructorException.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 /** @endcond */
 #include <liblx/xml/XMLToken.h>
 
@@ -342,11 +342,11 @@ XMLToken::setAttributes(const XMLAttributes& attributes)
  *
  * The native C++ implementation of this method defines a
  * default argument value.  In the documentation generated for different
- * libSBML language bindings, you may or may not see corresponding
+ * libLX language bindings, you may or may not see corresponding
  * arguments in the method declarations.  For example, in Java, a default
  * argument is handled by declaring two separate methods, with one of
  * them having the argument and the other one lacking the argument.
- * However, the libSBML documentation will be @em identical for both
+ * However, the libLX documentation will be @em identical for both
  * methods.  Consequently, if you are reading this and do not see an
  * argument even though one is described, please look for descriptions of
  * other variants of this method near where this one appears in the
@@ -487,11 +487,11 @@ XMLToken::clearAttributes()
  *
  * The native C++ implementation of this method defines a
  * default argument value.  In the documentation generated for different
- * libSBML language bindings, you may or may not see corresponding
+ * libLX language bindings, you may or may not see corresponding
  * arguments in the method declarations.  For example, in Java, a default
  * argument is handled by declaring two separate methods, with one of
  * them having the argument and the other one lacking the argument.
- * However, the libSBML documentation will be @em identical for both
+ * However, the libLX documentation will be @em identical for both
  * methods.  Consequently, if you are reading this and do not see an
  * argument even though one is described, please look for descriptions of
  * other variants of this method near where this one appears in the
@@ -645,11 +645,11 @@ XMLToken::getAttrValue (int index) const
  *
  * The native C++ implementation of this method defines a
  * default argument value.  In the documentation generated for different
- * libSBML language bindings, you may or may not see corresponding
+ * libLX language bindings, you may or may not see corresponding
  * arguments in the method declarations.  For example, in Java, a default
  * argument is handled by declaring two separate methods, with one of
  * them having the argument and the other one lacking the argument.
- * However, the libSBML documentation will be @em identical for both
+ * However, the libLX documentation will be @em identical for both
  * methods.  Consequently, if you are reading this and do not see an
  * argument even though one is described, please look for descriptions of
  * other variants of this method near where this one appears in the

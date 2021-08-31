@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,10 +39,10 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * SBML content is serialized using XML; the resulting data can be stored and
+ * LX content is serialized using XML; the resulting data can be stored and
  * read to/from a file or data stream.  Low-level XML parsers such as Xerces
  * provide facilities to read XML data.  To permit the use of different XML
- * parsers (Xerces, Expat or libxml2), libSBML implements an abstraction
+ * parsers (Xerces, Expat or libxml2), libLX implements an abstraction
  * layer.  XMLInputStream and XMLOutputStream are two parts of that
  * abstraction layer.
  *
@@ -51,21 +51,21 @@
  * used and an XMLErrorLog to record errors and other issues (if any arise).
  * Internally, the content will be in the form of either a pointer to a file
  * name or a character string; XMLInputStream knows the form of the content
- * and acts appropriately.  Other libSBML object classes use XMLInputStream
+ * and acts appropriately.  Other libLX object classes use XMLInputStream
  * as their interface for all read operations on the XML data.
  * XMLInputStream provides the functionality to extract data in the form of
  * XMLToken objects.  It logs any errors encountered while reading.  It also
  * keeps track of whether a read operation has failed irrecoverably or
  * determines whether it is safe to continue reading.
  *
- * SBMLNamespaces objects can be associated with an XMLInputStream; this
+ * LXNamespaces objects can be associated with an XMLInputStream; this
  * facilitates logging errors related to reading XML attributes and elements
  * that may only be relevant to particular Level and Version combinations of
- * SBML.
+ * LX.
  *
  * @note The convenience of the XMLInputStream and XMLOutputStream
  * abstraction may be useful for developers interested in creating parsers
- * for other XML formats besides SBML.  It can provide developers with a
+ * for other XML formats besides LX.  It can provide developers with a
  * layer above more basic XML parsers, as well as some useful programmatic
  * elements such as XMLToken, XMLError, etc.
  *
@@ -88,8 +88,8 @@
  * @verbatim
 <?xml version="1.0" encoding="UTF-8"?>
 @endverbatim
- * Note that the SBML specifications require the use of UTF-8 encoding, so
- * for SBML documents, the value returned by this method will always be
+ * Note that the LX specifications require the use of UTF-8 encoding, so
+ * for LX documents, the value returned by this method will always be
  * the string <code>"UTF-8"</code>.
  *
  * <!-- ------------------------------------------------------------------- -->
@@ -101,8 +101,8 @@
  * @verbatim
  <?xml version="1.0" encoding="UTF-8"?>
 @endverbatim
- * Note that the SBML specifications require the use of version 1.0, so
- * for SBML documents, the value returned by this method will always be
+ * Note that the LX specifications require the use of version 1.0, so
+ * for LX documents, the value returned by this method will always be
  * the string <code>"1.0"</code>.
  */
 
@@ -267,8 +267,8 @@ public:
    * Sets the XMLErrorLog this stream will use to log errors.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    */
   int setErrorLog (XMLErrorLog* log);
 
@@ -624,8 +624,8 @@ XMLInputStream_skipText (XMLInputStream_t *stream);
  * @param log the XMLErrorLog_t structure to attach to the @p stream.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  *
  * @memberof XMLInputStream_t
  */

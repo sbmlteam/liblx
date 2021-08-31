@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -35,14 +35,14 @@
  * ---------------------------------------------------------------------- -->
  *
  * @class XMLOutputStream
- * @sbmlbrief{core} Interface to an XML output stream.
+ * @lxbrief{core} Interface to an XML output stream.
  *
- * @htmlinclude not-sbml-warning.html
+ * @htmlinclude not-lx-warning.html
  *
- * SBML content is serialized using XML; the resulting data can be stored and
+ * LX content is serialized using XML; the resulting data can be stored and
  * read to/from a file or data stream.  Low-level XML parsers such as Xerces
  * provide facilities to read XML data.  To permit the use of different XML
- * parsers (Xerces, Expat or libxml2), libSBML implements an abstraction
+ * parsers (Xerces, Expat or libxml2), libLX implements an abstraction
  * layer.  XMLInputStream and XMLOutputStream are two parts of that
  * abstraction layer.
  *
@@ -73,7 +73,7 @@ id = "id";
 @endcode
 @endif
   * Then, the element and the attributes can be written to the
-  * standard output stream @ifnot cpp (provided as @c cout in the libSBML
+  * standard output stream @ifnot cpp (provided as @c cout in the libLX
   * language bindings)@endif@~ as follows:
 @if cpp
 @code{.cpp}
@@ -108,10 +108,10 @@ public class test
         String id = "id";
 
         // Create an XMLOutputStream object that will write to the
-        // standard output stream, which is provide in libSBML's
-        // Java language interface as the object "libsbml.cout".
+        // standard output stream, which is provide in libLX's
+        // Java language interface as the object "liblx.cout".
 
-        XMLOutputStream xos = new XMLOutputStream(libsbml.cout);
+        XMLOutputStream xos = new XMLOutputStream(liblx.cout);
 
         // Create the start element, write the attributes, and close
         // the element.  The output will be written immediately as
@@ -132,15 +132,15 @@ public class test
 @endif
 @if python
 @code{.py}
-from libsbml import *
+from liblx import *
 
 size = 3.2;
 id = "id";
 
 # Create an XMLOutputStream object that will write to the standard
-# output stream, which is provide in libSBML's Python language
-# interface as the object "libsbml.cout".  Since we imported * from
-# the libsbml module, we can simply refer to it as "cout" here:
+# output stream, which is provide in libLX's Python language
+# interface as the object "liblx.cout".  Since we imported * from
+# the liblx module, we can simply refer to it as "cout" here:
 
 output_stream = XMLOutputStream(cout)
 
@@ -154,7 +154,7 @@ output_stream.endElement("testElement")
 @endcode
 @endif
  *
- * Other classes in SBML take XMLOutputStream objects as arguments, and use
+ * Other classes in LX take XMLOutputStream objects as arguments, and use
  * that to write elements and attributes seamlessly to the XML output stream.
  *
  * It is also worth noting that unlike XMLInputStream, XMLOutputStream is
@@ -163,7 +163,7 @@ output_stream.endElement("testElement")
  *
  * @note The convenience of the XMLInputStream and XMLOutputStream
  * abstraction may be useful for developers interested in creating parsers
- * for other XML formats besides SBML.  It can provide developers with a
+ * for other XML formats besides LX.  It can provide developers with a
  * layer above more basic XML parsers, as well as some useful programmatic
  * elements such as XMLToken, XMLError, etc.
  *
@@ -185,8 +185,8 @@ output_stream.endElement("testElement")
  * @verbatim
 <?xml version="1.0" encoding="UTF-8"?>
 @endverbatim
- * Note that the SBML specifications require the use of UTF-8 encoding and
- * version 1.0, so for SBML documents, the above is the standard XML
+ * Note that the LX specifications require the use of UTF-8 encoding and
+ * version 1.0, so for LX documents, the above is the standard XML
  * declaration.
  *
  * <!-- ------------------------------------------------------------------- -->
@@ -194,24 +194,24 @@ output_stream.endElement("testElement")
  *
  * @par
  * The functionality associated with the @p programName and @p
- * programVersion arguments concerns an optional comment that libSBML can
+ * programVersion arguments concerns an optional comment that libLX can
  * write at the beginning of the output stream.  The comment is intended
  * for human readers of the XML file, and has the following form:
  * @verbatim
 <!-- Created by <program name> version <program version>
-on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
+on yyyy-MM-dd HH:mm with libLX version <liblx version>. -->
 @endverbatim
  *
  * This program information comment is a separate item from the XML
  * declaration that this method can also write to this output stream.  The
- * comment is also not mandated by any SBML specification.  This libSBML
+ * comment is also not mandated by any LX specification.  This libLX
  * functionality is provided for the convenience of calling programs, and to
- * help humans trace the origin of SBML files.
+ * help humans trace the origin of LX files.
  *
  * <!-- ------------------------------------------------------------------- -->
  * @class doc_indentation
  *
- * LibSBML tries to produce human-readable XML output by automatically
+ * LibLX tries to produce human-readable XML output by automatically
  * indenting the bodies of elements.  Callers can manually control
  * indentation further by using the XMLOutputStream::upIndent()
  * and XMLOutputStream::downIndent() methods to increase and
@@ -234,7 +234,7 @@ on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
 
 #include <liblx/xml/common/extern.h>
 
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
@@ -255,7 +255,7 @@ public:
    * @param stream the input stream to wrap.
    *
    * @param encoding the XML encoding to declare in the output. This value
-   * should be <code>"UTF-8"</code> for SBML documents.  The default value
+   * should be <code>"UTF-8"</code> for LX documents.  The default value
    * is <code>"UTF-8"</code> if no value is supplied for this parameter.
    *
    * @param writeXMLDecl whether to write a standard XML declaration at
@@ -625,7 +625,7 @@ public:
    * The XML comment has the following form:
    * @verbatim
 <!-- Created by <program name> version <program version>
-on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
+on yyyy-MM-dd HH:mm with libLX version <liblx version>. -->
 @endverbatim
    *
    * See the class constructor for more information about this program
@@ -697,7 +697,7 @@ on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
   void upIndent ();
 
 
-  /** @cond doxygenLibsbmlInternal */
+  /** @cond doxygenLiblxInternal */
   bool getStringStream();
   /** @endcond */
 
@@ -746,7 +746,7 @@ on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
 
 
   /**
-   * @return the name of the library to be used in comments ('libSBML' by default).
+   * @return the name of the library to be used in comments ('libLX' by default).
    */
   static std::string getLibraryName();
 
@@ -759,7 +759,7 @@ on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
 
   /**
    * @return a string representing the version of the library writing the output.
-   *         This is the value of getLibSBMLDottedVersion() by default.
+   *         This is the value of getLibLXDottedVersion() by default.
    */
   static std::string getLibraryVersion();
 
@@ -770,13 +770,13 @@ on yyyy-MM-dd HH:mm with libSBML version <libsbml version>. -->
    */
   static void setLibraryVersion(const std::string& libraryVersion);
 
-  /** @cond doxygenLibsbmlInternal */
+  /** @cond doxygenLiblxInternal */
   unsigned int getIndent();
   void setIndent(unsigned int indent);
   /** @endcond */
 
 private:
-  /** @cond doxygenLibsbmlInternal */
+  /** @cond doxygenLiblxInternal */
   /**
    * Copy Constructor, made private so as to notify users, that copying an input stream is not supported.
    *
@@ -794,7 +794,7 @@ private:
 
 
 protected:
-  /** @cond doxygenLibsbmlInternal */
+  /** @cond doxygenLiblxInternal */
   /**
    * Unitialized XMLOutputStreams may only be created by subclasses.
    */
@@ -892,7 +892,7 @@ protected:
   // of writing (enabled by default)
   static bool mWriteTimestamp;
 
-  // the name of the library writing the file (i.e: libSBML)
+  // the name of the library writing the file (i.e: libLX)
   static std::string mLibraryName;
 
   // the version of the library writing the file
@@ -907,7 +907,7 @@ protected:
 };
 
 
-/** @cond doxygenLibsbmlInternal */
+/** @cond doxygenLiblxInternal */
 class LIBLX_EXTERN XMLOutputStringStream : public XMLOutputStream
 {
 public:
@@ -926,13 +926,13 @@ public:
   std::ostringstream& getString();
 
 protected:
-  /** @cond doxygenLibsbmlInternal */
+  /** @cond doxygenLiblxInternal */
   std::ostringstream& mString;
   /** @endcond */
 };
 /** @endcond */
 
-/** @cond doxygenLibsbmlInternal */
+/** @cond doxygenLiblxInternal */
 class LIBLX_EXTERN XMLOwningOutputStringStream : public XMLOutputStringStream
 {
 public:
@@ -952,7 +952,7 @@ public:
 };
 /** @endcond */
 
-/** @cond doxygenLibsbmlInternal */
+/** @cond doxygenLiblxInternal */
 class LIBLX_EXTERN XMLOutputFileStream : public XMLOutputStream
 {
 public:
@@ -972,7 +972,7 @@ public:
 /** @endcond */
 
 
-/** @cond doxygenLibsbmlInternal */
+/** @cond doxygenLiblxInternal */
 class LIBLX_EXTERN XMLOwningOutputFileStream : public XMLOutputFileStream
 {
 public:
@@ -1025,7 +1025,7 @@ XMLOutputStream_createAsStdout (const char * encoding, int writeXMLDecl);
  * @copydetails doc_xml_declaration
  *
  * @param encoding the XML encoding to declare in the output. This value
- * should be <code>"UTF-8"</code> for SBML documents.  The default value
+ * should be <code>"UTF-8"</code> for LX documents.  The default value
  * is <code>"UTF-8"</code> if no value is supplied for this parameter.
  *
  * @param writeXMLDecl whether to write a standard XML declaration at

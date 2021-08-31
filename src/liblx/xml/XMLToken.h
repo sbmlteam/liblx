@@ -4,8 +4,8 @@
  * @author  Ben Bornstein
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -39,10 +39,10 @@
  *
  * @htmlinclude not-sbml-warning.html
  *
- * The libSBML XML parser interface can read an XML file or data stream and
+ * The libLX XML parser interface can read an XML file or data stream and
  * convert the contents into tokens.  The tokens represent items in the XML
  * stream, either XML elements (start or end tags) or text that appears as
- * content inside an element.  The XMLToken class is libSBML's low-level
+ * content inside an element.  The XMLToken class is libLX's low-level
  * representation of these entities.
  *
  * Each XMLToken has the following information associated with it:
@@ -57,7 +57,7 @@
  * any), and the XML namespace with which that prefix is associated.
  * <li> @em Namespaces: An XML token can have one or more XML namespaces
  * associated with it.  These namespaces may be specified explicitly on the
- * element or inherited from parent elements.  In libSBML, a list of
+ * element or inherited from parent elements.  In libLX, a list of
  * namespaces is stored in an XMLNamespaces object.  An XMLToken possesses a
  * field for storing an XMLNamespaces object.
  * <li> @em Attributes: XML elements can have attributes associated with
@@ -70,8 +70,8 @@
  * </ol>
  *
  * The XMLToken class serves as base class for XMLNode.  XML lends itself to
- * a tree-structured representation, and in libSBML, the nodes in an XML
- * document tree are XMLNode objects.  Most higher-level libSBML classes and
+ * a tree-structured representation, and in libLX, the nodes in an XML
+ * document tree are XMLNode objects.  Most higher-level libLX classes and
  * methods that offer XML-level functionality (such as the methods on SBase
  * for interacting with annotations) work with XMLNode objects rather than
  * XMLToken objects directly.
@@ -94,7 +94,7 @@
  *
  * @par
  * This operation only makes sense for XML start elements.  This
- * method will return @sbmlconstant{LIBSBML_INVALID_XML_OPERATION,
+ * method will return @sbmlconstant{LIBLX_INVALID_XML_OPERATION,
  * OperationReturnValues_t} if this XMLToken object is not an XML start
  * element.
  *
@@ -286,10 +286,10 @@ public:
    * token.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
    *
    * @note This function replaces any existing XMLAttributes object
    * on this XMLToken object with the one given by @p attributes.
@@ -319,13 +319,13 @@ public:
    * The <code>name</code> part is the name of the attribute, the
    * <code>"value"</code> part is the value assigned to the attribute (and
    * it is always a quoted string), and the <code>prefix</code> part is
-   * an optional XML namespace prefix.  Internally in libSBML, this data
+   * an optional XML namespace prefix.  Internally in libLX, this data
    * is stored in an XMLAttributes object associated with this XMLToken.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
    *
    * @copydetails doc_note_overwrites_existing_attribute
    *
@@ -348,9 +348,9 @@ public:
    * @param value a string, the value assigned to the attribute.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
    *
    * @copydetails doc_note_overwrites_existing_attribute
    */
@@ -366,11 +366,11 @@ public:
    * @param n an integer the index of the resource to be deleted.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute on this
    * element at the given index @p n.
    *
@@ -390,11 +390,11 @@ public:
    * @param uri    a string, the XML namespace URI of the attribute to be removed.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute on this
    * element with the given @p name (and @p uri if specified).
    *
@@ -411,11 +411,11 @@ public:
    * @param triple an XMLTriple describing the attribute to be removed.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE,
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE,
    * OperationReturnValues_t} is returned if there is no attribute on this
    * element matching the properties of the given @p triple.
    *
@@ -430,8 +430,8 @@ public:
    * @copydetails doc_only_for_start_elements
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
    */
   int clearAttributes();
 
@@ -664,10 +664,10 @@ public:
    * @param namespaces the XMLNamespaces object to be assigned to this XMLToken object.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
    *
    * @note This function replaces any existing XMLNamespaces object on this
    * XMLToken object with the new one given by @p namespaces.
@@ -690,8 +690,8 @@ public:
    * @param prefix a string, the namespace prefix to use.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
    *
    * @ifnot hasDefaultArgs @htmlinclude warn-default-args-in-docs.html @endif@~
    */
@@ -710,9 +710,9 @@ public:
    * number of a given namespace.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
    * @see getNamespaceIndex(@if java String uri@endif)
    * @see getNamespaceIndexByPrefix(@if java String prefix@endif)
@@ -729,11 +729,11 @@ public:
    * @param prefix a string, the prefix of the namespace to be removed.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    *
-   * The value @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+   * The value @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
    * is returned if there is no namespace with the given @p prefix on this
    * element.
    *
@@ -748,9 +748,9 @@ public:
    * @copydetails doc_only_for_start_elements 
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    */
   int clearNamespaces ();
 
@@ -904,10 +904,10 @@ public:
    * object will be replaced.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
    */
   int setTriple(const XMLTriple& triple);
 
@@ -957,14 +957,14 @@ public:
   *
   * This method only makes sense for XMLToken objects that contains text.
   * If this method is called on a token that represents an XML start or end
-  * tag, it will return the code @sbmlconstant{LIBSBML_OPERATION_FAILED,
+  * tag, it will return the code @sbmlconstant{LIBLX_OPERATION_FAILED,
   * OperationReturnValues_t}.
   *
   * @param chars string, characters to append to the text of this token.
   *
   * @copydetails doc_returns_success_code
-  * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-  * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+  * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+  * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
   *
   * @see isText()
   * @see isElement()
@@ -976,14 +976,14 @@ public:
    *
    * This method only makes sense for XMLToken objects that contains text.
    * If this method is called on a token that represents an XML start or end
-   * tag, it will return the code @sbmlconstant{LIBSBML_OPERATION_FAILED,
+   * tag, it will return the code @sbmlconstant{LIBLX_OPERATION_FAILED,
    * OperationReturnValues_t}.
    *
    * @param chars string, characters to append to the text of this token.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    *
    * @see isText()
    * @see isElement()
@@ -1096,8 +1096,8 @@ public:
    * Declares that this token represents an XML element end tag.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    *
    * @see isStart()
    * @see isEnd()
@@ -1109,8 +1109,8 @@ public:
    * Declares that this token is an end-of-file/input marker.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    *
    * @see isEOF()
    */
@@ -1121,8 +1121,8 @@ public:
    * Declares that this token no longer represents an XML start/end element.
    *
    * @copydetails doc_returns_success_code
-   * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
-   * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+   * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
    */
   int unsetEnd ();
 
@@ -1306,8 +1306,8 @@ XMLToken_clone (const XMLToken_t *token);
  * @param text string, characters to append.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  **
  * @memberof XMLToken_t
  */
@@ -1323,8 +1323,8 @@ XMLToken_append (XMLToken_t *token, const char *text);
  * @param text string, characters to set.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  **
  * @memberof XMLToken_t
  */
@@ -1396,10 +1396,10 @@ XMLToken_getAttributes (const XMLToken_t *token);
  * @param attributes XMLAttributes_t to be set to this XMLToken_t.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @note This function replaces the existing XMLAttributes_t with the new one.
  *
@@ -1420,9 +1420,9 @@ XMLToken_setAttributes (XMLToken_t *token, const XMLAttributes_t* attributes);
  * @param value a string, the value of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @note if the local name without namespace URI already exists in the
  * attribute set, its value will be replaced.
@@ -1447,9 +1447,9 @@ XMLToken_addAttr ( XMLToken_t *token,  const char* name, const char* value );
  * @param prefix a string, the prefix of the namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @copydetails doc_note_overwrites_existing_attribute
  *
@@ -1473,9 +1473,9 @@ XMLToken_addAttrWithNS ( XMLToken_t *token,  const char* name
  * @param value a string, the value of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @copydetails doc_note_overwrites_existing_attribute
  *
@@ -1495,10 +1495,10 @@ XMLToken_addAttrWithTriple (XMLToken_t *token, const XMLTriple_t *triple, const 
  * @param n an integer the index of the resource to be deleted.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1516,10 +1516,10 @@ XMLToken_removeAttr (XMLToken_t *token, int n);
  * @param name   a string, the local name of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1538,10 +1538,10 @@ XMLToken_removeAttrByName (XMLToken_t *token, const char* name);
  * @param uri    a string, the namespace URI of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1559,10 +1559,10 @@ XMLToken_removeAttrByNS (XMLToken_t *token, const char* name, const char* uri);
  * @param triple an XMLTriple_t, the XML triple of the attribute.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1578,9 +1578,9 @@ XMLToken_removeAttrByTriple (XMLToken_t *token, const XMLTriple_t *triple);
  * @param token XMLToken_t structure from which attributes to be removed.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1915,10 +1915,10 @@ XMLToken_getNamespaces (const XMLToken_t *token);
  * @param namespaces XMLNamespaces_t to be set to this XMLToken_t.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  *
  * @note This function replaces the existing XMLNamespaces_t with the new one.
  *
@@ -1941,9 +1941,9 @@ XMLToken_setNamespaces(XMLToken_t *token, const XMLNamespaces_t* namespaces);
  * @param prefix a string, the prefix for the namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1961,10 +1961,10 @@ XMLToken_addNamespace (XMLToken_t *token, const char* uri, const char* prefix);
  * @param index an integer, position of the removed namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -1981,10 +1981,10 @@ XMLToken_removeNamespace (XMLToken_t *token, int index);
  * @param prefix a string, prefix of the required namespace.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INDEX_EXCEEDS_SIZE, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -2001,10 +2001,10 @@ XMLToken_removeNamespaceByPrefix (XMLToken_t *token, const char* prefix);
  * @param token XMLToken_t structure to be queried.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -2210,10 +2210,10 @@ XMLToken_hasNamespaceNS(const XMLToken_t *token, const char* uri, const char* pr
  * @param triple an XMLTriple_t, the XML triple to be set to this XML element.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_XML_OPERATION, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_XML_OPERATION, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -2366,9 +2366,9 @@ XMLToken_isText (const XMLToken_t *token);
  * @param token XMLToken_t structure to be set.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -2383,9 +2383,9 @@ XMLToken_setEnd (XMLToken_t *token);
  * @param token XMLToken_t structure to be set.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */
@@ -2400,9 +2400,9 @@ XMLToken_setEOF (XMLToken_t *token);
  * @param token XMLToken_t structure to be set.
  *
  * @copydetails doc_returns_success_code
- * @li @sbmlconstant{LIBSBML_OPERATION_SUCCESS, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_OPERATION_FAILED, OperationReturnValues_t}
- * @li @sbmlconstant{LIBSBML_INVALID_OBJECT, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_SUCCESS, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_OPERATION_FAILED, OperationReturnValues_t}
+ * @li @sbmlconstant{LIBLX_INVALID_OBJECT, OperationReturnValues_t}
  *
  * @memberof XMLToken_t
  */

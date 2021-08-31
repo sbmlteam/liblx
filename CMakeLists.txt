@@ -47,7 +47,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/CMakeModules ${CMAKE_MODULE_PA
 
 set(LIBLX_ROOT_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}" CACHE PATH
     "Path to the libLX root source directory")
-set(LIBSLX_ROOT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH
+set(LIBLX_ROOT_BINARY_DIR "${CMAKE_CURRENT_BINARY_DIR}" CACHE PATH
     "Path to the libLX root build directory")
 
 include (CMakeTestCCompiler)
@@ -1098,8 +1098,6 @@ other operating systems.)" OFF)
     # set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\"")
 
 else(UNIX)
-    # not needing these defines, and they do cause warnings
-    # add_definitions(-DPACKAGE_VERSION=\"${PACKAGE_VERSION}\"  -DPACKAGE_NAME=\"${PROJECT_NAME}\")
     add_definitions(-DWIN32 -DLIBLX_EXPORTS)
     set(BUILD_DEFINITIONS "${BUILD_DEFINITIONS} -DWIN32 -DLIBLX_EXPORTS")
     if(MSVC OR USING_INTEL)

@@ -1,13 +1,18 @@
 /**
  * @file    local-normal.i
- * @brief   Python-specific SWIG directives for wrapping libSBML API
+ * @brief   Python-specific SWIG directives for wrapping libLX API
  * @author  Ben Bornstein
  * @author  Ben Kovitz
  * @author  Akiya Jouraku
  *
  *<!---------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
+ *
+ * Copyright (C) 2020 jointly by the following organizations:
+ *     1. California Institute of Technology, Pasadena, CA, USA
+ *     2. University of Heidelberg, Heidelberg, Germany
+ *     3. University College London, London, UK
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -43,7 +48,8 @@
 %feature("autodoc", "1");
 %include "pydoc.i"
 
-%include "local-contrib.i"
+// There is a copy of the below as libsbml/src/bindings/python/local-contrib.i
+//%include "local-contrib.i"
 
 
 /**
@@ -53,21 +59,21 @@
  *
  * 1. wraps std::cout
  *
- *    xos = libsbml.XMLOutputStream(libsbml.cout)
+ *    xos = liblx.XMLOutputStream(liblx.cout)
  *
  * 2. wraps std::cerr
  *
- *    d = libsbml.readSBML("foo.xml")
+ *    d = liblx.readLX("foo.xml")
  *    if d.getNumErrors() > 0 :
- *       d.printErrors(libsbml.cerr)
+ *       d.printErrors(liblx.cerr)
  *
  *
  * 3. wraps std::ostringstream
  *
- *    oss = libsbml.ostringstream()
- *    xos = libsbml.XMLOutputStream(oss)
+ *    oss = liblx.ostringstream()
+ *    xos = liblx.XMLOutputStream(oss)
  *    ...
- *    libsbml.endl(oss)
+ *    liblx.endl(oss)
  *    s = oss.str()
  *
  */
@@ -190,10 +196,10 @@ namespace std
       """
       Return a string representation of this object.
 
-      Note that the string will not be a complete SBML document.
+      Note that the string will not be a complete LX document.
       """
 
-      return self.toSBML()
+      return self.toLX()
   }
 }*/
 
@@ -203,6 +209,7 @@ namespace std
  *
  *   - To be indexed and sliced, e.g. lst[0].
  */
+/*
 %extend ListOf
 {
   int __len__()
@@ -256,18 +263,19 @@ namespace std
       return repr(self)
   }
 }
-
+*/
 
 
 /**
  * Convert SBase, SimpleSpeciesReference and Rule objects into the most specific type possible.
  */
-%typemap(out) SBase*, SimpleSpeciesReference*, Rule*, SBasePlugin*, SBMLExtension*, SBMLNamespaces*, SBMLConverter*, Reaction*
+ /*
+%typemap(out) SBase*, SimpleSpeciesReference*, Rule*, SBasePlugin*, LXExtension*, LXNamespaces*, LXConverter*, Reaction*
 {
   $result = SWIG_NewPointerObj(SWIG_as_voidptr($1), GetDowncastSwigType($1),
                                $owner | %newpointer_flags);
 }
-
+*/
 %typemap(out) ASTBasePlugin*
 {
   $result = SWIG_NewPointerObj(SWIG_as_voidptr($1), GetDowncastSwigType($1),
@@ -308,13 +316,13 @@ namespace std
 %feature("pythonprepend")
 XMLOutputStream::writeAttribute
 %{
-        if type(args[1]) == type(True): return _libsbml.XMLOutputStream_writeAttributeBool(self, *args)
+        if type(args[1]) == type(True): return _liblx.XMLOutputStream_writeAttributeBool(self, *args)
 %}
 #else
 %feature("pythonprepend")
 XMLOutputStream::writeAttribute
 %{
-        if type(args[2]) == type(True): return _libsbml.XMLOutputStream_writeAttributeBool(*args)
+        if type(args[2]) == type(True): return _liblx.XMLOutputStream_writeAttributeBool(*args)
 %}
 #endif
 
@@ -326,7 +334,7 @@ XMLOutputStream::writeAttribute
  * disimilar type can be compared without throwing a TypeError.  For
  * example: the following will return false and not throw an exception:
  *
- *   c = libsbml.Compartment()
+ *   c = liblx.Compartment()
  *   n = 5
  *   c == n
  *
@@ -355,18 +363,20 @@ XMLOutputStream::writeAttribute
 }
 %enddef
 
-SWIGPYTHON__CMP__(SBase)
-SWIGPYTHON__CMP__(SBasePlugin)
-SWIGPYTHON__CMP__(SBMLExtension)
-SWIGPYTHON__CMP__(SBMLWriter)
-SWIGPYTHON__CMP__(SBMLReader)
-SWIGPYTHON__CMP__(ASTNode)
-SWIGPYTHON__CMP__(CVTerm)
-SWIGPYTHON__CMP__(Date)
-SWIGPYTHON__CMP__(ModelHistory)
-SWIGPYTHON__CMP__(ModelCreator)
+//SWIGPYTHON__CMP__(SBase)
+//SWIGPYTHON__CMP__(SBasePlugin)
+/*
+SWIGPYTHON__CMP__(LXExtension)
+SWIGPYTHON__CMP__(LXWriter)
+SWIGPYTHON__CMP__(LXReader)
+*/
+//SWIGPYTHON__CMP__(ASTNode)
+//SWIGPYTHON__CMP__(CVTerm)
+//SWIGPYTHON__CMP__(Date)
+//SWIGPYTHON__CMP__(ModelHistory)
+//SWIGPYTHON__CMP__(ModelCreator)
 SWIGPYTHON__CMP__(XMLNamespaces)
-SWIGPYTHON__CMP__(SBMLNamespaces)
+//SWIGPYTHON__CMP__(LXNamespaces)
 SWIGPYTHON__CMP__(XMLAttributes)
 SWIGPYTHON__CMP__(XMLToken)
 SWIGPYTHON__CMP__(XMLTriple)
@@ -377,94 +387,97 @@ SWIGPYTHON__CMP__(XMLOutputStream)
 
 /**
  *
- * Wraps the SBMLConstructorException class (C++ exception defined by libSBML)
+ * Wraps the LXConstructorException class (C++ exception defined by libLX)
  * as the ValueError class (Python built-in exception).
  *
  * For example, the exception can be catched in Python code as follows:
  *
  * --------------------------------------
  *  try:
- *    s = libsbml.CompartmentType(level,version)
+ *    s = liblx.CompartmentType(level,version)
  *  except ValueError, inst:
  *    errmsg = inst.args[0]
  * --------------------------------------
  */
 
-%ignore SBMLConstructorException;
+%ignore LXConstructorException;
 
-%define SBMLCONSTRUCTOR_EXCEPTION(SBASE_CLASS_NAME)
+
+%define LXCONSTRUCTOR_EXCEPTION(SBASE_CLASS_NAME)
 %exception SBASE_CLASS_NAME {
   try {
     $action
   }
-  catch (SBMLConstructorException &e) {
+  catch (XMLConstructorException &e) {
     PyErr_SetString(PyExc_ValueError, const_cast<char*>(e.what()));
     return NULL;
   }
-  catch (SBMLExtensionException &e) {
-    PyErr_SetString(PyExc_ValueError, const_cast<char*>(e.what()));
-    return NULL;
-  }
+  //catch (XMLExtensionException &e) {
+  //  PyErr_SetString(PyExc_ValueError, const_cast<char*>(e.what()));
+  //  return NULL;
+  //}
 }
 %enddef
 
-SBMLCONSTRUCTOR_EXCEPTION(Compartment)
-SBMLCONSTRUCTOR_EXCEPTION(CompartmentType)
-SBMLCONSTRUCTOR_EXCEPTION(Constraint)
-SBMLCONSTRUCTOR_EXCEPTION(Delay)
-SBMLCONSTRUCTOR_EXCEPTION(Event)
-SBMLCONSTRUCTOR_EXCEPTION(EventAssignment)
-SBMLCONSTRUCTOR_EXCEPTION(FunctionDefinition)
-SBMLCONSTRUCTOR_EXCEPTION(InitialAssignment)
-SBMLCONSTRUCTOR_EXCEPTION(KineticLaw)
-SBMLCONSTRUCTOR_EXCEPTION(Model)
-SBMLCONSTRUCTOR_EXCEPTION(Parameter)
-SBMLCONSTRUCTOR_EXCEPTION(Priority)
-SBMLCONSTRUCTOR_EXCEPTION(LocalParameter)
-SBMLCONSTRUCTOR_EXCEPTION(Reaction)
-SBMLCONSTRUCTOR_EXCEPTION(AssignmentRule)
-SBMLCONSTRUCTOR_EXCEPTION(AlgebraicRule)
-SBMLCONSTRUCTOR_EXCEPTION(RateRule)
-SBMLCONSTRUCTOR_EXCEPTION(Species)
-SBMLCONSTRUCTOR_EXCEPTION(SpeciesReference)
-SBMLCONSTRUCTOR_EXCEPTION(ModifierSpeciesReference)
-SBMLCONSTRUCTOR_EXCEPTION(SpeciesType)
-SBMLCONSTRUCTOR_EXCEPTION(StoichiometryMath)
-SBMLCONSTRUCTOR_EXCEPTION(Trigger)
-SBMLCONSTRUCTOR_EXCEPTION(Unit)
-SBMLCONSTRUCTOR_EXCEPTION(UnitDefinition)
-SBMLCONSTRUCTOR_EXCEPTION(SBMLDocument)
-SBMLCONSTRUCTOR_EXCEPTION(SBMLNamespaces)
-SBMLCONSTRUCTOR_EXCEPTION(SBMLExtensionNamespaces)
-
-SBMLCONSTRUCTOR_EXCEPTION(ListOf)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfCompartments)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfCompartmentTypes)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfConstraints)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfEventAssignments)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfEvents)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfFunctionDefinitions)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfInitialAssignments)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfParameters)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfLocalParameters)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfReactions)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfRules)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfSpecies)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfSpeciesReferences)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfSpeciesTypes)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfUnitDefinitions)
-SBMLCONSTRUCTOR_EXCEPTION(ListOfUnits)
-
+/*
+LXCONSTRUCTOR_EXCEPTION(Compartment)
+LXCONSTRUCTOR_EXCEPTION(CompartmentType)
+LXCONSTRUCTOR_EXCEPTION(Constraint)
+LXCONSTRUCTOR_EXCEPTION(Delay)
+LXCONSTRUCTOR_EXCEPTION(Event)
+LXCONSTRUCTOR_EXCEPTION(EventAssignment)
+LXCONSTRUCTOR_EXCEPTION(FunctionDefinition)
+LXCONSTRUCTOR_EXCEPTION(InitialAssignment)
+LXCONSTRUCTOR_EXCEPTION(KineticLaw)
+LXCONSTRUCTOR_EXCEPTION(Model)
+LXCONSTRUCTOR_EXCEPTION(Parameter)
+LXCONSTRUCTOR_EXCEPTION(Priority)
+LXCONSTRUCTOR_EXCEPTION(LocalParameter)
+LXCONSTRUCTOR_EXCEPTION(Reaction)
+LXCONSTRUCTOR_EXCEPTION(AssignmentRule)
+LXCONSTRUCTOR_EXCEPTION(AlgebraicRule)
+LXCONSTRUCTOR_EXCEPTION(RateRule)
+LXCONSTRUCTOR_EXCEPTION(Species)
+LXCONSTRUCTOR_EXCEPTION(SpeciesReference)
+LXCONSTRUCTOR_EXCEPTION(ModifierSpeciesReference)
+LXCONSTRUCTOR_EXCEPTION(SpeciesType)
+LXCONSTRUCTOR_EXCEPTION(StoichiometryMath)
+LXCONSTRUCTOR_EXCEPTION(Trigger)
+LXCONSTRUCTOR_EXCEPTION(Unit)
+LXCONSTRUCTOR_EXCEPTION(UnitDefinition)
+LXCONSTRUCTOR_EXCEPTION(LXDocument)
+*/
+LXCONSTRUCTOR_EXCEPTION(XMLNamespaces)
+LXCONSTRUCTOR_EXCEPTION(XMLExtensionNamespaces)
+/*
+LXCONSTRUCTOR_EXCEPTION(ListOf)
+LXCONSTRUCTOR_EXCEPTION(ListOfCompartments)
+LXCONSTRUCTOR_EXCEPTION(ListOfCompartmentTypes)
+LXCONSTRUCTOR_EXCEPTION(ListOfConstraints)
+LXCONSTRUCTOR_EXCEPTION(ListOfEventAssignments)
+LXCONSTRUCTOR_EXCEPTION(ListOfEvents)
+LXCONSTRUCTOR_EXCEPTION(ListOfFunctionDefinitions)
+LXCONSTRUCTOR_EXCEPTION(ListOfInitialAssignments)
+LXCONSTRUCTOR_EXCEPTION(ListOfParameters)
+LXCONSTRUCTOR_EXCEPTION(ListOfLocalParameters)
+LXCONSTRUCTOR_EXCEPTION(ListOfReactions)
+LXCONSTRUCTOR_EXCEPTION(ListOfRules)
+LXCONSTRUCTOR_EXCEPTION(ListOfSpecies)
+LXCONSTRUCTOR_EXCEPTION(ListOfSpeciesReferences)
+LXCONSTRUCTOR_EXCEPTION(ListOfSpeciesTypes)
+LXCONSTRUCTOR_EXCEPTION(ListOfUnitDefinitions)
+LXCONSTRUCTOR_EXCEPTION(ListOfUnits)
+*/
 /**
  *
- * Wraps the XMLConstructorException class (C++ exception defined by libSBML)
+ * Wraps the XMLConstructorException class (C++ exception defined by libLX)
  * as the VaueError class (Python built-in exception).
  *
  * For example, the exception can be catched in Python code as follows:
  *
  * --------------------------------------
  *  try:
- *    s = libsbml.XMLAttributes(invalid arguments)
+ *    s = liblx.XMLAttributes(invalid arguments)
  *  except ValueError, inst:
  *    errmsg = inst.args[0]
  * --------------------------------------
@@ -494,15 +507,15 @@ XMLCONSTRUCTOR_EXCEPTION(XMLTripple)
 
 
 // ----------------------------------------------------------------------
-// SBMLReader
+// LXReader
 // ----------------------------------------------------------------------
 
 /*
  * A note about how our documentation production interacts with this file.
  *
  * Our Doxygen-based documentation pipeline currently only uses
- * ../swig/libsbml.i; it does not read this file for producing the API docs.
- * This file is only used by SWIG itself, to produce a libsbml.py file that
+ * ../swig/liblx.i; it does not read this file for producing the API docs.
+ * This file is only used by SWIG itself, to produce a liblx.py file that
  * becomes what users see with Python 'help'.  Thus, the documentation in
  * *this* file has to be the final version of the text we want in front of
  * users when they type help on a method.  This is why the doc strings in
@@ -512,7 +525,7 @@ XMLCONSTRUCTOR_EXCEPTION(XMLTripple)
  * The GENERATING_DOCS conditional is used to make SWIG ignore much of this
  * content during a certain phase of the documentation-generation process.
  * It's done so that when we are generating Doxygen-based HTML docs, SWIG
- * does not override the definitions from the original libSBML source code
+ * does not override the definitions from the original libLX source code
  * files with the modified versions below.
  */
 
@@ -523,7 +536,7 @@ XMLCONSTRUCTOR_EXCEPTION(XMLTripple)
 import sys
 import os.path
 
-# @cond doxygenLibsbmlInternal
+# @cond doxygenLiblxInternal
 
 def conditional_abspath (filename):
   """conditional_abspath (filename) -> filename
@@ -531,8 +544,8 @@ def conditional_abspath (filename):
   Returns filename with an absolute path prepended, if necessary.
   Some combinations of platforms and underlying XML parsers *require*
   an absolute path to a filename while others do not.  This function
-  encapsulates the appropriate logic.  It is used by readSBML() and
-  SBMLReader.readSBML().
+  encapsulates the appropriate logic.  It is used by readLX() and
+  LXReader.readLX().
   """
   if sys.platform.find('cygwin') != -1:
     return filename
@@ -544,26 +557,26 @@ def conditional_abspath (filename):
 
 
 %feature("shadow")
-SBMLReader::readSBML(const std::string&)
+LXReader::readLX(const std::string&)
 %{
-  def readSBML(*args):
+  def readLX(*args):
     """
-    readSBML(self, string filename) -> SBMLDocument
+    readLX(self, string filename) -> LXDocument
 
-    Reads an SBML document from a file.
+    Reads an LX document from a file.
 
-    This method is identical to readSBMLFromFile().
+    This method is identical to readLXFromFile().
 
     If the file named 'filename' does not exist or its content is not
-    valid SBML, one or more errors will be logged with the SBMLDocument
+    valid LX, one or more errors will be logged with the LXDocument
     object returned by this method.  Callers can use the methods on
-    SBMLDocument such as SBMLDocument.getNumErrors() and
-    SBMLDocument.getError() to get the errors.  The object returned by
-    SBMLDocument.getError() is an SBMLError object, and it has methods to
+    LXDocument such as LXDocument.getNumErrors() and
+    LXDocument.getError() to get the errors.  The object returned by
+    LXDocument.getError() is an LXError object, and it has methods to
     get the error code, category, and severity level of the problem, as
     well as a textual description of the problem.  The possible severity
     levels range from informational messages to fatal errors; see the
-    documentation for SBMLError for more information.
+    documentation for LXError for more information.
 
     If the file 'filename' could not be read, the file-reading error will
     appear first.  The error code can provide a clue about what happened.
@@ -573,13 +586,13 @@ SBMLReader::readSBML(const std::string&)
     been reported by the underlying operating system.  Callers can check
     for these situations using a program fragment such as the following:
 
-     reader = SBMLReader()
-     doc    = reader.readSBML(filename)
+     reader = LXReader()
+     doc    = reader.readLX(filename)
 
      if doc.getNumErrors() > 0:
-       if doc.getError(0).getErrorId() == libsbml.XMLFileUnreadable:
+       if doc.getError(0).getErrorId() == liblx.XMLFileUnreadable:
          # Handle case of unreadable file here.
-       elif doc.getError(0).getErrorId() == libsbml.XMLFileOperationError:
+       elif doc.getError(0).getErrorId() == liblx.XMLFileOperationError:
          # Handle case of other file error here.
        else:
          # Handle other error cases here.
@@ -593,74 +606,74 @@ SBMLReader::readSBML(const std::string&)
     is in zip format but the archive contains more than one file, only the
     first file in the archive will be read and the rest ignored.
 
-    To read a gzip/zip file, libSBML needs to be configured and linked with
+    To read a gzip/zip file, libLX needs to be configured and linked with
     the zlib library at compile time.  It also needs to be linked with the
     bzip2 library to read files in bzip2 format.  (Both of these are the
-    default configurations for libSBML.)  Errors about unreadable files
-    will be logged if a compressed filename is given and libSBML was not
+    default configurations for libLX.)  Errors about unreadable files
+    will be logged if a compressed filename is given and libLX was not
     linked with the corresponding required library.
 
     Parameter 'filename is the name or full pathname of the file to be
     read.
 
-    Returns a pointer to the SBMLDocument created from the SBML content.
+    Returns a pointer to the LXDocument created from the LX content.
 
-    See also SBMLError.
+    See also LXError.
 
     Note:
 
-    LibSBML versions 2.x and later versions behave differently in
+    LibLX versions 2.x and later versions behave differently in
     error handling in several respects.  One difference is how early some
-    errors are caught and whether libSBML continues processing a file in
-    the face of some early errors.  In general, libSBML versions after 2.x
-    stop parsing SBML inputs sooner than libSBML version 2.x in the face
-    of XML errors, because the errors may invalidate any further SBML
+    errors are caught and whether libLX continues processing a file in
+    the face of some early errors.  In general, libLX versions after 2.x
+    stop parsing LX inputs sooner than libLX version 2.x in the face
+    of XML errors, because the errors may invalidate any further LX
     content.  For example, a missing XML declaration at the beginning of
-    the file was ignored by libSBML 2.x but in version 3.x and later, it
-    will cause libSBML to stop parsing the rest of the input altogether.
+    the file was ignored by libLX 2.x but in version 3.x and later, it
+    will cause libLX to stop parsing the rest of the input altogether.
     While this behavior may seem more severe and intolerant, it was
     necessary in order to provide uniform behavior regardless of which
     underlying XML parser (Expat, Xerces, libxml2) is being used by
-    libSBML.  The XML parsers themselves behave differently in their error
-    reporting, and sometimes libSBML has to resort to the lowest common
+    libLX.  The XML parsers themselves behave differently in their error
+    reporting, and sometimes libLX has to resort to the lowest common
     denominator.
     """
     args_copy    = list(args)
     args_copy[1] = conditional_abspath(args[1])
-    return _libsbml.SBMLReader_readSBML(*args_copy)
+    return _liblx.LXReader_readLX(*args_copy)
 %}
 
 %feature("shadow")
-SBMLReader::readSBMLFromFile(const std::string&)
+LXReader::readLXFromFile(const std::string&)
 %{
-  def readSBMLFromFile(*args):
+  def readLXFromFile(*args):
     """
-    Reads an SBML document from the given file.
+    Reads an LX document from the given file.
 
     If the file named 'filename' does not exist or its content is not
-    valid SBML, one or more errors will be logged with the SBMLDocument
+    valid LX, one or more errors will be logged with the LXDocument
     object returned by this method.  Callers can use the methods on
-    SBMLDocument such as SBMLDocument.getNumErrors() and
-    SBMLDocument.getError() to get the errors.  The object returned by
-    SBMLDocument.getError() is an SBMLError object, and it has methods to
+    LXDocument such as LXDocument.getNumErrors() and
+    LXDocument.getError() to get the errors.  The object returned by
+    LXDocument.getError() is an LXError object, and it has methods to
     get the error code, category, and severity level of the problem, as
     well as a textual description of the problem.  The possible severity
     levels range from informational messages to fatal errors; see the
-    documentation for SBMLError for more information.
+    documentation for LXError for more information.
 
     If the file 'filename' could not be read, the file-reading error will
     appear first.  The error code  can provide a clue about what happened.
     For example, a file might be unreadable (either because it does not
     actually exist or because the user does not have the necessary access
-    priviledges to read it) or some sort of file operation error may have
+    privileges to read it) or some sort of file operation error may have
     been reported by the underlying operating system.  Callers can check
     for these situations using a program fragment such as the following:
 
-      reader = SBMLReader()
+      reader = LXReader()
       if reader == None:
         # Handle the truly exceptional case of no object created here.
 
-      doc = reader.readSBMLFromFile(filename)
+      doc = reader.readLXFromFile(filename)
       if doc.getNumErrors() > 0:
         if doc.getError(0).getErrorId() == XMLFileUnreadable:
           # Handle case of unreadable file here.
@@ -678,56 +691,56 @@ SBMLReader::readSBMLFromFile(const std::string&)
     is in zip format but the archive contains more than one file, only the
     first file in the archive will be read and the rest ignored.
 
-    To read a gzip/zip file, libSBML needs to be configured and linked
+    To read a gzip/zip file, libLX needs to be configured and linked
     with the zlib library at compile time.  It also needs to be linked
     with the bzip2 library to read files in bzip2 format.  (Both of these
-    are the default configurations for libSBML.)  Errors about unreadable
-    files will be logged if a compressed filename is given and libSBML was
+    are the default configurations for libLX.)  Errors about unreadable
+    files will be logged if a compressed filename is given and libLX was
     not linked with the corresponding required library.
 
     Parameter 'filename' is the name or full pathname of the file to be
     read.
 
-    Returns a pointer to the SBMLDocument structure created from the SBML
+    Returns a pointer to the LXDocument structure created from the LX
     content in 'filename'.
     """
     args_copy    = list(args)
     args_copy[1] = conditional_abspath(args[1])
-    return _libsbml.SBMLReader_readSBML(*args_copy)
+    return _liblx.LXReader_readLX(*args_copy)
 %}
 
 
 /**
- * Since we cannot seem to "shadow" readSBML() (maybe because it's
+ * Since we cannot seem to "shadow" readLX() (maybe because it's
  * not a method of some object, but rather a top-level function, we
- * employ the following HACK: Tell SWIG to ignore readSBML and just
- * define it in terms of SBMLReader.readSBML().  This is less than
- * ideal, because the libSBML C/C++ core does essentially the same
+ * employ the following HACK: Tell SWIG to ignore readLX and just
+ * define it in terms of LXReader.readLX().  This is less than
+ * ideal, because the libLX C/C++ core does essentially the same
  * thing, so now we're repeating ourselves.
  */
 
-%ignore readSBML(const char*);
+%ignore readLX(const char*);
 
 %pythoncode
 %{
-def readSBML(*args):
+def readLX(*args):
   """
-  readSBML(self, string filename) -> SBMLDocument
+  readLX(self, string filename) -> LXDocument
 
-  Reads an SBML document from a file.
+  Reads an LX document from a file.
 
-  This method is identical to readSBMLFromFile().
+  This method is identical to readLXFromFile().
 
   If the file named 'filename' does not exist or its content is not
-  valid SBML, one or more errors will be logged with the SBMLDocument
+  valid LX, one or more errors will be logged with the LXDocument
   object returned by this method.  Callers can use the methods on
-  SBMLDocument such as SBMLDocument.getNumErrors() and
-  SBMLDocument.getError() to get the errors.  The object returned by
-  SBMLDocument.getError() is an SBMLError object, and it has methods to
+  LXDocument such as LXDocument.getNumErrors() and
+  LXDocument.getError() to get the errors.  The object returned by
+  LXDocument.getError() is an LXError object, and it has methods to
   get the error code, category, and severity level of the problem, as
   well as a textual description of the problem.  The possible severity
   levels range from informational messages to fatal errors; see the
-  documentation for SBMLError for more information.
+  documentation for LXError for more information.
 
   If the file 'filename' could not be read, the file-reading error will
   appear first.  The error code can provide a clue about what happened.
@@ -737,13 +750,13 @@ def readSBML(*args):
   been reported by the underlying operating system.  Callers can check
   for these situations using a program fragment such as the following:
 
-   reader = SBMLReader()
-   doc    = reader.readSBML(filename)
+   reader = LXReader()
+   doc    = reader.readLX(filename)
 
    if doc.getNumErrors() > 0:
-     if doc.getError(0).getErrorId() == libsbml.XMLFileUnreadable:
+     if doc.getError(0).getErrorId() == liblx.XMLFileUnreadable:
        # Handle case of unreadable file here.
-     elif doc.getError(0).getErrorId() == libsbml.XMLFileOperationError:
+     elif doc.getError(0).getErrorId() == liblx.XMLFileOperationError:
        # Handle case of other file error here.
      else:
        # Handle other error cases here.
@@ -757,40 +770,40 @@ def readSBML(*args):
   is in zip format but the archive contains more than one file, only the
   first file in the archive will be read and the rest ignored.
 
-  To read a gzip/zip file, libSBML needs to be configured and linked with
+  To read a gzip/zip file, libLX needs to be configured and linked with
   the zlib library at compile time.  It also needs to be linked with the
   bzip2 library to read files in bzip2 format.  (Both of these are the
-  default configurations for libSBML.)  Errors about unreadable files
-  will be logged if a compressed filename is given and libSBML was not
+  default configurations for libLX.)  Errors about unreadable files
+  will be logged if a compressed filename is given and libLX was not
   linked with the corresponding required library.
 
   Parameter 'filename is the name or full pathname of the file to be
   read.
 
-  Returns a pointer to the SBMLDocument created from the SBML content.
+  Returns a pointer to the LXDocument created from the LX content.
 
-  See also SBMLError.
+  See also LXError.
 
   Note:
 
-  LibSBML versions 2.x and later versions behave differently in
+  LibLX versions 2.x and later versions behave differently in
   error handling in several respects.  One difference is how early some
-  errors are caught and whether libSBML continues processing a file in
-  the face of some early errors.  In general, libSBML versions after 2.x
-  stop parsing SBML inputs sooner than libSBML version 2.x in the face
-  of XML errors, because the errors may invalidate any further SBML
+  errors are caught and whether libLX continues processing a file in
+  the face of some early errors.  In general, libLX versions after 2.x
+  stop parsing LX inputs sooner than libLX version 2.x in the face
+  of XML errors, because the errors may invalidate any further LX
   content.  For example, a missing XML declaration at the beginning of
-  the file was ignored by libSBML 2.x but in version 3.x and later, it
-  will cause libSBML to stop parsing the rest of the input altogether.
+  the file was ignored by libLX 2.x but in version 3.x and later, it
+  will cause libLX to stop parsing the rest of the input altogether.
   While this behavior may seem more severe and intolerant, it was
   necessary in order to provide uniform behavior regardless of which
   underlying XML parser (Expat, Xerces, libxml2) is being used by
-  libSBML.  The XML parsers themselves behave differently in their error
-  reporting, and sometimes libSBML has to resort to the lowest common
+  libLX.  The XML parsers themselves behave differently in their error
+  reporting, and sometimes libLX has to resort to the lowest common
   denominator.
   """
-  reader = SBMLReader()
-  return reader.readSBML(args[0])
+  reader = LXReader()
+  return reader.readLX(args[0])
 %}
 
 
@@ -861,13 +874,13 @@ def readSBML(*args):
 }
 
 %enddef
-
-WRAP_LISTWRAPPER(SBMLNamespaces)
+/*
+WRAP_LISTWRAPPER(LXNamespaces)
 WRAP_LISTWRAPPER(CVTerm)
 WRAP_LISTWRAPPER(Date)
 WRAP_LISTWRAPPER(ModelCreator)
 WRAP_LISTWRAPPER(SBase)
-
+*/
 
 /**
  *  Wraps the following functions by using the corresponding
@@ -876,7 +889,7 @@ WRAP_LISTWRAPPER(SBase)
  *  - List* ModelHistory::getListCreators()
  *  - List* ModelHistory::getListModifiedDates()
  *  - List* SBase::getCVTerms()
- *  - List* SBMLNamespaces::getSupportedNamespaces()
+ *  - List* LXNamespaces::getSupportedNamespaces()
  *
  *  ListWrapper<TYPENAME> class is wrapped as TYPENAMEList class.
  *  So, the above functions are wrapped as follows:
@@ -884,37 +897,37 @@ WRAP_LISTWRAPPER(SBase)
  *  - ModelCreatorList ModelHistory.getListCreators()
  *  - DateList         ModelHistory.getListModifiedDates()
  *  - CVTermList       SBase.getCVTerms()
- *  - SBMLNamespacesList SBMLNamespaces::getSupportedNamespaces()
+ *  - LXNamespacesList LXNamespaces::getSupportedNamespaces()
  *
  */
 
 
 
 %feature("shadow")
-SBMLNamespaces::getSupportedNamespaces
+LXNamespaces::getSupportedNamespaces
 %{
   def getSupportedNamespaces(self):
     """
-    getSupportedNamespaces(self) -> SBMLNamespaceList
+    getSupportedNamespaces(self) -> LXNamespaceList
 
-    Get the List of supported SBMLNamespaces for this
-    version of LibSBML.
+    Get the List of supported LXNamespaces for this
+    version of LibLX.
 
-    Returns the supported list of SBMLNamespaces.
+    Returns the supported list of LXNamespaces.
 
 
     """
-    return _libsbml.SBMLNamespaces_getSupportedNamespaces(self)
+    return _liblx.LXNamespaces_getSupportedNamespaces(self)
 %}
 
-%typemap(out) List* SBMLNamespaces::getSupportedNamespaces
+%typemap(out) List* LXNamespaces::getSupportedNamespaces
 {
-  ListWrapper<SBMLNamespaces> *listw = ($1 != 0) ? new ListWrapper<SBMLNamespaces>($1) : 0;
+  ListWrapper<LXNamespaces> *listw = ($1 != 0) ? new ListWrapper<LXNamespaces>($1) : 0;
   $result = SWIG_NewPointerObj(SWIG_as_voidptr(listw),
 #if SWIG_VERSION > 0x010333
-                               SWIGTYPE_p_ListWrapperT_SBMLNamespaces_t,
+                               SWIGTYPE_p_ListWrapperT_LXNamespaces_t,
 #else
-                               SWIGTYPE_p_ListWrapperTSBMLNamespaces_t,
+                               SWIGTYPE_p_ListWrapperTLXNamespaces_t,
 #endif
                                SWIG_POINTER_OWN |  0 );
 }
@@ -935,7 +948,7 @@ ModelHistory::getListCreators
 
 
     """
-    return _libsbml.ModelHistory_getListCreators(self)
+    return _liblx.ModelHistory_getListCreators(self)
 %}
 
 %typemap(out) List* ModelHistory::getListCreators
@@ -964,7 +977,7 @@ ModelHistory::getListModifiedDates
 
 
     """
-    return _libsbml.ModelHistory_getListModifiedDates(self)
+    return _liblx.ModelHistory_getListModifiedDates(self)
 %}
 
 %typemap(out) List* ModelHistory::getListModifiedDates
@@ -993,7 +1006,7 @@ SBase::getCVTerms
 
     """
     
-    cvlist = _libsbml.SBase_getCVTerms(self)
+    cvlist = _liblx.SBase_getCVTerms(self)
     if cvlist is None:
       return []
     else:
@@ -1026,7 +1039,7 @@ SBase::getListOfAllElements
 
 
     """
-    return _libsbml.SBase_getListOfAllElements(self, *args)
+    return _liblx.SBase_getListOfAllElements(self, *args)
 %}
 
 %typemap(out) List* SBase::getListOfAllElements
@@ -1055,7 +1068,7 @@ SBase::getListOfAllElementsFromPlugins
 
 
     """
-    return _libsbml.SBase_getListOfAllElementsFromPlugins(self, *args)
+    return _liblx.SBase_getListOfAllElementsFromPlugins(self, *args)
 %}
 
 %typemap(out) List* SBase::getListOfAllElementsFromPlugins
@@ -1083,7 +1096,7 @@ SBasePlugin::getListOfAllElements
 
 
     """
-    return _libsbml.SBasePlugin_getListOfAllElements(self, *args)
+    return _liblx.SBasePlugin_getListOfAllElements(self, *args)
 %}
 
 %typemap(out) List* SBasePlugin::getListOfAllElements
@@ -1102,29 +1115,29 @@ SBasePlugin::getListOfAllElements
  * Add a document reference to the returned model to keep it alive
 */
 %feature("shadow")
-SBMLDocument::getModel
+LXDocument::getModel
 %{
   def getModel(self, *args):
     """
-    getModel(SBMLDocument self) -> Model
-    getModel(SBMLDocument self) -> Model
+    getModel(LXDocument self) -> Model
+    getModel(LXDocument self) -> Model
 
 
-    Returns the Model object stored in this SBMLDocument.
+    Returns the Model object stored in this LXDocument.
 
     It is important to note that this method does not create a Model
-    instance.  The model in the SBMLDocument must have been created at
-    some prior time, for example using SBMLDocument.createModel()  or
-    SBMLDocument.setModel(). This method returns 'None' if a model does
+    instance.  The model in the LXDocument must have been created at
+    some prior time, for example using LXDocument.createModel()  or
+    LXDocument.setModel(). This method returns 'None' if a model does
     not yet exist.
 
-    Returns the Model contained in this SBMLDocument, or 'None' if no such
+    Returns the Model contained in this LXDocument, or 'None' if no such
     model exists.
 
     See also createModel().
 
     """
-    model = _libsbml.SBMLDocument_getModel(self, *args)
+    model = _liblx.LXDocument_getModel(self, *args)
     if model is not None:
       model.__parent_ref__ = self
     return model

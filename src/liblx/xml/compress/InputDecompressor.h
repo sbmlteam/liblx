@@ -8,8 +8,8 @@
  *
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -58,7 +58,7 @@ public:
   *
   * @param filename a string, the gzip file name to be read.
   *
-  * @note ZlibNotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note ZlibNotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a istream* object bound to the given gzip file or @c NULL if the initialization
   * for the object failed.
@@ -72,7 +72,7 @@ public:
   *
   * @param filename a string, the bzip2 file name to be read.
   *
-  * @note Bzip2NotLinked will be thrown if zlib is not linked with libSBML at compile time.  
+  * @note Bzip2NotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a istream* object bound to the given bzip2 file or @c NULL if the initialization
   * for the object failed.
@@ -100,7 +100,7 @@ public:
   *
   * @param filename a string, the gzip file name to be read.
   *
-  * @note ZlibNotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note ZlibNotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a string, the string in the given file, or empty string if 
   * failed to open the file.
@@ -113,7 +113,7 @@ public:
   *
   * @param filename a string, the bzip2 file name to be read.
   *
-  * @note Bzip2NotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note Bzip2NotLinked will be thrown if zlib is not linked with libLX at compile time.
   *
   * @return a string, the string in the given file, or empty string if failed to open
   * the file.
@@ -129,7 +129,7 @@ public:
   * @return a string, the string in the given file, or empty string if failed to open
   * the file.
   *
-  * @note ZlibNotLinked will be thrown if zlib is not linked with libSBML at compile time.
+  * @note ZlibNotLinked will be thrown if zlib is not linked with libLX at compile time.
   * The first file in the given zip archive file will be opened if the zip archive
   * contains two or more files.
   */

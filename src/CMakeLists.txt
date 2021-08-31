@@ -98,8 +98,8 @@ foreach(dir common compress xml)
 endforeach(dir)
 
 
-file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/sbml/*.h")
-install(FILES ${files} DESTINATION include/sbml)
+# file(GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/sbml/*.h")
+# install(FILES ${files} DESTINATION include/sbml)
 
 
 ###############################################################################

@@ -4,8 +4,8 @@
 # Original author(s): Frank Bergmann <fbergman@caltech.edu>
 # Organization      : California Institute of Technology
 #
-# This file is part of libSBML.  Please visit http://sbml.org for more
-# information about SBML, and the latest version of libSBML.
+# This file is part of libLX.  Please visit http://sbml.org for more
+# information about SBML, and the latest version of libLX.
 #
 # Copyright (C) 2013-2018 jointly by the following organizations:
 #     1. California Institute of Technology, Pasadena, CA, USA
@@ -33,10 +33,10 @@
 
 message("Python: Add Version to generated file")
 
-if(NOT EXISTS ${CUR_BIN_DIRECTORY}/libsbml.py)
+if(NOT EXISTS ${CUR_BIN_DIRECTORY}/liblx.py)
   message(FATAL_ERROR "  The SWIG wrapper has not yet been created")
 else()
-  file(APPEND ${CUR_BIN_DIRECTORY}/libsbml.py "
+  file(APPEND ${CUR_BIN_DIRECTORY}/liblx.py "
 global __version__
 __version__ = '${VERSION}'
 ")

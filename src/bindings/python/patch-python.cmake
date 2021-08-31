@@ -11,7 +11,7 @@
 
 
 # patch python wrapper file 
-set (WRAPPER_FILE "${BIN_DIRECTORY}/libsbml.py")
+set (WRAPPER_FILE "${BIN_DIRECTORY}/liblx.py")
 
 if (NOT EXISTS ${WRAPPER_FILE})
   message(FATAL_ERROR "Wrapper file does not exist")
@@ -38,11 +38,11 @@ if not _path in sys.path:
 
 if (PYTHON_USE_API2_WARNINGS)
   file(APPEND "${WRAPPER_FILE}" "
-USE_LIBSBML_PYTHON_API2_WARNINGS = True
+USE_LIBLX_PYTHON_API2_WARNINGS = True
 ")
 else()
   file(APPEND "${WRAPPER_FILE}" "
-USE_LIBSBML_PYTHON_API2_WARNINGS = False
+USE_LIBLX_PYTHON_API2_WARNINGS = False
 ")
 endif()
 
@@ -51,7 +51,7 @@ file(APPEND  "${WRAPPER_FILE}" "${SOURCECODE}")
 
 file(READ "${WRAPPER_FILE}" init_script)
 
-file(WRITE "${BIN_DIRECTORY}/libsbml2.py" "${init_script}")
+file(WRITE "${BIN_DIRECTORY}/liblx2.py" "${init_script}")
 
 string(REPLACE 
   "class SBase(_object):"
@@ -78,4 +78,4 @@ string(REPLACE
 )
 
 
-file(WRITE ${BIN_DIRECTORY}/libsbml3.py "${init3_script}")
+file(WRITE ${BIN_DIRECTORY}/liblx3.py "${init3_script}")

@@ -6,8 +6,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -47,9 +47,10 @@
 #include <liblx/xml/XMLHandler.h>
 #include <liblx/xml/XMLNamespaces.h>
 #include <liblx/xml/XMLError.h>
+#include <liblx/xml/sbmlStubs.h>
 
 
-LIBSBML_CPP_NAMESPACE_BEGIN
+LIBLX_CPP_NAMESPACE_BEGIN
 
 
 class ExpatHandler
@@ -175,7 +176,7 @@ protected:
 };
 
 
-LIBSBML_CPP_NAMESPACE_END
+LIBLX_CPP_NAMESPACE_END
 
 #endif  /* __cplusplus */
 #endif  /* ExpatHandler_h */

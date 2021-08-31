@@ -6,8 +6,8 @@
  * @author  Ben Bornstein
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -46,12 +46,12 @@
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/XMLNamespaces.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
-#include <liblx/xml/sbmlMemoryStubs.h>
+#include <liblx/xml/sbmlStubs.h>
 #include <liblx/xml/common/common.h>
 #include <liblx/xml/common/liblx-version.h>
+
 #if defined CYGWIN
-#include <string.h>
+    #include <string.h>
 #endif
 
 using namespace std;
@@ -189,8 +189,8 @@ bool XMLOutputStream::mWriteComment = true;
 // of writing (enabled by default)
 bool XMLOutputStream::mWriteTimestamp = true;
 
-// the name of the library writing the file (i.e: libSBML)
-std::string XMLOutputStream::mLibraryName = "libSBML";
+// the name of the library writing the file (i.e: libLX)
+std::string XMLOutputStream::mLibraryName = "libLX";
 
 // the version of the library writing the file
 // TODO: Replace with a libSBXML version string
@@ -895,7 +895,7 @@ XMLOutputStream::writeValue (const double& value)
   }
   else
   {
-    mStream.precision(LIBSBML_DOUBLE_PRECISION);
+    mStream.precision(LIBLX_DOUBLE_PRECISION);
     mStream <<   value;
   }
 

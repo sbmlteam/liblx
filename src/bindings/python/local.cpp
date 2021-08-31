@@ -1,12 +1,18 @@
 /**
  * @file    local.cpp
- * @brief   Python-specific SWIG support code for wrapping libSBML API
+ * @brief   Python-specific SWIG support code for wrapping libLX API
  * @author  Ben Bornstein
  * @author  Ben Kovitz
  *
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about SBML, and the latest version of libLX.
+ *
+ * Copyright (C) 2020 jointly by the following organizations:
+ *     1. California Institute of Technology, Pasadena, CA, USA
+ *     2. University of Heidelberg, Heidelberg, Germany
+ *     3. University College London, London, UK
+ *
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -36,101 +42,106 @@
  * ---------------------------------------------------------------------- -->*/
 
 #include <cstddef>
-#include "liblx/SBase.h"
+//#include "liblx/SBase.h"
 
 /**
- * @return the most specific Swig type for the given SBMLExtension object.
+ * @return the most specific Swig type for the given LXExtension object.
  */
+ /*
 struct swig_type_info*
-GetDowncastSwigType (SBMLExtension* se)
+GetDowncastSwigType (LXExtension* se)
 {
-	if (se == 0) return SWIGTYPE_p_SBMLExtension;
+	if (se == 0) return SWIGTYPE_p_LXExtension;
 	
 	const std::string pkgName = se->getName();
 
 #include "local-downcast-extension.cpp"
 
-	return SWIGTYPE_p_SBMLExtension;
+	return SWIGTYPE_p_LXExtension;
 }
-
+*/
 /**
- * @return the most specific Swig type for the given SBMLConverter object.
+ * @return the most specific Swig type for the given LXConverter object.
  */
+ /*
 struct swig_type_info*
-GetDowncastSwigType (SBMLConverter* con)
+GetDowncastSwigType (LXConverter* con)
 {
-	if (con == 0) return SWIGTYPE_p_SBMLConverter;
+	if (con == 0) return SWIGTYPE_p_LXConverter;
 	
 	const std::string& conName = con->getName();
 	
-     if (conName == "SBML Units Converter")
-       return SWIGTYPE_p_SBMLUnitsConverter;
-     else if (conName == "SBML Strip Package Converter")
-       return SWIGTYPE_p_SBMLStripPackageConverter;
-     else if (conName == "SBML Rule Converter")
-       return SWIGTYPE_p_SBMLRuleConverter;
-     else if (conName == "SBML Reaction Converter")
-       return SWIGTYPE_p_SBMLReactionConverter;
-     else if (conName == "SBML Local Parameter Converter")
-       return SWIGTYPE_p_SBMLLocalParameterConverter;
-     else if (conName == "SBML Level Version Converter")
-       return SWIGTYPE_p_SBMLLevelVersionConverter;
-     else if (conName == "SBML Initial Assignment Converter")
-       return SWIGTYPE_p_SBMLInitialAssignmentConverter;
-     else if (conName == "SBML Infer Units Converter")
-       return SWIGTYPE_p_SBMLInferUnitsConverter;
-     else if (conName == "SBML Id Converter")
-       return SWIGTYPE_p_SBMLIdConverter;
-     else if (conName == "SBML Function Definition Converter")
-       return SWIGTYPE_p_SBMLFunctionDefinitionConverter;
+     if (conName == "LX Units Converter")
+       return SWIGTYPE_p_LXUnitsConverter;
+     else if (conName == "LX Strip Package Converter")
+       return SWIGTYPE_p_LXStripPackageConverter;
+     else if (conName == "LX Rule Converter")
+       return SWIGTYPE_p_LXRuleConverter;
+     else if (conName == "LX Reaction Converter")
+       return SWIGTYPE_p_LXReactionConverter;
+     else if (conName == "LX Local Parameter Converter")
+       return SWIGTYPE_p_LXLocalParameterConverter;
+     else if (conName == "LX Level Version Converter")
+       return SWIGTYPE_p_LXLevelVersionConverter;
+     else if (conName == "LX Initial Assignment Converter")
+       return SWIGTYPE_p_LXInitialAssignmentConverter;
+     else if (conName == "LX Infer Units Converter")
+       return SWIGTYPE_p_LXInferUnitsConverter;
+     else if (conName == "LX Id Converter")
+       return SWIGTYPE_p_LXIdConverter;
+     else if (conName == "LX Function Definition Converter")
+       return SWIGTYPE_p_LXFunctionDefinitionConverter;
 
 #include "local-downcast-converters.cpp"	
 	   
-	return SWIGTYPE_p_SBMLConverter;
+	return SWIGTYPE_p_LXConverter;
 }
-
+*/
 /**
- * @return the most specific Swig type for the given SBMLNamespaces object.
+ * @return the most specific Swig type for the given LXNamespaces object.
  */
+ /*
 struct swig_type_info*
-GetDowncastSwigType (SBMLNamespaces* se)
+GetDowncastSwigType (LXNamespaces* se)
 {
-	if (se == 0) return SWIGTYPE_p_SBMLNamespaces;
+	if (se == 0) return SWIGTYPE_p_LXNamespaces;
 	
 	const std::string pkgName = se->getPackageName();
 
 #include "local-downcast-namespaces.cpp"
 
-	return SWIGTYPE_p_SBMLNamespaces;
+	return SWIGTYPE_p_LXNamespaces;
 }
-
+*/
 /**
  * @return the most specific Swig type for the given SBasePlugin object.
  */
+ /*
 struct swig_type_info*
 GetDowncastSwigType (SBasePlugin* sbp)
 {
   if (sbp == 0) return SWIGTYPE_p_SBasePlugin;
 
   const std::string pkgName = sbp->getPackageName();
-  SBase* sb = sbp->getParentSBMLObject();
+  SBase* sb = sbp->getParentLXObject();
   if (!sb) return SWIGTYPE_p_SBasePlugin;
 	
 #include "local-downcast-plugins.cpp"
 
-  if (sb->getTypeCode() == SBML_DOCUMENT)
-    return SWIGTYPE_p_SBMLDocumentPlugin;
+  if (sb->getTypeCode() == LX_DOCUMENT)
+    return SWIGTYPE_p_LXDocumentPlugin;
 
   return SWIGTYPE_p_SBasePlugin;
 }
+*/
 
-
-struct swig_type_info*
-GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName);
+//struct swig_type_info*
+//GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName);
 
 /**
  * @return the most specific Swig type for the given SBase object.
  */
+/*
 struct swig_type_info*
 GetDowncastSwigType (SBase* sb)
 {
@@ -138,9 +149,11 @@ GetDowncastSwigType (SBase* sb)
   const std::string pkgName = sb->getPackageName();
   return GetDowncastSwigTypeForPackage(sb, pkgName);
 }
+*/
 /**
  * @return the most specific Swig type for the given SBase object.
  */
+/*
 struct swig_type_info*
 GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName)
 {
@@ -152,34 +165,34 @@ GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName)
   {
     switch (sb->getTypeCode())
     {
-      case SBML_COMPARTMENT:
+      case LX_COMPARTMENT:
         return SWIGTYPE_p_Compartment;
   
-      case SBML_COMPARTMENT_TYPE:
+      case LX_COMPARTMENT_TYPE:
         return SWIGTYPE_p_CompartmentType;
   
-      case SBML_CONSTRAINT:
+      case LX_CONSTRAINT:
         return SWIGTYPE_p_Constraint;
 
-      case SBML_DOCUMENT:
-        return SWIGTYPE_p_SBMLDocument;
+      case LX_DOCUMENT:
+        return SWIGTYPE_p_LXDocument;
   
-      case SBML_EVENT:
+      case LX_EVENT:
         return SWIGTYPE_p_Event;
   
-      case SBML_EVENT_ASSIGNMENT:
+      case LX_EVENT_ASSIGNMENT:
         return SWIGTYPE_p_EventAssignment;
   
-      case SBML_FUNCTION_DEFINITION:
+      case LX_FUNCTION_DEFINITION:
         return SWIGTYPE_p_FunctionDefinition;
   
-      case SBML_INITIAL_ASSIGNMENT:
+      case LX_INITIAL_ASSIGNMENT:
         return SWIGTYPE_p_InitialAssignment;
   
-      case SBML_KINETIC_LAW:
+      case LX_KINETIC_LAW:
         return SWIGTYPE_p_KineticLaw;
   
-      case SBML_LIST_OF:
+      case LX_LIST_OF:
         name = sb->getElementName();
         if(name == "listOf"){
           return SWIGTYPE_p_ListOf;
@@ -243,55 +256,55 @@ GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName)
         }
       return SWIGTYPE_p_ListOf;
 
-      case SBML_MODEL:
+      case LX_MODEL:
         return SWIGTYPE_p_Model;
 
-      case SBML_PARAMETER:
+      case LX_PARAMETER:
         return SWIGTYPE_p_Parameter;
   
-      case SBML_LOCAL_PARAMETER:
+      case LX_LOCAL_PARAMETER:
         return SWIGTYPE_p_LocalParameter;
 
-      case SBML_REACTION:
+      case LX_REACTION:
         return SWIGTYPE_p_Reaction;
 
-      case SBML_SPECIES:
+      case LX_SPECIES:
         return SWIGTYPE_p_Species;
 
-      case SBML_SPECIES_REFERENCE:
+      case LX_SPECIES_REFERENCE:
         return SWIGTYPE_p_SpeciesReference;
 
-      case SBML_MODIFIER_SPECIES_REFERENCE:
+      case LX_MODIFIER_SPECIES_REFERENCE:
         return SWIGTYPE_p_ModifierSpeciesReference;
 
-      case SBML_SPECIES_TYPE:
+      case LX_SPECIES_TYPE:
         return SWIGTYPE_p_SpeciesType;
 
-      case SBML_UNIT_DEFINITION:
+      case LX_UNIT_DEFINITION:
         return SWIGTYPE_p_UnitDefinition;
 
-      case SBML_UNIT:
+      case LX_UNIT:
         return SWIGTYPE_p_Unit;
 
-      case SBML_ALGEBRAIC_RULE:
+      case LX_ALGEBRAIC_RULE:
         return SWIGTYPE_p_AlgebraicRule;
 
-      case SBML_ASSIGNMENT_RULE:
+      case LX_ASSIGNMENT_RULE:
         return SWIGTYPE_p_AssignmentRule;
 
-      case SBML_RATE_RULE:
+      case LX_RATE_RULE:
         return SWIGTYPE_p_RateRule;
 
-      case SBML_DELAY:
+      case LX_DELAY:
         return SWIGTYPE_p_Delay;
 
-      case SBML_TRIGGER:
+      case LX_TRIGGER:
         return SWIGTYPE_p_Trigger;
 
-      case SBML_STOICHIOMETRY_MATH:
+      case LX_STOICHIOMETRY_MATH:
        return SWIGTYPE_p_StoichiometryMath;
       
-    case SBML_PRIORITY:
+    case LX_PRIORITY:
       return SWIGTYPE_p_Priority;
       
       default:
@@ -303,11 +316,12 @@ GetDowncastSwigTypeForPackage (SBase* sb, const std::string &pkgName)
   
   return SWIGTYPE_p_SBase;
 }
-
+*/
 
 /**
  * @return the most specific Swig type for the given ASTBasePlugin object.
  */
+/*
 struct swig_type_info*
 GetDowncastSwigType (ASTBasePlugin* sbp)
 {
@@ -319,7 +333,7 @@ GetDowncastSwigType (ASTBasePlugin* sbp)
 
   return SWIGTYPE_p_ASTBasePlugin;
 }
-
+*/
 
 
 /* Compatibility bug fix for swig 2.0.7 and Python 3. 

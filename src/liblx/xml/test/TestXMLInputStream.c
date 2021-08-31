@@ -4,8 +4,8 @@
  * \author  Sarah Keating
  * 
  * <!--------------------------------------------------------------------------
- * This file is part of libSBML.  Please visit http://sbml.org for more
- * information about SBML, and the latest version of libSBML.
+ * This file is part of libLX.  Please visit http://sbml.org for more
+ * information about LX, and the latest version of libLX.
  *
  * Copyright (C) 2019 jointly by the following organizations:
  *     1. California Institute of Technology, Pasadena, CA, USA
@@ -50,7 +50,7 @@ CK_CPPSTART
  * Wraps the string s in the appropriate XML boilerplate.
  */
 #define XML_START   "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
-#define SBML_START  "<sbml "
+#define LX_START  "<sbml "
 #define NS_L1       "xmlns=\"http://www.sbml.org/sbml/level1\" "
 #define NS_L2v1     "xmlns=\"http://www.sbml.org/sbml/level2\" "
 #define NS_L2v2     "xmlns=\"http://www.sbml.org/sbml/level2/version2\" "
@@ -58,18 +58,18 @@ CK_CPPSTART
 #define LV_L1v2     "level=\"1\" version=\"2\">\n"
 #define LV_L2v1     "level=\"2\" version=\"1\">\n"
 #define LV_L2v2     "level=\"2\" version=\"2\">\n"
-#define SBML_END    "</sbml>\n"
+#define LX_END    "</sbml>\n"
 
 #define wrapXML(s)        XML_START s
-#define wrapSBML_L1v1(s)  XML_START SBML_START NS_L1   LV_L1v1 s SBML_END
-#define wrapSBML_L1v2(s)  XML_START SBML_START NS_L1   LV_L1v2 s SBML_END
-#define wrapSBML_L2v1(s)  XML_START SBML_START NS_L2v1 LV_L2v1 s SBML_END
-#define wrapSBML_L2v2(s)  XML_START SBML_START NS_L2v2 LV_L2v2 s SBML_END
+#define wrapLX_L1v1(s)  XML_START LX_START NS_L1   LV_L1v1 s LX_END
+#define wrapLX_L1v2(s)  XML_START LX_START NS_L1   LV_L1v2 s LX_END
+#define wrapLX_L2v1(s)  XML_START LX_START NS_L2v1 LV_L2v1 s LX_END
+#define wrapLX_L2v2(s)  XML_START LX_START NS_L2v2 LV_L2v2 s LX_END
 
 
 START_TEST (test_XMLInputStream_create)
 {
-  const char* text = wrapSBML_L2v1("  <model id=\"Branch\"/>\n");
+  const char* text = wrapLX_L2v1("  <model id=\"Branch\"/>\n");
 
   XMLInputStream_t * stream = XMLInputStream_create(text, 0, "");
 
@@ -102,11 +102,11 @@ START_TEST (test_XMLInputStream_next_peek)
   
   fail_unless(stream != NULL);
   
-  fail_unless(strcmp(XMLToken_getName(next0), "sbml") == 0);
+  fail_unless(strcmp(XMLToken_getName(next0), "sbml" /*"lx"*/) == 0);
   
   XMLToken_t * next1 = XMLInputStream_next(stream);
   
-  fail_unless(strcmp(XMLToken_getName(next1), "sbml") == 0);
+  fail_unless(strcmp(XMLToken_getName(next1), "sbml" /*"lx"*/) == 0);
  
   XMLToken_free(next1);
   XMLInputStream_free(stream);

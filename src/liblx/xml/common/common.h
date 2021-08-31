@@ -34,8 +34,8 @@
  * also available online as http://sbml.org/software/libsbml/license.html
  * ---------------------------------------------------------------------- -->*/
 
-#ifndef LIBSBML_COMMON_H
-#define LIBSBML_COMMON_H 1
+#ifndef LIBLX_COMMON_H
+#define LIBLX_COMMON_H 1
 
 
 #include <liblx/xml/common/liblx-config.h>
@@ -45,19 +45,19 @@
 
 
 #if STDC_HEADERS
-#  include <errno.h>
-#  include <float.h>
-#  include <stdarg.h>
-#  include <stdlib.h>
-#  include <string.h>
+    #include <errno.h>
+    #include <float.h>
+    #include <stdarg.h>
+    #include <stdlib.h>
+    #include <string.h>
 #endif
 
 #if HAVE_MATH_H
-#  include <math.h>
+    #include <math.h>
 #endif
 
 #if HAVE_IEEFP_H
-#  include <ieeefp.h>
+    #include <ieeefp.h>
 #endif
 
 #ifndef errno
@@ -66,16 +66,16 @@
 
 
 /**
- * Default format used by libSBML when writing out floating-point numbers
- * into the XML produced by libSBML.  This is used by
+ * Default format used by libLX when writing out floating-point numbers
+ * into the XML produced by libLX.  This is used by
  * StringBuffer_appendReal.
  */
-#define LIBSBML_FLOAT_FORMAT "%.15g"
+#define LIBLX_FLOAT_FORMAT "%.15g"
 
-#define LIBSBML_DOUBLE_PRECISION 15
+#define LIBLX_DOUBLE_PRECISION 15
 
-static const int SBML_INT_MAX = 2147483647;
-static const int SBML_INT_MIN = -2147483647 - 1;
+static const int LIBLX_INT_MAX = 2147483647;
+static const int LIBLX_INT_MIN = -2147483647 - 1;
 
 /*
  * Sometimes the line/column numbers reported by the underlying parsers are
@@ -106,12 +106,12 @@ static const int SBML_INT_MIN = -2147483647 - 1;
  * number could be provided by the parser.
  */
 
-#define LIBSBML_UNKNOWN_LINE	SBML_INT_MAX
-#define LIBSBML_UNKNOWN_COLUMN	SBML_INT_MAX
+#define LIBLX_UNKNOWN_LINE	LIBLX_INT_MAX
+#define LIBLX_UNKNOWN_COLUMN	LIBLX_INT_MAX
 
-#define LIBSBML_USE_LEGACY_MATH 1
+#define LIBLX_USE_LEGACY_MATH 1
 
 
 #include <liblx/xml/common/extern.h>
 
-#endif  /* LIBSBML_COMMON_H */
+#endif  /* LIBLX_COMMON_H */

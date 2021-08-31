@@ -45,7 +45,7 @@
 
 #include <check.h>
 #include <XMLError.h>
-#include <operationReturnValues.h>
+#include <liblx/xml/operationReturnValues.h>
 
 /** @cond doxygenIgnored */
 
@@ -69,7 +69,7 @@ START_TEST (test_XMLError_create)
   fail_unless( error->getErrorId()  == DuplicateXMLAttribute );
   fail_unless( error->getSeverity() == LIBLX_SEV_ERROR );
   fail_unless( error->getSeverityAsString() == "Error" );
-  fail_unless( error->getCategory() == LIBSBXML_CAT_XML );
+  fail_unless( error->getCategory() == LIBLX_CAT_XML );
   fail_unless( error->getCategoryAsString() == "XML content");
   fail_unless( error->getMessage()  == "Duplicate XML attribute.\n" );
   fail_unless( error->getShortMessage()  == "Duplicate attribute" );
@@ -80,29 +80,29 @@ START_TEST (test_XMLError_create)
   fail_unless( error->getMessage()  == "My message" );
   fail_unless( error->getSeverity() == LIBLX_SEV_FATAL );
   fail_unless( error->getSeverityAsString() == "Fatal" );
-  fail_unless( error->getCategory() == LIBSBXML_CAT_INTERNAL );
+  fail_unless( error->getCategory() == LIBLX_CAT_INTERNAL );
   fail_unless( error->getCategoryAsString() == "Internal");
   delete error;
 
   error = new XMLError(12345, "My message", 0, 0,
-                       LIBLX_SEV_INFO, LIBSBXML_CAT_SYSTEM);
+                       LIBLX_SEV_INFO, LIBLX_CAT_SYSTEM);
   fail_unless( error->getErrorId()  == 12345 );
   fail_unless( error->getMessage()  == "My message" );
   fail_unless( error->getSeverity() == LIBLX_SEV_INFO );
   fail_unless( error->getSeverityAsString() == "Informational" );
-  fail_unless( error->getCategory() == LIBSBXML_CAT_SYSTEM );
+  fail_unless( error->getCategory() == LIBLX_CAT_SYSTEM );
   fail_unless( error->getCategoryAsString() == "Operating system");
   fail_unless( error->isInfo() );
   fail_unless( error->isSystem() );
   delete error;
 
   error = new XMLError(10000, "Another message", 0, 0,
-                       LIBLX_SEV_FATAL, LIBSBXML_CAT_XML);
+                       LIBLX_SEV_FATAL, LIBLX_CAT_XML);
   fail_unless( error->getErrorId()  == 10000 );
   fail_unless( error->getMessage()  == "Another message" );
   fail_unless( error->getSeverity() == LIBLX_SEV_FATAL );
   fail_unless( error->getSeverityAsString() == "Fatal" );
-  fail_unless( error->getCategory() == LIBSBXML_CAT_XML );
+  fail_unless( error->getCategory() == LIBLX_CAT_XML );
   fail_unless( error->getCategoryAsString() == "XML content");
   fail_unless( error->isFatal() );
   fail_unless( error->isXML() );
