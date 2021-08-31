@@ -28,6 +28,11 @@ to store the results of the build we are going to make:
     mkdir build
     cd build
 
+[NB Added later: Despite what I've done here, it is generally recommended NOT to have the build within the
+same directory structure as the repo; best to move completely outside. It is then termed an
+"out of source build". If you do it properly, the `cmake` commands below should end with the directory of the
+source files you are building, rather than just `..` as I have done here. Hopefully later we'll have some
+time to update the wording of this doc to remove the need for this note. Sorry!] 
 
 We can now invoke CMake (assuming you have it installed!), with various options as appropriate. For example
 
