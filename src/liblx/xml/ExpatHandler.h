@@ -47,7 +47,7 @@
 #include <liblx/xml/XMLHandler.h>
 #include <liblx/xml/XMLNamespaces.h>
 #include <liblx/xml/XMLError.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/util/util.h>
 
 
 LIBLX_CPP_NAMESPACE_BEGIN

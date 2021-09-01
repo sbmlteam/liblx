@@ -94,9 +94,9 @@ LIBLX_CPP_NAMESPACE_USE
 
 %include "liblx.h"
 
-%import  liblx/xml/common/liblx-namespace.h
-%import  liblx/xml/common/extern.h
-%import  liblx/xml/common/liblxfwd.h
+%import  liblx/common/liblx-namespace.h
+%import  liblx/common/extern.h
+%import  liblx/common/liblxfwd.h
 //%import  lx/xml/XMLExtern.h    // do we still need this? not present in libLX now.
 
 /**
@@ -801,8 +801,8 @@ as a comment in the output stream.
 
 %include "std_string.i"     // ???
 
-%include liblx/xml/common/liblx-version.h
-%include liblx/xml/operationReturnValues.h
+%include liblx/common/liblx-version.h
+%include liblx/common/operationReturnValues.h
 //%include lx/common/common-documentation.h
 //%include lx/common/common-lxerror-codes.h
 

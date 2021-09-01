@@ -38,7 +38,7 @@
 #define LIBLX_COMMON_H 1
 
 
-#include <liblx/xml/common/liblx-config.h>
+#include <liblx/common/liblx-config.h>
 
 
 #include <stdio.h>
@@ -112,6 +112,6 @@ static const int LIBLX_INT_MIN = -2147483647 - 1;
 #define LIBLX_USE_LEGACY_MATH 1
 
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 #endif  /* LIBLX_COMMON_H */

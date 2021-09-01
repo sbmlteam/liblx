@@ -38,12 +38,12 @@
 #include <iomanip>
 #include <sstream>
 
-#include <liblx/xml/common/common.h>
+#include <liblx/common/common.h>
 #include <liblx/xml/XMLError.h>
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLConstructorException.h>
 #include <liblx/xml/LibLXError.h>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 /** @cond doxygenIgnored */
 using namespace std;
@@ -815,7 +815,7 @@ ostream& operator<< (ostream& s, const XMLError& error)
 
 #endif /* __cplusplus */
 /** @cond doxygenIgnored */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLError_t*
 XMLError_create (void)
 {
@@ -823,7 +823,7 @@ XMLError_create (void)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLError_t*
 XMLError_createWithIdAndMessage (unsigned int errorId, const char * message)
 {
@@ -831,7 +831,7 @@ XMLError_createWithIdAndMessage (unsigned int errorId, const char * message)
   return new(nothrow) XMLError((int)errorId, message);
 }
 
-//LIBLX_EXTERN
+//LIBLAX_EXTERN
 //XMLError_t*
 //XMLError_createWithAll (unsigned int errorId, const char * message, XMLError_Severity severity,
 //                        const char * category, unsigned int line, unsigned int column)
@@ -859,7 +859,7 @@ XMLError_createWithIdAndMessage (unsigned int errorId, const char * message)
 //}
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLError_free(XMLError_t* error)
 {
@@ -867,7 +867,7 @@ XMLError_free(XMLError_t* error)
   delete static_cast<XMLError*>(error);
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getErrorId (const XMLError_t *error)
 {
@@ -876,7 +876,7 @@ XMLError_getErrorId (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getMessage (const XMLError_t *error)
 {
@@ -885,7 +885,7 @@ XMLError_getMessage (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getShortMessage (const XMLError_t *error)
 {
@@ -894,7 +894,7 @@ XMLError_getShortMessage (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getLine (const XMLError_t *error)
 {
@@ -903,7 +903,7 @@ XMLError_getLine (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getColumn (const XMLError_t *error)
 {
@@ -912,7 +912,7 @@ XMLError_getColumn (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getSeverity (const XMLError_t *error)
 {
@@ -921,7 +921,7 @@ XMLError_getSeverity (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getSeverityAsString (const XMLError_t *error)
 {
@@ -931,7 +931,7 @@ XMLError_getSeverityAsString (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getCategory (const XMLError_t *error)
 {
@@ -940,7 +940,7 @@ XMLError_getCategory (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getCategoryAsString (const XMLError_t *error)
 {
@@ -950,7 +950,7 @@ XMLError_getCategoryAsString (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isInfo (const XMLError_t *error)
 {
@@ -959,7 +959,7 @@ XMLError_isInfo (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isWarning (const XMLError_t *error)
 {
@@ -968,7 +968,7 @@ XMLError_isWarning (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isError (const XMLError_t *error)
 {
@@ -977,7 +977,7 @@ XMLError_isError (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isFatal (const XMLError_t *error)
 {
@@ -986,7 +986,7 @@ XMLError_isFatal (const XMLError_t *error)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLError_print (const XMLError_t *error, FILE *stream)
 {
