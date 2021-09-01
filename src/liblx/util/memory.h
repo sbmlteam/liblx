@@ -1,5 +1,5 @@
 /*
- * sbmlStubs.h
+ * memory.h
  *
  *  Created on: 27 October 2020
  *      Author: Timothy Spain
