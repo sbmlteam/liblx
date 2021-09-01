@@ -1,12 +1,12 @@
 /*
- * sbmlStubs.h
+ * util.h
  *
  *  Created on: 27 October 2020
  *      Author: Timothy Spain
  */
 
-#ifndef SBMLSTUBS_H
-#define SBMLSTUBS_H
+#ifndef UTIL_H
+#define UTIL_H
 
 #include <ctype.h>
 #include <cstddef>
@@ -31,4 +31,4 @@ streq (const char *s, const char *t);
 END_C_DECLS
 
 LIBLX_CPP_NAMESPACE_END
-#endif /*ndef SBMLSTUBS_H */
+#endif /*ndef UTIL_H */
