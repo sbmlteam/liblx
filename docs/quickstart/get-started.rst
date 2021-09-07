@@ -21,7 +21,7 @@ you wish to use to build ``liblx``.
 .. _building_mac:
 
 Instructions for building on a Mac
-==================================
+----------------------------------
 
 If you want to build the SWIG language bindings, install swig e.g. ``brew install swig``
 
@@ -38,9 +38,15 @@ In a location outside of the cloned repo, create a directory in which to do the 
  ``mkdir build``   -  the results of the build will be in here.
  ``cd build``
  Execute ``cmake``, e.g.
- ``cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /path/to/liblx/cloned/repo/``
-Note that the directory at the end of the cmake command above is the top-level directory of the cloned repo (i.e. it contains the top-level ``CMakeLists.txt`` file).
- Now execute command ``make``, or try ``cmake --build .``
+
+.. code-block:: bash
+
+ cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /path/to/liblx/cloned/repo/
+
+Note that the directory at the end of the cmake command above is the top-level directory of the cloned repo
+(i.e. it contains the top-level ``CMakeLists.txt`` file).
+
+Now execute command ``make``, or try ``cmake --build .``
 
 On Mac, this builds ``build/src/liblx-static.a`` and ``build/src/liblx.dylib``
 
@@ -72,7 +78,7 @@ e.g.
 or use the nuclear option: ``rm -rf build/*``
 
 To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
-Because various Xerces files in src/liblx/xml #include files from there.
+Because various Xerces files in ``src/liblx/xml`` ``#include`` files from there.
 LibXML appears to be fully present already
 Instructions at http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html
 
@@ -119,38 +125,51 @@ e.g. ``LIBSBML_CPP_NAMESPACE_END``
 
 Example of how to use the SWIG/Python binding
 ---------------------------------------------
-Still in the `/build` directory
-`export PYTHONPATH=.:src/bindings/python`
+Still in the ``/build`` directory, set the ``PYTHONPATH`` environment variable. e.g. on Mac:
 
-python
->>> from liblx import *
->>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
->>> y = XMLNode(test_str)
->>> print(y.toString())
-<annotation>
-  <test xmlns="http://test.org/" id="test1">test2</test>
-</annotation>
->>> z = y.clone()
->>> print(z)
-<liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
->>> print(z.toString())
-<annotation>
-  <test xmlns="http://test.org/" id="test1">test2</test>
-</annotation>
->>> y == z
-False
->>> y is z
-False
->>> y.toString() == z.toString()
-True
->>> y.equals(z)
-True
->>> z.equals(y)
-True
->>> print(y.toXMLString())
-&lt;annotation&gt;
-  &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
-&lt;/annotation&gt;
+.. code-block:: bash
+
+     export PYTHONPATH=.:src/bindings/python
+
+or, on Windows:
+
+.. code-block:: bash
+
+     set PYTHONPATH=.;src/bindings/python
+
+Now we can fire up a Python interpreter and use ``liblx``:
+
+.. code-block:: bash
+
+    python
+    >>> from liblx import *
+    >>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
+    >>> y = XMLNode(test_str)
+    >>> print(y.toString())
+    <annotation>
+      <test xmlns="http://test.org/" id="test1">test2</test>
+    </annotation>
+    >>> z = y.clone()
+    >>> print(z)
+    <liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
+    >>> print(z.toString())
+    <annotation>
+      <test xmlns="http://test.org/" id="test1">test2</test>
+    </annotation>
+    >>> y == z
+    False
+    >>> y is z
+    False
+    >>> y.toString() == z.toString()
+    True
+    >>> y.equals(z)
+    True
+    >>> z.equals(y)
+    True
+    >>> print(y.toXMLString())
+    &lt;annotation&gt;
+      &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
+    &lt;/annotation&gt;
 
 
 .. _building_windows:
@@ -184,8 +203,12 @@ Then, from within that new build directory, in a Visual Studio Command Prompt:
   ``cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=ON ..``
 
 better: out-of-source build - commands invoked from new directory c:\Users\mattg\build:
- cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
- cmake --build .
+
+.. code-block:: bash
+
+     cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
+     cmake --build .
+
 -> in build\src\Debug, got liblx-static.lib and liblx.dll
 Seems to generate both static and dynamic libs regardless.
  ctest -V
@@ -318,9 +341,14 @@ main document being ``./docs/sphinx/index.html``
 
 Windows example (builds docs and check code):
 
-cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF -DWITH_DOXYGEN=TRUE -DDOXYGEN_EXECUTABLE="C:\Program Files\doxygen\bin\doxygen.exe" C:\Users\mattg\repos\work\CompBioLibs\liblx
+cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF -DWITH_DOXYGEN=TRUE  C:\Users\mattg\repos\work\CompBioLibs\liblx
 cmake --build .
 ctest -V
+
+Doxygen should be picked up, if you updated the ``PATH`` environment variable above; if not,
+you can specify it as an extra item in the ``cmake`` command above.
+e.g. ``-DDOXYGEN_EXECUTABLE="C:\Program Files\doxygen\bin\doxygen.exe"``
+
 
 Running the tests
 -----------------
