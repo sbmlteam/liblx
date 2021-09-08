@@ -121,57 +121,6 @@ NB at the moment Expat and Xerces builds are failing as they still have some SBM
 e.g. ``LIBSBML_CPP_NAMESPACE_END``
 
 
-.. _how_to_use_SWIG_Python_binding:
-
-Example of how to use the SWIG/Python binding
----------------------------------------------
-Still in the ``/build`` directory, set the ``PYTHONPATH`` environment variable. e.g. on Mac:
-
-.. code-block:: bash
-
-     export PYTHONPATH=.:src/bindings/python
-
-or, on Windows:
-
-.. code-block:: bash
-
-     set PYTHONPATH=.;src/bindings/python
-
-Now we can fire up a Python interpreter and use ``liblx``:
-
-.. code-block:: bash
-
-    python
-    >>> from liblx import *
-    >>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
-    >>> y = XMLNode(test_str)
-    >>> print(y.toString())
-    <annotation>
-      <test xmlns="http://test.org/" id="test1">test2</test>
-    </annotation>
-    >>> z = y.clone()
-    >>> print(z)
-    <liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
-    >>> print(z.toString())
-    <annotation>
-      <test xmlns="http://test.org/" id="test1">test2</test>
-    </annotation>
-    >>> y == z
-    False
-    >>> y is z
-    False
-    >>> y.toString() == z.toString()
-    True
-    >>> y.equals(z)
-    True
-    >>> z.equals(y)
-    True
-    >>> print(y.toXMLString())
-    &lt;annotation&gt;
-      &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
-    &lt;/annotation&gt;
-
-
 .. _building_windows:
 
 How to build on Windows
@@ -366,4 +315,56 @@ using the ``-C`` option. So for example for the debug build:
 .. code-block:: bash
 
     (venv) build > ctest -C Debug -V
+
+
+
+.. _how_to_use_SWIG_Python_binding:
+
+Example of how to use the SWIG/Python binding
+---------------------------------------------
+Still in the ``/build`` directory, set the ``PYTHONPATH`` environment variable. e.g. on Mac:
+
+.. code-block:: bash
+
+     export PYTHONPATH=.:src/bindings/python
+
+or, on Windows:
+
+.. code-block:: bash
+
+     set PYTHONPATH=.;src/bindings/python
+
+Now we can fire up a Python interpreter and use ``liblx``:
+
+.. code-block:: bash
+
+    python
+    >>> from liblx import *
+    >>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
+    >>> y = XMLNode(test_str)
+    >>> print(y.toString())
+    <annotation>
+      <test xmlns="http://test.org/" id="test1">test2</test>
+    </annotation>
+    >>> z = y.clone()
+    >>> print(z)
+    <liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
+    >>> print(z.toString())
+    <annotation>
+      <test xmlns="http://test.org/" id="test1">test2</test>
+    </annotation>
+    >>> y == z
+    False
+    >>> y is z
+    False
+    >>> y.toString() == z.toString()
+    True
+    >>> y.equals(z)
+    True
+    >>> z.equals(y)
+    True
+    >>> print(y.toXMLString())
+    &lt;annotation&gt;
+      &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
+    &lt;/annotation&gt;
 
