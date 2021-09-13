@@ -187,6 +187,8 @@ Then, from within that new ``build`` directory, in a Visual Studio Command Promp
      cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
      cmake --build .
 
+NB this is wrong as it has two different DCMAKE_BUILD_TYPE values
+
 where the commands were invoked from a new ``build/`` directory ``c:\Users\mattg\build``
 and the ``LIBLX_DEPENDENCY_DIR`` is the absolute path to the unzipped (and renamed) SBML dependencies folder.
 
@@ -363,6 +365,7 @@ Windows example (builds docs and check code):
     cmake --build .
     ctest -V
 
+NB this example is wrong as it has two -DCMAKE_BUILD_TYPE's
 
 Running the tests
 -----------------
@@ -388,8 +391,36 @@ Example of how to use the SWIG/Python binding
 ---------------------------------------------
 If you want to build the SWIG language bindings, install swig e.g. ``brew install swig`` on a Mac.
 
-Windows: _____________________
+http://www.swig.org/download.html
+Windows: _____________________ "Windows users should download swigwin-4.0.2 which includes a prebuilt executable."
 
+set PYTHON_INCLUDE=C:\ProgramData\Anaconda3\include
+set PYTHON_LIB=C:\ProgramData\Anaconda3\libs\python38.lib
+-DSWIG_EXECUTABLE=C:\Users\mattg\swigwin-4.0.2\swig.exe
+produces src/bindings/python/liblx.py
+
+linker error:
+LINK : fatal error LNK1104: cannot open file 'python38_d.lib' [C:\Users\mattg\build\src\bindings\python\binding_python_
+lib.vcxproj]
+Maybe because I specified a debug version of the dependencies???
+see:
+https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-windows-with-a-debug-python-installation
+
+
+https://stackoverflow.com/questions/17028576/using-python-3-3-in-c-python33-d-lib-not-found/45407558
+It looks like we need to download a debug version of the python library. Anaconda doesn;t appear to supply this.
+Downloading Windows installer of Python 3.9.7 https://www.python.org/downloads/release/python-397/
+Or, one can use #ifdef statements.
+The installer updated the PATH (selected option to disable max PATH character limit) and appears before the
+Anaconda version in the PATH.
+
+set PYTHON_INCLUDE="C:\Program Files\Python39\include"   # location of Python.h
+set PYTHON_LIB="C:\Program Files\Python39\libs\python39_d.lib"  # debug library
+-DPYTHON_EXECUTABLE="C:\Program Files\Python39\python.exe"
+rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio: Project-> cmake cache->delete cache
+
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
+\build\src\liblx\xml\test\test_sbml_xml.vcxproj]
 
 If you do a build with the extra switch ``-DWITH_PYTHON=TRUE``, you should find Python bindings generated
 in the build directory, in ``src/bindings/python``. Frank says: "you should find the ``libsbml.py``
@@ -449,3 +480,10 @@ Now we can fire up a Python interpreter and use ``liblx``:
       &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
     &lt;/annotation&gt;
 
+
+
+with anaconda:
+INCLUDE=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt
+LIB=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\lib\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\ucrt\x86;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\um\x86
+LIBPATH=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\lib\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.19041.0;C:\Windows\Microsoft.NET\Framework\v4.0.30319
+Path=C:\Users\mattg\envts\venv\Scripts;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\\Extensions\Microsoft\IntelliCode\CLI;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX86\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\VC\VCPackages;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Team Tools\Performance Tools;C:\Program Files (x86)\Microsoft Visual Studio\Shared\Common\VSPerfCollectionTools\vs2019\;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\devinit;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x86;C:\Program Files (x86)\Windows Kits\10\bin\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\\MSBuild\Current\Bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\;C:\Program Files\Python39\Scripts\;C:\Program Files\Python39\;C:\ProgramData\Anaconda3;C:\ProgramData\Anaconda3\Library\mingw-w64\bin;C:\ProgramData\Anaconda3\Library\usr\bin;C:\ProgramData\Anaconda3\Library\bin;C:\ProgramData\Anaconda3\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C;C:\Program Files\Graphviz\bin;C:\Users\mattg\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\doxygen\bin;C:\Program Files\GraphViz\bin
