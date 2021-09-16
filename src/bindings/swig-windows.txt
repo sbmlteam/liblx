@@ -1,0 +1,60 @@
+Here are some instructions for getting a basic SWIG/Python wrapper to work
+on Windows using Visual Studio tools.
+
+by Matthew Gillman, September 2021.
+
+SWIG website links:
+C example http://www.swig.org/Doc4.0/Python.html#Python_nn4
+environment variables http://www.swig.org/Doc4.0/Windows.html#Windows_python
+Windows quirks http://www.swig.org/Doc4.0/Windows.html#Windows_interface_file
+
+My PC is an x64 Windows box. I was only able to get this working using the special
+"x64 Native Tools Command Prompt". There is a linker option (/MACHINE:X64) but that
+wasn't enough to get things working in a normal Visual Studio command prompt.
+
+1. C example
+------------
+
+/* File: example.h */
+
+int fact(int n);
+-----------------
+/* File: example.c */
+
+#include "example.h"
+
+int fact(int n) {
+  if (n < 0) { /* This should probably return an error, but this is simpler */
+    return 0;
+  }
+  if (n == 0) {
+    return 1;
+  } else {
+    /* testing for overflow would be a good idea here */
+    return n * fact(n-1);
+  }
+}
+-----------------------------
+/* File: example.i */
+%module example
+
+%include <windows.i>
+%include "example.h"
+
+%begin %{
+#ifdef _MSC_VER
+#define SWIG_PYTHON_INTERPRETER_NO_DEBUG
+#endif
+%}
+
+%{
+#define SWIG_FILE_WITH_INIT
+#include "example.h"
+%}
+
+int fact(int n);
+------------------------------------------------
+
+The .i file needs a number of additions compared to the *nix version of the file
+- namely the two %include lines near the top, and the %begin block below them.
+
