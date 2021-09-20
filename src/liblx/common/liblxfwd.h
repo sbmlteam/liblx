@@ -45,8 +45,8 @@
 #define LIBLXFWD_H
 
 
-#include <liblx/xml/common/liblx-namespace.h>
-#include <liblx/xml/common/liblx-version.h>
+#include <liblx/common/liblx-namespace.h>
+#include <liblx/common/liblx-version.h>
 
 
 #ifdef __cplusplus

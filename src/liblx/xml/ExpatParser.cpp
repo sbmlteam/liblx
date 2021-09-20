@@ -49,7 +49,7 @@
 #include <liblx/xml/ExpatHandler.h>
 #include <liblx/xml/ExpatParser.h>
 
-#include <liblx/xml/compress/CompressCommon.h>
+#include <liblx/compress/CompressCommon.h>
 
 using namespace std;
 

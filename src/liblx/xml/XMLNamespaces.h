@@ -64,8 +64,8 @@
 #ifndef XMLNamespaces_h
 #define XMLNamespaces_h
 
-#include <liblx/xml/common/extern.h>
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/extern.h>
+#include <liblx/common/liblxfwd.h>
 
 
 #ifdef __cplusplus
@@ -81,7 +81,7 @@ class XMLOutputStream;
 /** @endcond */
 
 
-class LIBLX_EXTERN XMLNamespaces
+class LIBLAX_EXTERN XMLNamespaces
 {
 public:
 
@@ -402,7 +402,7 @@ public:
    *
    * @return the stream with the namespaces inserted.
    */
-  LIBLX_EXTERN
+  LIBLAX_EXTERN
   friend XMLOutputStream&
   operator<< (XMLOutputStream& stream, const XMLNamespaces& namespaces);
 
@@ -450,7 +450,7 @@ BEGIN_C_DECLS
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNamespaces_t *
 XMLNamespaces_create (void);
 
@@ -462,7 +462,7 @@ XMLNamespaces_create (void);
  **
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLNamespaces_free (XMLNamespaces_t *ns);
 
@@ -476,7 +476,7 @@ XMLNamespaces_free (XMLNamespaces_t *ns);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLNamespaces_t *
 XMLNamespaces_clone (const XMLNamespaces_t* ns);
 
@@ -496,7 +496,7 @@ XMLNamespaces_clone (const XMLNamespaces_t* ns);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNamespaces_add (XMLNamespaces_t *ns, 
 		   const char *uri, const char *prefix);
@@ -515,7 +515,7 @@ XMLNamespaces_add (XMLNamespaces_t *ns,
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLNamespaces_remove (XMLNamespaces_t *ns, int index);
 
@@ -533,7 +533,7 @@ XMLNamespaces_remove (XMLNamespaces_t *ns, int index);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLNamespaces_removeByPrefix (XMLNamespaces_t *ns, const char* prefix);
 
@@ -549,7 +549,7 @@ XMLNamespaces_removeByPrefix (XMLNamespaces_t *ns, const char* prefix);
  **
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNamespaces_clear (XMLNamespaces_t *ns);
 
@@ -564,7 +564,7 @@ XMLNamespaces_clear (XMLNamespaces_t *ns);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNamespaces_getIndex (const XMLNamespaces_t *ns, const char *uri);
 
@@ -579,7 +579,7 @@ XMLNamespaces_getIndex (const XMLNamespaces_t *ns, const char *uri);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int XMLNamespaces_getIndexByPrefix (const XMLNamespaces_t *ns, const char* prefix);
 
 
@@ -593,7 +593,7 @@ int XMLNamespaces_getIndexByPrefix (const XMLNamespaces_t *ns, const char* prefi
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNamespaces_getLength (const XMLNamespaces_t *ns);
 
@@ -611,7 +611,7 @@ XMLNamespaces_getLength (const XMLNamespaces_t *ns);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNamespaces_getNumNamespaces (const XMLNamespaces_t *ns);
 
@@ -635,7 +635,7 @@ XMLNamespaces_getNumNamespaces (const XMLNamespaces_t *ns);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLNamespaces_getPrefix (const XMLNamespaces_t *ns, int index);
 
@@ -655,7 +655,7 @@ XMLNamespaces_getPrefix (const XMLNamespaces_t *ns, int index);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLNamespaces_getPrefixByURI (const XMLNamespaces_t *ns, const char *uri);
 
@@ -679,7 +679,7 @@ XMLNamespaces_getPrefixByURI (const XMLNamespaces_t *ns, const char *uri);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLNamespaces_getURI (const XMLNamespaces_t *ns, int index);
 
@@ -704,7 +704,7 @@ XMLNamespaces_getURI (const XMLNamespaces_t *ns, int index);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char *
 XMLNamespaces_getURIByPrefix (const XMLNamespaces_t *ns, const char *prefix);
 
@@ -717,7 +717,7 @@ XMLNamespaces_getURIByPrefix (const XMLNamespaces_t *ns, const char *prefix);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLNamespaces_isEmpty (const XMLNamespaces_t *ns);
 
@@ -731,7 +731,7 @@ XMLNamespaces_isEmpty (const XMLNamespaces_t *ns);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLNamespaces_hasURI(const XMLNamespaces_t *ns, const char* uri);
 
@@ -745,7 +745,7 @@ XMLNamespaces_hasURI(const XMLNamespaces_t *ns, const char* uri);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLNamespaces_hasPrefix(const XMLNamespaces_t *ns, const char* prefix);
 
@@ -759,14 +759,14 @@ XMLNamespaces_hasPrefix(const XMLNamespaces_t *ns, const char* prefix);
  *
  * @memberof XMLNamespaces_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLNamespaces_hasNS(const XMLNamespaces_t *ns, const char* uri, const char* prefix);
 
 /**
  * Add a reserved URI string to the set of URIs to be treated as reserved.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLNamespaces_addReservedURI(const char* uri);
 

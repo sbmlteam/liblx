@@ -75,8 +75,8 @@
 #ifndef XMLTriple_h
 #define XMLTriple_h
 
-#include <liblx/xml/common/extern.h>
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/extern.h>
+#include <liblx/common/liblxfwd.h>
 
 
 #ifdef __cplusplus
@@ -85,7 +85,7 @@
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN XMLTriple
+class LIBLAX_EXTERN XMLTriple
 {
 public:
 
@@ -249,7 +249,7 @@ BEGIN_C_DECLS
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLTriple_t *
 XMLTriple_create (void);
 
@@ -265,7 +265,7 @@ XMLTriple_create (void);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLTriple_t *
 XMLTriple_createWith (const char *name, const char *uri, const char *prefix);
 
@@ -277,7 +277,7 @@ XMLTriple_createWith (const char *name, const char *uri, const char *prefix);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLTriple_free (XMLTriple_t *triple);
 
@@ -291,7 +291,7 @@ XMLTriple_free (XMLTriple_t *triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLTriple_t *
 XMLTriple_clone (const XMLTriple_t* triple);
 
@@ -305,7 +305,7 @@ XMLTriple_clone (const XMLTriple_t* triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getName (const XMLTriple_t *triple);
 
@@ -319,7 +319,7 @@ XMLTriple_getName (const XMLTriple_t *triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getPrefix (const XMLTriple_t *triple);
 
@@ -333,7 +333,7 @@ XMLTriple_getPrefix (const XMLTriple_t *triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getURI (const XMLTriple_t *triple);
 
@@ -347,7 +347,7 @@ XMLTriple_getURI (const XMLTriple_t *triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLTriple_getPrefixedName (const XMLTriple_t *triple);
 
@@ -362,7 +362,7 @@ XMLTriple_getPrefixedName (const XMLTriple_t *triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLTriple_isEmpty(const XMLTriple_t *triple);
 
@@ -379,7 +379,7 @@ XMLTriple_isEmpty(const XMLTriple_t *triple);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLTriple_equalTo(const XMLTriple_t *lhs, const XMLTriple_t* rhs);
 
@@ -396,7 +396,7 @@ XMLTriple_equalTo(const XMLTriple_t *lhs, const XMLTriple_t* rhs);
  *
  * @memberof XMLTriple_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLTriple_notEqualTo(const XMLTriple_t *lhs, const XMLTriple_t* rhs);
 

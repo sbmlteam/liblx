@@ -43,15 +43,15 @@
 #include <iostream>
 #include <new>
 
-#include <liblx/xml/compress/OutputCompressor.h>
+#include <liblx/compress/OutputCompressor.h>
 
 #ifdef USE_ZLIB
-#include <liblx/xml/compress/zfstream.h>
-#include <liblx/xml/compress/zipfstream.h>
+#include <liblx/compress/zfstream.h>
+#include <liblx/compress/zipfstream.h>
 #endif //USE_ZLIB
 
 #ifdef USE_BZ2
-#include <liblx/xml/compress/bzfstream.h>
+#include <liblx/compress/bzfstream.h>
 #endif //USE_BZ2
 
 using namespace std;
