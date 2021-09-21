@@ -39,11 +39,11 @@
 /** @cond doxygenLibsbmlInternal */
 #include <liblx/xml/XMLOutputStream.h>
 #include <liblx/xml/XMLConstructorException.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/util/util.h>
 /** @endcond */
 #include <liblx/xml/XMLToken.h>
 
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 
 /** @cond doxygenIgnored */
@@ -1266,7 +1266,7 @@ XMLToken::toString ()
 /*
  * Inserts this XMLToken into stream.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLOutputStream&
 operator<< (XMLOutputStream& stream, const XMLToken& token)
 {
@@ -1278,7 +1278,7 @@ operator<< (XMLOutputStream& stream, const XMLToken& token)
 
 #endif /* __cplusplus */
 /** @cond doxygenIgnored */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLToken_create (void)
 {
@@ -1286,7 +1286,7 @@ XMLToken_create (void)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLToken_createWithTriple (const XMLTriple_t *triple)
 {
@@ -1295,7 +1295,7 @@ XMLToken_createWithTriple (const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLToken_createWithTripleAttr (const XMLTriple_t *triple,
              const XMLAttributes_t *attr)
@@ -1305,7 +1305,7 @@ XMLToken_createWithTripleAttr (const XMLTriple_t *triple,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLToken_createWithTripleAttrNS (const XMLTriple_t *triple,
          const XMLAttributes_t *attr,
@@ -1316,14 +1316,14 @@ XMLToken_createWithTripleAttrNS (const XMLTriple_t *triple,
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLToken_createWithText (const char *text)
 {
   return (text != NULL) ? new(nothrow) XMLToken(text) : new(nothrow) XMLToken;
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLToken_free (XMLToken_t *token)
 {
@@ -1332,7 +1332,7 @@ XMLToken_free (XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLToken_t *
 XMLToken_clone (const XMLToken_t* t)
 {
@@ -1341,7 +1341,7 @@ XMLToken_clone (const XMLToken_t* t)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_append (XMLToken_t *token, const char *text)
 {
@@ -1355,7 +1355,7 @@ XMLToken_append (XMLToken_t *token, const char *text)
   }
 }
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_setCharacters(XMLToken_t *token, const char *text)
 {
@@ -1371,7 +1371,7 @@ XMLToken_setCharacters(XMLToken_t *token, const char *text)
 
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLToken_getCharacters (const XMLToken_t *token)
 {
@@ -1380,7 +1380,7 @@ XMLToken_getCharacters (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLToken_getColumn (const XMLToken_t *token)
 {
@@ -1389,7 +1389,7 @@ XMLToken_getColumn (const XMLToken_t *token)
 }    
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLToken_getLine (const XMLToken_t *token)
 {
@@ -1399,7 +1399,7 @@ XMLToken_getLine (const XMLToken_t *token)
 
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLAttributes_t *
 XMLToken_getAttributes (const XMLToken_t *token)
 {
@@ -1408,7 +1408,7 @@ XMLToken_getAttributes (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_setAttributes(XMLToken_t *token, const XMLAttributes_t* attributes)
 {
@@ -1417,7 +1417,7 @@ XMLToken_setAttributes(XMLToken_t *token, const XMLAttributes_t* attributes)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_addAttr ( XMLToken_t *token,  const char* name, const char* value )
 {
@@ -1426,7 +1426,7 @@ XMLToken_addAttr ( XMLToken_t *token,  const char* name, const char* value )
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_addAttrWithNS ( XMLToken_t *token,  const char* name
                   , const char* value
@@ -1439,7 +1439,7 @@ XMLToken_addAttrWithNS ( XMLToken_t *token,  const char* name
 
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_addAttrWithTriple (XMLToken_t *token, const XMLTriple_t *triple, const char* value)
 {
@@ -1448,7 +1448,7 @@ XMLToken_addAttrWithTriple (XMLToken_t *token, const XMLTriple_t *triple, const 
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_removeAttr (XMLToken_t *token, int n)
 {
@@ -1457,7 +1457,7 @@ XMLToken_removeAttr (XMLToken_t *token, int n)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_removeAttrByName (XMLToken_t *token, const char* name)
 {
@@ -1466,7 +1466,7 @@ XMLToken_removeAttrByName (XMLToken_t *token, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_removeAttrByNS (XMLToken_t *token, const char* name, const char* uri)
 {
@@ -1475,7 +1475,7 @@ XMLToken_removeAttrByNS (XMLToken_t *token, const char* name, const char* uri)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_removeAttrByTriple (XMLToken_t *token, const XMLTriple_t *triple)
 {
@@ -1484,7 +1484,7 @@ XMLToken_removeAttrByTriple (XMLToken_t *token, const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_clearAttributes(XMLToken_t *token)
 {
@@ -1494,7 +1494,7 @@ XMLToken_clearAttributes(XMLToken_t *token)
 
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_getAttrIndex (const XMLToken_t *token, const char* name, const char* uri)
 {
@@ -1503,7 +1503,7 @@ XMLToken_getAttrIndex (const XMLToken_t *token, const char* name, const char* ur
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_getAttrIndexByTriple (const XMLToken_t *token, const XMLTriple_t *triple)
 {
@@ -1512,7 +1512,7 @@ XMLToken_getAttrIndexByTriple (const XMLToken_t *token, const XMLTriple_t *tripl
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_getAttributesLength (const XMLToken_t *token)
 {
@@ -1521,7 +1521,7 @@ XMLToken_getAttributesLength (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrName (const XMLToken_t *token, int index)
 {
@@ -1532,7 +1532,7 @@ XMLToken_getAttrName (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrPrefix (const XMLToken_t *token, int index)
 {
@@ -1543,7 +1543,7 @@ XMLToken_getAttrPrefix (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrPrefixedName (const XMLToken_t *token, int index)
 {
@@ -1554,7 +1554,7 @@ XMLToken_getAttrPrefixedName (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrURI (const XMLToken_t *token, int index)
 {
@@ -1565,7 +1565,7 @@ XMLToken_getAttrURI (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrValue (const XMLToken_t *token, int index)
 {
@@ -1576,7 +1576,7 @@ XMLToken_getAttrValue (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrValueByName (const XMLToken_t *token, const char* name)
 {
@@ -1587,7 +1587,7 @@ XMLToken_getAttrValueByName (const XMLToken_t *token, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrValueByNS (const XMLToken_t *token, const char* name, const char* uri)
 {
@@ -1598,7 +1598,7 @@ XMLToken_getAttrValueByNS (const XMLToken_t *token, const char* name, const char
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getAttrValueByTriple (const XMLToken_t *token, const XMLTriple_t *triple)
 {
@@ -1609,7 +1609,7 @@ XMLToken_getAttrValueByTriple (const XMLToken_t *token, const XMLTriple_t *tripl
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasAttr (const XMLToken_t *token, int index)
 {
@@ -1618,7 +1618,7 @@ XMLToken_hasAttr (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasAttrWithName (const XMLToken_t *token, const char* name)
 {
@@ -1627,7 +1627,7 @@ XMLToken_hasAttrWithName (const XMLToken_t *token, const char* name)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasAttrWithNS (const XMLToken_t *token, const char* name, const char* uri)
 {
@@ -1636,7 +1636,7 @@ XMLToken_hasAttrWithNS (const XMLToken_t *token, const char* name, const char* u
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasAttrWithTriple (const XMLToken_t *token, const XMLTriple_t *triple)
 {
@@ -1645,7 +1645,7 @@ XMLToken_hasAttrWithTriple (const XMLToken_t *token, const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isAttributesEmpty (const XMLToken_t *token)
 {
@@ -1655,7 +1655,7 @@ XMLToken_isAttributesEmpty (const XMLToken_t *token)
 
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const XMLNamespaces_t *
 XMLToken_getNamespaces (const XMLToken_t *token)
 {
@@ -1664,7 +1664,7 @@ XMLToken_getNamespaces (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_setNamespaces(XMLToken_t *token, const XMLNamespaces_t* namespaces)
 {
@@ -1673,7 +1673,7 @@ XMLToken_setNamespaces(XMLToken_t *token, const XMLNamespaces_t* namespaces)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_addNamespace (XMLToken_t *token, const char* uri, const char* prefix)
 {
@@ -1682,7 +1682,7 @@ XMLToken_addNamespace (XMLToken_t *token, const char* uri, const char* prefix)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_removeNamespace (XMLToken_t *token, int index)
 {
@@ -1691,7 +1691,7 @@ XMLToken_removeNamespace (XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_removeNamespaceByPrefix (XMLToken_t *token, const char* prefix)
 {
@@ -1700,7 +1700,7 @@ XMLToken_removeNamespaceByPrefix (XMLToken_t *token, const char* prefix)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_clearNamespaces (XMLToken_t *token)
 {
@@ -1709,7 +1709,7 @@ XMLToken_clearNamespaces (XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_getNamespaceIndex (const XMLToken_t *token, const char* uri)
 {
@@ -1718,7 +1718,7 @@ XMLToken_getNamespaceIndex (const XMLToken_t *token, const char* uri)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_getNamespaceIndexByPrefix (const XMLToken_t *token, const char* prefix)
 {
@@ -1727,7 +1727,7 @@ XMLToken_getNamespaceIndexByPrefix (const XMLToken_t *token, const char* prefix)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_getNamespacesLength (const XMLToken_t *token)
 {
@@ -1736,7 +1736,7 @@ XMLToken_getNamespacesLength (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getNamespacePrefix (const XMLToken_t *token, int index)
 {
@@ -1747,7 +1747,7 @@ XMLToken_getNamespacePrefix (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getNamespacePrefixByURI (const XMLToken_t *token, const char* uri)
 {
@@ -1758,7 +1758,7 @@ XMLToken_getNamespacePrefixByURI (const XMLToken_t *token, const char* uri)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getNamespaceURI (const XMLToken_t *token, int index)
 {
@@ -1769,7 +1769,7 @@ XMLToken_getNamespaceURI (const XMLToken_t *token, int index)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 char* 
 XMLToken_getNamespaceURIByPrefix (const XMLToken_t *token, const char* prefix)
 {
@@ -1780,7 +1780,7 @@ XMLToken_getNamespaceURIByPrefix (const XMLToken_t *token, const char* prefix)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isNamespacesEmpty (const XMLToken_t *token)
 {
@@ -1789,7 +1789,7 @@ XMLToken_isNamespacesEmpty (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasNamespaceURI(const XMLToken_t *token, const char* uri)
 {
@@ -1798,7 +1798,7 @@ XMLToken_hasNamespaceURI(const XMLToken_t *token, const char* uri)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasNamespacePrefix(const XMLToken_t *token, const char* prefix)
 {
@@ -1807,7 +1807,7 @@ XMLToken_hasNamespacePrefix(const XMLToken_t *token, const char* prefix)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_hasNamespaceNS(const XMLToken_t *token, const char* uri, const char* prefix)
 {
@@ -1816,7 +1816,7 @@ XMLToken_hasNamespaceNS(const XMLToken_t *token, const char* uri, const char* pr
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 XMLToken_setTriple(XMLToken_t *token, const XMLTriple_t *triple)
 {
@@ -1825,7 +1825,7 @@ XMLToken_setTriple(XMLToken_t *token, const XMLTriple_t *triple)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLToken_getName (const XMLToken_t *token)
 {
@@ -1834,7 +1834,7 @@ XMLToken_getName (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLToken_getPrefix (const XMLToken_t *token)
 {
@@ -1843,7 +1843,7 @@ XMLToken_getPrefix (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLToken_getURI (const XMLToken_t *token)
 {
@@ -1852,7 +1852,7 @@ XMLToken_getURI (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isElement (const XMLToken_t *token)
 {
@@ -1861,7 +1861,7 @@ XMLToken_isElement (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isEnd (const XMLToken_t *token) 
 {
@@ -1870,7 +1870,7 @@ XMLToken_isEnd (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isEndFor (const XMLToken_t *token, const XMLToken_t *element)
 {
@@ -1879,7 +1879,7 @@ XMLToken_isEndFor (const XMLToken_t *token, const XMLToken_t *element)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isEOF (const XMLToken_t *token)
 {
@@ -1888,7 +1888,7 @@ XMLToken_isEOF (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isStart (const XMLToken_t *token)
 {
@@ -1897,7 +1897,7 @@ XMLToken_isStart (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_isText (const XMLToken_t *token)
 {
@@ -1906,7 +1906,7 @@ XMLToken_isText (const XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_setEnd (XMLToken_t *token)
 {
@@ -1915,7 +1915,7 @@ XMLToken_setEnd (XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_setEOF (XMLToken_t *token)
 {
@@ -1924,7 +1924,7 @@ XMLToken_setEOF (XMLToken_t *token)
 }
 
 
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLToken_unsetEnd (XMLToken_t *token)
 {

@@ -54,10 +54,10 @@
 #include <liblx/xml/XercesTranscode.h>
 #include <liblx/xml/XercesParser.h>
 
-#include <liblx/xml/compress/CompressCommon.h>
-#include <liblx/xml/compress/InputDecompressor.h>
+#include <liblx/compress/CompressCommon.h>
+#include <liblx/compress/InputDecompressor.h>
 
-#include <liblx/xml/common/common.h>
+#include <liblx/common/common.h>
 
 using namespace std;
 using namespace xercesc;

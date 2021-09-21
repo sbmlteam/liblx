@@ -47,7 +47,7 @@
 #include <liblx/xml/LibXMLHandler.h>
 #include <liblx/xml/LibXMLParser.h>
 
-#include <liblx/xml/compress/CompressCommon.h>
+#include <liblx/compress/CompressCommon.h>
 
 
 using namespace std;

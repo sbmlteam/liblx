@@ -339,8 +339,8 @@
 #include <stdio.h>
 
 
-#include <liblx/xml/common/extern.h>
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/extern.h>
+#include <liblx/common/liblxfwd.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
@@ -565,11 +565,11 @@ LIBLX_CPP_NAMESPACE_END
 
 #include <iosfwd>
 #include <string>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN XMLError
+class LIBLAX_EXTERN XMLError
 {
 public:
 
@@ -1175,7 +1175,7 @@ protected:
  * @param stream the output stream to write to.
  * @param error the XMLError to write.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 std::ostream& operator<< (std::ostream& stream, const XMLError& error);
 
 
@@ -1210,7 +1210,7 @@ BEGIN_C_DECLS
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLError_t*
 XMLError_create (void);
 
@@ -1227,7 +1227,7 @@ XMLError_create (void);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 XMLError_t*
 XMLError_createWithIdAndMessage (unsigned int errorId, const char * message);
 
@@ -1246,7 +1246,7 @@ XMLError_createWithIdAndMessage (unsigned int errorId, const char * message);
  *
  * @memberof XMLError_t
  */
-/* LIBLX_EXTERN */
+/* LIBLAX_EXTERN */
 /* XMLError_t* */
 /* XMLError_createWithAll (unsigned int id, const char * message, XMLError_Severity severity, */
 /*                         const char * category, unsigned int line, unsigned int column); */
@@ -1258,7 +1258,7 @@ XMLError_createWithIdAndMessage (unsigned int errorId, const char * message);
  **
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLError_free(XMLError_t* error);
 
@@ -1272,7 +1272,7 @@ XMLError_free(XMLError_t* error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getErrorId (const XMLError_t *error);
 
@@ -1286,7 +1286,7 @@ XMLError_getErrorId (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getMessage (const XMLError_t *error);
 
@@ -1300,7 +1300,7 @@ XMLError_getMessage (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getShortMessage (const XMLError_t *error);
 
@@ -1314,7 +1314,7 @@ XMLError_getShortMessage (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getLine (const XMLError_t *error);
 
@@ -1328,7 +1328,7 @@ XMLError_getLine (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getColumn (const XMLError_t *error);
 
@@ -1343,7 +1343,7 @@ XMLError_getColumn (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getSeverity (const XMLError_t *error);
 
@@ -1357,7 +1357,7 @@ XMLError_getSeverity (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getSeverityAsString (const XMLError_t *error);
 
@@ -1372,7 +1372,7 @@ XMLError_getSeverityAsString (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 unsigned int
 XMLError_getCategory (const XMLError_t *error);
 
@@ -1386,7 +1386,7 @@ XMLError_getCategory (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char *
 XMLError_getCategoryAsString (const XMLError_t *error);
 
@@ -1402,7 +1402,7 @@ XMLError_getCategoryAsString (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isInfo (const XMLError_t *error);
 
@@ -1417,7 +1417,7 @@ XMLError_isInfo (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isWarning (const XMLError_t *error);
 
@@ -1432,7 +1432,7 @@ XMLError_isWarning (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isError (const XMLError_t *error);
 
@@ -1447,7 +1447,7 @@ XMLError_isError (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int
 XMLError_isFatal (const XMLError_t *error);
 
@@ -1463,7 +1463,7 @@ XMLError_isFatal (const XMLError_t *error);
  *
  * @memberof XMLError_t
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 void
 XMLError_print (const XMLError_t *error, FILE *stream);
 

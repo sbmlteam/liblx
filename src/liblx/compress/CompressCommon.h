@@ -42,7 +42,7 @@
 #define CompressCommon_h
 
 #include <exception>
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 
 LIBLX_CPP_NAMESPACE_BEGIN
@@ -54,7 +54,7 @@ LIBLX_CPP_NAMESPACE_BEGIN
  *  the library.
  *
  */
-class LIBLX_EXTERN NotLinked : public std::exception
+class LIBLAX_EXTERN NotLinked : public std::exception
 {
 public:
    NotLinked() throw() { }
@@ -68,7 +68,7 @@ public:
  * zlib invoked and underlying libLX is not linked with zlib.
  *
  */
-class LIBLX_EXTERN ZlibNotLinked : public NotLinked
+class LIBLAX_EXTERN ZlibNotLinked : public NotLinked
 {
 public:
    ZlibNotLinked() throw() { }
@@ -83,7 +83,7 @@ public:
  *  bzip2.
  *
  */
-class LIBLX_EXTERN Bzip2NotLinked : public NotLinked
+class LIBLAX_EXTERN Bzip2NotLinked : public NotLinked
 {
 public:
    Bzip2NotLinked() throw() { }
@@ -97,7 +97,7 @@ public:
  *
  * @return @c true if libLX is linked with zlib, @c false otherwise.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 bool hasZlib();
 
 
@@ -107,7 +107,7 @@ bool hasZlib();
  *
  * @return @c true if libLX is linked with bzip2, @c false otherwise.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 bool hasBzip2();
 
 LIBLX_CPP_NAMESPACE_END

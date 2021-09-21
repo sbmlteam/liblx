@@ -36,34 +36,35 @@
 
 #include <sstream>
 
-#include <liblx/xml/common/common.h>
-#include <liblx/xml/common/extern.h>
-#include <liblx/xml/common/liblx-config.h>
-#include <liblx/xml/common/liblx-namespace.h>
-#include <liblx/xml/common/liblx-version.h>
-#include <liblx/xml/common/liblxfwd.h>
+#include <liblx/common/common.h>
+#include <liblx/common/extern.h>
+#include <liblx/common/liblx-config.h>
+#include <liblx/common/liblx-namespace.h>
+#include <liblx/common/liblx-version.h>
+#include <liblx/common/liblxfwd.h>
 
-#include <liblx/xml/compress/CompressCommon.h>
-#include <liblx/xml/compress/InputDecompressor.h>
-#include <liblx/xml/compress/OutputCompressor.h>
-#include <liblx/xml/compress/bzfstream.h>
-#include <liblx/xml/compress/crypt.h>
-#include <liblx/xml/compress/ioapi.h>
-#include <liblx/xml/compress/ioapi_mem.h>
+#include <liblx/compress/CompressCommon.h>
+#include <liblx/compress/InputDecompressor.h>
+#include <liblx/compress/OutputCompressor.h>
+#include <liblx/compress/bzfstream.h>
+#include <liblx/compress/crypt.h>
+#include <liblx/compress/ioapi.h>
+#include <liblx/compress/ioapi_mem.h>
 
 #ifdef WIN32
-    #include <liblx/xml/compress/iowin32.h>   // I guess we need this for Windows builds - it includes <windows.h>
+    #include <liblx/compress/iowin32.h>   // I guess we need this for Windows builds - it includes <windows.h>
 #endif
 
-#include <liblx/xml/compress/unzip.h>
-#include <liblx/xml/compress/zfstream.h>
-#include <liblx/xml/compress/zip.h>
-#include <liblx/xml/compress/zipfstream.h>
+#include <liblx/compress/unzip.h>
+#include <liblx/compress/zfstream.h>
+#include <liblx/compress/zip.h>
+#include <liblx/compress/zipfstream.h>
 
 #include <liblx/xml/LibLXError.h>
 
-#include <liblx/xml/operationReturnValues.h>
-#include <liblx/xml/sbmlStubs.h>
+#include <liblx/common/operationReturnValues.h>
+#include <liblx/util/util.h>
+#include <liblx/util/memory.h>
 
 #include <liblx/xml/XMLAttributes.h>
 #include <liblx/xml/XMLBuffer.h>

@@ -233,8 +233,25 @@ The documentation is automatically built on readthedocs with every commit. Howev
 can still generate the documentation locally along your normal build (see `Building the library`_). For that you
 will need the following requirements installed:
 
-  * doxygen <https://www.doxygen.nl>
-  * python3
+??? brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
+??? or pip install -U sphinx   -> sphinx-build --version = "sphinx-build 4.0.2"
+brew install doxygen   # e.g. to /usr/local/bin/doxygen
+pip install breathe # see
+pip show breathe -> ~/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
+
+If you need to have ``sphinx-doc`` first in your ``PATH``, run:
+
+.. code-block:: bash
+
+     echo 'export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"' >> ~/.bash_profile
+
+can use copasi cmake module FindSphinx.cmake
+
+cmake -DWITH_DOXYGEN=ON -DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen ..
+
+-- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
+The dot is from graphviz, which can be used by Doxygen to draw inheritance diagrams etc
+
 
 Next you need the following python packages ``breathe`` and ``sphinx_rtd_theme``. So we start
 by creating a virtual environment, activating it and installing the packages into it. 
@@ -355,7 +372,7 @@ are ready to build the documentation with (on a Mac):
 or, on Windows, use ``cmake --build .``
 
 And at this point you have the HTML pages generated in ``./docs/sphinx/`` with the 
-main document being ``./docs/sphinx/index.html``
+main document being ``./docs/sphinx/index.html``. This page will be ``./docs/sphinx/quickstart/get-started.html``.
 
 Windows example (builds docs and check code):
 
@@ -373,12 +390,9 @@ We use the testing framework catch2 <https://github.com/catchorg/Catch2> and
 integrated it with the cmake build, so after building the library you can run 
 the tests using ``ctest``:
 
-.. code-block:: bash
 
     (venv) build > ctest -V     (or -v if you want less output)
 
-If you want to run tests on another build configuration, you can specify those
-using the ``-C`` option. So for example for the debug build:
 
 .. code-block:: bash
 

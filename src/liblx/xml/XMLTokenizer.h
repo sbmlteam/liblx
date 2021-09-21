@@ -49,14 +49,14 @@
 
 #include <deque>
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 #include <liblx/xml/XMLHandler.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN XMLToken;
+class LIBLAX_EXTERN XMLToken;
 
-class LIBLX_EXTERN XMLTokenizer : public XMLHandler
+class LIBLAX_EXTERN XMLTokenizer : public XMLHandler
 {
 public:
 

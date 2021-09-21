@@ -43,8 +43,8 @@
 #include<fstream>
 
 #include <liblx/xml/XMLFileBuffer.h>
-#include <liblx/xml/compress/CompressCommon.h>
-#include <liblx/xml/compress/InputDecompressor.h>
+#include <liblx/compress/CompressCommon.h>
+#include <liblx/compress/InputDecompressor.h>
 
 using namespace std;
 

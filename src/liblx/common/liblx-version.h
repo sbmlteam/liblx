@@ -38,7 +38,7 @@
 #ifndef LIBLX_VERSION_H
 #define LIBLX_VERSION_H
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 
 
 /**
@@ -76,7 +76,7 @@ BEGIN_C_DECLS
  *
  * @return the libLX version as an integer; version 1.2.3 becomes 10203.
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 getLibLXVersion () ;
 
@@ -89,7 +89,7 @@ getLibLXVersion () ;
  *
  * @see getlibLXVersionString()
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char* 
 getLibLXDottedVersion ();
 
@@ -102,7 +102,7 @@ getLibLXDottedVersion ();
  *
  * @see getLibLXDottedVersion()
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char* 
 getLibLXVersionString ();
 
@@ -121,7 +121,7 @@ getLibLXVersionString ();
  *
  * @see getLibLXDependencyVersionOf(const char* option)
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 int 
 isLibLXCompiledWith(const char* option);
 
@@ -138,7 +138,7 @@ isLibLXCompiledWith(const char* option);
  *
  * @see isLibLXCompiledWith(const char* option)
  */
-LIBLX_EXTERN
+LIBLAX_EXTERN
 const char* 
 getLibLXDependencyVersionOf(const char* option);
 

@@ -53,7 +53,7 @@
 
 #include <liblx/xml/XMLErrorLog.h>
 #include <liblx/xml/XMLParser.h>
-#include <liblx/xml/operationReturnValues.h>
+#include <liblx/common/operationReturnValues.h>
 
 
 using namespace std;

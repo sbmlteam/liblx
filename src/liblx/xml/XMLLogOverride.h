@@ -46,12 +46,12 @@
 
 #ifdef __cplusplus
 
-#include <liblx/xml/common/extern.h>
+#include <liblx/common/extern.h>
 #include <liblx/xml/XMLError.h>
 
 LIBLX_CPP_NAMESPACE_BEGIN
 
-class LIBLX_EXTERN XMLLogOverride
+class LIBLAX_EXTERN XMLLogOverride
 {
 public: 
 	XMLLogOverride(XMLErrorLog* log, XMLErrorSeverityOverride_t new_override);
