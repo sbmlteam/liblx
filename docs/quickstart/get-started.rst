@@ -436,12 +436,18 @@ rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio:
 LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
 \build\src\liblx\xml\test\test_sbml_xml.vcxproj]
 
+https://stackoverflow.com/questions/3007312/resolving-lnk4098-defaultlib-msvcrt-conflicts-with 
+
+
+
 If you do a build with the extra switch ``-DWITH_PYTHON=TRUE``, you should find Python bindings generated
 in the build directory, in ``src/bindings/python``. Frank says: "you should find the ``libsbml.py``
 (or ``libsbml2.py / libsbml3.py`` since we still support both versions). along with a native library
 ``libsbml.pyd|so|dylib``. At that point you can change into the directory, export
 the ``PYTHONPATH`` variable to the current path, and you can import ``libsbml`` with the configured python interpreter.
 you can run ``ctest`` to check all tests pass."
+
+http://www.swig.org/Doc4.0/Python.html#Python_nn12
 
 NB TBC: Python bindings are ``liblx.py``, rather than ``libsbml.py``??
 

@@ -14,8 +14,8 @@ wasn't enough to get things working in a normal Visual Studio command prompt.
 
 ========================================================================================
 
-1. C example
-------------
+1. C example (from SWIG website)
+--------------------------------
 
 /* File: example.h */
 
@@ -71,7 +71,9 @@ This produces new files example.py and example_wrap.c
 > cl.exe example.c example_wrap.c /I"C:\Program Files\Python39\include" /link /LIBPATH:"C:\Program Files\Python39\libs" /DLL [not used: /]MACHINE:X64]
 The include path is to the directory where Python.h is located. (In the Python you have installed; use "where python" to find out where)
 Although the SWIG website says to set these as environment variables, I had some trouble using the library one.
-So you could just issue the above command without setting the envt. variables.
+So you could just issue these commands without setting the envt. variables, as long as you specify what you need to.
+And you can check that the correct Python executable, etc., are picked up if you issue the command "where python".
+Final step:
 
 > rename example.exe _example.pyd
 
@@ -85,8 +87,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ===========================================================================
 
-2. C++ Example
---------------
+2. C++ Example (adapted from C example)
+---------------------------------------
 
 /* File: example.h */
 
