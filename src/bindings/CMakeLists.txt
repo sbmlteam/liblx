@@ -54,6 +54,8 @@ endfunction(update_cfile)
 #
 # update files in swig directory
 #
+# NB should we not be using liblx-specific instead of libsbml-specific things here?
+#
 # - libsbml-packages.i
 file(GLOB LIBSBML_PACKAGES_I RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/swig "${CMAKE_CURRENT_SOURCE_DIR}/swig/*-package.i")
 update_ifile(
