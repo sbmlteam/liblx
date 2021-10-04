@@ -81,7 +81,7 @@ e.g.
      cmake -DWITH_PYTHON=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
      make
 
-or use the nuclear option: ``rm -rf build/*``
+or use the nuclear option: ``rm -rf build``
 
 To get the SWIG/Python bindings built, it appears we must download the Xerces distribution ???????????
 Because various Xerces files in ``src/liblx/xml`` ``#include`` files from there.
