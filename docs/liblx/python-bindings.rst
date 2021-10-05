@@ -41,6 +41,8 @@ Assuming the dependencies etc are installed, you should be able to do this, in a
 
 with, of course, your own values for the dependency directory and the build location (final item in long cmake command above).
 This example assumes you have installed `cmake` directly, rather than using the version which comes with Visual Studio.
+NB there are additional steps required; also, the first ``cmake`` command is likely to be a little different.
+For more details, see `Complete Windows Example <../quickstart/complete-windows-example.html>`_.
 
 
 Sample Python Session

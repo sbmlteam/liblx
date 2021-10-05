@@ -81,12 +81,12 @@ e.g.
      cmake -DWITH_PYTHON=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
      make
 
-or use the nuclear option: ``rm -rf build``
+or use the nuclear option: ``rm -rf build``, which is safer.
 
 To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
 Because various Xerces files in ``src/liblx/xml`` ``#include`` files from there.
 LibXML appears to be fully present already.
-`Xerces instructions <http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html>`_.
+See the `Xerces instructions <http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html>`_.
 
 .. code-block:: bash
 
@@ -135,141 +135,8 @@ e.g. ``LIBSBML_CPP_NAMESPACE_END``
 
 How to build on Windows
 -----------------------
-You need to install:
-
- -  `Visual Studio <https://visualstudio.microsoft.com/vs/>`_.
-    In my case this was Microsoft Visual Studio Community 2019, Version 16.11.1. (I included the Windows 10 SDK)
-
-
- -  `CMake <https://cmake.org/download/>`_. I  chose the Windows installer and checked the box to update PATH.
-    Visual Studio already includes ``CMake``, so you don't have to install this.
-
-You then need to download the `SBML Windows dependencies <https://sourceforge.net/projects/sbml/files/libsbml/win-dependencies/>`_.
-This contains a number of libraries used by SBML, and by ``liblx`` too.
-Right now there is no "version 16", so I downloaded the highest available one (15), using the debug
-version as I am working on the core ``liblx``. Make sure you check the checksums.
-
-The version I downloaded, when unzipped, created a directory which had a space in the name, and a quote mark
-at each end. For simplicity, I renamed it; e.g., using ``git bash`` for Windows:
-
-.. code-block:: bash
-
-    mv 'libSBML Dependencies-1.0.0-b1-win64' libSBML-Dependencies-1.0.0-b1-win64
-
-or, in a Windows cmd shell window:
-
-.. code-block:: bash
-
-    rename "libSBML Dependencies-1.0.0-b1-win64" libSBML-Dependencies-1.0.0-b1-win64
-
-**It is best to use a virtual environment, as per the Mac instructions.**
-
-.. code-block:: bash
-
-    C:\Users\mattg\envts> python -m venv myvenv
-    C:\Users\mattg\envts> .\myvenv\Scripts\activate   -> you should see command prompt text change
-    (myvenv) C:\Users\mattg\envts>
-
-(Use the command ``deactivate`` if you need to exit the virtual environment.)
-
-Do this outside the repo you have cloned, otherwise lots of unnecessary files
-will be generated in the documentation step. e.g. I have a directory
-``C:\Users\mattg\envts`` set up to store virtual environments such as this.
-
-Once you have created the virtual environment, in future sessions you just need to
-run the ``activate`` step above.
-
-Within the virtual environment, you can now use `pip` to install the required libraries etc:
-
-To build the documentation, you need to install Sphinx, breathe, Doxygen and GraphViz:
-
-.. code-block:: bash
-
-    (myvenv) pip install sphinx_rtd_theme
-    (myvenv) pip install breathe
-
-You will also need to download `Doxygen <https://www.doxygen.nl/download.html>`_; also see
-info about `Windows builds <https://www.doxygen.nl/manual/install.html#install_bin_windows>`_.
-And then update your `PATH` to include the location of the Doxygen executable (`doxygen.exe`). For example:
-
-.. code-block:: bash
-
-    (myvenv) set PATH="C:\Program Files\doxygen\bin";%PATH%
-
-Now download `GraphViz <https://graphviz.org/download/>`_, and again update the `PATH`:
-
-.. code-block:: bash
-
-    (myvenv)
-
-Then create a new ``build/`` directory; do this OUTSIDE the ``liblx`` repo cloned from Github.
-Then, from within that new ``build`` directory, in a Visual Studio Command Prompt:
-
-If you have installed `cmake`, you can use it directly. If not, you can use the version which comes with Visual Studio.
-see https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-160#run-cmake-from-the-command-line
-and https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160
-
-Basically, to use the VS version of `cmake`, you have to `cd` into the relevant directory on your PC,
-and then execute the appropriate `.bat` file to update the `PATH` and required environment variables.
-e.g.
-
-.. code-block:: bash
-
-    (venv) cd C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
-
-Running the `set` command reveals `PROCESSOR_ARCHITECTURE=AMD64` and `Platform=x64`
-(or you might be able to get this information by right-clicking on "this PC" or "My Computer", and choosing the Properties option.)
-So we need to run the file `vcvarsx86_amd64.bat`. Then, `cd` back to the `build/` directory you created.
-
-You also need to set the set `CODE_SRC_DIR` to the top of the liblx source file hierarchy, e.g.:
-
-
-.. code-block:: bash
-
-    (venv) set CODE_SRC_DIR=C:\Users\cceagil\repos\CompBioLibs\liblx\src 
-
-
-Then (assuming in this case you want to create a Debug, dynamic build (but see section below on building everything with Windows in one step):
-
-.. code-block:: bash
- 
-     (venv) cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
-     (venv) cmake --build .
-
-where the commands were invoked from a new ``build/`` directory ``c:\Users\mattg\build``
-and the ``LIBLX_DEPENDENCY_DIR`` is the absolute path to the unzipped (and renamed) SBML dependencies folder.
-
-Or, if you don't like the command line, you can refer to the
-`detailed instructions <http://sbml.org/Software/libSBML/5.18.0/docs/cpp-api/libsbml-installation.html#detailed-windows>`_
-for building ``libSBML`` on Windows (which we can adapt for building ``liblx``). Use the CMake GUI for the first
-step. Then, the second command above (the build (i.e. compilation) step) can be done from within the Visual Studio
-GUI. The easiest way is to locate the "solution" file, ``liblx.sln``, which should have been generated in
-the ``build`` directory; navigate to it using Windows Explorer, then double-click on it to open this solution
-in Visual Studio (but see below). Then, right-click on the desired target (e.g. ``ALL_BUILD``) and select the build option.
-
-Result: in ``build\src\Debug``, we now have ``liblx-static.lib`` and ``liblx.dll``.
-
-NB Seems to generate both static and dynamic libs regardless.
-
-All being well, you should find the library files `liblx.dll` and `liblx-static.lib` have been generated;
-in my case, in ``build/src/Debug/``. **NB not sure why dll built as well as static lib.**
-  
-.. code-block:: bash
-
-    $ ls -lh build/src/Debug
-    total 32M
-    -rwxr-xr-x 1 mattg 197611 2.7M Aug 26 11:24 liblx.dll*
-    -rw-r--r-- 1 mattg 197611 168K Aug 26 11:24 liblx.exp
-    -rw-r--r-- 1 mattg 197611 274K Aug 26 11:24 liblx.lib
-    -rw-r--r-- 1 mattg 197611  13M Aug 26 11:24 liblx.pdb
-    -rw-r--r-- 1 mattg 197611  17M Aug 26 11:24 liblx-static.lib
-
-
-Run the test program (``.\src\liblx\xml\test\Debug\test_sbml_xml.exe`` or similar) to check all is well:
-
-.. code-block:: bash
-
-    ctest -V
+Please refer to the `Complete Windows Example <./complete-windows-example.html>`_, which covers
+building the ``liblx`` library, the SWIG C/C++-Python bindings, and the documentation.
 
 
 .. _building_documentation:
@@ -281,11 +148,13 @@ can still generate the documentation locally along your normal build (see `Build
 will need the following requirements installed:
 
 (on a Mac)
-??? brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
-??? or pip install -U sphinx   -> sphinx-build --version = "sphinx-build 4.0.2"
-brew install doxygen   # e.g. to /usr/local/bin/doxygen
-pip install breathe 
-pip show breathe -> ~/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
+
+.. code-block:: bash
+
+    brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
+    brew install doxygen   # e.g. to /usr/local/bin/doxygen
+    pip install breathe 
+    pip show breathe -> ~/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
 
 If you need to have ``sphinx-doc`` first in your ``PATH``, run:
 
@@ -293,46 +162,29 @@ If you need to have ``sphinx-doc`` first in your ``PATH``, run:
 
      echo 'export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"' >> ~/.bash_profile
 
-can use copasi cmake module FindSphinx.cmake
+We can use copasi cmake module FindSphinx.cmake (automatically). Then run ``cmake`` with the Doxygen option.
 
-cmake -DWITH_DOXYGEN=ON -DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen ..
-
--- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
-The dot is from graphviz, which can be used by Doxygen to draw inheritance diagrams etc
-
-
-Next you need the following python packages ``breathe`` and ``sphinx_rtd_theme``. So we start
-by creating a virtual environment, activating it and installing the packages into it. 
-e.g. on a Mac:
 
 .. code-block:: bash
 
-    ~ > python3 -m venv venv 
-    ~ > . ./venv/bin/activate
+    cmake -DWITH_DOXYGEN=ON -DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen ..
+
+    -- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
+
+The dot is from graphviz, which can be used by Doxygen to draw inheritance diagrams etc
+
+Next you need the Python packages ``breathe`` and ``sphinx_rtd_theme``. Assuming we are inside the virtual environment that
+we created earlier:
+
+.. code-block:: bash
+
     (venv) ~ > pip install sphinx_rtd_theme breathe
     (venv) ~ > brew install doxygen
 
+(this was on a Mac). 
+
 NB the above steps should not be done in the directory hierarchy of the git repo.
 
-On Windows, VS cmd prompt:
-
-.. code-block:: bash
-
-    python -m venv venv
-    .\venv\Scripts\activate   -> you should see command prompt text change
-    >pip install sphinx_rtd_theme breathe
-
-Install Doxygen binaries - see https://www.doxygen.nl/manual/install.html#install_bin_windows
-and GraphViz - see https://graphviz.org/download/
-
-Update ``PATH`` e.g. (Windows):
-
-.. code-block:: bash
-
-     set PATH=%PATH%;C:\Program Files\doxygen\bin  (or setx to do it permanently)
-     set PATH=%PATH%;C:\Program Files\GraphViz\bin
-
-NB do you need to update ``$PATH`` on *nix/Mac?
 
 From a website with instructions
 (https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
@@ -426,11 +278,9 @@ Windows example (builds docs and check code):
 
 .. code-block:: bash
 
-    cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF -DWITH_DOXYGEN=TRUE  C:\Users\mattg\repos\work\CompBioLibs\liblx
+    cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DWITH_STATIC_RUNTIME=OFF -DWITH_DOXYGEN=TRUE  C:\Users\mattg\repos\work\CompBioLibs\liblx
     cmake --build .
     ctest -V
-
-NB this example is wrong as it has two -DCMAKE_BUILD_TYPE's
 
 
 .. _running_tests:
@@ -534,6 +384,13 @@ Now we can fire up a Python interpreter and use ``liblx``:
       &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
     &lt;/annotation&gt;
 
+
+.. _to-do:
+
+To do
+-----
+Need to (1) check above works ok; unfortunately I can't check it now on a Mac and (2) remove the Windows-specific commands etc. above
+and replace with *nix ones.
 
 
 .. _windows-issues:

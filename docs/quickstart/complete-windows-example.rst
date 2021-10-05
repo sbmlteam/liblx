@@ -1,20 +1,29 @@
 Complete Windows Example
 ========================
 
+.. _building_cli:
+
+Using the command line
+----------------------
 This is a complete Windows example, building the ``liblx`` library, the Python bindings, and the documentation (both docs such as this
 one, and Doxygen-generated ones from the ``liblx`` source files). This is because I think some of the other documentation
 has become a little inconsistent, as I wrote it whilst battling different Windows build issues.
 
-Install Visual Studio, with the Windows SDK. You can then use its version of ``cmake`` (see below).
+We assume you have cloned the ``liblx`` repository on your local Windows computer.
+
+Install `Microsoft Visual Studi <https://visualstudio.microsoft.com/vs/>`_, with the Windows SDK. You can then use its version of ``cmake`` (see below).
 
 Download the `SBML Windows dependencies <https://sourceforge.net/projects/sbml/files/libsbml/win-dependencies/>`_.
-You can download all 4 and use as required. 
+You can download all 4 and use as required. Right now there is no "version 16", the verion number of my Visual Studio,
+so I downloaded the highest available one (15). Make sure you check the checksums.
+
 The most commonly downloaded one is ``libSBML_dependencies_vs15_release_x64_static.zip``, and we will use it in this example.
 In this example, I unzipped it and renamed the unzipped folder to:
 
 ``C:\Users\cceagil\repos\CompBioLibs\dependencies\libSBML-Dependencies-1.0.0-b1-win64-release-static``
 
-Use Python to create a virtual environment.
+Use Python to create a virtual environment. Do this outside the repo you have cloned, otherwise lots of unnecessary files
+will be generated in the documentation step
 
 .. code-block:: bash
 
@@ -22,6 +31,8 @@ Use Python to create a virtual environment.
 	> python -m venv myenv
 	> myenv\Scripts\activate
 	(myenv)
+
+(Use the command ``deactivate`` if you need to exit the virtual environment.)
 
 If you have installed ``cmake``, you can use it directly. If not, you can use the version which comes with Visual Studio.
 See `Using cmake at the command line with Visual Studio <https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-160#run-cmake-from-the-command-line>`_
@@ -145,4 +156,68 @@ include this directory. We can do this inside Python:
 
 
 The ``liblx`` Python library can then be used as per the example Sample Python Session in ``python-bindings.html``. 
+
+
+.. _building_dont-like-cli:
+
+I don't want to use the command line!
+-------------------------------------
+If you don't like the command line, you can refer to the
+`detailed instructions <http://sbml.org/Software/libSBML/5.18.0/docs/cpp-api/libsbml-installation.html#detailed-windows>`_
+for building ``libSBML`` on Windows (which we can adapt for building ``liblx``). Use the CMake GUI for the first
+step. Then, the second command above (the build (i.e. compilation) step) can be done from within the Visual Studio
+GUI. The easiest way is to locate the "solution" file, ``liblx.sln``, which should have been generated in
+the ``build`` directory; navigate to it using Windows Explorer, then double-click on it to open this solution
+in Visual Studio (but see below). Then, right-click on the desired target (e.g. ``ALL_BUILD``) and select the build option.
+
+Obviously you will still have to download the required dependencies and other software referred to in the command-line build section.
+
+
+.. _to-do:
+
+To add later:
+-------------
+Building with the 3 different XML libraries.
+
+
+.. _windows-issues:
+
+Windows issues with the SWIG Python build
+-----------------------------------------
+
+Things should work OK, as detailed above, but this section is a record of some issues I had when battling to get a successful Windows
+build, in case it helps someone.
+
+Basically, don't use Anaconda Python to get this to work! (at least, not a Debug build).
+
+set PYTHON_INCLUDE=C:\ProgramData\Anaconda3\include
+set PYTHON_LIB=C:\ProgramData\Anaconda3\libs\python38.lib
+-DSWIG_EXECUTABLE=C:\Users\mattg\swigwin-4.0.2\swig.exe
+produces src/bindings/python/liblx.py
+
+linker error:
+LINK : fatal error LNK1104: cannot open file 'python38_d.lib' [C:\Users\mattg\build\src\bindings\python\binding_python_
+lib.vcxproj]
+Maybe because I specified a debug version of the dependencies???
+see:
+https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-windows-with-a-debug-python-installation
+
+and:
+https://stackoverflow.com/questions/17028576/using-python-3-3-in-c-python33-d-lib-not-found/45407558
+
+It looks like we need to download a debug version of the python library. Anaconda doesn;t appear to supply this.
+Downloading Windows installer of Python 3.9.7 https://www.python.org/downloads/release/python-397/
+Or, one can use #ifdef statements.
+The installer updated the PATH (selected option to disable max PATH character limit) and appears before the
+Anaconda version in the PATH.
+
+set PYTHON_INCLUDE="C:\Program Files\Python39\include"   # location of Python.h
+set PYTHON_LIB="C:\Program Files\Python39\libs\python39_d.lib"  # debug library
+-DPYTHON_EXECUTABLE="C:\Program Files\Python39\python.exe"
+rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio: Project-> cmake cache->delete cache
+
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
+\build\src\liblx\xml\test\test_sbml_xml.vcxproj]
+
+https://stackoverflow.com/questions/3007312/resolving-lnk4098-defaultlib-msvcrt-conflicts-with 
 
