@@ -14,6 +14,7 @@ Welcome to the LibLX API documentation
    :caption: Contents:
 
    quickstart/get-started
+   quickstart/complete-windows-example
    examples/examples
    api
 
