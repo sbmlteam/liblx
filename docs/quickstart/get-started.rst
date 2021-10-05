@@ -149,7 +149,7 @@ This contains a number of libraries used by SBML, and by ``liblx`` too.
 Right now there is no "version 16", so I downloaded the highest available one (15), using the debug
 version as I am working on the core ``liblx``. Make sure you check the checksums.
 
-The version I downloaded (Release static build), when unzipped, created a directory which had a space in the name, and a quote mark
+The version I downloaded, when unzipped, created a directory which had a space in the name, and a quote mark
 at each end. For simplicity, I renamed it; e.g., using ``git bash`` for Windows:
 
 .. code-block:: bash
@@ -220,13 +220,21 @@ e.g.
 Running the `set` command reveals `PROCESSOR_ARCHITECTURE=AMD64` and `Platform=x64`
 (or you might be able to get this information by right-clicking on "this PC" or "My Computer", and choosing the Properties option.)
 So we need to run the file `vcvarsx86_amd64.bat`. Then, `cd` back to the `build/` directory you created.
-Then:
+
+You also need to set the set `CODE_SRC_DIR` to the top of the liblx source file hierarchy, e.g.:
+
 
 .. code-block:: bash
 
-     
-     cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
-     cmake --build .
+    (venv) set CODE_SRC_DIR=C:\Users\cceagil\repos\CompBioLibs\liblx\src 
+
+
+Then (assuming in this case you want to create a Debug, dynamic build (but see section below on building everything with Windows in one step):
+
+.. code-block:: bash
+ 
+     (venv) cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
+     (venv) cmake --build .
 
 where the commands were invoked from a new ``build/`` directory ``c:\Users\mattg\build``
 and the ``LIBLX_DEPENDENCY_DIR`` is the absolute path to the unzipped (and renamed) SBML dependencies folder.
@@ -457,9 +465,6 @@ Example of how to use the SWIG/Python binding
 ---------------------------------------------
 See also  the pages `python-bindings.rst` and `liblx/src/bindings/swig-windows.txt` for more details.
 
-Much of the below is details of my fighting the Windows build system.
-
-
 If you want to build the SWIG language bindings, install swig e.g. ``brew install swig`` on a Mac.
 
 http://www.swig.org/download.html
@@ -553,8 +558,9 @@ Maybe because I specified a debug version of the dependencies???
 see:
 https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-windows-with-a-debug-python-installation
 
-
+and:
 https://stackoverflow.com/questions/17028576/using-python-3-3-in-c-python33-d-lib-not-found/45407558
+
 It looks like we need to download a debug version of the python library. Anaconda doesn;t appear to supply this.
 Downloading Windows installer of Python 3.9.7 https://www.python.org/downloads/release/python-397/
 Or, one can use #ifdef statements.

@@ -45,7 +45,6 @@ This example assumes you have installed `cmake` directly, rather than using the 
 
 Sample Python Session
 =====================
-python
 
 Using an XML fragment like:
 
