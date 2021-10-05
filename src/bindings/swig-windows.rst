@@ -1,5 +1,5 @@
 Here are some instructions for getting a basic SWIG/Python wrapper to work
-on Windows using Visual Studio tools.
+on Windows using Visual Studio tools. This is completely independent from liblx.
 
 by Matthew Gillman, September 2021.
 
