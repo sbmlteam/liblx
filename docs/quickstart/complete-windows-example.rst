@@ -9,7 +9,7 @@ Install Visual Studio, with the Windows SDK. You can then use its version of ``c
 
 Download the `SBML Windows dependencies <https://sourceforge.net/projects/sbml/files/libsbml/win-dependencies/>`_.
 You can download all 4 and use as required. 
-The most commonly downloaded one is `libSBML_dependencies_vs15_release_x64_static.zip`, and we will use it in this example.
+The most commonly downloaded one is ``libSBML_dependencies_vs15_release_x64_static.zip``, and we will use it in this example.
 In this example, I unzipped it and renamed the unzipped folder to:
 
 ``C:\Users\cceagil\repos\CompBioLibs\dependencies\libSBML-Dependencies-1.0.0-b1-win64-release-static``
@@ -23,9 +23,9 @@ Use Python to create a virtual environment.
 	> myenv\Scripts\activate
 	(myenv)
 
-If you have installed ``cmake`, you can use it directly. If not, you can use the version which comes with Visual Studio.
-See `Using cmake at the command line with Visual Studio` <https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-160#run-cmake-from-the-command-line>`_
-and `Building on the command line` <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160>_.
+If you have installed ``cmake``, you can use it directly. If not, you can use the version which comes with Visual Studio.
+See `Using cmake at the command line with Visual Studio <https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-160#run-cmake-from-the-command-line>`_
+and `Building on the command line <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160>`_.
 
 NB ensure you select the correct version of the documentation for your version of Visual Studio.
 
@@ -39,8 +39,8 @@ e.g.
 
 Running the ``set`` command (lists environment variables) reveals ``PROCESSOR_ARCHITECTURE=AMD64`` and ``Platform=x64``
 (or you might be able to get this information by right-clicking on "This PC" or "My Computer", and choosing the Properties option.)
-So we need to `run the file ``vcvar64.bat`` at the command line, in our existing command 
-window` <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160#use-the-developer-tools-in-an-existing-command-window>`_.
+So we need to `run the file vcvar64.bat at the command line, in our existing command 
+window <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160#use-the-developer-tools-in-an-existing-command-window>`_.
 
 .. code-block:: bash
 
@@ -83,7 +83,7 @@ For the C/C++-Python SWIG bindings, you need to install SWIG. On my PC, the exec
 
     (myenv) set PATH=C:\Users\cceagil\swigwin-4.0.2\swigwin-4.0.2;%PATH%
 
-You can check the value of the `PATH` if desired:
+You can check the value of the ``PATH`` if desired:
 
 .. code-block:: bash
 
@@ -96,7 +96,7 @@ Now we need to set the ``CODE_SRC_DIR`` environment variable to the top of the `
 
     (myenv) set CODE_SRC_DIR=C:\Users\cceagil\repos\CompBioLibs\liblx\src 
 
-Finally, we create a new build directory, outside of the ``liblx` git repo directory hierarchy`. Then enter it and execute ``cmake``:
+Finally, we create a new build directory, outside of the ``liblx`` git repo directory hierarchy. Then enter it and execute ``cmake``:
 
 .. code-block:: bash
 
@@ -109,18 +109,18 @@ Run the tests to check all is well; in this case, we created a Release build:
 
 .. code-block:: bash
 
-    (venv) ctest -C Release
-Test project C:/Users/cceagil/repos/CompBioLibs/build
-    Start 1: test_sbml_xml_run
-1/2 Test #1: test_sbml_xml_run ................   Passed    2.25 sec
-    Start 2: test_python_binding
-2/2 Test #2: test_python_binding ..............   Passed    0.48 sec
+    (myenv) ctest -C Release
+    Test project C:/Users/cceagil/repos/CompBioLibs/build
+        Start 1: test_sbml_xml_run
+    1/2 Test #1: test_sbml_xml_run ................   Passed    2.25 sec
+        Start 2: test_python_binding
+    2/2 Test #2: test_python_binding ..............   Passed    0.48 sec
 
-100% tests passed, 0 tests failed out of 2
+    100% tests passed, 0 tests failed out of 2
 
-Total Test time (real) =   2.75 sec
+    Total Test time (real) =   2.75 sec
 
-(venv) 
+    (myenv) 
 
 Now we can look at the documentation (in the ``build/docs/sphinx/quickstart`` folder, e.g.
 ``build/docs/sphinx/quickstart/get-started.html`` and ``build/docs/sphinx/quickstart/complete-windows-example.html``).
@@ -130,15 +130,15 @@ You can also now use the Python bindings (wrapper) to the ``liblx`` C/C++ code. 
 
 .. code-block:: bash
 
-    (venv) cd src\bindings\python    
+    (myenv) cd src\bindings\python    
 
- Invoking ``dir`` should show that ``liblx.py`` is visible. To work, this needs ``_liblx.pyd``, which in our case is in the 
- directory ``build\src\bindings\python\Release``. To use ``liblx`` within Python, we need to update our ``PYTHONPATH`` to 
- include this directory. We can do this inside Python:
+Invoking ``dir`` should show that ``liblx.py`` is visible. To work, this needs ``_liblx.pyd``, which in our case is in the 
+directory ``build\src\bindings\python\Release``. To use ``liblx`` within Python, we need to update our ``PYTHONPATH`` to 
+include this directory. We can do this inside Python:
 
  .. code-block:: bash
 
-    (venv) python
+    (myenv) python
     >>> import sys
     >>> sys.path += ["C:\\Users\\cceagil\\repos\\CompBioLibs\\build\\src\\bindings\\python\\Release"]
     >>> from liblx import *
