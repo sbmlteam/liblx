@@ -26,7 +26,7 @@ Instructions for building on a Mac
 
 Create a virtual environment first.
 
-e.g. on a Mac:
+e.g.
 
 .. code-block:: bash
 
@@ -83,7 +83,7 @@ e.g.
 
 or use the nuclear option: ``rm -rf build``
 
-To get the SWIG/Python bindings built, it appears we must download the Xerces distribution ???????????
+To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
 Because various Xerces files in ``src/liblx/xml`` ``#include`` files from there.
 LibXML appears to be fully present already.
 `Xerces instructions <http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html>`_.
@@ -142,14 +142,14 @@ You need to install:
 
 
  -  `CMake <https://cmake.org/download/>`_. I  chose the Windows installer and checked the box to update PATH.
-    Apparently, Visual Studio already includes ``CMake``, so you may not have to do this.
+    Visual Studio already includes ``CMake``, so you don't have to install this.
 
 You then need to download the `SBML Windows dependencies <https://sourceforge.net/projects/sbml/files/libsbml/win-dependencies/>`_.
 This contains a number of libraries used by SBML, and by ``liblx`` too.
 Right now there is no "version 16", so I downloaded the highest available one (15), using the debug
 version as I am working on the core ``liblx``. Make sure you check the checksums.
 
-The version I downloaded, when unzipped, created a directory which had a space in the name, and a quote mark
+The version I downloaded (Release static build), when unzipped, created a directory which had a space in the name, and a quote mark
 at each end. For simplicity, I renamed it; e.g., using ``git bash`` for Windows:
 
 .. code-block:: bash
@@ -166,9 +166,9 @@ or, in a Windows cmd shell window:
 
 .. code-block:: bash
 
-    C:\Users\mattg\envts> python -m venv venv
-    C:\Users\mattg\envts> .\venv\Scripts\activate   -> you should see command prompt text change
-    (venv) C:\Users\mattg\envts>
+    C:\Users\mattg\envts> python -m venv myvenv
+    C:\Users\mattg\envts> .\myvenv\Scripts\activate   -> you should see command prompt text change
+    (myvenv) C:\Users\mattg\envts>
 
 (Use the command ``deactivate`` if you need to exit the virtual environment.)
 
@@ -179,15 +179,54 @@ will be generated in the documentation step. e.g. I have a directory
 Once you have created the virtual environment, in future sessions you just need to
 run the ``activate`` step above.
 
-Then create a new ``build/`` directory; do this OUTSIDE the ``liblx`` repo cloned from Github.
-Then, from within that new ``build`` directory, in a Visual Studio Command Prompt:
+Within the virtual environment, you can now use `pip` to install the required libraries etc:
+
+To build the documentation, you need to install Sphinx, breathe, Doxygen and GraphViz:
 
 .. code-block:: bash
 
-     cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DCMAKE_BUILD_TYPE=Release -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
-     cmake --build .
+    (myvenv) pip install sphinx_rtd_theme
+    (myvenv) pip install breathe
 
-NB this is wrong as it has two different DCMAKE_BUILD_TYPE values
+You will also need to download `Doxygen <https://www.doxygen.nl/download.html>`_; also see
+info about `Windows builds <https://www.doxygen.nl/manual/install.html#install_bin_windows>`_.
+And then update your `PATH` to include the location of the Doxygen executable (`doxygen.exe`). For example:
+
+.. code-block:: bash
+
+    (myvenv) set PATH="C:\Program Files\doxygen\bin";%PATH%
+
+Now download `GraphViz <https://graphviz.org/download/>`_, and again update the `PATH`:
+
+.. code-block:: bash
+
+    (myvenv)
+
+Then create a new ``build/`` directory; do this OUTSIDE the ``liblx`` repo cloned from Github.
+Then, from within that new ``build`` directory, in a Visual Studio Command Prompt:
+
+If you have installed `cmake`, you can use it directly. If not, you can use the version which comes with Visual Studio.
+see https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-160#run-cmake-from-the-command-line
+and https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160
+
+Basically, to use the VS version of `cmake`, you have to `cd` into the relevant directory on your PC,
+and then execute the appropriate `.bat` file to update the `PATH` and required environment variables.
+e.g.
+
+.. code-block:: bash
+
+    (venv) cd C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build
+
+Running the `set` command reveals `PROCESSOR_ARCHITECTURE=AMD64` and `Platform=x64`
+(or you might be able to get this information by right-clicking on "this PC" or "My Computer", and choosing the Properties option.)
+So we need to run the file `vcvarsx86_amd64.bat`. Then, `cd` back to the `build/` directory you created.
+Then:
+
+.. code-block:: bash
+
+     
+     cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DWITH_STATIC_RUNTIME=OFF C:\Users\mattg\repos\work\CompBioLibs\liblx
+     cmake --build .
 
 where the commands were invoked from a new ``build/`` directory ``c:\Users\mattg\build``
 and the ``LIBLX_DEPENDENCY_DIR`` is the absolute path to the unzipped (and renamed) SBML dependencies folder.
@@ -233,10 +272,11 @@ The documentation is automatically built on readthedocs with every commit. Howev
 can still generate the documentation locally along your normal build (see `Building the library`_). For that you
 will need the following requirements installed:
 
+(on a Mac)
 ??? brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
 ??? or pip install -U sphinx   -> sphinx-build --version = "sphinx-build 4.0.2"
 brew install doxygen   # e.g. to /usr/local/bin/doxygen
-pip install breathe # see
+pip install breathe 
 pip show breathe -> ~/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
 
 If you need to have ``sphinx-doc`` first in your ``PATH``, run:
@@ -384,12 +424,16 @@ Windows example (builds docs and check code):
 
 NB this example is wrong as it has two -DCMAKE_BUILD_TYPE's
 
+
+.. _running_tests:
+
 Running the tests
 -----------------
 We use the testing framework catch2 <https://github.com/catchorg/Catch2> and 
 integrated it with the cmake build, so after building the library you can run 
 the tests using ``ctest``:
 
+.. code-block:: bash
 
     (venv) build > ctest -V     (or -v if you want less output)
 
@@ -399,46 +443,28 @@ the tests using ``ctest``:
     (venv) build > ctest -C Debug -V
 
 
+The Python SWIG bindings also have a test script. To get this to run, you need to select the appropriate config.
+e.g. if you have done a Release build, the instruction would be:
+
+.. code-block:: bash
+
+    (venv) ctest -C Release
+
+
 .. _how_to_use_SWIG_Python_binding:
 
 Example of how to use the SWIG/Python binding
 ---------------------------------------------
+See also  the pages `python-bindings.rst` and `liblx/src/bindings/swig-windows.txt` for more details.
+
+Much of the below is details of my fighting the Windows build system.
+
+
 If you want to build the SWIG language bindings, install swig e.g. ``brew install swig`` on a Mac.
 
 http://www.swig.org/download.html
-Windows: _____________________ "Windows users should download swigwin-4.0.2 which includes a prebuilt executable."
-
-set PYTHON_INCLUDE=C:\ProgramData\Anaconda3\include
-set PYTHON_LIB=C:\ProgramData\Anaconda3\libs\python38.lib
--DSWIG_EXECUTABLE=C:\Users\mattg\swigwin-4.0.2\swig.exe
-produces src/bindings/python/liblx.py
-
-linker error:
-LINK : fatal error LNK1104: cannot open file 'python38_d.lib' [C:\Users\mattg\build\src\bindings\python\binding_python_
-lib.vcxproj]
-Maybe because I specified a debug version of the dependencies???
-see:
-https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-windows-with-a-debug-python-installation
-
-
-https://stackoverflow.com/questions/17028576/using-python-3-3-in-c-python33-d-lib-not-found/45407558
-It looks like we need to download a debug version of the python library. Anaconda doesn;t appear to supply this.
-Downloading Windows installer of Python 3.9.7 https://www.python.org/downloads/release/python-397/
-Or, one can use #ifdef statements.
-The installer updated the PATH (selected option to disable max PATH character limit) and appears before the
-Anaconda version in the PATH.
-
-set PYTHON_INCLUDE="C:\Program Files\Python39\include"   # location of Python.h
-set PYTHON_LIB="C:\Program Files\Python39\libs\python39_d.lib"  # debug library
--DPYTHON_EXECUTABLE="C:\Program Files\Python39\python.exe"
-rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio: Project-> cmake cache->delete cache
-
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
-\build\src\liblx\xml\test\test_sbml_xml.vcxproj]
-
-https://stackoverflow.com/questions/3007312/resolving-lnk4098-defaultlib-msvcrt-conflicts-with 
-
-
+Windows: "Windows users should download swigwin-4.0.2 which includes a prebuilt executable."
+and then update the `PATH`
 
 If you do a build with the extra switch ``-DWITH_PYTHON=TRUE``, you should find Python bindings generated
 in the build directory, in ``src/bindings/python``. Frank says: "you should find the ``libsbml.py``
@@ -449,7 +475,7 @@ you can run ``ctest`` to check all tests pass."
 
 http://www.swig.org/Doc4.0/Python.html#Python_nn12
 
-NB TBC: Python bindings are ``liblx.py``, rather than ``libsbml.py``??
+NB: Python bindings are ``liblx.py``, rather than ``libsbml.py``
 
 
 Still in the ``/build`` directory, set the ``PYTHONPATH`` environment variable. e.g. on Mac:
@@ -464,7 +490,10 @@ or, on Windows:
 
      set PYTHONPATH=.;src/bindings/python
 
-** NB do we need the other bit of PYTHONPATH, set in section above? **
+You need to make sure (on Windows at least) that the `PYTHONPATH` includes the directory containing the newly-generated `liblx.py`, and
+`_liblx.pyd` (e.g. if the generated `liblx.py` is found in `C:\Users\cceagil\repos\CompBioLibs\build\src\bindings\python`,
+then the `_liblx.pyd` should be in `C:\Users\cceagil\repos\CompBioLibs\build\src\bindings\python\Release`, for a Release build
+(for example).)
 
 Now we can fire up a Python interpreter and use ``liblx``:
 
@@ -502,8 +531,43 @@ Now we can fire up a Python interpreter and use ``liblx``:
 
 
 
-with anaconda:
-INCLUDE=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt;C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt
-LIB=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\lib\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\ucrt\x86;C:\Program Files (x86)\Windows Kits\10\lib\10.0.19041.0\um\x86
-LIBPATH=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\lib\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\lib\x86\store\references;C:\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0;C:\Program Files (x86)\Windows Kits\10\References\10.0.19041.0;C:\Windows\Microsoft.NET\Framework\v4.0.30319
-Path=C:\Users\mattg\envts\venv\Scripts;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\\Extensions\Microsoft\IntelliCode\CLI;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\bin\HostX86\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\VC\VCPackages;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TestWindow;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\bin\Roslyn;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Team Tools\Performance Tools;C:\Program Files (x86)\Microsoft Visual Studio\Shared\Common\VSPerfCollectionTools\vs2019\;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\devinit;C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x86;C:\Program Files (x86)\Windows Kits\10\bin\x86;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\\MSBuild\Current\Bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\;C:\Program Files\Python39\Scripts\;C:\Program Files\Python39\;C:\ProgramData\Anaconda3;C:\ProgramData\Anaconda3\Library\mingw-w64\bin;C:\ProgramData\Anaconda3\Library\usr\bin;C:\ProgramData\Anaconda3\Library\bin;C:\ProgramData\Anaconda3\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\CMake\bin;C;C:\Program Files\Graphviz\bin;C:\Users\mattg\AppData\Local\Microsoft\WindowsApps;;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\Ninja;C:\Program Files\doxygen\bin;C:\Program Files\GraphViz\bin
+.. _windows-issues:
+
+Windows issues with the SWIG Python build
+-----------------------------------------
+
+Things should work OK, but this section is a record of some issues I had when battling to get a successful Windows build, in case it
+helps someone.
+
+Basically, don't use Anaconda Python to get this to work! (at least, not a Debug build).
+
+set PYTHON_INCLUDE=C:\ProgramData\Anaconda3\include
+set PYTHON_LIB=C:\ProgramData\Anaconda3\libs\python38.lib
+-DSWIG_EXECUTABLE=C:\Users\mattg\swigwin-4.0.2\swig.exe
+produces src/bindings/python/liblx.py
+
+linker error:
+LINK : fatal error LNK1104: cannot open file 'python38_d.lib' [C:\Users\mattg\build\src\bindings\python\binding_python_
+lib.vcxproj]
+Maybe because I specified a debug version of the dependencies???
+see:
+https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-windows-with-a-debug-python-installation
+
+
+https://stackoverflow.com/questions/17028576/using-python-3-3-in-c-python33-d-lib-not-found/45407558
+It looks like we need to download a debug version of the python library. Anaconda doesn;t appear to supply this.
+Downloading Windows installer of Python 3.9.7 https://www.python.org/downloads/release/python-397/
+Or, one can use #ifdef statements.
+The installer updated the PATH (selected option to disable max PATH character limit) and appears before the
+Anaconda version in the PATH.
+
+set PYTHON_INCLUDE="C:\Program Files\Python39\include"   # location of Python.h
+set PYTHON_LIB="C:\Program Files\Python39\libs\python39_d.lib"  # debug library
+-DPYTHON_EXECUTABLE="C:\Program Files\Python39\python.exe"
+rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio: Project-> cmake cache->delete cache
+
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
+\build\src\liblx\xml\test\test_sbml_xml.vcxproj]
+
+https://stackoverflow.com/questions/3007312/resolving-lnk4098-defaultlib-msvcrt-conflicts-with 
+
