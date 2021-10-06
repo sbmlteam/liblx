@@ -11,10 +11,12 @@ has become a little inconsistent, as I wrote it whilst battling different Window
 
 We assume you have cloned the ``liblx`` repository on your local Windows computer.
 
-Install `Microsoft Visual Studi <https://visualstudio.microsoft.com/vs/>`_, with the Windows SDK. You can then use its version of ``cmake`` (see below).
+The term "directory", in the following instructions, is synonymous with the Windows term "folder".
+
+Install `Microsoft Visual Studio <https://visualstudio.microsoft.com/vs/>`_, with the Windows SDK. You can then use its version of ``cmake`` (see below).
 
 Download the `SBML Windows dependencies <https://sourceforge.net/projects/sbml/files/libsbml/win-dependencies/>`_.
-You can download all 4 and use as required. Right now there is no "version 16", the verion number of my Visual Studio,
+You can download all 4 and use as required. Right now there is no "version 16", the version number of my Visual Studio,
 so I downloaded the highest available one (15). Make sure you check the checksums.
 
 The most commonly downloaded one is ``libSBML_dependencies_vs15_release_x64_static.zip``, and we will use it in this example.
@@ -38,7 +40,7 @@ If you have installed ``cmake``, you can use it directly. If not, you can use th
 See `Using cmake at the command line with Visual Studio <https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-160#run-cmake-from-the-command-line>`_
 and `Building on the command line <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160>`_.
 
-NB ensure you select the correct version of the documentation for your version of Visual Studio.
+**NB ensure you select the correct version of the documentation for your version of Visual Studio.**
 
 Basically, to use the VS version of ``cmake``, you have to ``cd`` into the relevant directory on your PC,
 and then execute the appropriate ``.bat`` file to update the ``PATH`` and required environment variables.
@@ -50,8 +52,9 @@ e.g.
 
 Running the ``set`` command (lists environment variables) reveals ``PROCESSOR_ARCHITECTURE=AMD64`` and ``Platform=x64``
 (or you might be able to get this information by right-clicking on "This PC" or "My Computer", and choosing the Properties option.)
-So we need to `run the file vcvar64.bat at the command line, in our existing command 
+So we need to `run the file vcvar64.bat (in this case) at the command line, in our existing command 
 window <https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=msvc-160#use-the-developer-tools-in-an-existing-command-window>`_.
+Obviously, based on your computer's arhitecture you may need to select a different ``.bat`` file.
 
 .. code-block:: bash
 
@@ -87,6 +90,9 @@ e.g.
 
     (myenv) set PATH="C:\Program Files\GraphViz\bin";%PATH%
 
+In the above examples, I enclosed the new part of the ``PATH`` in quotes, due to the space in "Program Files", 
+but this may not be necessary. 
+
 For the C/C++-Python SWIG bindings, you need to install SWIG. On my PC, the executable is 
 ``C:\Users\cceagil\swigwin-4.0.2\swigwin-4.0.2\swig.exe``. So we again update the ``PATH``:
 
@@ -116,6 +122,11 @@ Finally, we create a new build directory, outside of the ``liblx`` git repo dire
     (myenv) cmake -DCMAKE_BUILD_TYPE=Release -DWITH_PYTHON=ON -DWITH_STATIC_RUNTIME=ON -DWITH_DOXYGEN=TRUE -DWITH_CHECK=TRUE -DLIBLX_DEPENDENCY_DIR=C:\Users\cceagil\repos\CompBioLibs\dependencies\libSBML-Dependencies-1.0.0-b1-win64-release-static C:\Users\cceagil\repos\CompBioLibs\liblx
     (myenv) cmake --build . --config Release
 
+Note, in this case, that we want a static Release build, per the version of the SBML dependency libraries we are
+linking against. So both the ``CMAKE_BUILD_TYPE`` and ``--config`` options are set to ``Release``. Also, we "switch on"
+the ``WITH_STATIC_RUNTIME`` option. The (rather copious) ``cmake`` output is not shown. The final item in the first ``cmake`` command
+is the top level directory of the ``liblx`` cloned repository.
+
 Run the tests to check all is well; in this case, we created a Release build:
 
 .. code-block:: bash
@@ -133,9 +144,16 @@ Run the tests to check all is well; in this case, we created a Release build:
 
     (myenv) 
 
+If more detailed output is required, also use the ``-V`` switch - so, in this case, it would be:
+
+
+.. code-block:: bash
+
+    ctest -V -C Release
+
 Now we can look at the documentation (in the ``build/docs/sphinx/quickstart`` folder, e.g.
-``build/docs/sphinx/quickstart/get-started.html`` and ``build/docs/sphinx/quickstart/complete-windows-example.html``).
-You should also be able to view the API documentation, formed by Doxygen and Sphinx from the relevant comments in the source files.
+`Quickstart <./get-started.html>`_ and ``build/docs/sphinx/quickstart/complete-windows-example.html`` (this file)).
+You should also be able to view the `API documentation <../api.html>`_, formed by Doxygen and Sphinx from the relevant comments in the source files.
 
 You can also now use the Python bindings (wrapper) to the ``liblx`` C/C++ code. For example, from within the ``build/`` directory:
 
@@ -143,7 +161,8 @@ You can also now use the Python bindings (wrapper) to the ``liblx`` C/C++ code. 
 
     (myenv) cd src\bindings\python    
 
-Invoking ``dir`` should show that ``liblx.py`` is visible. To work, this needs ``_liblx.pyd``, which in our case is in the 
+Invoking ``dir`` should show that ``liblx.py`` is visible, and we are in the directory
+``build\src\bindings\python``. To work, this needs ``_liblx.pyd``, which in our case is in the 
 directory ``build\src\bindings\python\Release``. To use ``liblx`` within Python, we need to update our ``PYTHONPATH`` to 
 include this directory. We can do this inside Python:
 
@@ -155,7 +174,8 @@ include this directory. We can do this inside Python:
     >>> from liblx import *
 
 
-The ``liblx`` Python library can then be used as per the example Sample Python Session in ``python-bindings.html``. 
+The ``liblx`` Python library can then be used as per the example 
+`Sample Python Session <../liblx/python-bindings.html#sample-python-session>`_. 
 
 
 .. _building_dont-like-cli:
@@ -190,14 +210,18 @@ build, in case it helps someone.
 
 Basically, don't use Anaconda Python to get this to work! (at least, not a Debug build).
 
-set PYTHON_INCLUDE=C:\ProgramData\Anaconda3\include
-set PYTHON_LIB=C:\ProgramData\Anaconda3\libs\python38.lib
--DSWIG_EXECUTABLE=C:\Users\mattg\swigwin-4.0.2\swig.exe
-produces src/bindings/python/liblx.py
+.. code-block:: bash
 
-linker error:
-LINK : fatal error LNK1104: cannot open file 'python38_d.lib' [C:\Users\mattg\build\src\bindings\python\binding_python_
-lib.vcxproj]
+    set PYTHON_INCLUDE=C:\ProgramData\Anaconda3\include
+    set PYTHON_LIB=C:\ProgramData\Anaconda3\libs\python38.lib
+    -DSWIG_EXECUTABLE=C:\Users\mattg\swigwin-4.0.2\swig.exe
+    produces src/bindings/python/liblx.py
+
+    linker error:
+    LINK : fatal error LNK1104: cannot open file 'python38_d.lib' [C:\Users\mattg\build\src\bindings\python\binding_python_
+    lib.vcxproj]
+
+
 Maybe because I specified a debug version of the dependencies???
 see:
 https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-windows-with-a-debug-python-installation
@@ -205,19 +229,21 @@ https://stackoverflow.com/questions/59126760/building-a-python-c-extension-on-wi
 and:
 https://stackoverflow.com/questions/17028576/using-python-3-3-in-c-python33-d-lib-not-found/45407558
 
-It looks like we need to download a debug version of the python library. Anaconda doesn;t appear to supply this.
+It looks like we need to download a debug version of the python library. Anaconda doesn't appear to supply this.
 Downloading Windows installer of Python 3.9.7 https://www.python.org/downloads/release/python-397/
-Or, one can use #ifdef statements.
-The installer updated the PATH (selected option to disable max PATH character limit) and appears before the
-Anaconda version in the PATH.
+Or, one can use ``#ifdef`` statements.
+The installer updated the ``PATH`` (selected option to disable max ``PATH`` character limit) and appears before the
+Anaconda version in the ``PATH``.
 
-set PYTHON_INCLUDE="C:\Program Files\Python39\include"   # location of Python.h
-set PYTHON_LIB="C:\Program Files\Python39\libs\python39_d.lib"  # debug library
--DPYTHON_EXECUTABLE="C:\Program Files\Python39\python.exe"
-rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio: Project-> cmake cache->delete cache
+.. code-block:: bash
 
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
-\build\src\liblx\xml\test\test_sbml_xml.vcxproj]
+    set PYTHON_INCLUDE="C:\Program Files\Python39\include"   # location of Python.h
+    set PYTHON_LIB="C:\Program Files\Python39\libs\python39_d.lib"  # debug library
+    -DPYTHON_EXECUTABLE="C:\Program Files\Python39\python.exe"
+    rm -rf ~/repos/work/CompBioLibs/liblx/out # delete vs cmake cache Visual Studio: Project-> cmake cache->delete cache
+
+    LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library [C:\Users\mattg
+    \build\src\liblx\xml\test\test_sbml_xml.vcxproj]
 
 https://stackoverflow.com/questions/3007312/resolving-lnk4098-defaultlib-msvcrt-conflicts-with 
 
