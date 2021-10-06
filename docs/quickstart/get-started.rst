@@ -48,7 +48,7 @@ In a location outside of the cloned repo, create a directory in which to do the 
 
 .. code-block:: bash
 
-    mkdir build   -  the results of the build will be in here.
+    mkdir build   #  the results of the build will be in here.
     cd build
 
 Execute ``cmake``, e.g.
@@ -126,7 +126,7 @@ Actually, ``WITH_LIBXML`` is ``ON`` by default, so would need:
 
 to build ``liblx`` using the Xerces library, for example.
 
-*** # I think this next statement is wrong (TBC): ***
+*** I think this next statement is wrong (TBC): ***
 NB at the moment Expat and Xerces builds are failing as they still have some SBML stuff
 e.g. ``LIBSBML_CPP_NAMESPACE_END``
 
@@ -144,7 +144,7 @@ building the ``liblx`` library, the SWIG C/C++-Python bindings, and the document
 Building the documentation
 --------------------------
 The documentation is automatically built on readthedocs with every commit. However, you
-can still generate the documentation locally along your normal build (see `Building the library`_). For that you
+can still generate the documentation locally alongside your normal build (see `Building the library`_). For that you
 will need the following requirements installed:
 
 (on a Mac)
@@ -186,9 +186,8 @@ we created earlier:
 NB the above steps should not be done in the directory hierarchy of the git repo.
 
 
-From a website with instructions
-(https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)
-: "Breathe is the bridge between Doxygen and Sphinx; taking the output from the former and making it available
+From a `website with instructions <https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/>`_:
+"Breathe is the bridge between Doxygen and Sphinx; taking the output from the former and making it available
 through some special directives in the latter."
 
 The command ``pip show breathe`` will show whereabouts on your system ``breathe`` has been installed.
@@ -313,7 +312,8 @@ e.g. if you have done a Release build, the instruction would be:
 
 Example of how to use the SWIG/Python binding
 ---------------------------------------------
-See also  the pages `python-bindings.rst` and `liblx/src/bindings/swig-windows.txt` for more details.
+See also  the pages `Building and using the Python version of libLX <../liblx/python-bindings.html>`_ and
+and `Using SWIG on Windows <./swig-windows.html>`_ for more details.
 
 If you want to build the SWIG language bindings, install swig e.g. ``brew install swig`` on a Mac.
 

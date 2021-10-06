@@ -15,6 +15,7 @@ Welcome to the LibLX API documentation
 
    quickstart/get-started
    quickstart/complete-windows-example
+   quickstart/swig-windows   
    liblx/python-bindings
    examples/examples
    api
