@@ -3,108 +3,158 @@ Quickstart
 
 .. _building_library:
 
-Building the libLX library
---------------------------
-The first task is to clone the libLX repository, and then ``cd`` into it:
+Building the library
+--------------------
+There are different components we can build:
+
+  - the C++ ``liblx`` library
+  - the SWIG language bindings (e.g. to enable access to ``liblx`` via a Python interface)
+  - the documentation
+
+It is best to do an "out-of-source" build. This means to build the components in a
+location which is not within the ``cmake`` hierarchy being used. A quick way of doing
+this is to create a new ``build/`` directory, ensuring it is not within the ``liblx``
+github repo which you have cloned.
+
+Also, note that, at the current time, you can choose which of three different XML libraries
+you wish to use to build ``liblx``.
+
+.. _building_mac:
+
+Instructions for building on a Mac
+----------------------------------
+
+Create a virtual environment first.
+
+e.g.
 
 .. code-block:: bash
 
-    git clone https://github.com/sbmlteam/liblx.git
-    cd liblx
+    ~ > python3 -m venv venv
+    ~ > . ./venv/bin/activate
 
-You then need to install ``check`` (unit testing library for C). Example (MacOS):
+(Do this in a directory outside the repo. Use the command ``deactivate`` if you need to
+exit the virtual environment.)
+
+In order to be able to run the test code, install ``check`` (unit testing library for C) -
+e.g. ``brew install check``  -> ``/usr/local/Cellar/check/0.15.2/`` in my case.
+
+Now clone the ``liblx`` repo in a suitable directory, if not done already:
+
+``git clone https://github.com/sbmlteam/liblx.git``
+
+
+In a location outside of the cloned repo, create a directory in which to do the build, e.g.
 
 .. code-block:: bash
 
-    brew install check
-
-It might be necessary to do this in a virtual environment.
-
-We then create and enter a ``build`` folder, within the ``liblx`` repository we have just cloned,
-to store the results of the build we are going to make:
-
-.. code-block:: bash
-
-    mkdir build
+    mkdir build   #  the results of the build will be in here.
     cd build
 
-[NB Added later: Despite what I've done here, it is generally recommended NOT to have the build within the
-same directory structure as the repo; best to move completely outside. It is then termed an
-"out of source build". If you do it properly, the `cmake` commands below should end with the directory of the
-source files you are building, rather than just `..` as I have done here. Hopefully later we'll have some
-time to update the wording of this doc to remove the need for this note. Sorry!] 
-
-We can now invoke CMake (assuming you have it installed!), with various options as appropriate. For example
+Execute ``cmake``, e.g.
 
 .. code-block:: bash
 
-    cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" ..
+ cmake -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /path/to/liblx/cloned/repo/
 
-The trailing ``..`` at the end of this command refers to the folder immediately above our new `build` folder, i.e. the
-top-level ``liblx`` folder in the repository we cloned. The top-level ``liblx`` folder contains the top-level ``CMakeLists.txt``
-file which controls the builds. (Sub-folders have a lower-level ``CMakeLists.txt`` file.)
+Note that the directory at the end of the ``cmake`` command above is the top-level directory of the cloned repo
+(i.e. it contains the top-level ``CMakeLists.txt`` file).
 
-The ``-DWITH_CHECK=TRUE`` option means that we have requested the test suite is built as well as the library itself.
-Assuming the ``cmake`` command completes successfully, there should now be a ``Makefile`` in the ``build/`` folder;
-we can then issue the command:
+Now execute command ``make``, or try ``cmake --build .``
 
-.. code-block:: bash
+On Mac, this builds ``build/src/liblx-static.a`` and ``build/src/liblx.dylib``
 
-    make
+Invoke test script in ``build/`` subdir; it is ``src/liblx/xml/test/Debug/test_sbml_xml``
+or similar. It's easier to just run the command ``ctest -V`` instead, as it does (almost) the same.
 
-This is the instruction to compile the ``libLX`` library (and test code).
-
-If this completes successfully, you should find static and dynamic versions of the library have been built in the
-newly-created ``src`` sub-folder in ``build/``. On a Mac, these will be ``liblx-static.a`` and ``liblx.dylib``.
-
-
-Running the tests
------------------
-Assuming you used the ``-DWITH_CHECK=TRUE`` option in your ``cmake`` command, you should have a test program,
-``src/liblx/xml/test/test_sbml_xml``, which you can invoke with ``ctest``.
-
-To see more verbose output, e.g. because a test has failed, use ``ctest -V``.
-
-
-.. _building_bindings:
-
-Building the SWIG language bindings
------------------------------------
-``liblx`` is written in C/C++. But we can create an interface from another programming language (e.g. Python).
-To do this, we generate "language bindings" from a program called `SWIG <http://www.swig.org/>`_. So, first,
-we need to install SWIG. Example (MacOS):
+Each time you build, it is best to delete any results of the previous build
+``git clean`` can remove untracked files e.g. those generated by ``CMake`` - need to clean these out before
+each ``CMake`` build
+e.g.
 
 .. code-block:: bash
 
-    brew install swig
+     git clean -d -x -f -n  # check what you will delete
+     git clean -d -x -f
+     mkdir build
+     cd build
+     cmake -DWITH_PYTHON=TRUE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON -DWITH_CHECK=TRUE -G "Unix Makefiles" /Users/matthewgillman/repos/libLX/liblx/
+     make
 
-We then need to re-issue our ``cmake`` command with a suitable addition: ``-DWITH_PYTHON=TRUE``, and then ``make`` again.
+or use the nuclear option: ``rm -rf build``, which is safer.
 
-NB for all the different ``cmake`` invocations in this document, it may be necessary each time to delete and then re-create
-the ``build/`` directory (and ``cd`` into it, of course).
+To get the SWIG/Python bindings built, it appears we must download the Xerces distribution.
+Because various Xerces files in ``src/liblx/xml`` ``#include`` files from there.
+LibXML appears to be fully present already.
+See the `Xerces instructions <http://www.yolinux.com/TUTORIALS/XML-Xerces-C.html>`_.
+
+.. code-block:: bash
+
+    > cd ~
+    > mkdir xerces && cd xerces
+    http://xml.apache.org/xerces-c/download.cgi
+    e.g.:
+    > wget https://www.mirrorservice.org/sites/ftp.apache.org//xerces/c/3/sources/xerces-c-3.2.3.tar.gz
+    > shasum *.gz   # check the output is the same as on the xerces website download page
+    > tar -xzf xerces-c-3.2.3.tar.gz
+    > cd xerces-c-3.2.3
+    > ./configure --prefix=/opt
+    > make
+    > sudo make install
+
+The include files are now in ``/opt/include/xercesc``, new applications in ``/opt/bin``,
+and libraries in ``/opt/lib``.
+This will install development files such as include header files and libraries in ``/opt`` so compiler
+flags and linker flags are required:
+
+    Compiler flags: ``-I/opt/include``         (``CXXFLAGS``)
+    Linker flags: ``-L/opt/lib -lxerces-c``    (``LDFLAGS``)
+
+Try: cmake command as above but with ``-I/opt/include -L/opt/lib -lxerces-c``
+
+You should be able to do this (not all of the ``cmake`` command shown):
+
+.. code-block:: bash
+
+     cmake ... -DWITH_XERCES=TRUE  (or -DWITH_EXPAT or -DWITH_LIBXML)
+
+Actually, ``WITH_LIBXML`` is ``ON`` by default, so would need:
+
+.. code-block:: bash
+
+     cmake ... -DWITH_XERCES=TRUE -DWITH_LIBXML=FALSE (or ON/OFF)
+
+to build ``liblx`` using the Xerces library, for example.
+
+*** I think this next statement is wrong (TBC): ***
+NB at the moment Expat and Xerces builds are failing as they still have some SBML stuff
+e.g. ``LIBSBML_CPP_NAMESPACE_END``
 
 
+.. _building_windows:
 
-.. _building_with_choice_of_xml_libs:
-
-Building with a choice of XML libraries
----------------------------------------
-
+How to build on Windows
+-----------------------
+Please refer to the `Complete Windows Example <./complete-windows-example.html>`_, which covers
+building the ``liblx`` library, the SWIG C/C++-Python bindings, and the documentation.
 
 
 .. _building_documentation:
 
 Building the documentation
 --------------------------
-To generate the documentation, you need `Sphinx <https://www.sphinx-doc.org/en/master/>`_,
-`Doxygen <https://www.doxygen.nl/index.html>`_ and `breathe <https://breathe.readthedocs.io/en/latest/quickstart.html>`_
-installed. It is probably best to refer to their websites to find the preferred way of installing on your operating system.
+The documentation is automatically built on readthedocs with every commit. However, you
+can still generate the documentation locally alongside your normal build (see `Building the library`_). For that you
+will need the following requirements installed:
 
-??? brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
-??? or pip install -U sphinx   -> sphinx-build --version = "sphinx-build 4.0.2"
-brew install doxygen   # e.g. to /usr/local/bin/doxygen
-pip install breathe # see
-pip show breathe -> ~/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
+(on a Mac)
+
+.. code-block:: bash
+
+    brew install sphinx-doc  # to /usr/local/opt/sphinx-doc/bin
+    brew install doxygen   # e.g. to /usr/local/bin/doxygen
+    pip install breathe 
+    pip show breathe -> ~/repos/Deviser/deviser/generator/pytest_files/cbl-env/lib/python3.6/site-packages/breathe
 
 If you need to have ``sphinx-doc`` first in your ``PATH``, run:
 
@@ -112,28 +162,40 @@ If you need to have ``sphinx-doc`` first in your ``PATH``, run:
 
      echo 'export PATH="/usr/local/opt/sphinx-doc/bin:$PATH"' >> ~/.bash_profile
 
-can use copasi cmake module FindSphinx.cmake
+We can use copasi cmake module FindSphinx.cmake (automatically). Then run ``cmake`` with the Doxygen option.
 
-cmake -DWITH_DOXYGEN=ON -DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen ..
-
--- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
-The dot is from graphviz, which can be used by Doxygen to draw inheritance diagrams etc
-
-
-Next you need the following python packages ``breathe`` and ``sphinx_rtd_theme``. So we start
-by creating a virtual environment, activating it and installing the packages into it. 
 
 .. code-block:: bash
 
-    ~ > python3 -m venv venv 
-    ~ > . ./venv/bin/activate
+    cmake -DWITH_DOXYGEN=ON -DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen ..
+
+    -- Found Doxygen: /usr/local/bin/doxygen (found version "1.9.1") found components: doxygen missing components: dot
+
+The dot is from graphviz, which can be used by Doxygen to draw inheritance diagrams etc
+
+Next you need the Python packages ``breathe`` and ``sphinx_rtd_theme``. Assuming we are inside the virtual environment that
+we created earlier:
+
+.. code-block:: bash
+
     (venv) ~ > pip install sphinx_rtd_theme breathe
     (venv) ~ > brew install doxygen
 
+(this was on a Mac). 
+
+NB the above steps should not be done in the directory hierarchy of the git repo.
+
+
+From a `website with instructions <https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/>`_:
+"Breathe is the bridge between Doxygen and Sphinx; taking the output from the former and making it available
+through some special directives in the latter."
+
 The command ``pip show breathe`` will show whereabouts on your system ``breathe`` has been installed.
-This location needs to be added to your ``PYTHONPATH`` before building the documentation.
+It may be necessary (but I don't think so, and not on Windows) to be added to your ``PYTHONPATH``
+before building the documentation (or, if ``PYTHONPATH`` is not currently set, to set it to this value).
 For example, if the ``breathe`` directory is installed as ``/Users/smith/venv/lib/python3.6/site-packages/breathe``,
-add ``/Users/smith/venv/lib/python3.6/site-packages/`` to your ``PYTHONPATH``. For example:
+add ``/Users/smith/venv/lib/python3.6/site-packages/`` to your ``PYTHONPATH``. For example (from within
+your virtual environment):
 
 .. code-block:: bash
 
@@ -141,21 +203,46 @@ add ``/Users/smith/venv/lib/python3.6/site-packages/`` to your ``PYTHONPATH``. F
     > echo $PYTHONPATH
     /Users/smith/venv/lib/python3.6/site-packages/
 
+or, on Windows:
+
+.. code-block:: bash
+
+    > set PYTHONPATH=C:\Users\mattg\envts\venv\lib\site-packages
+
+It's possible ``PYTHONPATH`` isn't needed at this stage, but it definitely is when you get to
+the SWIG binding compilation step (for the Python binding), below.
+
+(We created ``venv`` inside directory ``C:\Users\mattg\envts`` before this)
 
 Since the documentation is not generated by default, you have to reconfigure your ``cmake``
-project for the libLX API next. So change into your build folder from before, and
-reconfigure with the option ``-DWITH_DOXYGEN=ON``.
+project for the ``libLX`` API next. So change into your ``build/`` folder from before, and
+reconfigure with the option ``-DWITH_DOXYGEN=ON`` added to the ``cmake`` command. You will probably
+want to empty the ``build/`` directory first.
 
-[If necessary, add the link to the Doxygen executable (if your system doesn't pick it up),
-e.g. ``-DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen``] in the ``cmake`` command below (before the final ``..``).
+Doxygen should be picked up, if you updated the ``PATH`` environment variable above; if not,
+you can specify it as an extra item in the ``cmake`` command above.
+e.g. add the following option (Windows example)
+
+.. code-block:: bash
+
+    -DDOXYGEN_EXECUTABLE="C:\Program Files\doxygen\bin\doxygen.exe"  # or wherever yours is.
+
+You need to set the ``CODE_SRC_DIR`` environment variable; this specifies the location of the top
+of the hierarchy of ``liblx ``source files in the repo. Example (Windows):
+
+.. code-block:: bash
+
+     > set CODE_SRC_DIR=C:\Users\mattg\repos\work\CompBioLibs\liblx\src
+
+This environment variable is used in the ``INPUT`` line of ``Doxyfile.in``.
+This will allow the "API" section of the documentation to be populated.
 
 .. code-block:: bash
 
     (venv) ~ > cd liblx/build
     (venv) build > cmake -DWITH_DOXYGEN=ON ..
 
-    add some typical cmake output here
-
+    ...
     ...
     -- Configuring done
     -- Generating done
@@ -163,20 +250,17 @@ e.g. ``-DDOXYGEN_EXECUTABLE=/usr/local/bin/doxygen``] in the ``cmake`` command b
     (venv) build >
 
 Errors would have shown if Doxygen or Sphinx could not be found in the process. Now you
-are ready to build the documentation with: 
+are ready to build the documentation with (on a Mac):
 
 .. code-block:: bash
 
     (venv) build > make Sphinx
     [ 50%] Generating documentation with Sphinx
-    Running Sphinx v4.0.2
-    loading pickled environment... done
-    building [mo]: targets for 0 po files that are out of date
-    building [html]: targets for 1 source files that are out of date
-    updating environment: 0 added, 1 changed, 0 removed
-    reading sources... [100%] quickstart/get-started
+    Running Sphinx v3.5.4
+
     ...
     ...
+
     build succeeded.
 
     The HTML pages are in sphinx.
@@ -184,10 +268,128 @@ are ready to build the documentation with:
 
     (venv) build >
 
+or, on Windows, use ``cmake --build .``
+
 And at this point you have the HTML pages generated in ``./docs/sphinx/`` with the 
 main document being ``./docs/sphinx/index.html``. This page will be ``./docs/sphinx/quickstart/get-started.html``.
 
-The documentation will then be accessible from ``liblx/build/docs/sphinx/index.html``.
+Windows example (builds docs and check code):
 
+.. code-block:: bash
+
+    cmake -DLIBLX_DEPENDENCY_DIR=C:\Users\mattg\repos\work\CompBioLibs\debug\debug_x64_dynamic\libSBML-Dependencies-1.0.0-b1-win64 -DCMAKE_BUILD_TYPE=Debug -DWITH_CHECK=TRUE -DWITH_STATIC_RUNTIME=OFF -DWITH_DOXYGEN=TRUE  C:\Users\mattg\repos\work\CompBioLibs\liblx
+    cmake --build .
+    ctest -V
+
+
+.. _running_tests:
+
+Running the tests
+-----------------
+We use the testing framework catch2 <https://github.com/catchorg/Catch2> and 
+integrated it with the cmake build, so after building the library you can run 
+the tests using ``ctest``:
+
+.. code-block:: bash
+
+    (venv) build > ctest -V     (or -v if you want less output)
+
+
+.. code-block:: bash
+
+    (venv) build > ctest -C Debug -V
+
+
+The Python SWIG bindings also have a test script. To get this to run, you need to select the appropriate config.
+e.g. if you have done a Release build, the instruction would be:
+
+.. code-block:: bash
+
+    (venv) ctest -C Release
+
+
+.. _how_to_use_SWIG_Python_binding:
+
+Example of how to use the SWIG/Python binding
+---------------------------------------------
+See also  the pages `Building and using the Python version of libLX <../liblx/python-bindings.html>`_ and
+and `Using SWIG on Windows <./swig-windows.html>`_ for more details.
+
+If you want to build the SWIG language bindings, install swig e.g. ``brew install swig`` on a Mac.
+
+http://www.swig.org/download.html
+Windows: "Windows users should download swigwin-4.0.2 which includes a prebuilt executable."
+and then update the `PATH`
+
+If you do a build with the extra switch ``-DWITH_PYTHON=TRUE``, you should find Python bindings generated
+in the build directory, in ``src/bindings/python``. Frank says: "you should find the ``libsbml.py``
+(or ``libsbml2.py / libsbml3.py`` since we still support both versions). along with a native library
+``libsbml.pyd|so|dylib``. At that point you can change into the directory, export
+the ``PYTHONPATH`` variable to the current path, and you can import ``libsbml`` with the configured python interpreter.
+you can run ``ctest`` to check all tests pass."
+
+http://www.swig.org/Doc4.0/Python.html#Python_nn12
+
+NB: Python bindings are ``liblx.py``, rather than ``libsbml.py``
+
+
+Still in the ``/build`` directory, set the ``PYTHONPATH`` environment variable. e.g. on Mac:
+
+.. code-block:: bash
+
+     export PYTHONPATH=.:src/bindings/python
+
+or, on Windows:
+
+.. code-block:: bash
+
+     set PYTHONPATH=.;src/bindings/python
+
+You need to make sure (on Windows at least) that the `PYTHONPATH` includes the directory containing the newly-generated `liblx.py`, and
+`_liblx.pyd` (e.g. if the generated `liblx.py` is found in `C:\Users\cceagil\repos\CompBioLibs\build\src\bindings\python`,
+then the `_liblx.pyd` should be in `C:\Users\cceagil\repos\CompBioLibs\build\src\bindings\python\Release`, for a Release build
+(for example).)
+
+Now we can fire up a Python interpreter and use ``liblx``:
+
+.. code-block:: bash
+
+    python
+    >>> from liblx import *
+    >>> test_str = "<annotation>\n" + "  <test xmlns=\"http://test.org/\" id=\"test1\">test2</test>\n" + "</annotation>"
+    >>> y = XMLNode(test_str)
+    >>> print(y.toString())
+    <annotation>
+      <test xmlns="http://test.org/" id="test1">test2</test>
+    </annotation>
+    >>> z = y.clone()
+    >>> print(z)
+    <liblx.XMLNode; proxy of <Swig Object of type 'XMLNode_t *' at 0x7fe15437d870> >
+    >>> print(z.toString())
+    <annotation>
+      <test xmlns="http://test.org/" id="test1">test2</test>
+    </annotation>
+    >>> y == z
+    False
+    >>> y is z
+    False
+    >>> y.toString() == z.toString()
+    True
+    >>> y.equals(z)
+    True
+    >>> z.equals(y)
+    True
+    >>> print(y.toXMLString())
+    &lt;annotation&gt;
+      &lt;test xmlns=&quot;http://test.org/&quot; id=&quot;test1&quot;&gt;test2&lt;/test&gt;
+    &lt;/annotation&gt;
+
+
+.. _to-do:
+
+To do
+-----
+Need to (1) check above works ok; unfortunately I can't check it now on a Mac and (2) remove the Windows-specific commands etc. above
+and replace with *nix ones.
 
 

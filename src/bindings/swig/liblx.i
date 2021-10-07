@@ -46,6 +46,10 @@
 
 #pragma SWIG nowarn=473,401,844
 
+#if defined(WIN_32)
+%include "windows.i"
+#endif
+
 #if (!defined (SWIGJAVA) && !defined(SWIGCSHARP))
 // apply typemaps for items we manage manually
 %include "typemaps.i"

@@ -827,8 +827,11 @@ WARN_LOGFILE           =
 # directories like /usr/src/myproject. Separate the files or directories with
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
-
-INPUT                  = "@DOXYGEN_INPUT_DIR@"  # "@DOXYGEN_INPUT_DIR@/core" "@DOXYGEN_INPUT_DIR@/model"
+# CODE_SRC_DIR needs to be set as an environment variable
+# e.g. set CODE_SRC_DIR=C:\Users\mattg\repos\work\CompBioLibs\liblx\src
+# It is the top of the source file hierarchy.
+#INPUT                  = "C:\Users\mattg\repos\work\CompBioLibs\liblx\src\liblx\xml" "C:\Users\mattg\repos\work\CompBioLibs\liblx\src\liblx\xml\compress"   #"C:\Users\mattg\repos\work\CompBioLibs\liblx\src"   #"@DOXYGEN_INPUT_DIR@"  # "@DOXYGEN_INPUT_DIR@/core" "@DOXYGEN_INPUT_DIR@/model"
+INPUT                  = "$(CODE_SRC_DIR)/liblx/xml" "$(CODE_SRC_DIR)/liblx/xml/common" "$(CODE_SRC_DIR)/liblx/xml/compress" "$(CODE_SRC_DIR)/liblx/xml/compress/test"
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

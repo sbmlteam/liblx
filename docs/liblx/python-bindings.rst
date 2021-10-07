@@ -23,9 +23,30 @@ in your `PYTHONPATH`, e.g. `export PYTHONPATH=.:src/bindings/python`, assuming y
 Then, in a Python session, you can say `from liblx import *`.
 
 
+Typical build on Windows
+========================
+Assuming the dependencies etc are installed, you should be able to do this, in a normal Windows command prompt:
+
+.. code-block:: bash
+
+    git clone https://github.com/sbmlteam/liblx.git
+    cd liblx
+    git checkout matt-win-build
+    git pull --rebase
+
+    mkdir build
+    cd build
+    cmake -DCMAKE_BUILD_TYPE=Release -DWITH_PYTHON=ON -DLIBLX_DEPENDENCY_DIR=e:/Development/libSBML-dependencies/install_vs15_release_x64 C:\Users\cceagil\repos\CompBioLibs\liblx
+    cmake --build . --config Release
+
+with, of course, your own values for the dependency directory and the build location (final item in long cmake command above).
+This example assumes you have installed `cmake` directly, rather than using the version which comes with Visual Studio.
+NB there are additional steps required; also, the first ``cmake`` command is likely to be a little different.
+For more details, see `Complete Windows Example <../quickstart/complete-windows-example.html>`_.
+
+
 Sample Python Session
 =====================
-python
 
 Using an XML fragment like:
 
@@ -37,6 +58,8 @@ Using an XML fragment like:
 
 In this example, the namespace URI is http://test.org, and `id` is an attribute with value "test1".
 The elements are `annotation` and `test`. The value of the `test` element is "test2".
+
+You will have to set your python path (either PYTHONPATH env var, or within python session) to pick up the built liblx modules.
 
 .. code-block:: python
 
