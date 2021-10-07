@@ -193,11 +193,28 @@ in Visual Studio (but see below). Then, right-click on the desired target (e.g. 
 Obviously you will still have to download the required dependencies and other software referred to in the command-line build section.
 
 
-.. _to-do:
+.. _other_xml:
 
-To add later:
--------------
-Building with the 3 different XML libraries.
+Choice of XML library
+---------------------
+
+By default, ``liblx`` is compiled with the `libXML <http://xmlsoft.org/>`_ library. However, users can choose to use another XML library instead.
+The others supported at the moment are the `Expat <https://github.com/libexpat/libexpat>`_ and  `Xerces <http://xerces.apache.org/xerces-c/>`_ libraries.
+
+The required files are included in the SBML Windows dependencies, mentioned near the beginning of this page. If you wish to use another one, please refer to the table below.
+
+.. list-table:: Choice of XML library
+   :widths: 20 80
+   :header-rows: 1
+
+   * - Preferred library
+     - Changes required to first ``cmake`` command above
+   * - libXML
+     - (no changes required)
+   * - Expat
+     - Add ``-DWITH_EXPAT=TRUE -DWITH_LIBXML=FALSE`` to first ``cmake`` command
+   * - Xerces
+     - Add ``-DWITH_XERCES=TRUE -DWITH_LIBXML=FALSE`` to first ``cmake`` command
 
 
 .. _windows-issues:
